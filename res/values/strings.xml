@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">OnlineDio</string>
+    <string name="welcome">WELCOME, ONLINE - DIO</string>
+    <string name="footer">By joining OnlineDio you agree to the
+        <b>Terms of Service\n</b>
+        and
+        <b>Privacy Policy</b>
+    </string>
 </resources>

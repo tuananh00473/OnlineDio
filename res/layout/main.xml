@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-        >
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World, MainActivity"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rlBackground"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+    <ImageView
+            android:layout_width="@dimen/phone_width_logo"
+            android:layout_height="@dimen/phone_heigh_logo"
+            android:id="@+id/ivLogo"
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="120dp"
             />
-</LinearLayout>
+    <Button
+            android:id="@+id/btSignUp"
+            android:layout_width="@dimen/phone_width_button"
+            android:layout_height="@dimen/phone_heigh_button"
+            android:background="@drawable/signup"
+            android:layout_alignParentRight="true" android:layout_marginRight="10dp"
+            android:layout_alignParentBottom="true" android:layout_marginBottom="10dp"/>
+    <Button
+            android:id="@+id/btLogin"
+            android:layout_width="@dimen/phone_width_button"
+            android:layout_height="@dimen/phone_heigh_button"
+            android:background="@drawable/login"
+            android:layout_toLeftOf="@id/btSignUp" android:layout_marginRight="10dp"
+            android:layout_alignTop="@id/btSignUp"/>
+</RelativeLayout>
 
