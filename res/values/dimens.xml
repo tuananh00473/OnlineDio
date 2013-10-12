@@ -8,7 +8,7 @@
     <dimen name="phone_heigh_button">30dp</dimen>
 
     <dimen name="phone_text_size">20dp</dimen>
-    <dimen name="phone_text_footer_size">20dp</dimen>
+    <dimen name="phone_text_footer_size">10dp</dimen>
 
     <!--tablet-->
     <dimen name="tablet_width_logo">400dp</dimen>
