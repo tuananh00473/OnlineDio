@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--phone-->
-    <dimen name="phone_width_logo">200dp</dimen>
-    <dimen name="phone_heigh_logo">200dp</dimen>
+    <dimen name="phone_width_logo">150dp</dimen>
+    <dimen name="phone_heigh_logo">150dp</dimen>
 
     <dimen name="phone_width_button">80dp</dimen>
     <dimen name="phone_heigh_button">30dp</dimen>

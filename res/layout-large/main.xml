@@ -23,24 +23,24 @@
             android:textSize="@dimen/tablet_text_footer_size"
             />
     <Button
-            android:id="@+id/btSignUp"
-            android:layout_width="@dimen/tablet_width_button"
-            android:layout_height="@dimen/tablet_heigh_button"
-            android:background="@drawable/signup"
-            android:layout_alignParentRight="true" android:layout_marginRight="20dp"
+            android:id="@+id/btLogin"
+            android:layout_width="@dimen/phone_width_button"
+            android:layout_height="@dimen/phone_heigh_button"
+            android:background="@drawable/button_login"
+            android:layout_centerHorizontal="true"
             android:layout_above="@id/tvFooter" android:layout_marginBottom="20dp"/>
     <Button
-            android:id="@+id/btLogin"
-            android:layout_width="@dimen/tablet_width_button"
-            android:layout_height="@dimen/tablet_heigh_button"
-            android:background="@drawable/login"
-            android:layout_toLeftOf="@id/btSignUp" android:layout_marginRight="20dp"
+            android:id="@+id/btSignUp"
+            android:layout_width="@dimen/phone_width_button"
+            android:layout_height="@dimen/phone_heigh_button"
+            android:background="@drawable/button_signup"
+            android:layout_toRightOf="@id/btLogin" android:layout_marginLeft="20dp"
             android:layout_above="@id/tvFooter" android:layout_marginBottom="20dp"/>
     <Button
             android:id="@+id/btLoginFb"
-            android:layout_width="@dimen/tablet_width_button"
-            android:layout_height="@dimen/tablet_heigh_button"
-            android:background="@drawable/login_fb"
+            android:layout_width="@dimen/phone_width_button"
+            android:layout_height="@dimen/phone_heigh_button"
+            android:background="@drawable/button_login_fb"
             android:layout_toLeftOf="@id/btLogin" android:layout_marginRight="20dp"
             android:layout_above="@id/tvFooter" android:layout_marginBottom="20dp"/>
 </RelativeLayout>

@@ -22,7 +22,7 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         rlBackground = (RelativeLayout) findViewById(R.id.rlBackground);
-        rlBackground.setBackgroundResource(R.drawable.background);
+        rlBackground.setBackgroundResource(R.drawable.background_launch);
 
         btLogin = (Button) findViewById(R.id.btLogin);
         btLogin.setOnClickListener(new View.OnClickListener()
