@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/home_listrow"
+                android:padding="5dp">
+    <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/home_ivAvatar"
+            android:src="@drawable/home_avatar">
+
+    </ImageView>
+    <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignTop="@+id/home_ivAvatar"
+            android:layout_alignBottom="@+id/home_ivAvatar"
+            android:layout_toRightOf="@id/home_ivAvatar"
+            android:layout_gravity="center"
+            android:layout_marginLeft="7dp"
+            >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/home_tvFeed"
+                android:layout_gravity="left|center_vertical"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:typeface="sans"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:textColor="@android:color/black"
+                android:id="@+id/home_tvUserName"
+                android:layout_below="@id/home_tvFeed"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:textSize="10dp"
+                android:id="@+id/home_tvLike"
+                android:layout_below="@id/home_tvUserName"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:textSize="10dp"
+                android:id="@+id/home_tvNumberComment"
+                android:layout_toRightOf="@+id/home_tvFeed" android:layout_below="@+id/home_tvUserName"
+                android:layout_centerHorizontal="true"/>
+        <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/home_next_detail_feed"
+                android:id="@+id/home_ivNextDetail" android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:textSize="10dp"
+                android:id="@+id/home_tvDays" android:layout_toLeftOf="@+id/home_ivNextDetail"
+                android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>
