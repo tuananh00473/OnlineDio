@@ -16,4 +16,9 @@
     <string name="header">ONE PICTURE SAYS A THOUSAND WORD\n
         <b>WHAT IF ONE CLIP CAN SAY YOU</b>
     </string>
+    <string name="tittle_login_error">Error Signing In</string>
+    <string name="incorrect_email_or_password">Email address or password is incorrect</string>
+    <string name="error_connect_network">There is no connection to the internet</string>
+    <string name="connection_timeout">Connection time out, please try again.</string>
+    <string name="service_unrecognized">There\'s a problem with OnlineDio server, please try again later.</string>
 </resources>
