@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/home_tvFeed"
+                android:id="@+id/home_tvSoundTitle"
                 android:layout_gravity="left|center_vertical"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -39,7 +39,7 @@
                 android:text="New Text"
                 android:textColor="@android:color/black"
                 android:id="@+id/home_tvUserName"
-                android:layout_below="@id/home_tvFeed"/>
+                android:layout_below="@id/home_tvSoundTitle"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 android:text="New Text"
                 android:textSize="10dp"
                 android:id="@+id/home_tvNumberComment"
-                android:layout_toRightOf="@+id/home_tvFeed" android:layout_below="@+id/home_tvUserName"
+                android:layout_toRightOf="@+id/home_tvSoundTitle" android:layout_below="@+id/home_tvUserName"
                 android:layout_centerHorizontal="true"/>
         <ImageView
                 android:layout_width="10dp"

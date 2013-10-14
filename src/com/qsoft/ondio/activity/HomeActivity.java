@@ -1,5 +1,6 @@
 package com.qsoft.ondio.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -27,6 +28,8 @@ public class HomeActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+        ActionBar actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(true);
         setUpViewHome();
         ArrayList<Feed> feedList = new ArrayList<Feed>();
         setUpDataToHomeListView(this, feedList);

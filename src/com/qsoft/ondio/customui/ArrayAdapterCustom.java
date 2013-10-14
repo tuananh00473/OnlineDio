@@ -59,7 +59,7 @@ public class ArrayAdapterCustom extends ArrayAdapter<Feed>
 
     private void setUpViewFindByID(View v)
     {
-        home_tvFeed = (TextView) v.findViewById(R.id.home_tvFeed);
+        home_tvFeed = (TextView) v.findViewById(R.id.home_tvSoundTitle);
         home_tvUserName = (TextView) v.findViewById(R.id.home_tvUserName);
         home_tvLike = (TextView) v.findViewById(R.id.home_tvLike);
         home_tvComment = (TextView) v.findViewById(R.id.home_tvNumberComment);
