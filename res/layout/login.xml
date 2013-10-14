@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:orientation="vertical">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/login_rlMenuBar"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/phone_heigh_menubar"
                     android:background="@drawable/login_menubar">
+        <Button android:id="@+id/login_button_next"
+                android:layout_width="@dimen/phone_width_button_on_menubar"
+                android:layout_height="@dimen/phone_heigh_button_on_menubar"
+                android:background="@drawable/login_next"
+                android:layout_alignParentRight="true" android:layout_marginRight="10dp"
+                android:layout_alignParentTop="true" android:layout_marginTop="10dp"
+                />
+        <Button android:id="@+id/login_button_back"
+                android:layout_width="@dimen/phone_width_button_on_menubar"
+                android:layout_height="@dimen/phone_heigh_button_on_menubar"
+                android:background="@drawable/login_back"
+                android:layout_alignParentLeft="true" android:layout_marginLeft="10dp"
+                android:layout_alignParentTop="true" android:layout_marginTop="10dp"
+                />
     </RelativeLayout>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/login_rlFrameLogin"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/login_frame">
+                    android:layout_height="@dimen/phone_heigh_framelogin"
+                    android:background="@drawable/login_frame"
+                    android:layout_margin="10dp">
 
     </RelativeLayout>
-    <ImageView android:id="@+id/login_btForgotPassword"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:background="@drawable/login_forgotpassword"/>
+    <Button android:id="@+id/login_btForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_forgotpassword"
+            />
 </LinearLayout>

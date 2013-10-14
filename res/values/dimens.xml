@@ -19,4 +19,8 @@
 
     <dimen name="tablet_text_size">40dp</dimen>
     <dimen name="tablet_text_footer_size">20dp</dimen>
+    <dimen name="phone_heigh_menubar">50dp</dimen>
+    <dimen name="phone_width_button_on_menubar">60dp</dimen>
+    <dimen name="phone_heigh_button_on_menubar">30dp</dimen>
+    <dimen name="phone_heigh_framelogin">100dp</dimen>
 </resources>
