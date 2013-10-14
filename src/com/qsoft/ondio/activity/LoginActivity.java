@@ -83,6 +83,8 @@ public class LoginActivity extends Activity
         }
         else
         {
+            // doc them ve fragment
+            // http://developer.android.com/reference/android/support/v4/app/Fragment.html
             startActivity(new Intent(this, HomeActivity.class));
         }
     }
