@@ -141,4 +141,6 @@
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
     <color name="home_listrow">#f6f6f6</color>
+    <color name="list_row_press_bg">#008cef</color>
+    <color name="list_row_select_bg">#86d3f6</color>
 </resources>
