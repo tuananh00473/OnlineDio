@@ -7,7 +7,7 @@
               android:background="#eeeeee">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/login_rlMenuBar"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="@dimen/phone_heigh_menubar"
                     android:background="@drawable/login_menubar">
         <Button android:id="@+id/login_button_next"
@@ -32,11 +32,35 @@
                     android:background="@drawable/login_frame"
                     android:layout_margin="10dp">
 
+        <EditText
+                android:id="@+id/login_etEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/phone_edittext_width"
+                android:hint="@string/email_hint"
+                android:layout_alignParentLeft="true" android:layout_marginLeft="50dp"
+                android:layout_alignParentRight="true" android:layout_marginRight="10dp"
+                android:layout_alignParentTop="true" android:layout_marginTop="5dp"
+                android:background="#00000000"
+                />
+        <EditText
+                android:id="@+id/login_etPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/phone_edittext_width"
+                android:password="true"
+                android:hint="@string/password_hint"
+                android:layout_alignParentLeft="true" android:layout_marginLeft="50dp"
+                android:layout_alignParentRight="true" android:layout_marginRight="10dp"
+                android:layout_alignParentBottom="true" android:layout_marginBottom="5dp"
+                android:background="#00000000"
+                />
     </RelativeLayout>
-    <Button android:id="@+id/login_btForgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/login_forgotpassword"
-            android:gravity="center_horizontal"
+    <TextView android:id="@+id/login_tvForgotPassword"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/forgot_password"
+              android:textStyle="bold"
+              android:textSize="12dp"
+              android:textColor="#b1b1b1"
+              android:layout_gravity="center_horizontal"
             />
 </LinearLayout>

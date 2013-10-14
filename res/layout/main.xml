@@ -4,13 +4,25 @@
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
+    <TextView
+            android:id="@+id/tvHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/header"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="#885b00"
+            android:textSize="@dimen/phone_text_header_size"
+            />
     <ImageView
             android:layout_width="@dimen/phone_width_logo"
             android:layout_height="@dimen/phone_heigh_logo"
             android:id="@+id/ivLogo"
             android:src="@drawable/launch_logo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
+            android:layout_centerVertical="true"
             />
     <TextView
             android:id="@+id/tvFooter"
@@ -20,6 +32,8 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:textColor="#885b00"
             android:textSize="@dimen/phone_text_footer_size"
             />
     <Button
