@@ -3,5 +3,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/login_rlMenuBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_menubar">
+    </RelativeLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/login_rlFrameLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_frame">
 
+    </RelativeLayout>
+    <ImageView android:id="@+id/login_btForgotPassword"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@drawable/login_forgotpassword"/>
 </LinearLayout>

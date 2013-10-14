@@ -21,8 +21,8 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        rlBackground = (RelativeLayout) findViewById(R.id.rlBackground);
-        rlBackground.setBackgroundResource(R.drawable.background_launch);
+        rlBackground = (RelativeLayout) findViewById(R.id.launch_rlBackground);
+        rlBackground.setBackgroundResource(R.drawable.launch_background);
 
         btLogin = (Button) findViewById(R.id.btLogin);
         btLogin.setOnClickListener(new View.OnClickListener()
