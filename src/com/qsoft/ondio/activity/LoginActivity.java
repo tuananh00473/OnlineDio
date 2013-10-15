@@ -3,6 +3,7 @@ package com.qsoft.ondio.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,6 +66,7 @@ public class LoginActivity extends Activity
 
     private void doLogin()
     {
+        Log.e("checknetwork", "" + checkNetwork());
         if (!checkNetwork())
         {
             MyDialog.showMessageDialog(LoginActivity.this, getString(R.string.tittle_login_error), getString(R.string.error_connect_network));
@@ -102,8 +104,7 @@ public class LoginActivity extends Activity
     private boolean checkNetwork()
     {
         network = new NetworkAvailable(this);
-//        return network.isEnabled();
-        return true;
+        return network.isEnabled();
     }
 
     private boolean checkLogin()

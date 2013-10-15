@@ -25,6 +25,7 @@ public class NetworkAvailable
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             connected = false;
         }
     }
