@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:background="#eeeeee">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/signup_rlMenuBar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/menubar">
+        <Button android:id="@+id/signup_btNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/signup_next_visible"
+                android:layout_alignParentRight="true" android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                />
+        <TextView android:id="@+id/signup_tvSignUp"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/signup"
+                  android:textStyle="bold"
+                  android:textSize="@dimen/phone_text_size"
+                  android:textColor="@color/White"
+                  android:layout_centerHorizontal="true"
+                  android:layout_centerVertical="true"
+                />
+        <Button android:id="@+id/signup_btBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"
+                android:layout_alignParentLeft="true" android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                />
+    </RelativeLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/signup_rlFrameSignUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/signup_frame">
+
+        <EditText
+                android:id="@+id/signup_etEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email_hint"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="60dp"
+                android:background="@color/NULL"
+                />
+        <EditText
+                android:id="@+id/signup_etPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:password="true"
+                android:hint="@string/password_hint"
+                android:layout_alignLeft="@id/signup_etEmail"
+                android:layout_marginTop="60dp"
+                android:background="@color/NULL"
+                />
+        <EditText
+                android:id="@+id/signup_etPasswordAgain"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:password="true"
+                android:hint="@string/password_hint"
+                android:layout_alignLeft="@id/signup_etPassword"
+                android:layout_marginTop="105dp"
+                android:background="@color/NULL"
+                />
+    </RelativeLayout>
+</LinearLayout>

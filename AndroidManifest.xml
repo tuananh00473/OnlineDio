@@ -22,6 +22,7 @@
                 />
         <activity android:name=".activity.ProgramActivity"
                   android:theme="@style/AppTheme">
-                </activity>
+        </activity>
+        <activity android:name=".activity.SignUpActivity"/>
     </application>
 </manifest>

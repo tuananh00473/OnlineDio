@@ -119,12 +119,12 @@ public class LoginActivity extends Activity
 
     private void doBack()
     {
-        startActivity(new Intent(this, ProgramActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     private void doForgotPassword()
     {
-
+        // do forgot password here
     }
 
     private final TextWatcher textChangeListener = new TextWatcher()

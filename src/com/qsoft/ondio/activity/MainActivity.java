@@ -12,6 +12,7 @@ public class MainActivity extends Activity
 {
     private RelativeLayout rlBackground;
     private Button btLogin;
+    private Button btSignUp;
 
     /**
      * Called when the activity is first created.
@@ -31,6 +32,16 @@ public class MainActivity extends Activity
             public void onClick(View view)
             {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+
+        btSignUp = (Button) findViewById(R.id.btSignUp);
+        btSignUp.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(MainActivity.this, SignUpActivity.class));
             }
         });
     }
