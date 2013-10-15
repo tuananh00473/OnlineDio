@@ -3,7 +3,8 @@ package com.qsoft.ondio.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ public class LoginActivity extends Activity
 
         etEmail = (EditText) findViewById(R.id.login_etEmail);
         etPassword = (EditText) findViewById(R.id.login_etPassword);
+        etEmail.addTextChangedListener(textChangeListener);
 
         btLogin = (Button) findViewById(R.id.login_button_next);
         btLogin.setOnClickListener(new View.OnClickListener()
@@ -66,7 +68,6 @@ public class LoginActivity extends Activity
 
     private void doLogin()
     {
-        Log.e("checknetwork", "" + checkNetwork());
         if (!checkNetwork())
         {
             MyDialog.showMessageDialog(LoginActivity.this, getString(R.string.tittle_login_error), getString(R.string.error_connect_network));
@@ -126,5 +127,29 @@ public class LoginActivity extends Activity
 
     }
 
+    private final TextWatcher textChangeListener = new TextWatcher()
+    {
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count)
+        {
+        }
 
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after)
+        {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s)
+        {
+            if (!etEmail.getText().toString().isEmpty())
+            {
+                btLogin.setBackgroundResource(R.drawable.login_login);
+            }
+            else
+            {
+                btLogin.setBackgroundResource(R.drawable.login_login_visible);
+            }
+        }
+    };
 }
