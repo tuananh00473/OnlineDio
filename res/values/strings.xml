@@ -12,13 +12,27 @@
         <u>I forgot my password</u>
     </string>
     <string name="email_hint">Your email address</string>
-    <string name="password_hint">*******</string>
+    <string name="password_hint">Your password</string>
     <string name="header">ONE PICTURE SAYS A THOUSAND WORD\n
         <b>WHAT IF ONE CLIP CAN SAY YOU</b>
     </string>
     <string name="tittle_login_error">Error Signing In</string>
-    <string name="incorrect_email_or_password">Email address or password is incorrect.</string>
-    <string name="error_connect_network">There is no connection to the internet.</string>
+    <string name="incorrect_email_or_password">Email address or password is incorrect</string>
+    <string name="error_connect_network">There is no connection to the internet</string>
     <string name="connection_timeout">Connection time out, please try again.</string>
+    <string name="service_unrecognized">There\'s a problem with OnlineDio server, please try again later.</string>
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
     <string name="service_unrecognized">There's a problem with OnlineDio server, please try again later.</string>
 </resources>

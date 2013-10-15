@@ -88,7 +88,7 @@ public class LoginActivity extends Activity
         {
             // doc them ve fragment
             // http://developer.android.com/reference/android/support/v4/app/Fragment.html
-            startActivity(new Intent(this, HomeActivity.class));
+            startActivity(new Intent(this, ProgramActivity.class));
         }
     }
 
@@ -119,7 +119,7 @@ public class LoginActivity extends Activity
 
     private void doBack()
     {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, ProgramActivity.class));
     }
 
     private void doForgotPassword()

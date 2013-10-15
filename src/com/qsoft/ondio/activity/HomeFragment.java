@@ -1,9 +1,12 @@
 package com.qsoft.ondio.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import com.actionbarsherlock.app.SherlockFragment;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterCustom;
 import com.qsoft.ondio.model.Feed;
@@ -17,23 +20,22 @@ import java.util.ArrayList;
  * Time: 9:30 AM
  * To change this template use File | Settings | File Templates.
  */
-public class HomeActivity extends Activity
+public class HomeFragment extends SherlockFragment
 {
     ListView home_lvFeeds;
     private SimpleAdapter adapter;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
+        View rootView = inflater.inflate(R.layout.home, container, false);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
-        setUpViewHome();
+        setUpViewHome(rootView);
         ArrayList<Feed> feedList = new ArrayList<Feed>();
         setUpDataToHomeListView(this, feedList);
-
+        return rootView;
     }
 
-    private void setUpDataToHomeListView(HomeActivity homeActivity, ArrayList<Feed> feedList)
+    private void setUpDataToHomeListView(HomeFragment homeActivity, ArrayList<Feed> feedList)
     {
         Feed feed1 = new Feed("ShowGame", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
         Feed feed2 = new Feed("ShowGame1", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
@@ -56,11 +58,11 @@ public class HomeActivity extends Activity
         feedList.add(feed8);
         feedList.add(feed9);
         feedList.add(feed10);
-        home_lvFeeds.setAdapter(new ArrayAdapterCustom(homeActivity, android.R.layout.simple_selectable_list_item, feedList));
+        home_lvFeeds.setAdapter(new ArrayAdapterCustom(getActivity(), R.layout.home_listfeeds, feedList));
     }
 
-    private void setUpViewHome()
+    private void setUpViewHome(View rootView)
     {
-        home_lvFeeds = (ListView) findViewById(R.id.home_lvFeeds);
+        home_lvFeeds = (ListView) rootView.findViewById(R.id.home_lvFeeds);
     }
 }
