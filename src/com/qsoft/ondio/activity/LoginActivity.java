@@ -31,12 +31,11 @@ public class LoginActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        setUpComponentUI();
 
-        etEmail = (EditText) findViewById(R.id.login_etEmail);
-        etPassword = (EditText) findViewById(R.id.login_etPassword);
         etEmail.addTextChangedListener(textChangeListener);
-
-        btLogin = (Button) findViewById(R.id.login_button_next);
+        etPassword.addTextChangedListener(textChangeListener);
+        btLogin.setEnabled(false);
         btLogin.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -45,7 +44,6 @@ public class LoginActivity extends Activity
                 doLogin();
             }
         });
-        btBack = (Button) findViewById(R.id.login_button_back);
         btBack.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -54,8 +52,6 @@ public class LoginActivity extends Activity
                 doBack();
             }
         });
-
-        tvForgotPassword = (TextView) findViewById(R.id.login_tvForgotPassword);
         tvForgotPassword.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -64,6 +60,15 @@ public class LoginActivity extends Activity
                 doForgotPassword();
             }
         });
+    }
+
+    private void setUpComponentUI()
+    {
+        etEmail = (EditText) findViewById(R.id.login_etEmail);
+        etPassword = (EditText) findViewById(R.id.login_etPassword);
+        btLogin = (Button) findViewById(R.id.login_button_next);
+        btBack = (Button) findViewById(R.id.login_button_back);
+        tvForgotPassword = (TextView) findViewById(R.id.login_tvForgotPassword);
     }
 
     private void doLogin()
@@ -142,13 +147,15 @@ public class LoginActivity extends Activity
         @Override
         public void afterTextChanged(Editable s)
         {
-            if (!etEmail.getText().toString().isEmpty())
+            if (etEmail.getText().toString().isEmpty() || etPassword.getText().toString().isEmpty())
             {
-                btLogin.setBackgroundResource(R.drawable.login_login);
+                btLogin.setBackgroundResource(R.drawable.login_login_visible);
+                btLogin.setEnabled(false);
             }
             else
             {
-                btLogin.setBackgroundResource(R.drawable.login_login_visible);
+                btLogin.setBackgroundResource(R.drawable.login_login);
+                btLogin.setEnabled(true);
             }
         }
     };
