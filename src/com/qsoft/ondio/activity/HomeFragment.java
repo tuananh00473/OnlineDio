@@ -1,41 +1,32 @@
 package com.qsoft.ondio.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import com.actionbarsherlock.app.SherlockFragment;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterCustom;
 import com.qsoft.ondio.model.Feed;
 
 import java.util.ArrayList;
 
-/**
- * Created with IntelliJ IDEA.
- * User: thinhdd
- * Date: 10/14/13
- * Time: 9:30 AM
- * To change this template use File | Settings | File Templates.
- */
-public class HomeFragment extends SherlockFragment
+public class HomeFragment extends Fragment
 {
     ListView home_lvFeeds;
-    private SimpleAdapter adapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
-        View rootView = inflater.inflate(R.layout.home, container, false);
+        View rootView = inflater.inflate(R.layout.home, null);
         super.onCreate(savedInstanceState);
         setUpViewHome(rootView);
         ArrayList<Feed> feedList = new ArrayList<Feed>();
-        setUpDataToHomeListView(this, feedList);
+        setUpDataToHomeListView(feedList);
         return rootView;
     }
 
-    private void setUpDataToHomeListView(HomeFragment homeActivity, ArrayList<Feed> feedList)
+    private void setUpDataToHomeListView(ArrayList<Feed> feedList)
     {
         Feed feed1 = new Feed("ShowGame", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
         Feed feed2 = new Feed("ShowGame1", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
@@ -66,3 +57,4 @@ public class HomeFragment extends SherlockFragment
         home_lvFeeds = (ListView) rootView.findViewById(R.id.home_lvFeeds);
     }
 }
+

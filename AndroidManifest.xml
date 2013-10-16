@@ -21,7 +21,7 @@
                   android:theme="@android:style/Theme.NoTitleBar"
                 />
         <activity android:name=".activity.ProgramActivity"
-                  android:theme="@style/AppTheme">
+                  android:theme="@android:style/Theme.Black.NoTitleBar">
         </activity>
         <activity android:name=".activity.SignUpActivity"/>
     </application>
