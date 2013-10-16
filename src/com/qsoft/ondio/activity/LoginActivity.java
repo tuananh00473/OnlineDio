@@ -93,7 +93,7 @@ public class LoginActivity extends Activity
         {
             // doc them ve fragment
             // http://developer.android.com/reference/android/support/v4/app/Fragment.html
-            startActivity(new Intent(this, ProgramActivity.class));
+            startActivity(new Intent(this, SlidebarActivity.class));
         }
     }
 

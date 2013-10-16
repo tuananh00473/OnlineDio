@@ -20,10 +20,8 @@
                   android:label="Login"
                   android:theme="@android:style/Theme.NoTitleBar"
                 />
-        <activity android:name=".activity.ProgramActivity"
-                  android:theme="@android:style/Theme.Black.NoTitleBar">
-        </activity>
         <activity android:name=".activity.SignUpActivity"/>
-        <activity android:name=".activity.ProfileActivity"/>
+        <activity android:name=".activity.SlidebarActivity"
+                android:theme="@android:style/Theme.Black.NoTitleBar"/>
     </application>
 </manifest>

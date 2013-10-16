@@ -1,5 +1,6 @@
 package com.qsoft.ondio.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,21 +13,21 @@ import com.qsoft.ondio.model.Feed;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment
-{
+public class HomeFragment extends Fragment{
+
     ListView home_lvFeeds;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState)
     {
-        View rootView = inflater.inflate(R.layout.home, null);
-        super.onCreate(savedInstanceState);
-        setUpViewHome(rootView);
+        View view = inflater.inflate(R.layout.home, null);
+        setUpViewHome(view);
         ArrayList<Feed> feedList = new ArrayList<Feed>();
-        setUpDataToHomeListView(feedList);
-        return rootView;
+        setUpDataToHomeListView(getActivity(),feedList);
+        return view;
     }
 
-    private void setUpDataToHomeListView(ArrayList<Feed> feedList)
+    private void setUpDataToHomeListView(Context context,ArrayList<Feed> feedList)
     {
         Feed feed1 = new Feed("ShowGame", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
         Feed feed2 = new Feed("ShowGame1", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
@@ -49,7 +50,7 @@ public class HomeFragment extends Fragment
         feedList.add(feed8);
         feedList.add(feed9);
         feedList.add(feed10);
-        home_lvFeeds.setAdapter(new ArrayAdapterCustom(getActivity(), R.layout.home_listfeeds, feedList));
+        home_lvFeeds.setAdapter(new ArrayAdapterCustom(context, R.layout.home_listfeeds, feedList));
     }
 
     private void setUpViewHome(View rootView)

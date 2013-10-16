@@ -36,6 +36,7 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
     <string name="signup">Sing Up</string>
+    <string name="hint_search">Search</string>
     <string name="profile">Profile</string>
     <string name="profile_tittle">Profile Setup</string>
     <string name="profile_display_name">Display name</string>
