@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--phone-->
-    <dimen name="phone_text_size">20dp</dimen>
+    <dimen name="phone_text_size">16dp</dimen>
     <dimen name="phone_text_header_size">16dp</dimen>
     <dimen name="phone_text_footer_size">10dp</dimen>
-
+    <dimen name="phone_margin">10dp</dimen>
     <!--tablet-->
-    <dimen name="tablet_text_size">40dp</dimen>
+    <dimen name="tablet_text_size">32dp</dimen>
     <dimen name="tablet_text_header_size">32dp</dimen>
     <dimen name="tablet_text_footer_size">20dp</dimen>
+    <dimen name="tablet_margin">20dp</dimen>
+    <dimen name="phone_line_size">0.5dp</dimen>
+    <dimen name="phone_margin_component">5dp</dimen>
+
 
 </resources>

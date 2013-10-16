@@ -66,8 +66,8 @@ public class LoginActivity extends Activity
     {
         etEmail = (EditText) findViewById(R.id.login_etEmail);
         etPassword = (EditText) findViewById(R.id.login_etPassword);
-        btLogin = (Button) findViewById(R.id.login_button_next);
-        btBack = (Button) findViewById(R.id.login_button_back);
+        btLogin = (Button) findViewById(R.id.login_btNext);
+        btBack = (Button) findViewById(R.id.login_btBack);
         tvForgotPassword = (TextView) findViewById(R.id.login_tvForgotPassword);
     }
 
