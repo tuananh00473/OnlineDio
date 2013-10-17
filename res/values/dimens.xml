@@ -34,4 +34,5 @@
     <dimen name="phone_slidebar_tittle_singername_text_size">12dp</dimen>
     <dimen name="phone_slidebar_tittle_songname_text_size">16dp</dimen>
     <dimen name="phone_text_header_size_max">20sp</dimen>
+    <dimen name="phone_padding_bottom">10dp</dimen>
 </resources>
