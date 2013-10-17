@@ -119,28 +119,81 @@
                     android:id="@+id/program_ivFavorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/phone_margin_max"
                     android:background="@drawable/program_star_select"/>
             <ImageView
                     android:id="@+id/program_ivDoLike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/phone_margin_component"
                     android:background="@drawable/program_do_like"/>
             <ImageView
                     android:id="@+id/program_ivPlayList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/phone_margin_component"
                     android:background="@drawable/program_play_list"/>
             <ImageView
                     android:id="@+id/program_ivTwitter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/phone_margin"
                     android:background="@drawable/program_twitter"/>
             <ImageView
                     android:id="@+id/program_ivFacebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/phone_margin_component"
                     android:background="@drawable/program_facebook"/>
         </LinearLayout>
     </RelativeLayout>
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/program_bar_play">
+        <ImageView
+                android:id="@+id/program_ivStartAndPauseSound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/program_do_play"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/phone_margin_middle"/>
+        <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true">
+                <TextView
+                        android:id="@+id/program_tvTimePlayed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1:32"/>
+
+                <TextView
+                        android:id="@+id/program_tvTimePlay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3:32"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+                <ImageView
+                        android:id="@+id/program_ivVolumeMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/program_volume_min"/>
+                <ImageView
+                        android:id="@+id/program_ivVolumeMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/program_volume_max"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

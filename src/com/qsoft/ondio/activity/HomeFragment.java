@@ -1,12 +1,15 @@
 package com.qsoft.ondio.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterCustom;
 import com.qsoft.ondio.model.Feed;
@@ -24,6 +27,7 @@ public class HomeFragment extends Fragment{
         setUpViewHome(view);
         ArrayList<Feed> feedList = new ArrayList<Feed>();
         setUpDataToHomeListView(getActivity(),feedList);
+        home_lvFeeds.setOnItemClickListener(onItemClickListener);
         return view;
     }
 
@@ -51,6 +55,25 @@ public class HomeFragment extends Fragment{
         feedList.add(feed9);
         feedList.add(feed10);
         home_lvFeeds.setAdapter(new ArrayAdapterCustom(context, R.layout.home_listfeeds, feedList));
+    }
+
+    private ListView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener()
+    {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+        {
+            switch (view.getId())
+            {
+                case R.id.home_lvFeeds:
+                    doShowProgram(parent,view,position,id);
+            }
+        }
+    };
+
+    private void doShowProgram(AdapterView<?> parent, View view, int position, long id)
+    {
+        Intent intent = new Intent(getActivity(), ProgramActivity.class);
+        startActivity(intent);
     }
 
     private void setUpViewHome(View rootView)
