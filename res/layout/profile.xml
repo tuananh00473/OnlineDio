@@ -39,7 +39,7 @@
             android:id="@+id/profile_rlImageCover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/profile_cover"
+            android:background="@drawable/cover_image"
             android:paddingBottom="@dimen/phone_margin">
 
         <ImageView

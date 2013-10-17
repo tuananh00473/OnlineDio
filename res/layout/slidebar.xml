@@ -9,7 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     <RelativeLayout
-            android:id="@id/left_drawer"
+            android:id="@+id/left_drawer"
             android:layout_width="@dimen/phone_slidebar_width"
             android:layout_height="match_parent"
             android:layout_gravity="start"

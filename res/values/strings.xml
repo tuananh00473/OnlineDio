@@ -53,6 +53,8 @@
     <string name="phone_no_hint">Your phone no.</string>
     <string name="birthday_hint">Your birthday</string>
     <string name="country_hint">Your country</string>
+    <string name="sound_art">Dimonds</string>
+    <string name="sound">Ty Y Chet</string>
     <string name="home_tittle_comment">comment : good</string>
     <string name="home_tittle_show">show</string>
     <string name="home_tittle_song">Song name</string>
