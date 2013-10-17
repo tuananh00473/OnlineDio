@@ -7,33 +7,35 @@
         android:background="@color/White"
         >
     <RelativeLayout
+            android:id="@+id/home_rlTopBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/menubar"
-            android:id="@+id/home_rlTopBar">
+            android:background="@drawable/menubar">
         <Button
+                android:id="@+id/home_btMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/menu"
-                android:id="@+id/home_btMenu"
-                android:layout_alignParentLeft="true" android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true" android:layout_marginLeft="@dimen/phone_margin"
                 android:layout_centerVertical="true">
         </Button>
         <Button
+                android:id="@+id/home_btNotifications"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/home_notifications"
-                android:id="@+id/home_btNotifications"
-                android:layout_alignParentRight="true" android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true" android:layout_marginRight="@dimen/phone_margin"
                 android:layout_centerVertical="true">
         </Button>
         <TextView
+                android:id="@+id/home_tvHomeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_tvHomeTitle"
-                android:id="@+id/home_tvHomeTitle"
-                android:textSize="20dp" android:textStyle="bold"
-                android:textColor="#ffffff" android:layout_centerHorizontal="true"
+                android:textSize="@dimen/phone_text_size"
+                android:textStyle="bold"
+                android:textColor="@color/White"
+                android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"/>
 
     </RelativeLayout>
@@ -42,18 +44,18 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/home_content_feed"
-            android:layout_below="@+id/home_rlTopBar">
+            android:layout_below="@id/home_rlTopBar">
     </ImageView>
     <ListView
+            android:id="@+id/home_lvFeeds"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/home_lvFeeds"
             android:listSelector="@drawable/home_list_feed_selection"
-            android:layout_below="@+id/home_ivContentFeed"/>
+            android:layout_below="@id/home_ivContentFeed"/>
     <ImageButton
+            android:id="@+id/home_ibSwitchToRecord"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/home_ibSwitchToRecord"
             android:layout_alignParentBottom="true"
             android:background="@drawable/home_button_record">
     </ImageButton>

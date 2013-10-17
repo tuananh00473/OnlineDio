@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/home_list_feed_selection"
-                android:padding="10dp">
+                android:padding="@dimen/phone_slidebar_padding">
     <ImageView
+            android:id="@+id/slidebar_ivOption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/slidebar_ivOption"
             android:src="@drawable/slidebar_home"/>
     <TextView
+            android:id="@+id/slidebar_tvOption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/slidebar_tvOption"
-            android:layout_marginLeft="10dp"
+            android:text="@string/slidebar_tittle_item"
+            android:layout_marginLeft="@dimen/phone_margin"
             android:layout_toRightOf="@id/slidebar_ivOption"
             android:layout_centerVertical="true"
             />
     <ImageView
+            android:id="@+id/slidebar_ivNextToOption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/slidebar_nexttooption"
-            android:id="@+id/slidebar_ivNextToOption" android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+            android:background="@drawable/slidebar_next_option"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/phone_margin"/>
     <TextView
+            android:id="@+id/slidebar_tvSpecOption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:id="@+id/slidebar_tvSpecOption" android:layout_toLeftOf="@+id/slidebar_ivNextToOption"
+            android:layout_marginRight="@dimen/phone_margin"
+            android:layout_toLeftOf="@+id/slidebar_ivNextToOption"
             android:layout_centerVertical="true"/>
-
 </RelativeLayout>
