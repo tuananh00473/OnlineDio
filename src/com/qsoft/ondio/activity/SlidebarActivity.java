@@ -7,6 +7,7 @@ package com.qsoft.ondio.activity;
  * Time: 1:55 PM
  * To change this template use File | Settings | File Templates.
  */
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -20,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterListOption;
-import java.util.ArrayList;
 
 public class SlidebarActivity extends FragmentActivity
 {
@@ -71,7 +71,7 @@ public class SlidebarActivity extends FragmentActivity
 
     private void doProfile()
     {
-        Intent intent = new Intent(this,ProfileActivity.class);
+        Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
 
@@ -84,17 +84,19 @@ public class SlidebarActivity extends FragmentActivity
     {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         lvOption = (ListView) findViewById(R.id.slidebar_listOption);
-        ivProfile= (ImageView) findViewById(R.id.slide_ivEditProfile);
+        ivProfile = (ImageView) findViewById(R.id.slide_ivEditProfile);
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
+    protected void onPostCreate(Bundle savedInstanceState)
+    {
         super.onPostCreate(savedInstanceState);
         mDrawerToggle.syncState();
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(Configuration newConfig)
+    {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }

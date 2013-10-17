@@ -53,4 +53,12 @@
     <string name="phone_no_hint">Your phone no.</string>
     <string name="birthday_hint">Your birthday</string>
     <string name="country_hint">Your country</string>
+    <string name="home_tittle_comment">comment : good</string>
+    <string name="home_tittle_show">show</string>
+    <string name="home_tittle_song">Song name</string>
+    <string name="home_tittle_singer">singer</string>
+    <string name="home_tittle_like">like:100</string>
+    <string name="slidebar_tittle_item">Item</string>
+    <string name="name_song">My Station</string>
+    <string name="name_singer">elizabet</string>
 </resources>

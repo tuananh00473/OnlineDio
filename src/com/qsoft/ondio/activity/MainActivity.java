@@ -34,15 +34,5 @@ public class MainActivity extends Activity
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
-
-        btSignUp = (Button) findViewById(R.id.btSignUp);
-        btSignUp.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-            }
-        });
     }
 }
