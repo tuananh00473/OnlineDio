@@ -31,44 +31,27 @@ public class LoginActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        setUpComponentUI();
-
-        etEmail.addTextChangedListener(textChangeListener);
-        etPassword.addTextChangedListener(textChangeListener);
-        btLogin.setEnabled(false);
-        btLogin.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                doLogin();
-            }
-        });
-        btBack.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                doBack();
-            }
-        });
-        tvForgotPassword.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                doForgotPassword();
-            }
-        });
+        setUpUI();
+        setUpListenerController();
     }
 
-    private void setUpComponentUI()
+    private void setUpUI()
     {
         etEmail = (EditText) findViewById(R.id.login_etEmail);
         etPassword = (EditText) findViewById(R.id.login_etPassword);
         btLogin = (Button) findViewById(R.id.login_btNext);
         btBack = (Button) findViewById(R.id.login_btBack);
         tvForgotPassword = (TextView) findViewById(R.id.login_tvForgotPassword);
+    }
+
+    private void setUpListenerController()
+    {
+        etEmail.addTextChangedListener(textChangeListener);
+        etPassword.addTextChangedListener(textChangeListener);
+        btLogin.setEnabled(false);
+        btLogin.setOnClickListener(onClickListener);
+        btBack.setOnClickListener(onClickListener);
+        tvForgotPassword.setOnClickListener(onClickListener);
     }
 
     private void doLogin()
@@ -91,8 +74,6 @@ public class LoginActivity extends Activity
         }
         else
         {
-            // doc them ve fragment
-            // http://developer.android.com/reference/android/support/v4/app/Fragment.html
             startActivity(new Intent(this, SlidebarActivity.class));
         }
     }
@@ -115,7 +96,8 @@ public class LoginActivity extends Activity
 
     private boolean checkLogin()
     {
-        if (etEmail.getText().toString().trim().equals("sa") && etPassword.getText().toString().trim().equals("sa"))
+        if ((etEmail.getText().toString().trim().equals("sa"))
+                && (etPassword.getText().toString().trim().equals("sa")))
         {
             return true;
         }
@@ -156,6 +138,26 @@ public class LoginActivity extends Activity
             {
                 btLogin.setBackgroundResource(R.drawable.login_login);
                 btLogin.setEnabled(true);
+            }
+        }
+    };
+
+    private final View.OnClickListener onClickListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View view)
+        {
+            switch (view.getId())
+            {
+                case R.id.login_btNext:
+                    doLogin();
+                    break;
+                case R.id.login_btBack:
+                    doBack();
+                    break;
+                case R.id.login_tvForgotPassword:
+                    doForgotPassword();
+                    break;
             }
         }
     };

@@ -51,7 +51,7 @@
                 android:layout_marginTop="@dimen/phone_field_margin_top"
                 android:layout_marginLeft="@dimen/phone_field_margin_left"
                 android:background="@color/NULL"
-                />
+                android:inputType="textEmailAddress"/>
         <EditText
                 android:id="@+id/login_etPassword"
                 android:layout_width="match_parent"

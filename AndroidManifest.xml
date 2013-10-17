@@ -17,13 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LoginActivity"
-                  android:label="Login"
-                  android:theme="@android:style/Theme.NoTitleBar"
-                />
-        <activity android:name=".activity.SignUpActivity"/>
-        <activity android:name=".activity.SlidebarActivity"
-                  android:theme="@android:style/Theme.Black.NoTitleBar"/>
+                  android:theme="@android:style/Theme.NoTitleBar"/>
         <activity android:name=".activity.ProfileActivity"
+                  android:theme="@android:style/Theme.Black.NoTitleBar"/>
+        <activity android:name=".activity.SlidebarActivity"
                   android:theme="@android:style/Theme.Black.NoTitleBar"/>
     </application>
 </manifest>

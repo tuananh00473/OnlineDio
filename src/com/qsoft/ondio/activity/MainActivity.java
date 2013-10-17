@@ -5,14 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import com.qsoft.ondio.R;
 
 public class MainActivity extends Activity
 {
-    private RelativeLayout rlBackground;
     private Button btLogin;
-    private Button btSignUp;
 
     /**
      * Called when the activity is first created.
@@ -22,17 +19,37 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        rlBackground = (RelativeLayout) findViewById(R.id.launch_rlBackground);
-        rlBackground.setBackgroundResource(R.drawable.launch_background);
+        setupUI();
+        setUpListenerController();
+    }
 
+    private void setupUI()
+    {
         btLogin = (Button) findViewById(R.id.btLogin);
-        btLogin.setOnClickListener(new View.OnClickListener()
+    }
+
+
+    private void setUpListenerController()
+    {
+        btLogin.setOnClickListener(onClickListener);
+    }
+
+    private final View.OnClickListener onClickListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View view)
         {
-            @Override
-            public void onClick(View view)
+            switch (view.getId())
             {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                case R.id.btLogin:
+                    doLogin();
+                    break;
             }
-        });
+        }
+    };
+
+    private void doLogin()
+    {
+        startActivity(new Intent(this, LoginActivity.class));
     }
 }

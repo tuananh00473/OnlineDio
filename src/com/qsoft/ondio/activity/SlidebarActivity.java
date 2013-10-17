@@ -35,7 +35,7 @@ public class SlidebarActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.slidebar);
 
-        setUpFindViewById();
+        setUpUI();
         setUpDataListOption(this);
         setUpListenerController();
 
@@ -48,6 +48,13 @@ public class SlidebarActivity extends FragmentActivity
                 .replace(R.id.content_frame, Fragment.instantiate(SlidebarActivity.this, "com.qsoft.ondio.activity.HomeFragment"))
                 .commit();
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
+    private void setUpUI()
+    {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        lvOption = (ListView) findViewById(R.id.slidebar_listOption);
+        ivProfile = (ImageView) findViewById(R.id.slide_ivEditProfile);
     }
 
     private void setUpListenerController()
@@ -78,13 +85,6 @@ public class SlidebarActivity extends FragmentActivity
     private void setUpDataListOption(Context context)
     {
         lvOption.setAdapter(new ArrayAdapterListOption(context, R.layout.slidebar_listoptions, listOption));
-    }
-
-    private void setUpFindViewById()
-    {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        lvOption = (ListView) findViewById(R.id.slidebar_listOption);
-        ivProfile = (ImageView) findViewById(R.id.slide_ivEditProfile);
     }
 
     @Override
