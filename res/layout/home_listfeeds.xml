@@ -58,7 +58,7 @@
                 android:id="@+id/home_ivNextDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/home_next_detail_feed"
+                android:background="@drawable/arrow_right"
                 android:layout_alignParentRight="true"
                 android:layout_margin="@dimen/phone_margin_component"
                 android:layout_centerVertical="true"/>
