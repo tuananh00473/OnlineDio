@@ -16,7 +16,8 @@ import com.qsoft.ondio.model.Feed;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment
+{
 
     ListView home_lvFeeds;
 
@@ -26,12 +27,17 @@ public class HomeFragment extends Fragment{
         View view = inflater.inflate(R.layout.home, null);
         setUpViewHome(view);
         ArrayList<Feed> feedList = new ArrayList<Feed>();
-        setUpDataToHomeListView(getActivity(),feedList);
-        home_lvFeeds.setOnItemClickListener(onItemClickListener);
+        setUpDataToHomeListView(getActivity(), feedList);
+        setUpListenerController();
         return view;
     }
 
-    private void setUpDataToHomeListView(Context context,ArrayList<Feed> feedList)
+    private void setUpListenerController()
+    {
+        home_lvFeeds.setOnItemClickListener(onItemClickListener);
+    }
+
+    private void setUpDataToHomeListView(Context context, ArrayList<Feed> feedList)
     {
         Feed feed1 = new Feed("ShowGame", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
         Feed feed2 = new Feed("ShowGame1", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
@@ -62,11 +68,7 @@ public class HomeFragment extends Fragment{
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            switch (view.getId())
-            {
-                case R.id.home_lvFeeds:
-                    doShowProgram(parent,view,position,id);
-            }
+            doShowProgram(parent, view, position, id);
         }
     };
 
