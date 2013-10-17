@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:id="@+id/slidebar_ivSpecOption" android:layout_toLeftOf="@+id/slidebar_ivNextToOption"
+            android:id="@+id/slidebar_tvSpecOption" android:layout_toLeftOf="@+id/slidebar_ivNextToOption"
             android:layout_centerVertical="true"/>
 
 </RelativeLayout>
