@@ -76,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/phone_margin"
-                    android:background="@drawable/slidebar_next_option"
+                    android:background="@drawable/arrow_right"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"/>
             <ImageView

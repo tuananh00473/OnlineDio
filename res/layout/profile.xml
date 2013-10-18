@@ -186,6 +186,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/phone_no_hint"
                         android:singleLine="true"
+                        android:phoneNumber="true"
                         android:layout_below="@id/v1"
                         android:layout_alignLeft="@id/profile_etFullName"
                         android:background="@color/NULL"
