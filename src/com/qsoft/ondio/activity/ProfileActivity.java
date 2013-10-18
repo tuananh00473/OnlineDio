@@ -3,10 +3,20 @@ package com.qsoft.ondio.activity;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.*;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import com.qsoft.ondio.R;
+import com.qsoft.ondio.dialog.MyDialog;
+import com.qsoft.ondio.model.Profile;
 
 import java.util.Calendar;
 
@@ -25,10 +35,22 @@ public class ProfileActivity extends Activity
     private Button btFemale;
     private EditText etCountry;
     private EditText etDescription;
+    private ImageView ivAvatar;
+    private RelativeLayout rlCoverImage;
+    private ScrollView scroll;
+    private Button btSave;
+    private Button btMenu;
 
     private static final int DATE_DIALOG_ID = 0;
     private static final int MALE = 0;
     private static final int FEMALE = 1;
+    private static String gender;
+    private static final int CAMERA_REQUEST = 999;
+    private static final int RESULT_LOAD_IMAGE = 888;
+    private static final int AVATAR_CODE = 0;
+    private static final int COVER_IMAGE_CODE = 1;
+    private static int code;
+
 
     Calendar c = Calendar.getInstance();
     int mYear = c.get(Calendar.YEAR);
@@ -49,6 +71,11 @@ public class ProfileActivity extends Activity
         etCountry.setOnClickListener(onClickListener);
         btMale.setOnClickListener(onClickListener);
         btFemale.setOnClickListener(onClickListener);
+        ivAvatar.setOnClickListener(onClickListener);
+        rlCoverImage.setOnClickListener(onClickListener);
+        etDescription.setOnClickListener(onClickListener);
+        btSave.setOnClickListener(onClickListener);
+        btMenu.setOnClickListener(onClickListener);
     }
 
     private void setUpUI()
@@ -61,6 +88,11 @@ public class ProfileActivity extends Activity
         btFemale = (Button) findViewById(R.id.profile_btFemale);
         etCountry = (EditText) findViewById(R.id.profile_etCountry);
         etDescription = (EditText) findViewById(R.id.profile_etDescription);
+        ivAvatar = (ImageView) findViewById(R.id.profile_ivAvatar);
+        rlCoverImage = (RelativeLayout) findViewById(R.id.profile_rlCoverImage);
+        scroll = (ScrollView) findViewById(R.id.profile_svScroll);
+        btSave = (Button) findViewById(R.id.profile_btSave);
+        btMenu = (Button) findViewById(R.id.profile_btMenu);
     }
 
     private final View.OnClickListener onClickListener = new View.OnClickListener()
@@ -70,6 +102,12 @@ public class ProfileActivity extends Activity
         {
             switch (view.getId())
             {
+                case R.id.profile_ivAvatar:
+                    setAvatar();
+                    break;
+                case R.id.profile_rlCoverImage:
+                    setCoverImage();
+                    break;
                 case R.id.profile_etBirthday:
                     showDialog(DATE_DIALOG_ID);
                     break;
@@ -82,19 +120,61 @@ public class ProfileActivity extends Activity
                 case R.id.profile_btFemale:
                     setGender(FEMALE);
                     break;
+                case R.id.profile_etDescription:
+                    scroll.fullScroll(ScrollView.FOCUS_DOWN);
+                    break;
+                case R.id.profile_btSave:
+                    doSave();
+                    break;
+                case R.id.profile_btMenu:
+                    doBackMenu();
+                    break;
             }
         }
     };
+
+    private void doBackMenu()
+    {
+        // do back menu
+    }
+
+    private void doSave()
+    {
+        Profile profile = new Profile();
+        profile.setDisplayName(etProfileName.getText().toString());
+        profile.setFullName(etFullName.getText().toString());
+        profile.setPhoneNo(etPhoneNo.getText().toString());
+        profile.setBirthday(etBirthday.getText().toString());
+        profile.setGender(gender);
+        profile.setCountry(etCountry.getText().toString());
+        profile.setDescription(etDescription.getText().toString());
+
+        // save(profile);
+    }
+
+    private void setCoverImage()
+    {
+        code = COVER_IMAGE_CODE;
+        MyDialog.showSetImageDialog(this, getString(R.string.dialog_tittle_coverimage));
+    }
+
+    private void setAvatar()
+    {
+        code = AVATAR_CODE;
+        MyDialog.showSetImageDialog(this, getString(R.string.dialog_tittle_avatar));
+    }
 
     private void setGender(int gender)
     {
         switch (gender)
         {
             case MALE:
+                ProfileActivity.gender = "male";
                 btMale.setBackgroundResource(R.drawable.profile_male);
                 btFemale.setBackgroundResource(R.drawable.profile_female_visible);
                 break;
             case FEMALE:
+                ProfileActivity.gender = "female";
                 btFemale.setBackgroundResource(R.drawable.profile_female);
                 btMale.setBackgroundResource(R.drawable.profile_male_visible);
                 break;
@@ -148,5 +228,80 @@ public class ProfileActivity extends Activity
     private void showAddress(String address)
     {
         etCountry.setText(address);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && null != data)
+        {
+            if (requestCode == CAMERA_REQUEST)
+            {
+                setImageFromCamera(data);
+            }
+            if (requestCode == RESULT_LOAD_IMAGE)
+            {
+                setImageFromAlbum(data);
+            }
+        }
+    }
+
+    private void setImageFromAlbum(Intent data)
+    {
+        Uri selectedImage = data.getData();
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+        cursor.moveToFirst();
+        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        String picturePath = cursor.getString(columnIndex);
+        cursor.close();
+        Bitmap photo = BitmapFactory.decodeFile(picturePath);
+        switch (code)
+        {
+            case AVATAR_CODE:
+                makeMaskImage(ivAvatar, photo);
+                break;
+            case COVER_IMAGE_CODE:
+                Drawable cover = new BitmapDrawable(photo);
+                rlCoverImage.setBackgroundDrawable(cover);
+                break;
+        }
+    }
+
+    private void setImageFromCamera(Intent data)
+    {
+        Bitmap photo = (Bitmap) data.getExtras().get("data");
+        switch (code)
+        {
+            case AVATAR_CODE:
+                makeMaskImage(ivAvatar, photo);
+                break;
+            case COVER_IMAGE_CODE:
+                Drawable cover = new BitmapDrawable(photo);
+                rlCoverImage.setBackgroundDrawable(cover);
+                break;
+        }
+        Log.d("CameraDemo", "Pic saved");
+    }
+
+    public void makeMaskImage(ImageView mImageView, Bitmap photoBitmap)
+    {
+        Bitmap mask = BitmapFactory.decodeResource(getResources(), R.drawable.profile_mask);
+
+        Bitmap result = Bitmap.createBitmap(mask.getWidth(), mask.getHeight(), Bitmap.Config.ARGB_8888);
+
+        Bitmap photoBitmapScale = Bitmap.createScaledBitmap(photoBitmap, mask.getWidth(), mask.getHeight(), false);
+
+        Canvas mCanvas = new Canvas(result);
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        mCanvas.drawBitmap(photoBitmapScale, 0, 0, null);
+        mCanvas.drawBitmap(mask, 0, 0, paint);
+        paint.setXfermode(null);
+        mImageView.setImageBitmap(result);
+        mImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        mImageView.setBackgroundResource(R.drawable.profile_frame);
     }
 }

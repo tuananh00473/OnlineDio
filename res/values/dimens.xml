@@ -8,7 +8,6 @@
     <dimen name="phone_text_info_care_size">10dp</dimen>
     <dimen name="phone_text_info_comment_size">8dp</dimen>
 
-
     <dimen name="phone_margin">10dp</dimen>
     <dimen name="phone_margin_max">20dp</dimen>
     <dimen name="phone_margin_than_middle">18dp</dimen>
@@ -40,6 +39,11 @@
     <dimen name="phone_field_margin_left_medium">13dp</dimen>
     <dimen name="phone_field_margin_left_max">20dp</dimen>
     <dimen name="phone_padding_bottom">10dp</dimen>
+    <dimen name="phone_field_margin_left_minimum">5dp</dimen>
+    <dimen name="dialog_width_button_size">150dp</dimen>
+    <dimen name="dialog_height_button_size">40dp</dimen>
+    <dimen name="profile_avatar_size">100dp</dimen>
+    <dimen name="phone_coverimage_height_size">160dp</dimen>
     <dimen name="phone_padding_bottom_medium">50dp</dimen>
     <dimen name="phone_field_margin_left_minimum">5dp</dimen>
 </resources>

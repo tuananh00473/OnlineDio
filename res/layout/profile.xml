@@ -7,7 +7,7 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/White"
             android:paddingBottom="@dimen/phone_padding_bottom">
 
@@ -23,7 +23,7 @@
                     android:layout_alignParentRight="true" android:layout_marginRight="@dimen/phone_margin"
                     android:layout_centerVertical="true"
                     />
-            <TextView android:id="@+id/profile_tvProfile"
+            <TextView android:id="@+id/profile_tvProfileTittle"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="@string/profile_tittle"
@@ -40,21 +40,23 @@
                     android:layout_centerVertical="true"
                     />
         </RelativeLayout>
-        <RelativeLayout
-                android:id="@+id/profile_rlImageCover"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/cover_image"
-                android:paddingBottom="@dimen/phone_margin">
+        <RelativeLayout xmlns:maskimage="http://schemas.android.com/apk/res/com.qsoft.ondio"
+                        android:id="@+id/profile_rlCoverImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/phone_coverimage_height_size"
+                        android:background="@drawable/cover_image"
+                        android:scaleType="fitXY">
 
-            <ImageView
+            <com.qsoft.ondio.util.MaskImage
                     android:id="@+id/profile_ivAvatar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/profile_avatar"
-                    android:layout_marginLeft="@dimen/phone_margin"
-                    android:layout_marginBottom="@dimen/phone_margin"
-                    android:layout_marginTop="@dimen/phone_margin_top"/>
+                    maskimage:image="@drawable/profile_avatar"
+                    maskimage:mask="@drawable/profile_mask"
+                    maskimage:frame="@drawable/profile_frame"
+                    android:layout_width="@dimen/profile_avatar_size"
+                    android:layout_height="@dimen/profile_avatar_size"
+                    android:layout_alignParentLeft="true" android:layout_marginLeft="@dimen/phone_margin"
+                    android:layout_alignParentBottom="true" android:layout_marginBottom="@dimen/phone_margin"/>
+
             <ImageView
                     android:id="@+id/profile_ivIconCover"
                     android:layout_width="wrap_content"
@@ -110,6 +112,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/profile_name_hint"
                         android:singleLine="true"
+                        android:editable="false"
                         android:layout_toRightOf="@id/profile_tvProfileName"
                         android:layout_margin="@dimen/phone_margin_component"
                         android:layout_centerVertical="true"
@@ -186,7 +189,7 @@
                         android:layout_below="@id/v1"
                         android:layout_alignLeft="@id/profile_etFullName"
                         android:background="@color/NULL"
-                        />
+                        android:inputType="phone"/>
                 <View
                         android:id="@+id/v2"
                         android:layout_width="match_parent"

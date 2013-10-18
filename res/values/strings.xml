@@ -63,6 +63,12 @@
     <string name="slidebar_tittle_item">Item</string>
     <string name="name_song">My Station</string>
     <string name="name_singer">elizabet</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="choose_picture">Choose Picture</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_tittle_avatar">"How would you like to set your picture?"</string>
+    <string name="dialog_tittle_coverimage">"How would you like to set your cover?"</string>
+
     <string name="program_thumbnail">Thumbnail</string>
     <string name="program_detail">Detail</string>
     <string name="program_comments">Comments</string>
@@ -76,4 +82,6 @@
     </string>
     <string name="comment_time">1 phút trước</string>
     <string name="program_numberOfCare">189</string>
+    <string name="timeRun">1:32</string>
+    <string name="timeTotal">3:32</string>
 </resources>
