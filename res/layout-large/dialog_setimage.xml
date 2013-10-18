@@ -6,20 +6,20 @@
               android:layout_height="match_parent">
     <Button
             android:id="@+id/dialog_btTakePicture"
-            android:layout_width="@dimen/phone_dialog_width_button_size"
-            android:layout_height="@dimen/phone_dialog_height_button_size"
+            android:layout_width="@dimen/tablet_dialog_width_button_size"
+            android:layout_height="@dimen/tablet_dialog_height_button_size"
             android:text="@string/take_picture"
             android:layout_gravity="center"/>
     <Button
             android:id="@+id/dialog_btChoosePicture"
-            android:layout_width="@dimen/phone_dialog_width_button_size"
-            android:layout_height="@dimen/phone_dialog_height_button_size"
+            android:layout_width="@dimen/tablet_dialog_width_button_size"
+            android:layout_height="@dimen/tablet_dialog_height_button_size"
             android:text="@string/choose_picture"
             android:layout_gravity="center"/>
     <Button
             android:id="@+id/dialog_btCancel"
-            android:layout_width="@dimen/phone_dialog_width_button_size"
-            android:layout_height="@dimen/phone_dialog_height_button_size"
+            android:layout_width="@dimen/tablet_dialog_width_button_size"
+            android:layout_height="@dimen/tablet_dialog_height_button_size"
             android:text="@string/dialog_cancel"
             android:layout_gravity="center"/>
 </LinearLayout>
