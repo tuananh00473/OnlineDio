@@ -10,18 +10,17 @@ import android.widget.RadioGroup;
 import com.qsoft.ondio.R;
 
 /**
- * Created with IntelliJ IDEA.
  * User: thinhdd
  * Date: 10/17/13
  * Time: 3:25 PM
- * To change this template use File | Settings | File Templates.
  */
 public class ProgramFragment extends Fragment
 {
     private RadioGroup rgInfo;
+
     @Override
-    public View onCreateView (LayoutInflater inflater, ViewGroup container,
-                              Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.program, null);
@@ -67,12 +66,14 @@ public class ProgramFragment extends Fragment
         ft.replace(R.id.program_flInformation, new ThumbnailFragment(), "ThumbnailFragment");
         ft.commit();
     }
+
     private void doShowDetail()
     {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.program_flInformation, new DetailFragment(), "DetailFragment");
         ft.commit();
     }
+
     private void doShowComment()
     {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();

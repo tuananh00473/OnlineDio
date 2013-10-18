@@ -10,20 +10,18 @@ import android.widget.ListView;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterComment;
 import com.qsoft.ondio.model.Comment;
-import com.qsoft.ondio.model.Feed;
 
 import java.util.ArrayList;
 
 /**
- * Created with IntelliJ IDEA.
  * User: thinhdd
  * Date: 10/18/13
  * Time: 10:03 AM
- * To change this template use File | Settings | File Templates.
  */
 public class CommentFragment extends Fragment
 {
     private ListView listComment;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -51,6 +49,6 @@ public class CommentFragment extends Fragment
         commentList.add(comment2);
         commentList.add(comment3);
         commentList.add(comment4);
-        listComment.setAdapter(new ArrayAdapterComment(context,R.id.comment_lvListComment, commentList));
+        listComment.setAdapter(new ArrayAdapterComment(context, R.id.comment_lvListComment, commentList));
     }
 }

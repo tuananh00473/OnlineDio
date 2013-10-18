@@ -1,13 +1,5 @@
 package com.qsoft.ondio.activity;
 
-/**
- * Created with IntelliJ IDEA.
- * User: thinhdd
- * Date: 10/16/13
- * Time: 1:55 PM
- * To change this template use File | Settings | File Templates.
- */
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -21,6 +13,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterListOption;
+
+/**
+ * User: thinhdd
+ * Date: 10/16/13
+ * Time: 1:55 PM
+ */
 
 public class SlidebarActivity extends FragmentActivity
 {

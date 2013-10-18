@@ -25,7 +25,6 @@ public class LoginActivity extends Activity
     private TextView tvForgotPassword;
     private EditText etEmail;
     private EditText etPassword;
-    private NetworkAvailable network;
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -90,16 +89,18 @@ public class LoginActivity extends Activity
 
     private boolean checkNetwork()
     {
-        network = new NetworkAvailable(this);
+        NetworkAvailable network = new NetworkAvailable(this);
         return network.isEnabled();
     }
 
     private boolean checkLogin()
     {
-        if ((etEmail.getText().toString().trim().equals("sa"))
-                && (etPassword.getText().toString().trim().equals("sa")))
+        if ((etEmail.getText().toString().trim().equals("sa")))
         {
-            return true;
+            if ((etPassword.getText().toString().trim().equals("sa")))
+            {
+                return true;
+            }
         }
         return false;
     }

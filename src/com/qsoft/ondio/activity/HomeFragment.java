@@ -1,7 +1,6 @@
 package com.qsoft.ondio.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -68,11 +67,11 @@ public class HomeFragment extends Fragment
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            doShowProgram(parent, view, position, id);
+            doShowProgram();
         }
     };
 
-    private void doShowProgram(AdapterView<?> parent, View view, int position, long id)
+    private void doShowProgram()
     {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame, new ProgramFragment(), "ProgramFragment");
