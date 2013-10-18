@@ -184,7 +184,7 @@
                         android:id="@+id/profile_etPhoneNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/tablet_no_hint"
+                        android:hint="@string/phone_no_hint"
                         android:singleLine="true"
                         android:layout_below="@id/v1"
                         android:layout_alignLeft="@id/profile_etFullName"
