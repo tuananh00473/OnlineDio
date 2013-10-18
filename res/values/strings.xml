@@ -53,8 +53,8 @@
     <string name="phone_no_hint">Your phone no.</string>
     <string name="birthday_hint">Your birthday</string>
     <string name="country_hint">Your country</string>
-    <string name="sound_art">Dimonds</string>
-    <string name="sound">Ty Y Chet</string>
+    <string name="sound_art">Dimonds speaker</string>
+    <string name="sound">Mưa Trên Phố Bay</string>
     <string name="home_tittle_comment">comment : good</string>
     <string name="home_tittle_show">show</string>
     <string name="home_tittle_song">Song name</string>
@@ -63,4 +63,17 @@
     <string name="slidebar_tittle_item">Item</string>
     <string name="name_song">My Station</string>
     <string name="name_singer">elizabet</string>
+    <string name="program_thumbnail">Thumbnail</string>
+    <string name="program_detail">Detail</string>
+    <string name="program_comments">Comments</string>
+    <string name="detail_infomation_art">Hoà trong cơn gió đông bay qua thời gian, Từng đôi chân lãng du bước trên đường
+        khuya. Hạt mưa rơi lung linh như hạt ngọc đêm thâu, Bao giấc mơ tan thành sương hoa, Để giờ đây chơi vơi bóng
+        hình một loài hoa tháng năm.
+    </string>
+    <string name="comments_hint">Add a comment</string>
+    <string name="comment_form">Chỉ anh với mỗi anh cô đơn lạnh gió Mình anh với nỗi đau khi em lìa xa. Một mình anh cô
+        đơn,đếm từng giọt sao rơi,
+    </string>
+    <string name="comment_time">1 phút trước</string>
+    <string name="program_numberOfCare">189</string>
 </resources>

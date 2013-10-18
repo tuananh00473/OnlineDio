@@ -22,8 +22,5 @@
                   android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name=".activity.SlidebarActivity"
                   android:theme="@android:style/Theme.Black.NoTitleBar"/>
-        <activity
-                android:name=".activity.ProgramActivity"
-                android:theme="@android:style/Theme.Black.NoTitleBar"/>
     </application>
 </manifest>

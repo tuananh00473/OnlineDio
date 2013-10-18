@@ -3,7 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/home_list_feed_selection"
+                android:background="@drawable/list_selection"
                 android:padding="@dimen/phone_slidebar_padding">
     <ImageView
             android:id="@+id/slidebar_ivOption"

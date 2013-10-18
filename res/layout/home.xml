@@ -50,7 +50,7 @@
             android:id="@+id/home_lvFeeds"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:listSelector="@drawable/home_list_feed_selection"
+            android:listSelector="@drawable/list_selection"
             android:layout_below="@id/home_ivContentFeed"/>
     <ImageButton
             android:id="@+id/home_ibSwitchToRecord"

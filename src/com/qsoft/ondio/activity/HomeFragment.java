@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterCustom;
 import com.qsoft.ondio.model.Feed;
@@ -74,8 +74,10 @@ public class HomeFragment extends Fragment
 
     private void doShowProgram(AdapterView<?> parent, View view, int position, long id)
     {
-        Intent intent = new Intent(getActivity(), ProgramActivity.class);
-        startActivity(intent);
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame, new ProgramFragment(), "ProgramFragment");
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     private void setUpViewHome(View rootView)
