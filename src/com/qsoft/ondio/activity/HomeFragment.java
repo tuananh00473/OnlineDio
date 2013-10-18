@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterCustom;
@@ -18,7 +19,8 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment
 {
 
-    ListView home_lvFeeds;
+    private ListView home_lvFeeds;
+    private Button btShowOption;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -34,6 +36,7 @@ public class HomeFragment extends Fragment
     private void setUpListenerController()
     {
         home_lvFeeds.setOnItemClickListener(onItemClickListener);
+        btShowOption.setOnClickListener(onClickListener);
     }
 
     private void setUpDataToHomeListView(Context context, ArrayList<Feed> feedList)
@@ -70,7 +73,14 @@ public class HomeFragment extends Fragment
             doShowProgram();
         }
     };
+    private View.OnClickListener onClickListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
 
+        }
+    };
     private void doShowProgram()
     {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();

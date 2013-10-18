@@ -26,5 +26,7 @@
                   android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name=".activity.SlidebarActivity"
                   android:theme="@android:style/Theme.Black.NoTitleBar"/>
+        <activity android:name=".activity.InputCommentActivity"
+                  android:theme="@android:style/Theme.Black.NoTitleBar"/>
     </application>
 </manifest>
