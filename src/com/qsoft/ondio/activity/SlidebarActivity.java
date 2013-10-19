@@ -20,16 +20,14 @@ import com.qsoft.ondio.customui.ArrayAdapterListOption;
  * Time: 1:55 PM
  */
 
-public class SlidebarActivity extends FragmentActivity
-{
+public class SlidebarActivity extends FragmentActivity {
     String[] listOption = {"Home", "Favorite", "Following", "Audience", "Genres", "Setting", "Help Center", "Sign Out"};
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView lvOption;
     private ImageView ivProfile;
 
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.slidebar);
 
@@ -43,30 +41,25 @@ public class SlidebarActivity extends FragmentActivity
                 R.string.drawer_open,  /* "open drawer" description */
                 R.string.drawer_close  /* "close drawer" description */);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, Fragment.instantiate(SlidebarActivity.this, "com.qsoft.ondio.activity.HomeFragment"))
+                .replace(R.id.slidebar_flHomeFragment, Fragment.instantiate(SlidebarActivity.this, "com.qsoft.ondio.activity.HomeFragment"))
                 .commit();
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    private void setUpUI()
-    {
+    private void setUpUI() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         lvOption = (ListView) findViewById(R.id.slidebar_listOption);
         ivProfile = (ImageView) findViewById(R.id.slide_ivEditProfile);
     }
 
-    private void setUpListenerController()
-    {
+    private void setUpListenerController() {
         ivProfile.setOnClickListener(onClickListener);
     }
 
-    private View.OnClickListener onClickListener = new View.OnClickListener()
-    {
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v)
-        {
-            switch (v.getId())
-            {
+        public void onClick(View v) {
+            switch (v.getId()) {
                 case R.id.slide_ivEditProfile:
                     doProfile();
 
@@ -74,27 +67,23 @@ public class SlidebarActivity extends FragmentActivity
         }
     };
 
-    private void doProfile()
-    {
+    private void doProfile() {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
 
-    private void setUpDataListOption(Context context)
-    {
+    private void setUpDataListOption(Context context) {
         lvOption.setAdapter(new ArrayAdapterListOption(context, R.layout.slidebar_listoptions, listOption));
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState)
-    {
+    protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         mDrawerToggle.syncState();
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
+    public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }

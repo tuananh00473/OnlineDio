@@ -5,7 +5,7 @@
         android:layout_height="match_parent"
         android:background="@color/White">
     <FrameLayout
-            android:id="@+id/content_frame"
+            android:id="@+id/slidebar_flHomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     <RelativeLayout
