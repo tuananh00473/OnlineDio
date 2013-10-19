@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import com.qsoft.ondio.R;
 
 /**
@@ -46,7 +47,9 @@ public class MyDialog
         activity = act;
         dialog = new Dialog(activity);
         dialog.setContentView(R.layout.dialog_setimage);
-        dialog.setTitle(tittle);
+        TextView tvTitle = (TextView) dialog.findViewById(android.R.id.title);
+        tvTitle.setSingleLine(false);
+        tvTitle.setText(tittle);
 
         Button btTakePicture = (Button) dialog.findViewById(R.id.dialog_btTakePicture);
         Button btChoosePicture = (Button) dialog.findViewById(R.id.dialog_btChoosePicture);
