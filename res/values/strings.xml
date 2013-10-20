@@ -84,4 +84,25 @@
     <string name="program_numberOfCare">189</string>
     <string name="timeRun">1:32</string>
     <string name="timeTotal">3:32</string>
+
+    <string-array name="countries">
+        <item>English</item>
+        <item>USA</item>
+        <item>Viet Nam</item>
+        <item>New Zeland</item>
+        <item>China</item>
+        <item>Japan</item>
+    </string-array>
+
+    <string-array name="nav_classes">
+        <item>Home</item>
+        <item>Favorite</item>
+        <item>Following</item>
+        <item>Audience</item>
+        <item>Genres</item>
+        <item>Setting</item>
+        <item>Help Center</item>
+        <item>Sign Out</item>
+    </string-array>
+
 </resources>

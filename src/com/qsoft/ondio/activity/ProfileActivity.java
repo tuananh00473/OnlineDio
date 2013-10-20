@@ -124,7 +124,7 @@ public class ProfileActivity extends Fragment
                     doSave();
                     break;
                 case R.id.profile_btMenu:
-                    doBackMenu();
+                    showMenu();
                     break;
             }
         }
@@ -135,9 +135,9 @@ public class ProfileActivity extends Fragment
         MyDialog.showDatePickerDialog(getActivity(), etBirthday);
     }
 
-    private void doBackMenu()
+    private void showMenu()
     {
-        // do back menu
+        // do show menus
     }
 
     private void doSave()

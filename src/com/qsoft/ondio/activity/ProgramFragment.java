@@ -72,11 +72,16 @@ public class ProgramFragment extends Fragment
             switch (view.getId())
             {
                 case R.id.program_btBack:
-                    getFragmentManager().popBackStack();
+                    doBack();
                     break;
             }
         }
     };
+
+    private void doBack()
+    {
+        getFragmentManager().popBackStack();
+    }
 
     private void doShowThumbnal()
     {

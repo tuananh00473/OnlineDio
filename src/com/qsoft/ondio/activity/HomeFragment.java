@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterCustom;
@@ -17,14 +18,14 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment
 {
-
+    private Button btMenu;
     private ListView home_lvFeeds;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.home, null);
-        setUpViewHome(view);
+        setUpUI(view);
         ArrayList<Feed> feedList = new ArrayList<Feed>();
         setUpDataToHomeListView(getActivity(), feedList);
         setUpListenerController();
@@ -33,6 +34,7 @@ public class HomeFragment extends Fragment
 
     private void setUpListenerController()
     {
+        btMenu.setOnClickListener(onClickListener);
         home_lvFeeds.setOnItemClickListener(onItemClickListener);
     }
 
@@ -73,23 +75,34 @@ public class HomeFragment extends Fragment
     private View.OnClickListener onClickListener = new View.OnClickListener()
     {
         @Override
-        public void onClick(View v)
+        public void onClick(View view)
         {
-
+            switch (view.getId())
+            {
+                case R.id.home_btMenu:
+                    showMenu();
+                    break;
+            }
         }
     };
+
+    private void showMenu()
+    {
+        // do show menu
+    }
 
     private void doShowProgram()
     {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.slidebar_flHomeFragment, new ProgramFragment(), "ProgramFragment");
-        ft.addToBackStack(null);
+        ft.addToBackStack("ProgramFragment");
         ft.commit();
     }
 
-    private void setUpViewHome(View rootView)
+    private void setUpUI(View view)
     {
-        home_lvFeeds = (ListView) rootView.findViewById(R.id.home_lvFeeds);
+        btMenu = (Button) view.findViewById(R.id.home_btMenu);
+        home_lvFeeds = (ListView) view.findViewById(R.id.home_lvFeeds);
     }
 }
 

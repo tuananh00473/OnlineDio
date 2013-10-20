@@ -1,9 +1,11 @@
 <android.support.v4.widget.DrawerLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/White">
+        android:background="@color/White"
+        tools:context=".MainActivity">
     <FrameLayout
             android:id="@+id/slidebar_flHomeFragment"
             android:layout_width="match_parent"
@@ -106,7 +108,8 @@
                     android:id="@+id/slidebar_listOption"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@id/slidebar_tvBarMiddle"/>
+                    android:layout_below="@id/slidebar_tvBarMiddle"
+                    android:choiceMode="singleChoice"/>
         </RelativeLayout>
     </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>

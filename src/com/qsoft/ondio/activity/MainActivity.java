@@ -26,15 +26,6 @@ public class MainActivity extends Activity
     private void setupUI()
     {
         btLogin = (Button) findViewById(R.id.btLogin);
-        Button btProfile = (Button) findViewById(R.id.btSignUp);
-        btProfile.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-            }
-        });
     }
 
 
