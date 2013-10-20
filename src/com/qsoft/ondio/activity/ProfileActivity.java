@@ -43,7 +43,6 @@ public class ProfileActivity extends Fragment
     private Button btSave;
     private Button btMenu;
 
-    private static final int DATE_DIALOG_ID = 0;
     private static final int MALE = 0;
     private static final int FEMALE = 1;
     private static String gender;

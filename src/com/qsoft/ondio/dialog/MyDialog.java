@@ -112,6 +112,7 @@ public class MyDialog extends DialogFragment
     {
         etDateToShow = etDate;
         dialog = new DatePickerDialog(activity, mDateSetListener, mYear, mMonth, mDay);
+        dialog.show();
     }
 
     private static DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener()
