@@ -43,10 +43,29 @@ public class SlidebarActivity extends FragmentActivity
                 mDrawerLayout,         /* DrawerLayout object */
                 R.drawable.ic_drawer,  /* nav drawer icon to replace 'Up' caret */
                 R.string.drawer_open,  /* "open drawer" description */
-                R.string.drawer_close  /* "close drawer" description */);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.slidebar_flHomeFragment, Fragment.instantiate(SlidebarActivity.this, "com.qsoft.ondio.activity.HomeFragment"))
-                .commit();
+                R.string.drawer_close  /* "close drawer" description */)
+        {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset)
+            {
+                super.onDrawerSlide(drawerView, slideOffset);    //To change body of overridden methods use File | Settings | File Templates.
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView)
+            {
+                super.onDrawerOpened(drawerView);    //To change body of overridden methods use File | Settings | File Templates.
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView)
+            {
+                super.onDrawerClosed(drawerView);    //To change body of overridden methods use File | Settings | File Templates.
+            }
+        };
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.slidebar_flHomeFragment, Fragment.instantiate(SlidebarActivity.this, "com.qsoft.ondio.activity.HomeFragment"));
+        fragmentTransaction.commit();
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
@@ -78,8 +97,6 @@ public class SlidebarActivity extends FragmentActivity
 
     private void doEditProfile()
     {
-//        Intent intent = new Intent(this, ProfileActivity.class);
-//        startActivity(intent);
         final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.slidebar_profileFragment, new ProfileActivity(), "ProfileActivity");
         ft.addToBackStack(null);
