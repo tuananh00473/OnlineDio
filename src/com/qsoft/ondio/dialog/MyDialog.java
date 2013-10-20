@@ -2,26 +2,38 @@ package com.qsoft.ondio.dialog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.MediaStore;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import com.qsoft.ondio.R;
+
+import java.util.Calendar;
 
 /**
  * User: anhnt
  * Date: 10/14/13
  * Time: 2:55 PM
  */
-public class MyDialog
+public class MyDialog extends DialogFragment
 {
     private static final int CAMERA_REQUEST = 999;
     private static final int RESULT_LOAD_IMAGE = 888;
     private static Activity activity;
     private static Dialog dialog;
+
+    private static Calendar c = Calendar.getInstance();
+    private static int mYear = c.get(Calendar.YEAR);
+    private static int mMonth = c.get(Calendar.MONTH);
+    private static int mDay = c.get(Calendar.DAY_OF_MONTH);
+    private static EditText etDateToShow;
 
     public static void showMessageDialog(Activity act, String tittle, String message)
     {
@@ -94,5 +106,24 @@ public class MyDialog
     {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         activity.startActivityForResult(cameraIntent, CAMERA_REQUEST);
+    }
+
+    public static void showDatePickerDialog(Activity activity, EditText etDate)
+    {
+        etDateToShow = etDate;
+        dialog = new DatePickerDialog(activity, mDateSetListener, mYear, mMonth, mDay);
+    }
+
+    private static DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener()
+    {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        {
+            showDate(etDateToShow, year, monthOfYear, dayOfMonth);
+        }
+    };
+
+    private static void showDate(EditText etDateToShow, int year, int monthOfYear, int dayOfMonth)
+    {
+        etDateToShow.setText(dayOfMonth + "/" + ++monthOfYear + "/" + year);
     }
 }

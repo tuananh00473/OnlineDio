@@ -55,21 +55,22 @@ public class LoginActivity extends Activity
 
     private void doLogin()
     {
-        if (!checkNetwork())
+//        if (!checkNetwork())
+//        {
+//            MyDialog.showMessageDialog(this, getString(R.string.tittle_login_error), getString(R.string.error_connect_network));
+//        }
+//        else
+        if (!checkTimeout())
         {
-            MyDialog.showMessageDialog(LoginActivity.this, getString(R.string.tittle_login_error), getString(R.string.error_connect_network));
-        }
-        else if (!checkTimeout())
-        {
-            MyDialog.showMessageDialog(LoginActivity.this, getString(R.string.tittle_login_error), getString(R.string.connection_timeout));
+            MyDialog.showMessageDialog(this, getString(R.string.tittle_login_error), getString(R.string.connection_timeout));
         }
         else if (!checkUnrecognized())
         {
-            MyDialog.showMessageDialog(LoginActivity.this, getString(R.string.tittle_login_error), getString(R.string.service_unrecognized));
+            MyDialog.showMessageDialog(this, getString(R.string.tittle_login_error), getString(R.string.service_unrecognized));
         }
         else if (!checkLogin())
         {
-            MyDialog.showMessageDialog(LoginActivity.this, getString(R.string.tittle_login_error), getString(R.string.incorrect_email_or_password));
+            MyDialog.showMessageDialog(this, getString(R.string.tittle_login_error), getString(R.string.incorrect_email_or_password));
         }
         else
         {

@@ -1,8 +1,5 @@
 package com.qsoft.ondio.activity;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.*;
@@ -11,21 +8,25 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.dialog.MyDialog;
+import com.qsoft.ondio.model.Feed;
 import com.qsoft.ondio.model.Profile;
 
-import java.util.Calendar;
+import java.util.ArrayList;
 
 /**
  * User: anhnt
  * Date: 10/16/13
  * Time: 8:56 AM
  */
-public class ProfileActivity extends Activity
+public class ProfileActivity extends Fragment
 {
     private EditText etProfileName;
     private EditText etFullName;
@@ -34,6 +35,7 @@ public class ProfileActivity extends Activity
     private Button btMale;
     private Button btFemale;
     private EditText etCountry;
+    private Spinner spCountry;
     private EditText etDescription;
     private ImageView ivAvatar;
     private RelativeLayout rlCoverImage;
@@ -51,18 +53,13 @@ public class ProfileActivity extends Activity
     private static final int COVER_IMAGE_CODE = 1;
     private static int code;
 
-
-    Calendar c = Calendar.getInstance();
-    int mYear = c.get(Calendar.YEAR);
-    int mMonth = c.get(Calendar.MONTH);
-    int mDay = c.get(Calendar.DAY_OF_MONTH);
-
-    public void onCreate(Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile);
-        setUpUI();
+        View view = inflater.inflate(R.layout.profile, null);
+        setUpUI(view);
+        ArrayList<Feed> feedList = new ArrayList<Feed>();
         setUpListenerController();
+        return view;
     }
 
     private void setUpListenerController()
@@ -78,21 +75,22 @@ public class ProfileActivity extends Activity
         btMenu.setOnClickListener(onClickListener);
     }
 
-    private void setUpUI()
+    private void setUpUI(View view)
     {
-        etProfileName = (EditText) findViewById(R.id.profile_etProfileName);
-        etFullName = (EditText) findViewById(R.id.profile_etFullName);
-        etPhoneNo = (EditText) findViewById(R.id.profile_etPhoneNo);
-        etBirthday = (EditText) findViewById(R.id.profile_etBirthday);
-        btMale = (Button) findViewById(R.id.profile_btMale);
-        btFemale = (Button) findViewById(R.id.profile_btFemale);
-        etCountry = (EditText) findViewById(R.id.profile_etCountry);
-        etDescription = (EditText) findViewById(R.id.profile_etDescription);
-        ivAvatar = (ImageView) findViewById(R.id.profile_ivAvatar);
-        rlCoverImage = (RelativeLayout) findViewById(R.id.profile_rlCoverImage);
-        scroll = (ScrollView) findViewById(R.id.profile_svScroll);
-        btSave = (Button) findViewById(R.id.profile_btSave);
-        btMenu = (Button) findViewById(R.id.profile_btMenu);
+        etProfileName = (EditText) view.findViewById(R.id.profile_etProfileName);
+        etFullName = (EditText) view.findViewById(R.id.profile_etFullName);
+        etPhoneNo = (EditText) view.findViewById(R.id.profile_etPhoneNo);
+        etBirthday = (EditText) view.findViewById(R.id.profile_etBirthday);
+        btMale = (Button) view.findViewById(R.id.profile_btMale);
+        btFemale = (Button) view.findViewById(R.id.profile_btFemale);
+        etCountry = (EditText) view.findViewById(R.id.profile_etCountry);
+        spCountry = (Spinner) view.findViewById(R.id.profile_spCountry);
+        etDescription = (EditText) view.findViewById(R.id.profile_etDescription);
+        ivAvatar = (ImageView) view.findViewById(R.id.profile_ivAvatar);
+        rlCoverImage = (RelativeLayout) view.findViewById(R.id.profile_rlCoverImage);
+        scroll = (ScrollView) view.findViewById(R.id.profile_svScroll);
+        btSave = (Button) view.findViewById(R.id.profile_btSave);
+        btMenu = (Button) view.findViewById(R.id.profile_btMenu);
     }
 
     private final View.OnClickListener onClickListener = new View.OnClickListener()
@@ -109,7 +107,7 @@ public class ProfileActivity extends Activity
                     setCoverImage();
                     break;
                 case R.id.profile_etBirthday:
-                    showDialog(DATE_DIALOG_ID);
+                    setBirthday();
                     break;
                 case R.id.profile_etCountry:
                     setCountry();
@@ -133,6 +131,11 @@ public class ProfileActivity extends Activity
         }
     };
 
+    private void setBirthday()
+    {
+        MyDialog.showDatePickerDialog(getActivity(), etBirthday);
+    }
+
     private void doBackMenu()
     {
         // do back menu
@@ -155,13 +158,13 @@ public class ProfileActivity extends Activity
     private void setCoverImage()
     {
         code = COVER_IMAGE_CODE;
-        MyDialog.showSetImageDialog(this, getString(R.string.dialog_tittle_coverimage));
+        MyDialog.showSetImageDialog(getActivity(), getString(R.string.dialog_tittle_coverimage));
     }
 
     private void setAvatar()
     {
         code = AVATAR_CODE;
-        MyDialog.showSetImageDialog(this, getString(R.string.dialog_tittle_avatar));
+        MyDialog.showSetImageDialog(getActivity(), getString(R.string.dialog_tittle_avatar));
     }
 
     private void setGender(int gender)
@@ -181,41 +184,15 @@ public class ProfileActivity extends Activity
         }
     }
 
-
-    private void showDate(int year, int monthOfYear, int dayOfMonth)
-    {
-        etBirthday.setText(dayOfMonth + "/" + ++monthOfYear + "/" + year);
-    }
-
-    private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener()
-    {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-        {
-            showDate(year, monthOfYear, dayOfMonth);
-        }
-    };
-
-    @Override
-    protected Dialog onCreateDialog(int id)
-    {
-        switch (id)
-        {
-            case DATE_DIALOG_ID:
-                return new DatePickerDialog(this, mDateSetListener, mYear, mMonth, mDay);
-        }
-        return null;
-    }
-
     private void setCountry()
     {
-        Spinner spAddress = (Spinner) findViewById(R.id.profile_spCountry);
-        spAddress.performClick();
-        spAddress.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        spCountry.performClick();
+        spCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
             {
-                showAddress(adapterView.getSelectedItem().toString());
+                showCountry(adapterView.getSelectedItem().toString());
             }
 
             @Override
@@ -225,17 +202,17 @@ public class ProfileActivity extends Activity
         });
     }
 
-    private void showAddress(String address)
+    private void showCountry(String address)
     {
         etCountry.setText(address);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK && null != data)
+        if (resultCode == getActivity().RESULT_OK && null != data)
         {
             if (requestCode == CAMERA_REQUEST)
             {
@@ -252,7 +229,7 @@ public class ProfileActivity extends Activity
     {
         Uri selectedImage = data.getData();
         String[] filePathColumn = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+        Cursor cursor = getActivity().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
         cursor.moveToFirst();
         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
         String picturePath = cursor.getString(columnIndex);

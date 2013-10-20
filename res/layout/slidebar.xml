@@ -8,6 +8,10 @@
             android:id="@+id/slidebar_flHomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+    <FrameLayout
+            android:id="@+id/slidebar_profileFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     <RelativeLayout
             android:id="@+id/left_drawer"
             android:layout_width="@dimen/phone_slidebar_width"

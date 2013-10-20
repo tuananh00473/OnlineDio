@@ -11,8 +11,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/menubar"/>
-        <ImageView
-                android:id="@+id/program_ivBackSlidebar"
+        <Button
+                android:id="@+id/program_btBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -276,8 +276,5 @@
     <FrameLayout
             android:id="@+id/program_flInformation"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    </FrameLayout>
-
+            android:layout_height="match_parent"/>
 </LinearLayout>

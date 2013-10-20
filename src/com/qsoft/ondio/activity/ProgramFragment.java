@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import com.qsoft.ondio.R;
 
 /**
@@ -18,6 +18,7 @@ import com.qsoft.ondio.R;
 public class ProgramFragment extends Fragment
 {
     private RadioGroup rgInfo;
+    private Button btBack;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,20 +26,22 @@ public class ProgramFragment extends Fragment
     {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.program, null);
-        setUpViewFindById(view);
+        setUpUI(view);
         doShowThumbnal();
         setUpListenerController();
         return view;
     }
 
-    private void setUpViewFindById(View view)
+    private void setUpUI(View view)
     {
         rgInfo = (RadioGroup) view.findViewById(R.id.program_rgSelectInfo);
+        btBack = (Button) view.findViewById(R.id.program_btBack);
     }
 
     private void setUpListenerController()
     {
         rgInfo.setOnCheckedChangeListener(onCheckChangeListener);
+        btBack.setOnClickListener(onClickListener);
     }
 
     private RadioGroup.OnCheckedChangeListener onCheckChangeListener = new RadioGroup.OnCheckedChangeListener()
@@ -56,6 +59,20 @@ public class ProgramFragment extends Fragment
                     break;
                 case R.id.program_rbComments:
                     doShowComment();
+                    break;
+            }
+        }
+    };
+
+    private final View.OnClickListener onClickListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View view)
+        {
+            switch (view.getId())
+            {
+                case R.id.program_btBack:
+                    getFragmentManager().popBackStack();
                     break;
             }
         }
