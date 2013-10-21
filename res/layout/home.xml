@@ -35,6 +35,7 @@
                 android:textSize="@dimen/phone_text_size"
                 android:textStyle="bold"
                 android:textColor="@color/White"
+                android:typeface="sans"
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"/>
 

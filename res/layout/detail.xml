@@ -15,6 +15,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:textColor="@color/Black"
                 android:textSize="@dimen/phone_text_header_size_max"
                 android:text="@string/sound_art"/>
         <TextView

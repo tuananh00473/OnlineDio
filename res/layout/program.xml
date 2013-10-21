@@ -34,12 +34,15 @@
             android:layout_height="wrap_content"
             android:text="@string/comment_time"
             android:textSize="@dimen/phone_home_tittle_like_text_size"
-            android:gravity="right"
-            />
+            android:layout_marginRight="@dimen/phone_margin"
+            android:layout_gravity="right"/>
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/phone_margin">
+            android:layout_marginLeft="@dimen/phone_margin"
+            android:layout_marginRight="@dimen/phone_margin"
+            android:layout_marginBottom="@dimen/phone_margin"
+            >
         <RelativeLayout
                 android:id="@+id/program_rlAvatar"
                 android:layout_width="wrap_content"
@@ -104,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/phone_margin_middle"
-                        android:background="@drawable/program_play"/>
+                        android:background="@drawable/program_number_play"/>
                 <TextView
                         android:id="@+id/program_tvPlay"
                         android:layout_width="wrap_content"
@@ -152,12 +155,14 @@
                     android:checked="false"
                     android:layout_marginLeft="@dimen/phone_margin_component"
                     android:background="@drawable/like_config"/>
-            <ImageView
+            <CheckBox
                     android:id="@+id/program_ivPlayList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:checked="false"
                     android:layout_marginLeft="@dimen/phone_margin_component"
-                    android:background="@drawable/program_play_list"/>
+                    android:background="@drawable/program_playlist"/>
             <ImageView
                     android:id="@+id/program_ivTwitter"
                     android:layout_width="wrap_content"
@@ -176,11 +181,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/program_bar_play">
-        <ImageView
+        <CheckBox
                 android:id="@+id/program_ivStartAndPauseSound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/program_do_play"
+                android:button="@null"
+                android:checked="true"
+                android:background="@drawable/program_config_play_sound"
                 android:layout_centerVertical="true"
                 android:layout_margin="@dimen/phone_margin_middle"/>
         <RelativeLayout

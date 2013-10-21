@@ -32,7 +32,6 @@ public class SlidebarActivity extends FragmentActivity
 
     private DrawerLayout mDrawerLayout;
     private ListView lvOption;
-    private ImageView ivProfile;
     private RelativeLayout rlLeftDrawer;
     private RelativeLayout slidebar_rlProfile;
     FragmentTransaction fragmentTransaction;
@@ -56,7 +55,6 @@ public class SlidebarActivity extends FragmentActivity
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         lvOption = (ListView) findViewById(R.id.slidebar_listOption);
-        ivProfile = (ImageView) findViewById(R.id.slide_ivEditProfile);
         rlLeftDrawer = (RelativeLayout) findViewById(R.id.left_drawer);
         slidebar_rlProfile = (RelativeLayout) findViewById(R.id.slidebar_rlProfile);
     }

@@ -140,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/tablet_margin_component"
-                    android:background="@drawable/program_play_list"/>
+                    android:background="@drawable/program_play_list_unselect"/>
             <ImageView
                     android:id="@+id/program_ivTwitter"
                     android:layout_width="wrap_content"
