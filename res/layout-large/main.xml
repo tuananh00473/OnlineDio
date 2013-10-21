@@ -13,10 +13,10 @@
             android:text="@string/header"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="@dimen/tablet_margin"
+            android:layout_marginTop="@dimen/phone_margin"
             android:gravity="center"
             android:textColor="@color/login_text_color"
-            android:textSize="@dimen/tablet_text_header_size"
+            android:textSize="@dimen/phone_text_header_size"
             />
     <ImageView
             android:layout_width="wrap_content"
@@ -33,10 +33,10 @@
             android:text="@string/footer"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/tablet_margin"
+            android:layout_marginBottom="@dimen/phone_margin"
             android:gravity="center"
             android:textColor="@color/login_text_color"
-            android:textSize="@dimen/tablet_text_footer_size"
+            android:textSize="@dimen/phone_text_footer_size"
             />
     <Button
             android:id="@+id/btLogin"
@@ -45,20 +45,20 @@
             android:background="@drawable/launch_login"
             android:layout_centerHorizontal="true"
             android:layout_above="@id/tvFooter"
-            android:layout_marginBottom="@dimen/tablet_margin"/>
+            android:layout_marginBottom="@dimen/phone_margin"/>
     <Button
             android:id="@+id/btSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/launch_signup"
-            android:layout_toRightOf="@id/btLogin" android:layout_marginLeft="@dimen/tablet_margin"
-            android:layout_above="@id/tvFooter" android:layout_marginBottom="@dimen/tablet_margin"/>
+            android:layout_toRightOf="@id/btLogin" android:layout_marginLeft="@dimen/phone_margin"
+            android:layout_above="@id/tvFooter" android:layout_marginBottom="@dimen/phone_margin"/>
     <Button
             android:id="@+id/btLoginFb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/launch_login_fb"
-            android:layout_toLeftOf="@id/btLogin" android:layout_marginRight="@dimen/tablet_margin"
-            android:layout_above="@id/tvFooter" android:layout_marginBottom="@dimen/tablet_margin"/>
+            android:layout_toLeftOf="@id/btLogin" android:layout_marginRight="@dimen/phone_margin"
+            android:layout_above="@id/tvFooter" android:layout_marginBottom="@dimen/phone_margin"/>
 </RelativeLayout>
 

@@ -5,7 +5,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_selection"
-                android:padding="@dimen/tablet_padding">
+                android:padding="@dimen/phone_padding">
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
             android:layout_alignTop="@id/comment_ivAvatar"
             android:layout_toRightOf="@id/comment_ivAvatar"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/tablet_margin"
+            android:layout_marginLeft="@dimen/phone_margin"
             >
         <TextView
                 android:id="@+id/comment_tvAccount"
@@ -27,21 +27,21 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_tittle_singer"
                 android:textStyle="bold"
-                android:textSize="@dimen/tablet_text_header_size"
+                android:textSize="@dimen/phone_text_header_size"
                 android:textColor="@color/Black"/>
         <TextView
                 android:id="@+id/comment_tvComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/comment_form"
-                android:textSize="@dimen/tablet_text_info_comment_size"
+                android:textSize="@dimen/phone_text_info_comment_size"
                 android:layout_below="@id/comment_tvAccount"/>
         <TextView
                 android:id="@+id/comment_tvTimeComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/comment_time"
-                android:textSize="@dimen/tablet_text_info_comment_size"
+                android:textSize="@dimen/phone_text_info_comment_size"
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@id/comment_tvAccount"/>
     </RelativeLayout>

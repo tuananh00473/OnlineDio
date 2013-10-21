@@ -40,6 +40,7 @@
     <dimen name="phone_radius">10dp</dimen>
     <dimen name="phone_stroke_width">1dp</dimen>
     <dimen name="phone_shape_size">20dp</dimen>
+    <dimen name="phone_haft_of_height">190dp</dimen>
 
     <!--tablet-->
     <dimen name="tablet_text_size">32dp</dimen>
@@ -81,5 +82,5 @@
     <dimen name="tablet_radius">20dp</dimen>
     <dimen name="tablet_stroke_width">2dp</dimen>
     <dimen name="tablet_shape_size">40dp</dimen>
-    <dimen name="phone_haft_of_height">190dp</dimen>
+    <dimen name="tablet_haft_of_height">380dp</dimen>
 </resources>

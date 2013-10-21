@@ -11,18 +11,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/menubar"/>
-        <ImageView
-                android:id="@+id/program_ivBackSlidebar"
+        <Button
+                android:id="@+id/program_btBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:background="@drawable/back"
-                android:layout_marginLeft="@dimen/tablet_margin_component"/>
+                android:layout_marginLeft="@dimen/phone_margin_component"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/program_title"
+                android:textColor="@color/White"
+                android:textStyle="bold"
+                android:textSize="@dimen/phone_text_header_size"
+                android:typeface="sans"
+                android:layout_centerInParent="true"/>
     </RelativeLayout>
+    <TextView
+            android:id="@+id/program_tvTimePostSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comment_time"
+            android:textSize="@dimen/phone_home_tittle_like_text_size"
+            android:layout_marginRight="@dimen/phone_margin"
+            android:layout_gravity="right"/>
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/tablet_margin_middle">
+            android:layout_marginLeft="@dimen/phone_margin"
+            android:layout_marginRight="@dimen/phone_margin"
+            android:layout_marginBottom="@dimen/phone_margin"
+            >
         <RelativeLayout
                 android:id="@+id/program_rlAvatar"
                 android:layout_width="wrap_content"
@@ -49,8 +69,8 @@
                 android:orientation="vertical"
                 android:layout_toRightOf="@+id/program_rlAvatar"
                 android:layout_alignTop="@id/program_ivCoverAvatar"
-                android:layout_marginLeft="@dimen/tablet_margin"
-                android:layout_marginTop="@dimen/tablet_margin_component"
+                android:layout_marginLeft="@dimen/phone_margin"
+                android:layout_marginTop="@dimen/phone_margin_component"
                 >
             <TextView
                     android:id="@+id/program_tvSoundArt"
@@ -58,16 +78,16 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:text="@string/sound_art"
-                    android:textSize="@dimen/tablet_text_sub_info_size"/>
+                    android:textSize="@dimen/phone_text_sub_info_size"/>
             <TextView
                     android:id="@+id/program_tvSound"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/tablet_margin_component"
+                    android:layout_marginBottom="@dimen/phone_margin_component"
                     android:textColor="@android:color/black"
                     android:text="@string/sound"
                     android:textStyle="bold"
-                    android:textSize="@dimen/tablet_text_header_size_max"/>
+                    android:textSize="@dimen/phone_text_header_size_max"/>
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -82,29 +102,29 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/program_numberOfCare"
-                        android:textSize="@dimen/tablet_text_sub_info_size"/>
+                        android:textSize="@dimen/phone_text_sub_info_size"/>
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/tablet_margin_middle"
-                        android:background="@drawable/program_play"/>
+                        android:layout_marginLeft="@dimen/phone_margin_middle"
+                        android:background="@drawable/program_number_play"/>
                 <TextView
                         android:id="@+id/program_tvPlay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/program_numberOfCare"
-                        android:textSize="@dimen/tablet_text_sub_info_size"/>
+                        android:textSize="@dimen/phone_text_sub_info_size"/>
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/tablet_margin_middle"
+                        android:layout_marginLeft="@dimen/phone_margin_middle"
                         android:background="@drawable/program_like"/>
                 <TextView
                         android:id="@+id/program_tvLike"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/program_numberOfCare"
-                        android:textSize="@dimen/tablet_text_sub_info_size"/>
+                        android:textSize="@dimen/phone_text_sub_info_size"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -113,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/program_rlAvatar"
                 android:gravity="center_vertical"
-                android:layout_margin="@dimen/tablet_margin_middle">
+                android:layout_margin="@dimen/phone_margin_middle">
             <ImageView
                     android:id="@+id/program_ivEditAndDelete"
                     android:layout_width="wrap_content"
@@ -125,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:button="@null"
                     android:checked="false"
-                    android:layout_marginLeft="@dimen/tablet_margin_max"
+                    android:layout_marginLeft="@dimen/phone_margin_max"
                     android:background="@drawable/favorite_config"/>
             <CheckBox
                     android:id="@+id/program_ivDoLike"
@@ -133,25 +153,27 @@
                     android:layout_height="wrap_content"
                     android:button="@null"
                     android:checked="false"
-                    android:layout_marginLeft="@dimen/tablet_margin_component"
+                    android:layout_marginLeft="@dimen/phone_margin_component"
                     android:background="@drawable/like_config"/>
-            <ImageView
+            <CheckBox
                     android:id="@+id/program_ivPlayList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/tablet_margin_component"
-                    android:background="@drawable/program_play_list_unselect"/>
+                    android:button="@null"
+                    android:checked="false"
+                    android:layout_marginLeft="@dimen/phone_margin_component"
+                    android:background="@drawable/program_playlist"/>
             <ImageView
                     android:id="@+id/program_ivTwitter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/tablet_margin"
+                    android:layout_marginLeft="@dimen/phone_margin"
                     android:background="@drawable/program_twitter"/>
             <ImageView
                     android:id="@+id/program_ivFacebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/tablet_margin_component"
+                    android:layout_marginLeft="@dimen/phone_margin_component"
                     android:background="@drawable/program_facebook"/>
         </LinearLayout>
     </RelativeLayout>
@@ -159,13 +181,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/program_bar_play">
-        <ImageView
+        <CheckBox
                 android:id="@+id/program_ivStartAndPauseSound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/program_do_play"
+                android:button="@null"
+                android:checked="true"
+                android:background="@drawable/program_config_play_sound"
                 android:layout_centerVertical="true"
-                android:layout_margin="@dimen/tablet_margin_middle"/>
+                android:layout_margin="@dimen/phone_margin_middle"/>
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -173,27 +197,27 @@
             <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/tablet_margin_component">
+                    android:layout_marginTop="@dimen/phone_margin_component">
                 <TextView
                         android:id="@+id/program_tvTimePlayed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/tablet_field_margin_left_minimum"
+                        android:layout_marginRight="@dimen/phone_field_margin_left_minimum"
                         android:text="@string/timeRun"/>
                 <TextView
                         android:id="@+id/program_tvTimePlay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/tablet_field_margin_left_minimum"
-                        android:layout_marginLeft="@dimen/tablet_field_margin_left_minimum"
+                        android:layout_marginRight="@dimen/phone_field_margin_left_minimum"
+                        android:layout_marginLeft="@dimen/phone_field_margin_left_minimum"
                         android:text="@string/timeTotal"/>
                 <SeekBar
                         android:id="@+id/program_vbTimePlay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/tablet_margin"
-                        android:paddingRight="@dimen/tablet_margin"
+                        android:paddingLeft="@dimen/phone_margin"
+                        android:paddingRight="@dimen/phone_margin"
                         android:layout_alignParentTop="true"
                         android:layout_toRightOf="@id/program_tvTimePlayed"
                         android:layout_toLeftOf="@id/program_tvTimePlay"
@@ -211,7 +235,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_alignParentLeft="true"
-                        android:layout_margin="@dimen/tablet_field_margin_left_medium"
+                        android:layout_margin="@dimen/phone_field_margin_left_medium"
                         android:background="@drawable/program_volume_min"/>
                 <ImageView
                         android:id="@+id/program_ivVolumeMax"
@@ -219,15 +243,15 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/tablet_field_margin_left_max"
+                        android:layout_marginRight="@dimen/phone_field_margin_left_max"
                         android:background="@drawable/program_volume_max"/>
                 <SeekBar
                         android:id="@+id/program_vbVolume"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/tablet_margin"
-                        android:paddingRight="@dimen/tablet_margin"
-                        android:layout_marginRight="@dimen/tablet_field_margin_left_minimum"
+                        android:paddingLeft="@dimen/phone_margin"
+                        android:paddingRight="@dimen/phone_margin"
+                        android:layout_marginRight="@dimen/phone_field_margin_left_minimum"
                         android:layout_toRightOf="@id/program_ivVolumeMin"
                         android:layout_toLeftOf="@id/program_ivVolumeMax"
                         android:progressDrawable="@drawable/progress_seek_volume"
@@ -276,8 +300,5 @@
     <FrameLayout
             android:id="@+id/program_flInformation"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    </FrameLayout>
-
+            android:layout_height="match_parent"/>
 </LinearLayout>

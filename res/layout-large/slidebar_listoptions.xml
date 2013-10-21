@@ -4,7 +4,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_selection"
-                android:padding="@dimen/tablet_slidebar_padding">
+                android:padding="@dimen/phone_slidebar_padding">
     <ImageView
             android:id="@+id/slidebar_ivOption"
             android:layout_width="wrap_content"
@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/slidebar_tittle_item"
-            android:layout_marginLeft="@dimen/tablet_margin"
+            android:layout_marginLeft="@dimen/phone_margin"
             android:layout_toRightOf="@id/slidebar_ivOption"
             android:layout_centerVertical="true"
             />
@@ -26,12 +26,12 @@
             android:background="@drawable/arrow_right"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_margin="@dimen/tablet_margin"/>
+            android:layout_margin="@dimen/phone_margin"/>
     <TextView
             android:id="@+id/slidebar_tvSpecOption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/tablet_margin"
+            android:layout_marginRight="@dimen/phone_margin"
             android:layout_toLeftOf="@+id/slidebar_ivNextToOption"
             android:layout_centerVertical="true"/>
 </RelativeLayout>
