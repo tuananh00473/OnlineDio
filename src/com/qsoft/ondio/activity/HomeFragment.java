@@ -16,14 +16,13 @@ import com.qsoft.ondio.model.Feed;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment
-{
+public class HomeFragment extends Fragment {
     private Button btMenu;
     private ListView home_lvFeeds;
+    private Button btShowOption;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home, null);
         setUpUI(view);
         ArrayList<Feed> feedList = new ArrayList<Feed>();
@@ -32,14 +31,12 @@ public class HomeFragment extends Fragment
         return view;
     }
 
-    private void setUpListenerController()
-    {
+    private void setUpListenerController() {
         btMenu.setOnClickListener(onClickListener);
         home_lvFeeds.setOnItemClickListener(onItemClickListener);
     }
 
-    private void setUpDataToHomeListView(Context context, ArrayList<Feed> feedList)
-    {
+    private void setUpDataToHomeListView(Context context, ArrayList<Feed> feedList) {
         Feed feed1 = new Feed("ShowGame", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
         Feed feed2 = new Feed("ShowGame1", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
         Feed feed3 = new Feed("ShowGame2", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
@@ -64,21 +61,16 @@ public class HomeFragment extends Fragment
         home_lvFeeds.setAdapter(new ArrayAdapterCustom(context, R.layout.home_listfeeds, feedList));
     }
 
-    private ListView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener()
-    {
+    private ListView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-        {
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             doShowProgram();
         }
     };
-    private View.OnClickListener onClickListener = new View.OnClickListener()
-    {
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
-        public void onClick(View view)
-        {
-            switch (view.getId())
-            {
+        public void onClick(View view) {
+            switch (view.getId()) {
                 case R.id.home_btMenu:
                     showMenu();
                     break;
@@ -86,21 +78,18 @@ public class HomeFragment extends Fragment
         }
     };
 
-    private void showMenu()
-    {
+    private void showMenu() {
         // do show menu
     }
 
-    private void doShowProgram()
-    {
+    private void doShowProgram() {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.slidebar_flHomeFragment, new ProgramFragment(), "ProgramFragment");
+        ft.replace(R.id.content_frame, new ProgramFragment(), "ProgramFragment");
         ft.addToBackStack("ProgramFragment");
         ft.commit();
     }
 
-    private void setUpUI(View view)
-    {
+    private void setUpUI(View view) {
         btMenu = (Button) view.findViewById(R.id.home_btMenu);
         home_lvFeeds = (ListView) view.findViewById(R.id.home_lvFeeds);
     }

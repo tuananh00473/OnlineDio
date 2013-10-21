@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterListOption;
 
@@ -23,8 +24,7 @@ import com.qsoft.ondio.customui.ArrayAdapterListOption;
  * Time: 1:55 PM
  */
 
-public class SlidebarActivity extends FragmentActivity
-{
+public class SlidebarActivity extends FragmentActivity {
     final String[] listOptionName = {"Home", "Favorite", "Following", "Audience", "Genres", "Setting", "Help Center", "Sign Out"};
     final String[] item = {"HomeFragment", "HomeFragment", "HomeFragment", "HomeFragment", "HomeFragment", "HomeFragment", "HomeFragment"};
     private static final int HOME = 0;
@@ -40,10 +40,10 @@ public class SlidebarActivity extends FragmentActivity
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView lvOption;
     private ImageView ivProfile;
+    private RelativeLayout rlLeftDrawer;
     private HomeFragment homeFragment;
 
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.slidebar);
 
@@ -56,62 +56,37 @@ public class SlidebarActivity extends FragmentActivity
                 mDrawerLayout,         /* DrawerLayout object */
                 R.drawable.ic_drawer,  /* nav drawer icon to replace 'Up' caret */
                 R.string.drawer_open,  /* "open drawer" description */
-                R.string.drawer_close  /* "close drawer" description */)
-        {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset)
-            {
-                super.onDrawerSlide(drawerView, slideOffset);    //To change body of overridden methods use File | Settings | File Templates.
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView)
-            {
-                super.onDrawerOpened(drawerView);    //To change body of overridden methods use File | Settings | File Templates.
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView)
-            {
-                super.onDrawerClosed(drawerView);    //To change body of overridden methods use File | Settings | File Templates.
-            }
-        };
+                R.string.drawer_close  /* "close drawer" description */);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.slidebar_flHomeFragment, Fragment.instantiate(SlidebarActivity.this, "com.qsoft.ondio.activity.HomeFragment"));
+        fragmentTransaction.replace(R.id.content_frame, Fragment.instantiate(SlidebarActivity.this, "com.qsoft.ondio.activity.HomeFragment"));
         fragmentTransaction.commit();
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    private void setUpUI()
-    {
+    private void setUpUI() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         lvOption = (ListView) findViewById(R.id.slidebar_listOption);
         ivProfile = (ImageView) findViewById(R.id.slide_ivEditProfile);
+        rlLeftDrawer = (RelativeLayout) findViewById(R.id.left_drawer);
 
         homeFragment = new HomeFragment();
     }
 
-    private void setUpListenerController()
-    {
+    private void setUpListenerController() {
         ivProfile.setOnClickListener(onClickListener);
         lvOption.setOnItemClickListener(onItemClickListener);
     }
 
-    private final ListView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener()
-    {
+    private final ListView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, final int index, long l)
-        {
-            mDrawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener()
-            {
+        public void onItemClick(AdapterView<?> adapterView, View view, final int index, long l) {
+            mDrawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
                 @Override
-                public void onDrawerClosed(View drawerView)
-                {
+                public void onDrawerClosed(View drawerView) {
                     super.onDrawerClosed(drawerView);
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    switch (index)
-                    {
+                    switch (index) {
                         case HOME:
                             ft.replace(R.id.content_frame, Fragment.instantiate(SlidebarActivity.this, item[HOME]));
                             break;
@@ -138,19 +113,18 @@ public class SlidebarActivity extends FragmentActivity
                             break;
                     }
                     ft.commit();
+                    setCloseListOption();
+
                 }
             });
 //            mDrawerLayout.closeDrawer(lvOption);
         }
     };
 
-    private final View.OnClickListener onClickListener = new View.OnClickListener()
-    {
+    private final View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
-        public void onClick(View view)
-        {
-            switch (view.getId())
-            {
+        public void onClick(View view) {
+            switch (view.getId()) {
                 case R.id.slide_ivEditProfile:
                     doEditProfile();
                     break;
@@ -158,37 +132,40 @@ public class SlidebarActivity extends FragmentActivity
         }
     };
 
-    private void doEditProfile()
-    {
+    private void doEditProfile() {
         final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.slidebar_profileFragment, new ProfileActivity(), "ProfileActivity");
-        ft.addToBackStack("ProfileActivity");
+        ft.replace(R.id.content_frame, new ProfileFragment(), "ProfileFragment");
+        ft.addToBackStack("ProfileFragment");
         ft.commit();
     }
 
-    private void setUpDataListOption(Context context)
-    {
+    private void setUpDataListOption(Context context) {
         lvOption.setAdapter(new ArrayAdapterListOption(context, R.layout.slidebar_listoptions, listOptionName));
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState)
-    {
+    protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         mDrawerToggle.syncState();
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
+    public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.slidebar_profileFragment);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
         fragment.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void setOpenListOption() {
+        mDrawerLayout.openDrawer(rlLeftDrawer);
+    }
+
+    public void setCloseListOption() {
+        mDrawerLayout.closeDrawer(rlLeftDrawer);
     }
 }

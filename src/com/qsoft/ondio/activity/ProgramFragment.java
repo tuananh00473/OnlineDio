@@ -15,15 +15,13 @@ import com.qsoft.ondio.R;
  * Date: 10/17/13
  * Time: 3:25 PM
  */
-public class ProgramFragment extends Fragment
-{
+public class ProgramFragment extends Fragment {
     private RadioGroup rgInfo;
     private Button btBack;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.program, null);
         setUpUI(view);
@@ -32,25 +30,20 @@ public class ProgramFragment extends Fragment
         return view;
     }
 
-    private void setUpUI(View view)
-    {
+    private void setUpUI(View view) {
         rgInfo = (RadioGroup) view.findViewById(R.id.program_rgSelectInfo);
         btBack = (Button) view.findViewById(R.id.program_btBack);
     }
 
-    private void setUpListenerController()
-    {
+    private void setUpListenerController() {
         rgInfo.setOnCheckedChangeListener(onCheckChangeListener);
         btBack.setOnClickListener(onClickListener);
     }
 
-    private RadioGroup.OnCheckedChangeListener onCheckChangeListener = new RadioGroup.OnCheckedChangeListener()
-    {
+    private RadioGroup.OnCheckedChangeListener onCheckChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId)
-        {
-            switch (checkedId)
-            {
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            switch (checkedId) {
                 case R.id.program_rbThumbnail:
                     doShowThumbnal();
                     break;
@@ -64,13 +57,10 @@ public class ProgramFragment extends Fragment
         }
     };
 
-    private final View.OnClickListener onClickListener = new View.OnClickListener()
-    {
+    private final View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
-        public void onClick(View view)
-        {
-            switch (view.getId())
-            {
+        public void onClick(View view) {
+            switch (view.getId()) {
                 case R.id.program_btBack:
                     doBack();
                     break;
@@ -78,27 +68,22 @@ public class ProgramFragment extends Fragment
         }
     };
 
-    private void doBack()
-    {
-        getFragmentManager().popBackStack();
+    private void doBack() {
     }
 
-    private void doShowThumbnal()
-    {
+    private void doShowThumbnal() {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.program_flInformation, new ThumbnailFragment(), "ThumbnailFragment");
         ft.commit();
     }
 
-    private void doShowDetail()
-    {
+    private void doShowDetail() {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.program_flInformation, new DetailFragment(), "DetailFragment");
         ft.commit();
     }
 
-    private void doShowComment()
-    {
+    private void doShowComment() {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.program_flInformation, new CommentFragment(), "CommentFragment");
         ft.commit();
