@@ -31,10 +31,10 @@ public class SlidebarActivity extends FragmentActivity
     private static final int HOME = 0;
 
     private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
     private ListView lvOption;
     private ImageView ivProfile;
     private RelativeLayout rlLeftDrawer;
+    private RelativeLayout slidebar_rlProfile;
     FragmentTransaction fragmentTransaction;
 
     protected void onCreate(Bundle savedInstanceState)
@@ -45,17 +45,10 @@ public class SlidebarActivity extends FragmentActivity
         setUpUI();
         setUpDataListOption(this);
         setUpListenerController();
-
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this,                  /* host Activity */
-                mDrawerLayout,         /* DrawerLayout object */
-                R.drawable.ic_drawer,  /* nav drawer icon to replace 'Up' caret */
-                R.string.drawer_open,  /* "open drawer" description */
-                R.string.drawer_close  /* "close drawer" description */);
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, Fragment.instantiate(SlidebarActivity.this, "com.qsoft.ondio.activity.HomeFragment"));
         fragmentTransaction.commit();
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
     }
 
     private void setUpUI()
@@ -65,11 +58,12 @@ public class SlidebarActivity extends FragmentActivity
         lvOption = (ListView) findViewById(R.id.slidebar_listOption);
         ivProfile = (ImageView) findViewById(R.id.slide_ivEditProfile);
         rlLeftDrawer = (RelativeLayout) findViewById(R.id.left_drawer);
+        slidebar_rlProfile = (RelativeLayout) findViewById(R.id.slidebar_rlProfile);
     }
 
     private void setUpListenerController()
     {
-        ivProfile.setOnClickListener(onClickListener);
+        slidebar_rlProfile.setOnClickListener(onClickListener);
         lvOption.setOnItemClickListener(onItemClickListener);
     }
 
@@ -82,9 +76,10 @@ public class SlidebarActivity extends FragmentActivity
             switch (index)
             {
                 case HOME:
-                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.content_frame, Fragment.instantiate(SlidebarActivity.this, "com.qsoft.ondio.activity.HomeFragment"));
-                    fragmentTransaction.commit();
+                    final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.content_frame, new HomeFragment(), "HomeFragment");
+                    ft.addToBackStack("HomeFragment");
+                    ft.commit();
                     setCloseListOption();
             }
         }
@@ -97,7 +92,7 @@ public class SlidebarActivity extends FragmentActivity
         {
             switch (view.getId())
             {
-                case R.id.slide_ivEditProfile:
+                case R.id.slidebar_rlProfile:
                     doEditProfile();
                     break;
             }
@@ -106,29 +101,16 @@ public class SlidebarActivity extends FragmentActivity
 
     private void doEditProfile()
     {
-        fragmentTransaction.replace(R.id.content_frame, new ProfileFragment(), "ProfileFragment");
-        fragmentTransaction.addToBackStack("ProfileFragment");
-        fragmentTransaction.commit();
+        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame, new ProfileFragment(), "ProfileFragment");
+        ft.addToBackStack("ProfileFragment");
+        ft.commit();
         setCloseListOption();
     }
 
     private void setUpDataListOption(Context context)
     {
         lvOption.setAdapter(new ArrayAdapterListOption(context, R.layout.slidebar_listoptions, listOptionName));
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState)
-    {
-        super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
@@ -151,5 +133,9 @@ public class SlidebarActivity extends FragmentActivity
     public void doBackToPrevious()
     {
         getSupportFragmentManager().popBackStack();
+    }
+    public void doLockOption()
+    {
+        getSupportFragmentManager().executePendingTransactions();
     }
 }

@@ -28,10 +28,18 @@
                 android:typeface="sans"
                 android:layout_centerInParent="true"/>
     </RelativeLayout>
+    <TextView
+            android:id="@+id/program_tvTimePostSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comment_time"
+            android:textSize="@dimen/phone_home_tittle_like_text_size"
+            android:gravity="right"
+            />
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/phone_margin_middle">
+            android:layout_margin="@dimen/phone_margin">
         <RelativeLayout
                 android:id="@+id/program_rlAvatar"
                 android:layout_width="wrap_content"
