@@ -69,6 +69,7 @@ public class ProgramFragment extends Fragment {
     };
 
     private void doBack() {
+        getFragmentManager().popBackStack();
     }
 
     private void doShowThumbnal() {

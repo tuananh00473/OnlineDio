@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment {
     };
 
     private void showMenu() {
-        // do show menu
+        ((SlidebarActivity) getActivity()).setOpenListOption();
     }
 
     private void doShowProgram() {
