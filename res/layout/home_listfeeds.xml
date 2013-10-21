@@ -44,15 +44,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_tittle_like"
-                android:textSize="@dimen/phone_home_tittle_like_text_size"
+                android:textSize="@dimen/phone_text_size_sub_info"
                 android:layout_alignParentBottom="true"/>
         <TextView
                 android:id="@+id/home_tvNumberComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_tittle_comment"
-                android:textSize="@dimen/phone_home_tittle_comment_text_size"
-                android:layout_toRightOf="@id/home_tvSoundTitle"
+                android:textSize="@dimen/phone_text_size_sub_info"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"/>
         <ImageView
@@ -69,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_tittle_show"
-                android:textSize="@dimen/phone_home_tittle_comment_text_size"
+                android:textSize="@dimen/phone_text_size_sub_info"
                 android:layout_toLeftOf="@id/home_ivNextDetail"
                 android:layout_centerVertical="true"/>
     </RelativeLayout>

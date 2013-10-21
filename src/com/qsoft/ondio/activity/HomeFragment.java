@@ -37,16 +37,16 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpDataToHomeListView(Context context, ArrayList<Feed> feedList) {
-        Feed feed1 = new Feed("ShowGame", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
-        Feed feed2 = new Feed("ShowGame1", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
-        Feed feed3 = new Feed("ShowGame2", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
-        Feed feed4 = new Feed("ShowGame3", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
-        Feed feed5 = new Feed("ShowGame4", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
-        Feed feed6 = new Feed("ShowGame5", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
-        Feed feed7 = new Feed("ShowGame6", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
-        Feed feed8 = new Feed("ShowGame7", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
-        Feed feed9 = new Feed("ShowGame8", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
-        Feed feed10 = new Feed("ShowGame9", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
+        Feed feed1 = new Feed("Show Game", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
+        Feed feed2 = new Feed("Show Game1", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
+        Feed feed3 = new Feed("Show Game2", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
+        Feed feed4 = new Feed("Show Game3", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
+        Feed feed5 = new Feed("Show Game4", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
+        Feed feed6 = new Feed("Show Game5", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
+        Feed feed7 = new Feed("Show Game6", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
+        Feed feed8 = new Feed("Show Game7", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
+        Feed feed9 = new Feed("Show Game8", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
+        Feed feed10 = new Feed("Show Game9", "RuaTre", "Likes: 3", "Comments: 4", "day 5");
 
         feedList.add(feed1);
         feedList.add(feed2);

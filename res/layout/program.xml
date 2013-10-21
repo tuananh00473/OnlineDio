@@ -29,20 +29,10 @@
                 android:typeface="sans"
                 android:layout_centerInParent="true"/>
     </RelativeLayout>
-    <TextView
-            android:id="@+id/program_tvTimePostSound"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/comment_time"
-            android:textSize="@dimen/phone_home_tittle_like_text_size"
-            android:layout_marginRight="@dimen/phone_margin"
-            android:layout_gravity="right"/>
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/phone_margin"
-            android:layout_marginRight="@dimen/phone_margin"
-            android:layout_marginBottom="@dimen/phone_margin"
+            android:layout_margin="@dimen/phone_margin"
             >
         <RelativeLayout
                 android:id="@+id/program_rlAvatar"
@@ -72,14 +62,14 @@
                 android:layout_alignTop="@id/program_ivCoverAvatar"
                 android:layout_marginLeft="@dimen/phone_margin"
                 android:layout_marginTop="@dimen/phone_margin_component"
-                >
+                android:id="@+id/linearLayout">
             <TextView
                     android:id="@+id/program_tvSoundArt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:text="@string/sound_art"
-                    android:textSize="@dimen/phone_text_sub_info_size"/>
+                    android:textSize="@dimen/phone_slidebar_tittle_songname_text_size"/>
             <TextView
                     android:id="@+id/program_tvSound"
                     android:layout_width="wrap_content"
@@ -183,6 +173,14 @@
                     android:background="@drawable/program_facebook"
                     android:contentDescription="@string/imageview_description"/>
         </LinearLayout>
+        <TextView
+                android:id="@+id/program_tvTimePostSound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/comment_time"
+                android:textSize="@dimen/phone_home_tittle_like_text_size"
+                android:layout_gravity="right" android:layout_alignRight="@+id/linearLayout"
+                android:layout_alignTop="@+id/program_rlAvatar"/>
     </RelativeLayout>
     <LinearLayout
             android:layout_width="match_parent"

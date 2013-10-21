@@ -2,6 +2,7 @@
 <resources>
     <!--phone-->
     <dimen name="phone_text_size">16dp</dimen>
+    <dimen name="phone_text_size_sub_info">14dp</dimen>
     <dimen name="phone_text_header_size">16dp</dimen>
     <dimen name="phone_text_sub_info_size">13sp</dimen>
     <dimen name="phone_text_footer_size">10sp</dimen>
