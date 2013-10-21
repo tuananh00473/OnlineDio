@@ -13,10 +13,10 @@
             android:layout_height="match_parent"/>
     <RelativeLayout
             android:id="@+id/left_drawer"
-            android:layout_width="@dimen/phone_slidebar_width"
+            android:layout_width="@dimen/tablet_slidebar_width"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:dividerHeight="@dimen/phone_divider_height"
+            android:dividerHeight="@dimen/tablet_divider_height"
             android:background="@color/White">
 
         <RelativeLayout
@@ -28,19 +28,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/menubar"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true"
+                    android:contentDescription="@string/imageview_description"/>
             <EditText
                     android:id="@+id/slidebar_etSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:paddingLeft="@dimen/phone_padding"
+                    android:paddingLeft="@dimen/tablet_padding"
                     android:hint="@string/hint_search"
                     android:drawableLeft="@drawable/slidebar_search_icon"
                     android:background="@drawable/edittext_custom"
                     android:layout_centerInParent="true"
-                    android:layout_marginLeft="@dimen/phone_margin"
-                    android:layout_marginRight="@dimen/phone_margin"/>
+                    android:layout_marginLeft="@dimen/tablet_margin"
+                    android:layout_marginRight="@dimen/tablet_margin"/>
 
         </RelativeLayout>
         <ImageView
@@ -50,7 +51,8 @@
                 android:background="@drawable/slidebar_avatar_icon"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/slidebar_rlTopBar"
-                android:layout_margin="@dimen/phone_margin"/>
+                android:layout_margin="@dimen/tablet_margin"
+                android:contentDescription="@string/imageview_description"/>
         <RelativeLayout
                 android:id="@+id/slidebar_rlProfile"
                 android:layout_width="match_parent"
@@ -64,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/name_song"
-                    android:textSize="@dimen/phone_slidebar_tittle_songname_text_size"
+                    android:textSize="@dimen/tablet_slidebar_tittle_songname_text_size"
                     android:textStyle="bold"
                     />
             <TextView
@@ -72,23 +74,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/name_singer"
-                    android:textSize="@dimen/phone_slidebar_tittle_singername_text_size"
+                    android:textSize="@dimen/tablet_slidebar_tittle_singername_text_size"
                     android:layout_below="@id/slidebar_tvSong"/>
             <ImageView
                     android:id="@+id/slide_ivNextEditProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/phone_margin"
+                    android:layout_margin="@dimen/tablet_margin"
                     android:background="@drawable/arrow_right"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/imageview_description"/>
             <ImageView
                     android:id="@+id/slide_ivEditProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/slidebar_profile"
                     android:layout_toLeftOf="@id/slide_ivNextEditProfile"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/imageview_description"/>
 
         </RelativeLayout>
         <RelativeLayout

@@ -28,7 +28,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/menubar"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true"
+                    android:contentDescription="@string/imageview_description"/>
             <EditText
                     android:id="@+id/slidebar_etSearch"
                     android:layout_width="match_parent"
@@ -50,7 +51,8 @@
                 android:background="@drawable/slidebar_avatar_icon"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/slidebar_rlTopBar"
-                android:layout_margin="@dimen/phone_margin"/>
+                android:layout_margin="@dimen/phone_margin"
+                android:contentDescription="@string/imageview_description"/>
         <RelativeLayout
                 android:id="@+id/slidebar_rlProfile"
                 android:layout_width="match_parent"
@@ -81,14 +83,16 @@
                     android:layout_margin="@dimen/phone_margin"
                     android:background="@drawable/arrow_right"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/imageview_description"/>
             <ImageView
                     android:id="@+id/slide_ivEditProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/slidebar_profile"
                     android:layout_toLeftOf="@id/slide_ivNextEditProfile"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/imageview_description"/>
 
         </RelativeLayout>
         <RelativeLayout

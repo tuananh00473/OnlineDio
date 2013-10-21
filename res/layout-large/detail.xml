@@ -2,13 +2,13 @@
 
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         >
     <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="@dimen/phone_slidebar_padding"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/tablet_slidebar_padding"
             android:orientation="vertical">
         <TextView
                 android:id="@+id/detail_tvArtSound"
@@ -16,12 +16,13 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="@color/Black"
-                android:textSize="@dimen/phone_text_header_size_max"
+                android:textSize="@dimen/tablet_text_header_size_max"
                 android:text="@string/sound_art"/>
         <TextView
                 android:id="@+id/detail_tvDetailArtSound"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/tablet_text_size"
                 android:layout_marginTop="@dimen/phone_field_margin_top"
                 android:text="@string/detail_infomation_art"/>
 

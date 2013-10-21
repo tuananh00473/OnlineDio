@@ -37,5 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/phone_haft_of_height"
             android:layout_margin="@dimen/phone_margin_component"
-            android:gravity="left|top"/>
+            android:gravity="left|top"
+            android:inputType="text"/>
 </LinearLayout>

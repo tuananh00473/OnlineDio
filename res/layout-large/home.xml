@@ -2,13 +2,13 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/White"
         >
     <RelativeLayout
             android:id="@+id/home_rlTopBar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/menubar">
         <Button
@@ -16,7 +16,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/menu"
-                android:layout_alignParentLeft="true" android:layout_marginLeft="@dimen/phone_margin"
+                android:layout_alignParentLeft="true" android:layout_marginLeft="@dimen/tablet_margin"
                 android:layout_centerVertical="true">
         </Button>
         <Button
@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/home_notifications"
-                android:layout_alignParentRight="true" android:layout_marginRight="@dimen/phone_margin"
+                android:layout_alignParentRight="true" android:layout_marginRight="@dimen/tablet_margin"
                 android:layout_centerVertical="true">
         </Button>
         <TextView
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_tvHomeTitle"
-                android:textSize="@dimen/phone_text_size"
+                android:textSize="@dimen/tablet_text_size"
                 android:textStyle="bold"
                 android:textColor="@color/White"
                 android:typeface="sans"
@@ -42,24 +42,24 @@
     </RelativeLayout>
     <ImageView
             android:id="@+id/home_ivContentFeed"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/home_content_feed"
-            android:layout_below="@id/home_rlTopBar">
-    </ImageView>
+            android:layout_below="@id/home_rlTopBar"
+            android:contentDescription="@string/imageview_description"/>
     <ListView
             android:id="@+id/home_lvFeeds"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:listSelector="@drawable/list_selection"
             android:layout_below="@id/home_ivContentFeed"
             android:choiceMode="singleChoice"/>
     <ImageButton
             android:id="@+id/home_ibSwitchToRecord"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/home_button_record">
-    </ImageButton>
+            android:background="@drawable/home_button_record"
+            android:contentDescription="@string/imageview_description"/>
 </RelativeLayout>
 

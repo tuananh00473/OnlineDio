@@ -9,7 +9,8 @@
             android:id="@+id/slidebar_ivOption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/slidebar_home"/>
+            android:src="@drawable/slidebar_home"
+            android:contentDescription="@string/imageview_description"/>
     <TextView
             android:id="@+id/slidebar_tvOption"
             android:layout_width="wrap_content"
@@ -26,7 +27,8 @@
             android:background="@drawable/arrow_right"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_margin="@dimen/phone_margin"/>
+            android:layout_margin="@dimen/phone_margin"
+            android:contentDescription="@string/imageview_description"/>
     <TextView
             android:id="@+id/slidebar_tvSpecOption"
             android:layout_width="wrap_content"

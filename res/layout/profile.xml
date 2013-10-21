@@ -63,7 +63,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/profile_icon"
                     android:layout_alignParentRight="true" android:layout_marginRight="@dimen/phone_margin"
-                    android:layout_alignBottom="@id/profile_ivAvatar"/>
+                    android:layout_alignBottom="@id/profile_ivAvatar"
+                    android:contentDescription="@string/imageview_description"/>
             <ImageView
                     android:id="@+id/profile_ivTextCover"
                     android:layout_width="wrap_content"
@@ -71,7 +72,8 @@
                     android:background="@drawable/profile_text_cover"
                     android:layout_toLeftOf="@id/profile_ivIconCover"
                     android:layout_marginRight="@dimen/phone_margin"
-                    android:layout_alignBottom="@id/profile_ivAvatar"/>
+                    android:layout_alignBottom="@id/profile_ivAvatar"
+                    android:contentDescription="@string/imageview_description"/>
         </RelativeLayout>
 
 
@@ -247,7 +249,7 @@
                         android:background="@drawable/profile_male"
                         android:layout_alignLeft="@id/profile_etFullName"
                         android:layout_below="@id/profile_etBirthday"
-                        android:layout_marginTop="14dp"
+                        android:layout_marginTop="@dimen/phone_button_gender_margin_top"
                         />
                 <Button
                         android:id="@+id/profile_btFemale"

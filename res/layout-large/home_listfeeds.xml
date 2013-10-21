@@ -5,14 +5,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/list_selection"
-                android:padding="@dimen/phone_padding">
+                android:padding="@dimen/tablet_padding">
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/home_ivAvatar"
-            android:background="@drawable/home_avatar">
-
-    </ImageView>
+            android:background="@drawable/home_avatar"
+            android:contentDescription="@string/imageview_description"/>
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -20,14 +19,14 @@
             android:layout_alignBottom="@id/home_ivAvatar"
             android:layout_toRightOf="@id/home_ivAvatar"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/phone_margin"
+            android:layout_marginLeft="@dimen/tablet_margin"
             >
         <TextView
                 android:id="@+id/home_tvSoundTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_tittle_song"
-                android:textSize="@dimen/phone_home_tittle_song_text_size"
+                android:textSize="@dimen/tablet_home_tittle_song_text_size"
                 android:textStyle="bold"
                 android:textColor="@color/Black"
                 android:typeface="sans"/>
@@ -36,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_tittle_singer"
-                android:textSize="@dimen/phone_text_size"
+                android:textSize="@dimen/tablet_text_size"
                 android:textColor="@color/Black"
                 android:layout_centerVertical="true"/>
         <TextView
@@ -44,14 +43,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_tittle_like"
-                android:textSize="@dimen/phone_home_tittle_like_text_size"
+                android:textSize="@dimen/tablet_home_tittle_like_text_size"
                 android:layout_alignParentBottom="true"/>
         <TextView
                 android:id="@+id/home_tvNumberComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_tittle_comment"
-                android:textSize="@dimen/phone_home_tittle_comment_text_size"
+                android:textSize="@dimen/tablet_home_tittle_comment_text_size"
                 android:layout_toRightOf="@id/home_tvSoundTitle"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"/>
@@ -61,14 +60,15 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/arrow_right"
                 android:layout_alignParentRight="true"
-                android:layout_margin="@dimen/phone_margin_component"
-                android:layout_centerVertical="true"/>
+                android:layout_margin="@dimen/tablet_margin_component"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/imageview_description"/>
         <TextView
                 android:id="@+id/home_tvDays"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_tittle_show"
-                android:textSize="@dimen/phone_home_tittle_comment_text_size"
+                android:textSize="@dimen/tablet_home_tittle_comment_text_size"
                 android:layout_toLeftOf="@id/home_ivNextDetail"
                 android:layout_centerVertical="true"/>
     </RelativeLayout>

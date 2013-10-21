@@ -8,7 +8,7 @@
         >
     <RelativeLayout
             android:id="@+id/home_rlTopBar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/menubar">
         <Button
@@ -45,8 +45,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/home_content_feed"
-            android:layout_below="@id/home_rlTopBar">
-    </ImageView>
+            android:layout_below="@id/home_rlTopBar"
+            android:contentDescription="@string/imageview_description"/>
     <ListView
             android:id="@+id/home_lvFeeds"
             android:layout_width="fill_parent"
@@ -59,7 +59,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/home_button_record">
+            android:background="@drawable/home_button_record"
+            android:contentDescription="@string/imageview_description"
+            >
     </ImageButton>
 </RelativeLayout>
 

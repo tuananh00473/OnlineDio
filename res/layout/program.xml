@@ -10,7 +10,8 @@
                 android:id="@+id/program_ivMenuBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/menubar"/>
+                android:background="@drawable/menubar"
+                android:contentDescription="@string/imageview_description"/>
         <Button
                 android:id="@+id/program_btBack"
                 android:layout_width="wrap_content"
@@ -54,14 +55,14 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/program_icon_circle"
                     android:layout_centerInParent="true"
-                    />
+                    android:contentDescription="@string/imageview_description"/>
             <ImageView
                     android:id="@+id/program_ivAvatar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/program_avatar"
                     android:layout_centerInParent="true"
-                    />
+                    android:contentDescription="@string/imageview_description"/>
         </RelativeLayout>
         <LinearLayout
                 android:layout_width="match_parent"
@@ -96,7 +97,8 @@
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/program_look"/>
+                        android:background="@drawable/program_look"
+                        android:contentDescription="@string/imageview_description"/>
                 <TextView
                         android:id="@+id/program_tvLook"
                         android:layout_width="wrap_content"
@@ -107,7 +109,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/phone_margin_middle"
-                        android:background="@drawable/program_number_play"/>
+                        android:background="@drawable/program_number_play"
+                        android:contentDescription="@string/imageview_description"/>
                 <TextView
                         android:id="@+id/program_tvPlay"
                         android:layout_width="wrap_content"
@@ -118,7 +121,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/phone_margin_middle"
-                        android:background="@drawable/program_like"/>
+                        android:background="@drawable/program_like"
+                        android:contentDescription="@string/imageview_description"/>
                 <TextView
                         android:id="@+id/program_tvLike"
                         android:layout_width="wrap_content"
@@ -138,7 +142,8 @@
                     android:id="@+id/program_ivEditAndDelete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/program_edit_and_delete"/>
+                    android:background="@drawable/program_edit_and_delete"
+                    android:contentDescription="@string/imageview_description"/>
             <CheckBox
                     android:id="@+id/program_ivFavorite"
                     android:layout_width="wrap_content"
@@ -168,13 +173,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/phone_margin"
-                    android:background="@drawable/program_twitter"/>
+                    android:background="@drawable/program_twitter"
+                    android:contentDescription="@string/imageview_description"/>
             <ImageView
                     android:id="@+id/program_ivFacebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/phone_margin_component"
-                    android:background="@drawable/program_facebook"/>
+                    android:background="@drawable/program_facebook"
+                    android:contentDescription="@string/imageview_description"/>
         </LinearLayout>
     </RelativeLayout>
     <LinearLayout
@@ -188,7 +195,6 @@
                 android:button="@null"
                 android:checked="true"
                 android:background="@drawable/program_config_play_sound"
-                android:layout_centerVertical="true"
                 android:layout_margin="@dimen/phone_margin_middle"/>
         <RelativeLayout
                 android:layout_width="match_parent"
@@ -236,7 +242,8 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentLeft="true"
                         android:layout_margin="@dimen/phone_field_margin_left_medium"
-                        android:background="@drawable/program_volume_min"/>
+                        android:background="@drawable/program_volume_min"
+                        android:contentDescription="@string/imageview_description"/>
                 <ImageView
                         android:id="@+id/program_ivVolumeMax"
                         android:layout_width="wrap_content"
@@ -244,7 +251,8 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/phone_field_margin_left_max"
-                        android:background="@drawable/program_volume_max"/>
+                        android:background="@drawable/program_volume_max"
+                        android:contentDescription="@string/imageview_description"/>
                 <SeekBar
                         android:id="@+id/program_vbVolume"
                         android:layout_width="match_parent"

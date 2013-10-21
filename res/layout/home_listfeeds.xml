@@ -10,9 +10,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/home_ivAvatar"
-            android:background="@drawable/home_avatar">
+            android:background="@drawable/home_avatar"
+            android:contentDescription="@string/imageview_description"/>
 
-    </ImageView>
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -62,7 +62,8 @@
                 android:background="@drawable/arrow_right"
                 android:layout_alignParentRight="true"
                 android:layout_margin="@dimen/phone_margin_component"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/imageview_description"/>
         <TextView
                 android:id="@+id/home_tvDays"
                 android:layout_width="wrap_content"

@@ -9,7 +9,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/phone_margin_component"
-            android:layout_marginBottom="0dp">
+            android:layout_marginBottom="@dimen/phone_zero">
         <ImageView
                 android:id="@+id/comments_ivAvatarInput"
                 android:layout_width="wrap_content"
@@ -17,6 +17,7 @@
                 android:layout_marginLeft="@dimen/phone_margin_component"
                 android:background="@drawable/comment_avatar"
                 android:layout_gravity="center_vertical"
+                android:contentDescription="@string/imageview_description"
                 />
         <TextView
                 android:id="@+id/comments_tvInputComment"
