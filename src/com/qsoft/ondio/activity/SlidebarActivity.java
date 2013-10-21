@@ -2,17 +2,15 @@ package com.qsoft.ondio.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import com.qsoft.ondio.R;
@@ -26,9 +24,16 @@ import com.qsoft.ondio.customui.ArrayAdapterListOption;
 
 public class SlidebarActivity extends FragmentActivity
 {
+    private static final String TAG = "SlidebarActivity";
+
+    private static final int REQUEST_CODE_CAMERA_TAKE_PICTURE = 999;
+    private static final int REQUEST_CODE_RESULT_LOAD_IMAGE = 888;
+    private static final int REQUEST_CODE_RETURN_COMMENT = 777;
+
     final String[] listOptionName = {"Home", "Favorite", "Following", "Audience", "Genres", "Setting", "Help Center", "Sign Out"};
     final String[] item = {"com.qsoft.ondio.activity.HomeFragment"};
     private static final int HOME = 0;
+    private static final int SIGN_OUT = 7;
 
     private DrawerLayout mDrawerLayout;
     private ListView lvOption;
@@ -70,16 +75,19 @@ public class SlidebarActivity extends FragmentActivity
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, final int index, long l)
         {
-
+            final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             switch (index)
             {
                 case HOME:
-                    final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.content_frame, new HomeFragment(), "HomeFragment");
                     ft.addToBackStack("HomeFragment");
                     ft.commit();
-                    setCloseListOption();
+                    break;
+                case SIGN_OUT:
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    break;
             }
+            setCloseListOption();
         }
     };
 
@@ -114,7 +122,20 @@ public class SlidebarActivity extends FragmentActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+        Log.i(TAG, "onActivityResult");
+        Fragment fragment = null;
+        switch (requestCode)
+        {
+            case REQUEST_CODE_CAMERA_TAKE_PICTURE:
+                fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+                break;
+            case REQUEST_CODE_RESULT_LOAD_IMAGE:
+                fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+                break;
+            case REQUEST_CODE_RETURN_COMMENT:
+                fragment = getSupportFragmentManager().findFragmentById(R.id.program_flInformation);
+                break;
+        }
         fragment.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -132,6 +153,7 @@ public class SlidebarActivity extends FragmentActivity
     {
         getSupportFragmentManager().popBackStack();
     }
+
     public void doLockOption()
     {
         getSupportFragmentManager().executePendingTransactions();

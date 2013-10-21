@@ -16,17 +16,16 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.dialog.MyDialog;
-import com.qsoft.ondio.model.Feed;
 import com.qsoft.ondio.model.Profile;
-
-import java.util.ArrayList;
 
 /**
  * User: anhnt
  * Date: 10/16/13
  * Time: 8:56 AM
  */
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment
+{
+    private static final String TAG = "ProfileFragment";
     private EditText etProfileName;
     private EditText etFullName;
     private EditText etPhoneNo;
@@ -45,21 +44,22 @@ public class ProfileFragment extends Fragment {
     private static final int MALE = 0;
     private static final int FEMALE = 1;
     private static String gender;
-    private static final int CAMERA_REQUEST = 999;
-    private static final int RESULT_LOAD_IMAGE = 888;
+    private static final int REQUEST_CODE_CAMERA_TAKE_PICTURE = 999;
+    private static final int REQUEST_CODE_RESULT_LOAD_IMAGE = 888;
     private static final int AVATAR_CODE = 0;
     private static final int COVER_IMAGE_CODE = 1;
     private static int code;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         View view = inflater.inflate(R.layout.profile, null);
         setUpUI(view);
-        ArrayList<Feed> feedList = new ArrayList<Feed>();
         setUpListenerController();
         return view;
     }
 
-    private void setUpListenerController() {
+    private void setUpListenerController()
+    {
         etBirthday.setOnClickListener(onClickListener);
         etCountry.setOnClickListener(onClickListener);
         btMale.setOnClickListener(onClickListener);
@@ -71,7 +71,8 @@ public class ProfileFragment extends Fragment {
         btMenu.setOnClickListener(onClickListener);
     }
 
-    private void setUpUI(View view) {
+    private void setUpUI(View view)
+    {
         etProfileName = (EditText) view.findViewById(R.id.profile_etProfileName);
         etFullName = (EditText) view.findViewById(R.id.profile_etFullName);
         etPhoneNo = (EditText) view.findViewById(R.id.profile_etPhoneNo);
@@ -88,10 +89,13 @@ public class ProfileFragment extends Fragment {
         btMenu = (Button) view.findViewById(R.id.profile_btMenu);
     }
 
-    private final View.OnClickListener onClickListener = new View.OnClickListener() {
+    private final View.OnClickListener onClickListener = new View.OnClickListener()
+    {
         @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
+        public void onClick(View view)
+        {
+            switch (view.getId())
+            {
                 case R.id.profile_ivAvatar:
                     setAvatar();
                     break;
@@ -123,15 +127,18 @@ public class ProfileFragment extends Fragment {
         }
     };
 
-    private void setBirthday() {
+    private void setBirthday()
+    {
         MyDialog.showDatePickerDialog(getActivity(), etBirthday);
     }
 
-    private void showMenu() {
+    private void showMenu()
+    {
         ((SlidebarActivity) getActivity()).setOpenListOption();
     }
 
-    private void doSave() {
+    private void doSave()
+    {
         Profile profile = new Profile();
         profile.setDisplayName(etProfileName.getText().toString());
         profile.setFullName(etFullName.getText().toString());
@@ -144,18 +151,22 @@ public class ProfileFragment extends Fragment {
         // save(profile);
     }
 
-    private void setCoverImage() {
+    private void setCoverImage()
+    {
         code = COVER_IMAGE_CODE;
         MyDialog.showSetImageDialog(getActivity(), getString(R.string.dialog_tittle_coverimage));
     }
 
-    private void setAvatar() {
+    private void setAvatar()
+    {
         code = AVATAR_CODE;
         MyDialog.showSetImageDialog(getActivity(), getString(R.string.dialog_tittle_avatar));
     }
 
-    private void setGender(int gender) {
-        switch (gender) {
+    private void setGender(int gender)
+    {
+        switch (gender)
+        {
             case MALE:
                 ProfileFragment.gender = "male";
                 btMale.setBackgroundResource(R.drawable.profile_male);
@@ -169,39 +180,48 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    private void setCountry() {
+    private void setCountry()
+    {
         spCountry.performClick();
-        spCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+            {
                 showCountry(adapterView.getSelectedItem().toString());
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
             }
         });
     }
 
-    private void showCountry(String address) {
+    private void showCountry(String address)
+    {
         etCountry.setText(address);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == getActivity().RESULT_OK && null != data) {
-            if (requestCode == CAMERA_REQUEST) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        Log.i(TAG, "onActivityResult");
+        if (resultCode == getActivity().RESULT_OK && null != data)
+        {
+            if (requestCode == REQUEST_CODE_CAMERA_TAKE_PICTURE)
+            {
                 setImageFromCamera(data);
             }
-            if (requestCode == RESULT_LOAD_IMAGE) {
+            if (requestCode == REQUEST_CODE_RESULT_LOAD_IMAGE)
+            {
                 setImageFromAlbum(data);
             }
         }
     }
 
-    private void setImageFromAlbum(Intent data) {
+    private void setImageFromAlbum(Intent data)
+    {
         Uri selectedImage = data.getData();
         String[] filePathColumn = {MediaStore.Images.Media.DATA};
         Cursor cursor = getActivity().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
@@ -210,7 +230,8 @@ public class ProfileFragment extends Fragment {
         String picturePath = cursor.getString(columnIndex);
         cursor.close();
         Bitmap photo = BitmapFactory.decodeFile(picturePath);
-        switch (code) {
+        switch (code)
+        {
             case AVATAR_CODE:
                 makeMaskImage(ivAvatar, photo);
                 break;
@@ -221,9 +242,11 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    private void setImageFromCamera(Intent data) {
+    private void setImageFromCamera(Intent data)
+    {
         Bitmap photo = (Bitmap) data.getExtras().get("data");
-        switch (code) {
+        switch (code)
+        {
             case AVATAR_CODE:
                 makeMaskImage(ivAvatar, photo);
                 break;
@@ -235,7 +258,8 @@ public class ProfileFragment extends Fragment {
         Log.d("CameraDemo", "Pic saved");
     }
 
-    public void makeMaskImage(ImageView mImageView, Bitmap photoBitmap) {
+    public void makeMaskImage(ImageView mImageView, Bitmap photoBitmap)
+    {
         Bitmap mask = BitmapFactory.decodeResource(getResources(), R.drawable.profile_mask);
 
         Bitmap result = Bitmap.createBitmap(mask.getWidth(), mask.getHeight(), Bitmap.Config.ARGB_8888);

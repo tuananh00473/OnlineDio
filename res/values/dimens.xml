@@ -81,4 +81,5 @@
     <dimen name="tablet_radius">20dp</dimen>
     <dimen name="tablet_stroke_width">2dp</dimen>
     <dimen name="tablet_shape_size">40dp</dimen>
+    <dimen name="phone_haft_of_height">190dp</dimen>
 </resources>

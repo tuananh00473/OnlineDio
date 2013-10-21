@@ -24,8 +24,9 @@ import java.util.Calendar;
  */
 public class MyDialog extends DialogFragment
 {
-    private static final int CAMERA_REQUEST = 999;
-    private static final int RESULT_LOAD_IMAGE = 888;
+    private static final int REQUEST_CODE_CAMERA_TAKE_PICTURE = 999;
+    private static final int REQUEST_CODE_RESULT_LOAD_IMAGE = 888;
+
     private static Activity activity;
     private static Dialog dialog;
 
@@ -99,13 +100,13 @@ public class MyDialog extends DialogFragment
     private static void loadPicture(Activity activity)
     {
         Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        activity.startActivityForResult(i, RESULT_LOAD_IMAGE);
+        activity.startActivityForResult(i, REQUEST_CODE_RESULT_LOAD_IMAGE);
     }
 
     private static void takePicture(Activity activity)
     {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        activity.startActivityForResult(cameraIntent, CAMERA_REQUEST);
+        activity.startActivityForResult(cameraIntent, REQUEST_CODE_CAMERA_TAKE_PICTURE);
     }
 
     public static void showDatePickerDialog(Activity activity, EditText etDate)

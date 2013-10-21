@@ -29,13 +29,13 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/phone_margin_component"
-                android:background="@drawable/done"/>
+                android:background="@drawable/done_visible"/>
     </RelativeLayout>
 
     <EditText
             android:id="@+id/inputcomment_etInputComment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/phone_haft_of_height"
             android:layout_margin="@dimen/phone_margin_component"
             android:gravity="left|top"/>
 </LinearLayout>

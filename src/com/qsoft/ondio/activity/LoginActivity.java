@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,6 +24,8 @@ import com.qsoft.ondio.util.NetworkAvailable;
  */
 public class LoginActivity extends Activity
 {
+    private static final String TAG = "LoginActivity";
+
     private Button btLogin;
     private Button btBack;
     private TextView tvForgotPassword;
@@ -53,6 +58,18 @@ public class LoginActivity extends Activity
         btLogin.setOnClickListener(onClickListener);
         btBack.setOnClickListener(onClickListener);
         tvForgotPassword.setOnClickListener(onClickListener);
+        etPassword.setOnEditorActionListener(new EditText.OnEditorActionListener()
+        {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
+            {
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE))
+                {
+                    Log.i(TAG, "Enter pressed");
+                    doLogin();
+                }
+                return false;
+            }
+        });
     }
 
     private void doLogin()
