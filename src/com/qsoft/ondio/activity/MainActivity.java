@@ -50,6 +50,14 @@ public class MainActivity extends Activity
 
     private void doLogin()
     {
-        startActivity(new Intent(this, LoginActivity.class));
+        Boolean addNewAccount = doCheckTokenCurrent();
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.putExtra("IS_ADDING_ACCOUNT", true);
+        startActivity(intent);
+    }
+
+    private Boolean doCheckTokenCurrent()
+    {
+        return true;
     }
 }
