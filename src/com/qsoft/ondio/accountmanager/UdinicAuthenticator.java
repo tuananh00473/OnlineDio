@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import com.qsoft.ondio.activity.LoginActivity;
+import com.qsoft.ondio.util.Common;
 
 import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
-import static com.qsoft.ondio.accountmanager.AccountGeneral.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,9 +37,9 @@ public class UdinicAuthenticator extends AbstractAccountAuthenticator
         Log.d("udinic", TAG + "> addAccount");
 
         final Intent intent = new Intent(mContext, LoginActivity.class);
-        intent.putExtra(AuthenticatorActivity.ARG_ACCOUNT_TYPE, accountType);
-        intent.putExtra(AuthenticatorActivity.ARG_AUTH_TYPE, authTokenType);
-        intent.putExtra(AuthenticatorActivity.ARG_IS_ADDING_NEW_ACCOUNT, true);
+        intent.putExtra(Common.ARG_ACCOUNT_TYPE, accountType);
+        intent.putExtra(Common.ARG_AUTH_TYPE, authTokenType);
+        intent.putExtra(Common.ARG_IS_ADDING_NEW_ACCOUNT, true);
         intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
 
         final Bundle bundle = new Bundle();
@@ -55,7 +55,7 @@ public class UdinicAuthenticator extends AbstractAccountAuthenticator
 
         // If the caller requested an authToken type we don't support, then
         // return an error
-        if (!authTokenType.equals(AccountGeneral.AUTHTOKEN_TYPE_READ_ONLY) && !authTokenType.equals(AccountGeneral.AUTHTOKEN_TYPE_FULL_ACCESS))
+        if (!authTokenType.equals(Common.AUTHTOKEN_TYPE_READ_ONLY) && !authTokenType.equals(Common.AUTHTOKEN_TYPE_FULL_ACCESS))
         {
             final Bundle result = new Bundle();
             result.putString(AccountManager.KEY_ERROR_MESSAGE, "invalid authTokenType");
@@ -67,7 +67,7 @@ public class UdinicAuthenticator extends AbstractAccountAuthenticator
         final AccountManager am = AccountManager.get(mContext);
 
         String authToken = am.peekAuthToken(account, authTokenType);
-        String userId = null; //User identifier, needed for creating ACL on our server-side
+        String userId = null;
 
         Log.d("udinic", TAG + "> peekAuthToken returned - " + authToken);
 
@@ -80,7 +80,7 @@ public class UdinicAuthenticator extends AbstractAccountAuthenticator
                 try
                 {
                     Log.d("udinic", TAG + "> re-authenticating with the existing password");
-                    User user = sServerAuthenticate.userSignIn(account.name, password, authTokenType);
+                    User user = Common.sServerAuthenticate.userSignIn(account.name, password, authTokenType);
                     if (user != null)
                     {
                         authToken = user.getAccess_token();
@@ -104,13 +104,10 @@ public class UdinicAuthenticator extends AbstractAccountAuthenticator
             return result;
         }
 
-        // If we get here, then we couldn't access the user's password - so we
-        // need to re-prompt them for their credentials. We do that by creating
-        // an intent to display our AuthenticatorActivity.
-        final Intent intent = new Intent(mContext, AuthenticatorActivity.class);
+        final Intent intent = new Intent(mContext, LoginActivity.class);
         intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
-        intent.putExtra(AuthenticatorActivity.ARG_ACCOUNT_TYPE, account.type);
-        intent.putExtra(AuthenticatorActivity.ARG_AUTH_TYPE, authTokenType);
+        intent.putExtra(Common.ARG_ACCOUNT_TYPE, account.type);
+        intent.putExtra(Common.ARG_AUTH_TYPE, authTokenType);
         final Bundle bundle = new Bundle();
         bundle.putParcelable(AccountManager.KEY_INTENT, intent);
         return bundle;
@@ -120,13 +117,13 @@ public class UdinicAuthenticator extends AbstractAccountAuthenticator
     @Override
     public String getAuthTokenLabel(String authTokenType)
     {
-        if (AUTHTOKEN_TYPE_FULL_ACCESS.equals(authTokenType))
+        if (Common.AUTHTOKEN_TYPE_FULL_ACCESS.equals(authTokenType))
         {
-            return AUTHTOKEN_TYPE_FULL_ACCESS_LABEL;
+            return Common.AUTHTOKEN_TYPE_FULL_ACCESS_LABEL;
         }
-        else if (AUTHTOKEN_TYPE_READ_ONLY.equals(authTokenType))
+        else if (Common.AUTHTOKEN_TYPE_READ_ONLY.equals(authTokenType))
         {
-            return AUTHTOKEN_TYPE_READ_ONLY_LABEL;
+            return Common.AUTHTOKEN_TYPE_READ_ONLY_LABEL;
         }
         else
         {

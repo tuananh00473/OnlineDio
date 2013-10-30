@@ -18,14 +18,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.qsoft.ondio.R;
-import com.qsoft.ondio.accountmanager.AccountGeneral;
 import com.qsoft.ondio.accountmanager.User;
 import com.qsoft.ondio.dialog.MyDialog;
+import com.qsoft.ondio.util.Common;
 import com.qsoft.ondio.util.NetworkAvailable;
-
-import static com.qsoft.ondio.accountmanager.AccountGeneral.USERDATA_USER_OBJ_ID;
-import static com.qsoft.ondio.accountmanager.AccountGeneral.sServerAuthenticate;
-
 
 /**
  * User: anhnt
@@ -35,13 +31,6 @@ import static com.qsoft.ondio.accountmanager.AccountGeneral.sServerAuthenticate;
 public class LoginActivity extends AccountAuthenticatorActivity
 {
     private static final String TAG = "LoginActivity";
-
-    public final static String ARG_ACCOUNT_TYPE = "com.qsoft.onlinedio";
-    public final static String ARG_AUTH_TYPE = "AUTH_TYPE";
-    public final static String ARG_ACCOUNT_NAME = "ACCOUNT_NAME";
-    public final static String ARG_IS_ADDING_NEW_ACCOUNT = "IS_ADDING_ACCOUNT";
-    public static final String KEY_ERROR_MESSAGE = "ERR_MSG";
-    public final static String PARAM_USER_PASS = "USER_PASS";
     private AccountManager mAccountManager;
     private String mAuthTokenType;
 
@@ -56,10 +45,10 @@ public class LoginActivity extends AccountAuthenticatorActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         mAccountManager = AccountManager.get(getBaseContext());
-        mAuthTokenType = getIntent().getStringExtra(ARG_AUTH_TYPE);
+        mAuthTokenType = getIntent().getStringExtra(Common.ARG_AUTH_TYPE);
         if (mAuthTokenType == null)
         {
-            mAuthTokenType = AccountGeneral.AUTHTOKEN_TYPE_FULL_ACCESS;
+            mAuthTokenType = Common.AUTHTOKEN_TYPE_FULL_ACCESS;
         }
 
         setUpUI();
@@ -226,24 +215,24 @@ public class LoginActivity extends AccountAuthenticatorActivity
                 Bundle data = new Bundle();
                 try
                 {
-                    User user = sServerAuthenticate.userSignIn(userName, password, mAuthTokenType);
+                    User user = Common.sServerAuthenticate.userSignIn(userName, password, mAuthTokenType);
 
                     data.putString(AccountManager.KEY_ACCOUNT_NAME, userName);
-                    data.putString(AccountManager.KEY_ACCOUNT_TYPE, ARG_ACCOUNT_TYPE);
+                    data.putString(AccountManager.KEY_ACCOUNT_TYPE, Common.ARG_ACCOUNT_TYPE);
                     data.putString(AccountManager.KEY_AUTHTOKEN, user.getAccess_token());
                     Log.d(TAG, "Show token" + user.getAccess_token());
                     // We keep the user's object id as an extra data on the account.
                     // It's used later for determine ACL for the data we send to the Parse.com service
                     Bundle userData = new Bundle();
-                    userData.putString(USERDATA_USER_OBJ_ID, "10110");
+                    userData.putString(Common.USERDATA_USER_OBJ_ID, user.getUser_id());
                     data.putBundle(AccountManager.KEY_USERDATA, userData);
 
-                    data.putString(PARAM_USER_PASS, password);
+                    data.putString(Common.PARAM_USER_PASS, password);
 
                 }
                 catch (Exception e)
                 {
-                    data.putString(KEY_ERROR_MESSAGE, e.getMessage());
+                    data.putString(Common.KEY_ERROR_MESSAGE, e.getMessage());
                 }
 
                 final Intent res = new Intent();
@@ -254,9 +243,9 @@ public class LoginActivity extends AccountAuthenticatorActivity
             @Override
             protected void onPostExecute(Intent intent)
             {
-                if (intent.hasExtra(KEY_ERROR_MESSAGE))
+                if (intent.hasExtra(Common.KEY_ERROR_MESSAGE))
                 {
-                    Toast.makeText(getBaseContext(), intent.getStringExtra(KEY_ERROR_MESSAGE), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), intent.getStringExtra(Common.KEY_ERROR_MESSAGE), Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -270,10 +259,10 @@ public class LoginActivity extends AccountAuthenticatorActivity
     {
 
         String accountName = intent.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-        String accountPassword = intent.getStringExtra(PARAM_USER_PASS);
+        String accountPassword = intent.getStringExtra(Common.PARAM_USER_PASS);
         final Account account = new Account(accountName, intent.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE));
 
-        if (getIntent().getBooleanExtra(ARG_IS_ADDING_NEW_ACCOUNT, false))
+        if (getIntent().getBooleanExtra(Common.ARG_IS_ADDING_NEW_ACCOUNT, false))
         {
             String authtoken = intent.getStringExtra(AccountManager.KEY_AUTHTOKEN);
             String authtokenType = mAuthTokenType;
@@ -285,7 +274,7 @@ public class LoginActivity extends AccountAuthenticatorActivity
         }
         else
         {
-            Log.d("udinic", TAG + "> finishLogin > setPassword");
+            Log.d(TAG, "> finishLogin > setPassword");
             mAccountManager.setPassword(account, accountPassword);
         }
 
