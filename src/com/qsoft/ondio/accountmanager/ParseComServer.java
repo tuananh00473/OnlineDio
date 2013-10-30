@@ -2,6 +2,7 @@ package com.qsoft.ondio.accountmanager;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.qsoft.ondio.model.User;
 import com.qsoft.ondio.util.HashStringToMD5;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;

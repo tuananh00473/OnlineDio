@@ -1,4 +1,4 @@
-package com.qsoft.ondio.accountmanager;
+package com.qsoft.ondio.model;
 
 import java.io.Serializable;
 

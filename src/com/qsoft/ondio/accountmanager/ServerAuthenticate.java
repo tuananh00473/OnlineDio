@@ -1,5 +1,7 @@
 package com.qsoft.ondio.accountmanager;
 
+import com.qsoft.ondio.model.User;
+
 /**
  * User: udinic
  * Date: 3/27/13

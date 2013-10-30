@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import com.qsoft.ondio.activity.LoginActivity;
+import com.qsoft.ondio.model.User;
 import com.qsoft.ondio.util.Common;
 
 import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
@@ -51,7 +52,7 @@ public class UdinicAuthenticator extends AbstractAccountAuthenticator
     public Bundle getAuthToken(AccountAuthenticatorResponse response, Account account, String authTokenType, Bundle options) throws NetworkErrorException
     {
 
-        Log.d("udinic", TAG + "> getAuthToken");
+        Log.d(TAG, "> getAuthToken");
 
         // If the caller requested an authToken type we don't support, then
         // return an error

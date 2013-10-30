@@ -18,8 +18,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.qsoft.ondio.R;
-import com.qsoft.ondio.accountmanager.User;
 import com.qsoft.ondio.dialog.MyDialog;
+import com.qsoft.ondio.model.User;
 import com.qsoft.ondio.util.Common;
 import com.qsoft.ondio.util.NetworkAvailable;
 
@@ -39,6 +39,7 @@ public class LoginActivity extends AccountAuthenticatorActivity
     private TextView tvForgotPassword;
     private EditText etEmail;
     private EditText etPassword;
+    private static Boolean isLogin = false;
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -128,15 +129,9 @@ public class LoginActivity extends AccountAuthenticatorActivity
         return network.isEnabled();
     }
 
-    private boolean checkLogin()
+    private Boolean checkLogin()
     {
-        if (etEmail.getText().toString().length() > 0)
-        {
-            submit();
-            return true;
-        }
-
-        return false;
+        return submit();
     }
 
     private void doBack()
@@ -197,7 +192,7 @@ public class LoginActivity extends AccountAuthenticatorActivity
         }
     };
 
-    public void submit()
+    public Boolean submit()
     {
         Log.d(TAG, "> Submit");
         final String userName = etEmail.getText().toString();
@@ -216,13 +211,15 @@ public class LoginActivity extends AccountAuthenticatorActivity
                 try
                 {
                     User user = Common.sServerAuthenticate.userSignIn(userName, password, mAuthTokenType);
-
+                    if (null != user.getAccess_token())
+                    {
+                        isLogin = true;
+                    }
                     data.putString(AccountManager.KEY_ACCOUNT_NAME, userName);
                     data.putString(AccountManager.KEY_ACCOUNT_TYPE, Common.ARG_ACCOUNT_TYPE);
                     data.putString(AccountManager.KEY_AUTHTOKEN, user.getAccess_token());
+
                     Log.d(TAG, "Show token" + user.getAccess_token());
-                    // We keep the user's object id as an extra data on the account.
-                    // It's used later for determine ACL for the data we send to the Parse.com service
                     Bundle userData = new Bundle();
                     userData.putString(Common.USERDATA_USER_OBJ_ID, user.getUser_id());
                     data.putBundle(AccountManager.KEY_USERDATA, userData);
@@ -253,6 +250,7 @@ public class LoginActivity extends AccountAuthenticatorActivity
                 }
             }
         }.execute();
+        return isLogin;
     }
 
     private void finishLogin(Intent intent)
