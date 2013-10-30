@@ -18,24 +18,22 @@ import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
  * Date: 19/03/13
  * Time: 18:58
  */
-public class UdinicAuthenticator extends AbstractAccountAuthenticator
+public class OnlineAuthenticator extends AbstractAccountAuthenticator
 {
 
-    private String TAG = "UdinicAuthenticator";
+    private String TAG = "OnlineAuthenticator";
     private final Context mContext;
 
-    public UdinicAuthenticator(Context context)
+    public OnlineAuthenticator(Context context)
     {
         super(context);
-
-        // I hate you! Google - set mContext as protected!
         this.mContext = context;
     }
 
     @Override
     public Bundle addAccount(AccountAuthenticatorResponse response, String accountType, String authTokenType, String[] requiredFeatures, Bundle options) throws NetworkErrorException
     {
-        Log.d("udinic", TAG + "> addAccount");
+        Log.d(TAG, " ==> addAccount");
 
         final Intent intent = new Intent(mContext, LoginActivity.class);
         intent.putExtra(Common.ARG_ACCOUNT_TYPE, accountType);
@@ -51,11 +49,8 @@ public class UdinicAuthenticator extends AbstractAccountAuthenticator
     @Override
     public Bundle getAuthToken(AccountAuthenticatorResponse response, Account account, String authTokenType, Bundle options) throws NetworkErrorException
     {
+        Log.d(TAG, " ==> getAuthToken");
 
-        Log.d(TAG, "> getAuthToken");
-
-        // If the caller requested an authToken type we don't support, then
-        // return an error
         if (!authTokenType.equals(Common.AUTHTOKEN_TYPE_READ_ONLY) && !authTokenType.equals(Common.AUTHTOKEN_TYPE_FULL_ACCESS))
         {
             final Bundle result = new Bundle();
@@ -63,16 +58,13 @@ public class UdinicAuthenticator extends AbstractAccountAuthenticator
             return result;
         }
 
-        // Extract the username and password from the Account Manager, and ask
-        // the server for an appropriate AuthToken.
         final AccountManager am = AccountManager.get(mContext);
 
         String authToken = am.peekAuthToken(account, authTokenType);
         String userId = null;
 
-        Log.d("udinic", TAG + "> peekAuthToken returned - " + authToken);
+        Log.d(TAG, " ==> peekAuthToken returned - " + authToken);
 
-        // Lets give another try to authenticate the user
         if (TextUtils.isEmpty(authToken))
         {
             final String password = am.getPassword(account);
@@ -81,7 +73,7 @@ public class UdinicAuthenticator extends AbstractAccountAuthenticator
                 try
                 {
                     Log.d("udinic", TAG + "> re-authenticating with the existing password");
-                    User user = Common.sServerAuthenticate.userSignIn(account.name, password, authTokenType);
+                    User user = Common.sServerAuthenticate.login(account.name, password, authTokenType);
                     if (user != null)
                     {
                         authToken = user.getAccess_token();

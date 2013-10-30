@@ -3,7 +3,7 @@ package com.qsoft.ondio.accountmanager;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.qsoft.ondio.model.User;
-import com.qsoft.ondio.util.HashStringToMD5;
+import com.qsoft.ondio.util.StringConverter;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -15,12 +15,12 @@ import java.net.URL;
 public class ParseComServer implements ServerAuthenticate
 {
     @Override
-    public User userSignIn(String user, String pass, String authType) throws Exception
+    public User login(String user, String pass, String authType) throws Exception
     {
 
         String url = "http://192.168.1.222/testing/ica467/trunk/public/auth-rest";
         DefaultHttpClient httpClient = new DefaultHttpClient();
-        pass = new HashStringToMD5().doConvert(pass);
+        pass = new StringConverter().doConvert(pass);
 
         try
         {

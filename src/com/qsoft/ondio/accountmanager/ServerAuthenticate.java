@@ -9,5 +9,5 @@ import com.qsoft.ondio.model.User;
  */
 public interface ServerAuthenticate
 {
-    public User userSignIn(final String user, final String pass, String authType) throws Exception;
+    public User login(final String user, final String pass, String authType) throws Exception;
 }

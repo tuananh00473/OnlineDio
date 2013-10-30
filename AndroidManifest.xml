@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    <uses-feature android:name="android.hardware.camera"></uses-feature>
+    <uses-feature android:name="android.hardware.camera"/>
     <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
@@ -36,7 +36,7 @@
                   android:theme="@android:style/Theme.Black.NoTitleBar"
                   android:screenOrientation="portrait"/>
 
-        <service android:name=".accountmanager.UdinicAuthenticatorService">
+        <service android:name=".accountmanager.OnlineAuthenticatorService" android:permission="@string/permission">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator"/>
             </intent-filter>

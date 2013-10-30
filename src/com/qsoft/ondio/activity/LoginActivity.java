@@ -90,12 +90,11 @@ public class LoginActivity extends AccountAuthenticatorActivity
 
     private void doLogin()
     {
-//        if (!checkNetwork())
-//        {
-//            MyDialog.showMessageDialog(this, getString(R.string.tittle_login_error), getString(R.string.error_connect_network));
-//        }
-//        else
-        if (!checkTimeout())
+        if (!checkNetwork())
+        {
+            MyDialog.showMessageDialog(this, getString(R.string.tittle_login_error), getString(R.string.error_connect_network));
+        }
+        else if (!checkTimeout())
         {
             MyDialog.showMessageDialog(this, getString(R.string.tittle_login_error), getString(R.string.connection_timeout));
         }
@@ -210,7 +209,7 @@ public class LoginActivity extends AccountAuthenticatorActivity
                 Bundle data = new Bundle();
                 try
                 {
-                    User user = Common.sServerAuthenticate.userSignIn(userName, password, mAuthTokenType);
+                    User user = Common.sServerAuthenticate.login(userName, password, mAuthTokenType);
                     if (null != user.getAccess_token())
                     {
                         isLogin = true;

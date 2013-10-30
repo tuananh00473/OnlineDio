@@ -9,7 +9,7 @@ import java.security.MessageDigest;
  * Time: 8:53 AM
  * To change this template use File | Settings | File Templates.
  */
-public class HashStringToMD5
+public class StringConverter
 {
     public String doConvert(String password) throws Exception
     {

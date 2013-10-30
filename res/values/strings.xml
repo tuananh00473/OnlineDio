@@ -86,6 +86,7 @@
     <string name="timeTotal">3:32</string>
     <string name="program_title">Program</string>
     <string name="imageview_description">ImageView Description</string>
+    <string name="permission">permission</string>
 
     <string-array name="countries">
         <item>English</item>
