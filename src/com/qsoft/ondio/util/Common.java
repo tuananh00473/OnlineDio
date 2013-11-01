@@ -1,10 +1,12 @@
 package com.qsoft.ondio.util;
 
+import android.net.Uri;
 import com.qsoft.ondio.accountmanager.ParseComServer;
 import com.qsoft.ondio.accountmanager.ServerAuthenticate;
 
 public class Common
 {
+    //    authentication constants
     private final int REQ_SIGNUP = 1;
     public final static String ARG_ACCOUNT_TYPE = "com.qsoft.onlinedio";
     public final static String ARG_AUTH_TYPE = "AUTH_TYPE";
@@ -20,4 +22,50 @@ public class Common
 
     public static final String AUTHTOKEN_TYPE_FULL_ACCESS = "Full access";
     public static final String AUTHTOKEN_TYPE_FULL_ACCESS_LABEL = "Full access to an Udinic account";
+
+    //    key to save User_ID
+    public static final String KEY = "USER_ID";
+
+    //    profile constants
+    public static final String PROFILE_ID = "id";
+    public static final String PROFILE_DISPLAY_NAME = "displayName";
+    public static final String PROFILE_FULL_NAME = "fullName";
+    public static final String PROFILE_PHONE = "phoneNo";
+    public static final String PROFILE_BIRTHDAY = "birthday";
+    public static final String PROFILE_GENDER = "gender";
+    public static final String PROFILE_COUNTRY = "country";
+    public static final String PROFILE_DESCRIPTION = "description";
+
+    //    database
+    public static final String DATABASE_NAME = "localdata.db";
+    public static final int DATABASE_VERSION = 1;
+    public static final String PROVIDER_NAME = "com.qsoft.ondio.localDB";
+
+    //    database profile constants
+    public static final String PROFILE_TABLE_NAME = "profiles";
+    public static final String URL_PROFILE = "content://" + PROVIDER_NAME + "/" + PROFILE_TABLE_NAME;
+    public static final Uri CONTENT_URI_PROFILE = Uri.parse(URL_PROFILE);
+
+    //    database feed contants
+    public static final String FEED_TABLE_NAME = "feeds";
+    public static final String URL_FEED = "content://" + PROVIDER_NAME + "/" + FEED_TABLE_NAME;
+    public static final String FINCH_FEED_FILE_CACHE = "finch_feed_file_cache";
+
+    //    home feed constants
+    public static final String FEED_ID = "id";
+    public static final String FEED_USER_ID = "user_id";
+    public static final String FEED_TITLE = "title";
+    public static final String FEED_THUMBNAIL = "thumbnail";
+    public static final String FEED_DESCRIPTION = "description";
+    public static final String FEED_SOUND_PATH = "sound_path";
+    public static final String FEED_DURATION = "duration";
+    public static final String FEED_PLAYED = "played";
+    public static final String FEED_CREATED_AT = "created_at";
+    public static final String FEED_UPDATED_AT = "update_at";
+    public static final String FEED_LIKES = "likes";
+    public static final String FEED_VIEWED = "viewed";
+    public static final String FEED_COMMENTS = "comments";
+    public static final String FEED_USERNAME = "username";
+    public static final String FEED_DISPLAY_NAME = "display_name";
+    public static final String FEED_AVATAR = "avatar";
 }

@@ -39,7 +39,6 @@ public class LoginActivity extends AccountAuthenticatorActivity
     private TextView tvForgotPassword;
     private EditText etEmail;
     private EditText etPassword;
-    private static Boolean isLogin = false;
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -70,7 +69,7 @@ public class LoginActivity extends AccountAuthenticatorActivity
     {
         etEmail.addTextChangedListener(textChangeListener);
         etPassword.addTextChangedListener(textChangeListener);
-        btLogin.setEnabled(false);
+//        btLogin.setEnabled(false);
         btLogin.setOnClickListener(onClickListener);
         btBack.setOnClickListener(onClickListener);
         tvForgotPassword.setOnClickListener(onClickListener);
@@ -102,14 +101,11 @@ public class LoginActivity extends AccountAuthenticatorActivity
         {
             MyDialog.showMessageDialog(this, getString(R.string.tittle_login_error), getString(R.string.service_unrecognized));
         }
-        else if (!checkLogin())
-        {
-            MyDialog.showMessageDialog(this, getString(R.string.tittle_login_error), getString(R.string.incorrect_email_or_password));
-        }
         else
         {
-            startActivity(new Intent(this, SlidebarActivity.class));
+            checkLogin();
         }
+
     }
 
     private boolean checkUnrecognized()
@@ -128,10 +124,6 @@ public class LoginActivity extends AccountAuthenticatorActivity
         return network.isEnabled();
     }
 
-    private Boolean checkLogin()
-    {
-        return submit();
-    }
 
     private void doBack()
     {
@@ -191,7 +183,7 @@ public class LoginActivity extends AccountAuthenticatorActivity
         }
     };
 
-    public Boolean submit()
+    public void checkLogin()
     {
         Log.d(TAG, "> Submit");
         final String userName = etEmail.getText().toString();
@@ -210,21 +202,24 @@ public class LoginActivity extends AccountAuthenticatorActivity
                 try
                 {
                     User user = Common.sServerAuthenticate.login(userName, password, mAuthTokenType);
+                    Log.d(TAG, "getUser" + user.getUser_id());
                     if (null != user.getAccess_token())
                     {
-                        isLogin = true;
+                        data.putString(AccountManager.KEY_ACCOUNT_NAME, userName);
+                        data.putString(AccountManager.KEY_ACCOUNT_TYPE, Common.ARG_ACCOUNT_TYPE);
+                        data.putString(AccountManager.KEY_AUTHTOKEN, user.getAccess_token());
+
+                        Log.d(TAG, "Show token" + user.getAccess_token());
+                        Bundle userData = new Bundle();
+                        userData.putString(Common.USERDATA_USER_OBJ_ID, user.getUser_id());
+                        data.putBundle(AccountManager.KEY_USERDATA, userData);
+
+                        data.putString(Common.PARAM_USER_PASS, password);
                     }
-                    data.putString(AccountManager.KEY_ACCOUNT_NAME, userName);
-                    data.putString(AccountManager.KEY_ACCOUNT_TYPE, Common.ARG_ACCOUNT_TYPE);
-                    data.putString(AccountManager.KEY_AUTHTOKEN, user.getAccess_token());
-
-                    Log.d(TAG, "Show token" + user.getAccess_token());
-                    Bundle userData = new Bundle();
-                    userData.putString(Common.USERDATA_USER_OBJ_ID, user.getUser_id());
-                    data.putBundle(AccountManager.KEY_USERDATA, userData);
-
-                    data.putString(Common.PARAM_USER_PASS, password);
-
+                    else
+                    {
+                        data.putString(Common.KEY_ERROR_MESSAGE, "Account not exist!");
+                    }
                 }
                 catch (Exception e)
                 {
@@ -249,12 +244,10 @@ public class LoginActivity extends AccountAuthenticatorActivity
                 }
             }
         }.execute();
-        return isLogin;
     }
 
     private void finishLogin(Intent intent)
     {
-
         String accountName = intent.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
         String accountPassword = intent.getStringExtra(Common.PARAM_USER_PASS);
         final Account account = new Account(accountName, intent.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE));
@@ -263,6 +256,10 @@ public class LoginActivity extends AccountAuthenticatorActivity
         {
             String authtoken = intent.getStringExtra(AccountManager.KEY_AUTHTOKEN);
             String authtokenType = mAuthTokenType;
+            Intent intentSlidebar = new Intent(getBaseContext(), SlidebarActivity.class);
+            intentSlidebar.putExtra("token", authtoken);
+            startActivity(intentSlidebar);
+
             Toast.makeText(getBaseContext(), authtoken, Toast.LENGTH_SHORT).show();
 
 

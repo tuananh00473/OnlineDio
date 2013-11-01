@@ -43,5 +43,8 @@
             <meta-data android:name="android.accounts.AccountAuthenticator"
                        android:resource="@xml/authenticator"/>
         </service>
+        <provider android:name=".provider.OnlineDioContentProvider"
+                  android:authorities="com.qsoft.ondio.localDB">
+        </provider>
     </application>
 </manifest>

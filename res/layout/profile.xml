@@ -114,7 +114,6 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/profile_name_hint"
                         android:singleLine="true"
-                        android:editable="false"
                         android:layout_toRightOf="@id/profile_tvProfileName"
                         android:layout_margin="@dimen/phone_margin_component"
                         android:layout_centerVertical="true"

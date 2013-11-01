@@ -1,6 +1,8 @@
 package com.qsoft.ondio.accountmanager;
 
+import com.qsoft.ondio.model.Profile;
 import com.qsoft.ondio.model.User;
+import com.qsoft.ondio.model.jsonResult;
 
 /**
  * User: udinic
@@ -10,4 +12,7 @@ import com.qsoft.ondio.model.User;
 public interface ServerAuthenticate
 {
     public User login(final String user, final String pass, String authType) throws Exception;
+
+    public jsonResult updateProfile(Profile profile) throws Exception;
+
 }

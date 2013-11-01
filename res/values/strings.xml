@@ -12,8 +12,8 @@
     <string name="forgot_password">
         <u>I forgot my password</u>
     </string>
-    <string name="email_hint">Your email address</string>
-    <string name="password_hint">*******</string>
+    <string name="email_hint">cuongtest11@gmail.com</string>
+    <string name="password_hint">123456</string>
     <string name="header">ONE PICTURE SAYS A THOUSAND WORD\n
         <b>WHAT IF ONE CLIP CAN SAY YOU</b>
     </string>

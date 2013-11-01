@@ -73,7 +73,7 @@ public class MainActivity extends Activity
 
     private Boolean doCheckTokenCurrent()
     {
-        getTokenForAccountCreateIfNeeded(Common.ARG_ACCOUNT_TYPE, Common.AUTHTOKEN_TYPE_FULL_ACCESS);
+        authToken = getTokenForAccountCreateIfNeeded(Common.ARG_ACCOUNT_TYPE, Common.AUTHTOKEN_TYPE_FULL_ACCESS);
         if (null != authToken)
         {
             return true;
@@ -86,18 +86,18 @@ public class MainActivity extends Activity
 
     private String getTokenForAccountCreateIfNeeded(String accountType, String authTokenType)
     {
+        final String[] token = {null};
         final AccountManagerFuture<Bundle> future = mAccountManager.getAuthTokenByFeatures(accountType, authTokenType, null, this, null, null,
                 new AccountManagerCallback<Bundle>()
                 {
                     @Override
                     public void run(AccountManagerFuture<Bundle> future)
                     {
-                        Bundle bnd = null;
                         try
                         {
-                            bnd = future.getResult();
-                            authToken = bnd.getString(AccountManager.KEY_AUTHTOKEN);
-                            if (authToken != null)
+                            Bundle bnd = future.getResult();
+                            token[0] = bnd.getString(AccountManager.KEY_AUTHTOKEN);
+                            if (null != token[0])
                             {
                                 String accountName = bnd.getString(AccountManager.KEY_ACCOUNT_NAME);
                                 mConnectedAccount = new Account(accountName, Common.ARG_ACCOUNT_TYPE);
@@ -111,7 +111,7 @@ public class MainActivity extends Activity
                     }
                 }
                 , null);
-        return null;
+        return token[0];
     }
 
     private void showMessage(final String msg)

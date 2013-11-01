@@ -1,5 +1,8 @@
 package com.qsoft.ondio.model;
 
+import android.content.ContentValues;
+import com.qsoft.ondio.util.Common;
+
 import java.io.Serializable;
 
 /**
@@ -9,13 +12,24 @@ import java.io.Serializable;
  */
 public class Profile implements Serializable
 {
+    private long id;
     private String displayName;
     private String fullName;
     private String phoneNo;
     private String birthday;
-    private String gender;
+    private int gender;
     private String country;
     private String description;
+
+    public long getId()
+    {
+        return id;
+    }
+
+    public void setId(long id)
+    {
+        this.id = id;
+    }
 
     public String getDisplayName()
     {
@@ -57,12 +71,12 @@ public class Profile implements Serializable
         this.birthday = birthday;
     }
 
-    public String getGender()
+    public int getGender()
     {
         return gender;
     }
 
-    public void setGender(String gender)
+    public void setGender(int gender)
     {
         this.gender = gender;
     }
@@ -85,5 +99,19 @@ public class Profile implements Serializable
     public void setDescription(String description)
     {
         this.description = description;
+    }
+
+    public ContentValues getContentValues()
+    {
+        ContentValues values = new ContentValues();
+        values.put(Common.PROFILE_ID, id);
+        values.put(Common.PROFILE_DISPLAY_NAME, displayName);
+        values.put(Common.PROFILE_FULL_NAME, fullName);
+        values.put(Common.PROFILE_PHONE, phoneNo);
+        values.put(Common.PROFILE_BIRTHDAY, birthday);
+        values.put(Common.PROFILE_GENDER, gender);
+        values.put(Common.PROFILE_COUNTRY, country);
+        values.put(Common.PROFILE_DESCRIPTION, description);
+        return values;
     }
 }

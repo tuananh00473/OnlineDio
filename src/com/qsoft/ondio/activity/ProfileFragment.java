@@ -1,5 +1,6 @@
 package com.qsoft.ondio.activity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.*;
@@ -17,6 +18,7 @@ import android.widget.*;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.dialog.MyDialog;
 import com.qsoft.ondio.model.Profile;
+import com.qsoft.ondio.util.Common;
 
 /**
  * User: anhnt
@@ -26,6 +28,7 @@ import com.qsoft.ondio.model.Profile;
 public class ProfileFragment extends Fragment
 {
     private static final String TAG = "ProfileFragment";
+
     private EditText etProfileName;
     private EditText etFullName;
     private EditText etPhoneNo;
@@ -43,7 +46,7 @@ public class ProfileFragment extends Fragment
 
     private static final int MALE = 0;
     private static final int FEMALE = 1;
-    private static String gender;
+    private static int gender;
     private static final int REQUEST_CODE_CAMERA_TAKE_PICTURE = 999;
     private static final int REQUEST_CODE_RESULT_LOAD_IMAGE = 888;
     private static final int AVATAR_CODE = 0;
@@ -87,6 +90,30 @@ public class ProfileFragment extends Fragment
         scroll = (ScrollView) view.findViewById(R.id.profile_svScroll);
         btSave = (Button) view.findViewById(R.id.profile_btSave);
         btMenu = (Button) view.findViewById(R.id.profile_btMenu);
+
+        loadProfileFromDB();
+    }
+
+    private void loadProfileFromDB()
+    {
+        Cursor c = getActivity().managedQuery(Common.CONTENT_URI_PROFILE, null, null, null, "displayName");
+        if (c.moveToFirst())
+        {
+            etProfileName.setText(c.getString(c.getColumnIndex(Common.PROFILE_DISPLAY_NAME)));
+            etFullName.setText(c.getString(c.getColumnIndex(Common.PROFILE_FULL_NAME)));
+            etPhoneNo.setText(c.getString(c.getColumnIndex(Common.PROFILE_PHONE)));
+            etBirthday.setText(c.getString(c.getColumnIndex(Common.PROFILE_BIRTHDAY)));
+            if ("male".equals(c.getString(c.getColumnIndex(Common.PROFILE_GENDER))))
+            {
+                setGender(MALE);
+            }
+            else
+            {
+                setGender(FEMALE);
+            }
+            etCountry.setText(c.getString(c.getColumnIndex(Common.PROFILE_COUNTRY)));
+            etDescription.setText(c.getString(c.getColumnIndex(Common.PROFILE_DESCRIPTION)));
+        }
     }
 
     private final View.OnClickListener onClickListener = new View.OnClickListener()
@@ -139,16 +166,55 @@ public class ProfileFragment extends Fragment
 
     private void doSave()
     {
-        Profile profile = new Profile();
-        profile.setDisplayName(etProfileName.getText().toString());
-        profile.setFullName(etFullName.getText().toString());
-        profile.setPhoneNo(etPhoneNo.getText().toString());
-        profile.setBirthday(etBirthday.getText().toString());
-        profile.setGender(gender);
-        profile.setCountry(etCountry.getText().toString());
-        profile.setDescription(etDescription.getText().toString());
+        try
+        {
+            Profile profile = new Profile();
+            profile.setId(getUserId());
+            profile.setDisplayName(etProfileName.getText().toString());
+            profile.setFullName(etFullName.getText().toString());
+            profile.setPhoneNo(etPhoneNo.getText().toString());
+            profile.setBirthday(etBirthday.getText().toString());
+            profile.setGender(gender);
+            profile.setCountry(etCountry.getText().toString());
+            profile.setDescription(etDescription.getText().toString());
 
-        // save(profile);
+            saveToDB(profile);
+
+//            jsonResult result = Common.sServerAuthenticate.updateProfile(profile);
+//            if ("success".equals(result))
+//            {
+//                saveToDB(profile);
+            MyDialog.showMessageDialog(getActivity(), "Success", "Profile updated!");
+//            }
+//            else
+//            {
+//                MyDialog.showMessageDialog(getActivity(), "Failure", "Form invalid!");
+//            }
+            loadProfileFromDB();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveToDB(Profile profile)
+    {
+        ContentValues values = profile.getContentValues();
+
+        Uri uri = getActivity().getContentResolver().insert(Common.CONTENT_URI_PROFILE, values);
+        Toast.makeText(getActivity().getBaseContext(), uri.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    private Long getUserId()
+    {
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//        long userId = sharedPreferences.getLong(Common.KEY, -1l);
+//        if (-1l != userId)
+//        {
+//            return userId;
+//        }
+        return 573l;
     }
 
     private void setCoverImage()
@@ -168,12 +234,12 @@ public class ProfileFragment extends Fragment
         switch (gender)
         {
             case MALE:
-                ProfileFragment.gender = "male";
+                ProfileFragment.gender = MALE;
                 btMale.setBackgroundResource(R.drawable.profile_male);
                 btFemale.setBackgroundResource(R.drawable.profile_female_visible);
                 break;
             case FEMALE:
-                ProfileFragment.gender = "female";
+                ProfileFragment.gender = FEMALE;
                 btFemale.setBackgroundResource(R.drawable.profile_female);
                 btMale.setBackgroundResource(R.drawable.profile_male_visible);
                 break;

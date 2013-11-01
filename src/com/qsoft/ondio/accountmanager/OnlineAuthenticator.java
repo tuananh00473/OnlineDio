@@ -3,7 +3,9 @@ package com.qsoft.ondio.accountmanager;
 import android.accounts.*;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import com.qsoft.ondio.activity.LoginActivity;
@@ -78,6 +80,7 @@ public class OnlineAuthenticator extends AbstractAccountAuthenticator
                     {
                         authToken = user.getAccess_token();
                         userId = user.getUser_id();
+                        saveUserIdToSharedPreferences(Common.KEY, Long.parseLong(userId));
                     }
                 }
                 catch (Exception e)
@@ -104,6 +107,14 @@ public class OnlineAuthenticator extends AbstractAccountAuthenticator
         final Bundle bundle = new Bundle();
         bundle.putParcelable(AccountManager.KEY_INTENT, intent);
         return bundle;
+    }
+
+    private void saveUserIdToSharedPreferences(String key, Long value)
+    {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong(key, value);
+        editor.commit();
     }
 
 

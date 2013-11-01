@@ -1,174 +1,157 @@
 package com.qsoft.ondio.provider;
 
+import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import com.finchframework.finch.rest.FileHandlerFactory;
-import com.finchframework.finch.rest.RESTfulContentProvider;
-import com.finchframework.finch.rest.ResponseHandler;
+import android.text.TextUtils;
+import com.qsoft.ondio.util.Common;
 
-import java.io.File;
+import java.util.HashMap;
 
 /**
  * Simple content provider that demonstrates the basics of creating a content
  * provider that stores basic video meta-data.
  */
-public class OnlineDioContentProvider extends RESTfulContentProvider
+public class OnlineDioContentProvider extends ContentProvider
 {
-    public static final String PROVIDER_NAME = "com.qsoft.ondio.feed";
-    public static final String URL_CONTENT = "content://" + PROVIDER_NAME + "/feed";
-
-    public static final String DATABASE_NAME = "localdata.db";
-    public static int DATABASE_VERSION = 2;
-
     public static final int FEEDS = 1;
     public static final int FEED_ID = 2;
+    public static final int PROFILES = 3;
+    public static final int PROFILE_ID = 4;
 
-    public static final String FEED_TABLE_NAME = "feed";
-    private static final String FINCH_FEED_FILE_CACHE = "finch_feed_file_cache";
-
-    private DatabaseHelper mOpenHelper;
+    private DatabaseHelper databaseHelper;
     private SQLiteDatabase mDb;
+
+    private static HashMap<String, String> PROFILE_PROJECTION_MAP;
 
     private static UriMatcher sUriMatcher;
 
     static
     {
         sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        sUriMatcher.addURI(PROVIDER_NAME, "feeds", FEEDS);
-        sUriMatcher.addURI(PROVIDER_NAME, "feeds/#", FEED_ID);
+        sUriMatcher.addURI(Common.PROVIDER_NAME, Common.FEED_TABLE_NAME, FEEDS);
+        sUriMatcher.addURI(Common.PROVIDER_NAME, Common.FEED_TABLE_NAME + "/#", FEED_ID);
+        sUriMatcher.addURI(Common.PROVIDER_NAME, Common.PROFILE_TABLE_NAME, PROFILES);
+        sUriMatcher.addURI(Common.PROVIDER_NAME, Common.PROFILE_TABLE_NAME + "/#", PROFILE_ID);
     }
 
-    @Override
-    public Uri insert(Uri uri, ContentValues cv, SQLiteDatabase db)
-    {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public SQLiteDatabase getDatabase()
-    {
-        return mDb;
-    }
-
-    @Override
-    protected ResponseHandler newResponseHandler(String requestTag)
-    {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 
     @Override
     public boolean onCreate()
     {
-        FileHandlerFactory fileHandlerFactory =
-                new FileHandlerFactory(new File(getContext().getFilesDir(),
-                        FINCH_FEED_FILE_CACHE));
-        setFileHandlerFactory(fileHandlerFactory);
+        databaseHelper = new DatabaseHelper(getContext(), Common.DATABASE_NAME, null);
+        mDb = databaseHelper.getWritableDatabase();
 
-        mOpenHelper = new DatabaseHelper(getContext(), DATABASE_NAME, null);
-        mDb = mOpenHelper.getWritableDatabase();
-
-        return true;
+        return (mDb == null) ? false : true;
     }
 
     @Override
-    public Cursor query(Uri uri, String[] strings, String s, String[] strings2, String s2)
+    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
     {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        qb.setTables(Common.PROFILE_TABLE_NAME);
+
+        switch (sUriMatcher.match(uri))
+        {
+            case PROFILES:
+                qb.setProjectionMap(PROFILE_PROJECTION_MAP);
+                break;
+            case PROFILE_ID:
+                qb.appendWhere(Common.PROFILE_ID + "=" + uri.getPathSegments().get(1));
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri);
+        }
+        if (sortOrder == null || sortOrder == "")
+        {
+            sortOrder = Common.PROFILE_FULL_NAME;
+        }
+        Cursor c = qb.query(mDb, projection, selection, selectionArgs, null, null, sortOrder);
+        c.setNotificationUri(getContext().getContentResolver(), uri);
+
+        return c;
     }
 
     @Override
     public String getType(Uri uri)
     {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        switch (sUriMatcher.match(uri))
+        {
+            case PROFILES:
+                return "vnd.android.cursor.dir/vnd.onldio.profiles";
+            case PROFILE_ID:
+                return "vnd.android.cursor.item/vnd.onldio.profiles";
+            default:
+                throw new IllegalArgumentException("Unsupported URI: " + uri);
+        }
     }
 
     @Override
-    public Uri insert(Uri uri, ContentValues contentValues)
+    public Uri insert(Uri uri, ContentValues values)
     {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        long rowID = mDb.insert(Common.PROFILE_TABLE_NAME, "", values);
+        /**
+         * If record is added successfully
+         */
+        if (rowID > 0)
+        {
+            Uri _uri = ContentUris.withAppendedId(Common.CONTENT_URI_PROFILE, rowID);
+            getContext().getContentResolver().notifyChange(_uri, null);
+            return _uri;
+        }
+        throw new SQLException("Failed to add a record into " + uri);
     }
 
     @Override
-    public int delete(Uri uri, String s, String[] strings)
+    public int delete(Uri uri, String selection, String[] selectionArgs)
     {
-        int match = sUriMatcher.match(uri);
-        int affected = -1000000;     // feck
-//
-//        SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-//        switch (match) {
-//            case VIDEO_ID:
-//                long videoId = ContentUris.parseId(uri);
-//                affected = db.delete(VIDEOS_TABLE_NAME,
-//                        BaseColumns._ID + "=" + videoId
-//                                + (!TextUtils.isEmpty(where) ?
-//                                " AND (" + where + ')' : ""),
-//                        whereArgs);
-//                getContext().getContentResolver().notifyChange(uri, null);
-//
-//                break;
-//            default:
-//                throw new IllegalArgumentException("unknown video element: " +
-//                        uri);
-//        }
-//
-        return affected;
+        int count = 0;
+
+        switch (sUriMatcher.match(uri))
+        {
+            case PROFILES:
+                count = mDb.delete(Common.PROFILE_TABLE_NAME, selection, selectionArgs);
+                break;
+            case PROFILE_ID:
+                String id = uri.getPathSegments().get(1);
+                count = mDb.delete(Common.PROFILE_TABLE_NAME, Common.PROFILE_ID + " = " + id +
+                        (!TextUtils.isEmpty(selection) ? " AND (" +
+                                selection + ')' : ""), selectionArgs);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri);
+        }
+
+        getContext().getContentResolver().notifyChange(uri, null);
+        return count;
     }
 
     @Override
-    public int update(Uri uri, ContentValues contentValues, String s, String[] strings)
+    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs)
     {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
-    }
+        int count = 0;
 
-    private static class DatabaseHelper extends SQLiteOpenHelper
-    {
-        private DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory)
+        switch (sUriMatcher.match(uri))
         {
-            super(context, name, factory, DATABASE_VERSION);
+            case PROFILES:
+                count = mDb.update(Common.PROFILE_TABLE_NAME, values, selection, selectionArgs);
+                break;
+            case PROFILE_ID:
+                count = mDb.update(Common.PROFILE_TABLE_NAME, values, Common.PROFILE_ID +
+                        " = " + uri.getPathSegments().get(1) +
+                        (!TextUtils.isEmpty(selection) ? " AND (" +
+                                selection + ')' : ""), selectionArgs);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri);
         }
-
-        @Override
-        public void onCreate(SQLiteDatabase sqLiteDatabase)
-        {
-            createTable(sqLiteDatabase);
-        }
-
-        private void createTable(SQLiteDatabase sqLiteDatabase)
-        {
-            String createvideoTable =
-                    "CREATE TABLE " + FEED_TABLE_NAME + " (" +
-                            FinchIFeed.Feed.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                            FinchIFeed.Feed.TITLE + " TEXT, " +
-                            FinchIFeed.Feed.USER_ID + " TEXT, " +
-                            FinchIFeed.Feed.THUMBNAIL + " TEXT, " +
-                            FinchIFeed.Feed.DESCRIPTION + " TEXT, " +
-                            FinchIFeed.Feed.SOUND_PATH + " TEXT, " +
-                            FinchIFeed.Feed.DURATION + " TEXT, " +
-                            FinchIFeed.Feed.PLAYED + " TEXT, " +
-                            FinchIFeed.Feed.CREATED_AT + " TEXT, " +
-                            FinchIFeed.Feed.UPDATE_AT + " TEXT, " +
-                            FinchIFeed.Feed.LIKES + " TEXT, " +
-                            FinchIFeed.Feed.VIEWED + " TEXT, " +
-                            FinchIFeed.Feed.COMMENTS + " TEXT, " +
-                            FinchIFeed.Feed.USERNAME + " TEXT, " +
-                            FinchIFeed.Feed.DISPLAY_NAME + " TEXT, " +
-                            FinchIFeed.Feed.AVATAR + " TEXT " +
-                            ");";
-            sqLiteDatabase.execSQL(createvideoTable);
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldv,
-                              int newv)
-        {
-            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " +
-                    FEED_TABLE_NAME + ";");
-            createTable(sqLiteDatabase);
-        }
+        getContext().getContentResolver().notifyChange(uri, null);
+        return count;
     }
 }

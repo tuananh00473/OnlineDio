@@ -24,6 +24,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="gson-1.7.1" level="project" />
+    <orderEntry type="module" module-name="FinchFramework" />
   </component>
 </module>
 
