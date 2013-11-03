@@ -12,11 +12,9 @@ import com.qsoft.ondio.model.Feed;
 import java.util.ArrayList;
 
 /**
- * Created with IntelliJ IDEA.
- * User: thinhdd
+ * User: AnhNT
  * Date: 10/12/13
  * Time: 11:08 AM
- * To change this template use File | Settings | File Templates.
  */
 public class ArrayAdapterCustom extends ArrayAdapter<Feed>
 {
@@ -48,11 +46,11 @@ public class ArrayAdapterCustom extends ArrayAdapter<Feed>
         setUpViewFindByID(v);
         if (feed != null)
         {
-            home_tvFeed.setText(feed.getFeedTitle());
-            home_tvUserName.setText(feed.getFeedUserName());
-            home_tvLike.setText(feed.getFeedLike());
-            home_tvComment.setText(feed.getFeedComment());
-            home_tvDays.setText(feed.getFeedDays());
+            home_tvFeed.setText(feed.getTitle());
+            home_tvUserName.setText(feed.getUsername());
+            home_tvLike.setText(feed.getLikes());
+            home_tvComment.setText(feed.getComments());
+            home_tvDays.setText(feed.getCreated_at());
         }
         return v;
     }

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.dialog.MyDialog;
+import com.qsoft.ondio.model.JsonResult;
 import com.qsoft.ondio.model.Profile;
 import com.qsoft.ondio.util.Common;
 
@@ -179,18 +180,16 @@ public class ProfileFragment extends Fragment
             profile.setDescription(etDescription.getText().toString());
 
             saveToDB(profile);
-
-//            jsonResult result = Common.sServerAuthenticate.updateProfile(profile);
-//            if ("success".equals(result))
-//            {
-//                saveToDB(profile);
-            MyDialog.showMessageDialog(getActivity(), "Success", "Profile updated!");
-//            }
-//            else
-//            {
-//                MyDialog.showMessageDialog(getActivity(), "Failure", "Form invalid!");
-//            }
-            loadProfileFromDB();
+            JsonResult result = Common.sServerAuthenticate.updateProfile(profile);
+            if ("success".equals(result))
+            {
+                saveToDB(profile);
+                MyDialog.showMessageDialog(getActivity(), "Success", "Profile updated!");
+            }
+            else
+            {
+                MyDialog.showMessageDialog(getActivity(), "Failure", "Update failure, try again later!");
+            }
         }
         catch (Exception e)
         {
@@ -208,13 +207,12 @@ public class ProfileFragment extends Fragment
 
     private Long getUserId()
     {
-//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-//        long userId = sharedPreferences.getLong(Common.KEY, -1l);
-//        if (-1l != userId)
-//        {
-//            return userId;
-//        }
-        return 573l;
+        Cursor c = getActivity().managedQuery(Common.CONTENT_URI_USER, null, null, null, "user_id");
+        if (c.moveToFirst())
+        {
+            return Long.parseLong(c.getString(c.getColumnIndex(Common.USER_USER_ID)));
+        }
+        return null;
     }
 
     private void setCoverImage()

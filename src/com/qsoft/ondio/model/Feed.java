@@ -13,36 +13,25 @@ import com.qsoft.ondio.util.Common;
 public class Feed
 {
     public int id;
-
     public String user_id;
-
     public String title;
-
     public String thumbnail;
-
     public String sound_path;
-
     public String description;
-
     public String duration;
-
     public String played;
-
     public String created_at;
-
     public String updated_at;
-
     public String likes;
-
     public String viewed;
-
     public String comments;
-
     public String username;
-
     public String display_name;
-
     public String avatar;
+
+    public Feed()
+    {
+    }
 
     public Feed(int id, String user_id, String title, String thumbnail, String sound_path, String description, String duration, String played, String created_at, String updated_at, String likes, String viewed, String comments, String username, String display_name, String avatar)
     {

@@ -49,7 +49,12 @@ public class Common
     //    database feed contants
     public static final String FEED_TABLE_NAME = "feeds";
     public static final String URL_FEED = "content://" + PROVIDER_NAME + "/" + FEED_TABLE_NAME;
-    public static final String FINCH_FEED_FILE_CACHE = "finch_feed_file_cache";
+    public static final Uri CONTENT_URI_FEED = Uri.parse(URL_FEED);
+
+    //    database user constants
+    public static final String USER_TABLE_NAME = "users";
+    public static final String URL_USER = "content://" + PROVIDER_NAME + "/" + USER_TABLE_NAME;
+    public static final Uri CONTENT_URI_USER = Uri.parse(URL_USER);
 
     //    home feed constants
     public static final String FEED_ID = "id";
@@ -68,4 +73,12 @@ public class Common
     public static final String FEED_USERNAME = "username";
     public static final String FEED_DISPLAY_NAME = "display_name";
     public static final String FEED_AVATAR = "avatar";
+
+    //    user constants
+    public static final String USER_ID = "id";
+    public static final String USER_ACCESS_TOKEN = "access_token";
+    public static final String USER_CLIENT_ID = "client_id";
+    public static final String USER_USER_ID = "user_id";
+    public static final String USER_EXPIRES = "expires";
+    public static final String USER_SCOPE = "scope";
 }

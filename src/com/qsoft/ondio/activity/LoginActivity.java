@@ -3,7 +3,9 @@ package com.qsoft.ondio.activity;
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorActivity;
 import android.accounts.AccountManager;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -201,19 +203,23 @@ public class LoginActivity extends AccountAuthenticatorActivity
                 Bundle data = new Bundle();
                 try
                 {
+                    Log.d(TAG, "before getUser");
                     User user = Common.sServerAuthenticate.login(userName, password, mAuthTokenType);
-                    Log.d(TAG, "getUser" + user.getUser_id());
+                    Log.d(TAG, "getUser " + user.getUser_id());
                     if (null != user.getAccess_token())
                     {
                         data.putString(AccountManager.KEY_ACCOUNT_NAME, userName);
                         data.putString(AccountManager.KEY_ACCOUNT_TYPE, Common.ARG_ACCOUNT_TYPE);
                         data.putString(AccountManager.KEY_AUTHTOKEN, user.getAccess_token());
-
                         Log.d(TAG, "Show token" + user.getAccess_token());
+
+                        ContentValues values = user.getContentValues();
+                        Log.d(TAG, "Values to String : " + values.toString());
+                        Uri uri = getContentResolver().insert(Common.CONTENT_URI_USER, values);
+
                         Bundle userData = new Bundle();
                         userData.putString(Common.USERDATA_USER_OBJ_ID, user.getUser_id());
                         data.putBundle(AccountManager.KEY_USERDATA, userData);
-
                         data.putString(Common.PARAM_USER_PASS, password);
                     }
                     else
@@ -262,7 +268,6 @@ public class LoginActivity extends AccountAuthenticatorActivity
 
             Toast.makeText(getBaseContext(), authtoken, Toast.LENGTH_SHORT).show();
 
-
             mAccountManager.addAccountExplicitly(account, accountPassword, intent.getBundleExtra(AccountManager.KEY_USERDATA));
             mAccountManager.setAuthToken(account, authtokenType, authtoken);
         }
@@ -275,5 +280,4 @@ public class LoginActivity extends AccountAuthenticatorActivity
         setAccountAuthenticatorResult(intent.getExtras());
         setResult(RESULT_OK, intent);
     }
-
 }

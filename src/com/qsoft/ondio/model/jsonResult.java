@@ -5,10 +5,11 @@ package com.qsoft.ondio.model;
  * Date: 11/1/13
  * Time: 10:04 AM
  */
-public class jsonResult
+public class JsonResult
 {
     String code;
     String status;
+    Object data;
     String message;
 
     public String getCode()
@@ -29,6 +30,16 @@ public class jsonResult
     public void setStatus(String status)
     {
         this.status = status;
+    }
+
+    public Object getData()
+    {
+        return data;
+    }
+
+    public void setData(Object data)
+    {
+        this.data = data;
     }
 
     public String getMessage()

@@ -3,6 +3,7 @@ package com.qsoft.ondio.provider;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import com.qsoft.ondio.util.Common;
 
 /**
@@ -12,6 +13,8 @@ import com.qsoft.ondio.util.Common;
  */
 public class DatabaseHelper extends SQLiteOpenHelper
 {
+    private static final String TAG = "DatabaseHelper";
+
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory)
     {
         super(context, name, factory, Common.DATABASE_VERSION);
@@ -20,8 +23,12 @@ public class DatabaseHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase)
     {
-        createProfileTable(sqLiteDatabase);
+        createUsersTable(sqLiteDatabase);
+        Log.d(TAG, "Create database USER");
         createFeedsTable(sqLiteDatabase);
+        Log.d(TAG, "Create database FEED");
+        createProfileTable(sqLiteDatabase);
+        Log.d(TAG, "Create database PROFILE");
     }
 
     private void createProfileTable(SQLiteDatabase sqLiteDatabase)
@@ -45,7 +52,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         String createFeedTable =
                 "CREATE TABLE " + Common.FEED_TABLE_NAME + " (" +
-                        Common.FEED_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        Common.FEED_ID + " TEXT, " +
                         Common.FEED_TITLE + " TEXT, " +
                         Common.FEED_USER_ID + " TEXT, " +
                         Common.FEED_THUMBNAIL + " TEXT, " +
@@ -65,11 +73,30 @@ public class DatabaseHelper extends SQLiteOpenHelper
         sqLiteDatabase.execSQL(createFeedTable);
     }
 
+    private void createUsersTable(SQLiteDatabase sqLiteDatabase)
+    {
+        String createUserTable =
+                "CREATE TABLE " + Common.USER_TABLE_NAME + " (" +
+                        "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        Common.USER_ID + " TEXT, " +
+                        Common.USER_ACCESS_TOKEN + " TEXT, " +
+                        Common.USER_CLIENT_ID + " TEXT, " +
+                        Common.USER_USER_ID + " TEXT, " +
+                        Common.USER_EXPIRES + " TEXT, " +
+                        Common.USER_SCOPE + " TEXT " +
+                        ");";
+        sqLiteDatabase.execSQL(createUserTable);
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldv, int newv)
     {
+        upgradeTable(sqLiteDatabase, Common.USER_TABLE_NAME);
+        Log.d(TAG, "Upgrade USER");
         upgradeTable(sqLiteDatabase, Common.PROFILE_TABLE_NAME);
+        Log.d(TAG, "Upgrade FEED");
         upgradeTable(sqLiteDatabase, Common.FEED_TABLE_NAME);
+        Log.d(TAG, "Upgrade PROFILE");
     }
 
     public void upgradeTable(SQLiteDatabase sqLiteDatabase, String tableName)
