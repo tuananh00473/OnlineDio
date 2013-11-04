@@ -12,53 +12,111 @@ import java.io.Serializable;
  */
 public class Profile implements Serializable
 {
-    private long id;
-    private String displayName;
-    private String fullName;
-    private String phoneNo;
+    private int id;
+    private int facebook_id;
+    private String username;
+    private String password;
+    private String avatar;
+    private String cover_image;
+    private String display_name;
+    private String full_name;
+    private String phone;
     private String birthday;
     private int gender;
-    private String country;
+    private int country_id;
+    private int storage_plan_id;
     private String description;
+    private String created_at;
+    private String updated_at;
 
-    public long getId()
+    public int getId()
     {
         return id;
     }
 
-    public void setId(long id)
+    public void setId(int id)
     {
         this.id = id;
     }
 
-    public String getDisplayName()
+    public int getFacebook_id()
     {
-        return displayName;
+        return facebook_id;
     }
 
-    public void setDisplayName(String displayName)
+    public void setFacebook_id(int facebook_id)
     {
-        this.displayName = displayName;
+        this.facebook_id = facebook_id;
     }
 
-    public String getFullName()
+    public String getUsername()
     {
-        return fullName;
+        return username;
     }
 
-    public void setFullName(String fullName)
+    public void setUsername(String username)
     {
-        this.fullName = fullName;
+        this.username = username;
     }
 
-    public String getPhoneNo()
+    public String getPassword()
     {
-        return phoneNo;
+        return password;
     }
 
-    public void setPhoneNo(String phoneNo)
+    public void setPassword(String password)
     {
-        this.phoneNo = phoneNo;
+        this.password = password;
+    }
+
+    public String getAvatar()
+    {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar)
+    {
+        this.avatar = avatar;
+    }
+
+    public String getCover_image()
+    {
+        return cover_image;
+    }
+
+    public void setCover_image(String cover_image)
+    {
+        this.cover_image = cover_image;
+    }
+
+    public String getDisplay_name()
+    {
+        return display_name;
+    }
+
+    public void setDisplay_name(String display_name)
+    {
+        this.display_name = display_name;
+    }
+
+    public String getFull_name()
+    {
+        return full_name;
+    }
+
+    public void setFull_name(String full_name)
+    {
+        this.full_name = full_name;
+    }
+
+    public String getPhone()
+    {
+        return phone;
+    }
+
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
     }
 
     public String getBirthday()
@@ -81,14 +139,24 @@ public class Profile implements Serializable
         this.gender = gender;
     }
 
-    public String getCountry()
+    public int getCountry_id()
     {
-        return country;
+        return country_id;
     }
 
-    public void setCountry(String country)
+    public void setCountry_id(int country_id)
     {
-        this.country = country;
+        this.country_id = country_id;
+    }
+
+    public int getStorage_plan_id()
+    {
+        return storage_plan_id;
+    }
+
+    public void setStorage_plan_id(int storage_plan_id)
+    {
+        this.storage_plan_id = storage_plan_id;
     }
 
     public String getDescription()
@@ -101,16 +169,36 @@ public class Profile implements Serializable
         this.description = description;
     }
 
+    public String getCreated_at()
+    {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at)
+    {
+        this.created_at = created_at;
+    }
+
+    public String getUpdated_at()
+    {
+        return updated_at;
+    }
+
+    public void setUpdated_at(String updated_at)
+    {
+        this.updated_at = updated_at;
+    }
+
     public ContentValues getContentValues()
     {
         ContentValues values = new ContentValues();
         values.put(Common.PROFILE_ID, id);
-        values.put(Common.PROFILE_DISPLAY_NAME, displayName);
-        values.put(Common.PROFILE_FULL_NAME, fullName);
-        values.put(Common.PROFILE_PHONE, phoneNo);
+        values.put(Common.PROFILE_DISPLAY_NAME, display_name);
+        values.put(Common.PROFILE_FULL_NAME, full_name);
+        values.put(Common.PROFILE_PHONE, phone);
         values.put(Common.PROFILE_BIRTHDAY, birthday);
         values.put(Common.PROFILE_GENDER, gender);
-        values.put(Common.PROFILE_COUNTRY, country);
+        values.put(Common.PROFILE_COUNTRY, country_id);
         values.put(Common.PROFILE_DESCRIPTION, description);
         return values;
     }

@@ -171,19 +171,18 @@ public class ProfileFragment extends Fragment
         {
             Profile profile = new Profile();
             profile.setId(getUserId());
-            profile.setDisplayName(etProfileName.getText().toString());
-            profile.setFullName(etFullName.getText().toString());
-            profile.setPhoneNo(etPhoneNo.getText().toString());
+            profile.setDisplay_name(etProfileName.getText().toString());
+            profile.setFull_name(etFullName.getText().toString());
+            profile.setPhone(etPhoneNo.getText().toString());
             profile.setBirthday(etBirthday.getText().toString());
             profile.setGender(gender);
-            profile.setCountry(etCountry.getText().toString());
+            profile.setCountry_id(Integer.parseInt(etCountry.getText().toString()));
             profile.setDescription(etDescription.getText().toString());
 
-            saveToDB(profile);
             JsonResult result = Common.sServerAuthenticate.updateProfile(profile);
-            if ("success".equals(result))
+            if ("success".equals(result.getStatus()))
             {
-                saveToDB(profile);
+                saveProfileToDB(profile);
                 MyDialog.showMessageDialog(getActivity(), "Success", "Profile updated!");
             }
             else
@@ -197,20 +196,26 @@ public class ProfileFragment extends Fragment
         }
     }
 
-    private void saveToDB(Profile profile)
+    private void saveProfileToDB(Profile profile)
     {
         ContentValues values = profile.getContentValues();
-
-        Uri uri = getActivity().getContentResolver().insert(Common.CONTENT_URI_PROFILE, values);
-        Toast.makeText(getActivity().getBaseContext(), uri.toString(), Toast.LENGTH_LONG).show();
+        Cursor c = getActivity().managedQuery(Common.CONTENT_URI_PROFILE, null, null, null, "_ID");
+        if (c.moveToFirst())
+        {
+            getActivity().getContentResolver().update(Common.CONTENT_URI_PROFILE, values, null, null);
+        }
+        else
+        {
+            Uri uri = getActivity().getContentResolver().insert(Common.CONTENT_URI_PROFILE, values);
+        }
     }
 
-    private Long getUserId()
+    private Integer getUserId()
     {
         Cursor c = getActivity().managedQuery(Common.CONTENT_URI_USER, null, null, null, "user_id");
         if (c.moveToFirst())
         {
-            return Long.parseLong(c.getString(c.getColumnIndex(Common.USER_USER_ID)));
+            return Integer.parseInt(c.getString(c.getColumnIndex(Common.USER_USER_ID)));
         }
         return null;
     }

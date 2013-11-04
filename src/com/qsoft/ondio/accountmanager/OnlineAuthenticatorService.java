@@ -6,6 +6,21 @@ import android.os.IBinder;
 
 public class OnlineAuthenticatorService extends Service
 {
+    private static final Object sSyncAdapterLock = new Object();
+    private static OnlineSyncAdapter sSyncAdapter = null;
+
+    @Override
+    public void onCreate()
+    {
+        synchronized (sSyncAdapterLock)
+        {
+            if (sSyncAdapter == null)
+            {
+                sSyncAdapter = new OnlineSyncAdapter(getApplicationContext(), true);
+            }
+        }
+    }
+
     @Override
     public IBinder onBind(Intent intent)
     {

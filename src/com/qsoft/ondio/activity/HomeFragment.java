@@ -1,6 +1,8 @@
 package com.qsoft.ondio.activity;
 
+import android.accounts.Account;
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,8 +14,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import com.qsoft.ondio.R;
+import com.qsoft.ondio.customui.ArrayAdapterCustom;
 import com.qsoft.ondio.model.Feed;
-import com.qsoft.ondio.model.JsonResult;
 import com.qsoft.ondio.util.Common;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class HomeFragment extends Fragment
     private Button btMenu;
     private ListView home_lvFeeds;
     private ArrayList<Feed> feedList;
+    private Account mConnectedAccount;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -43,11 +46,32 @@ public class HomeFragment extends Fragment
 
     private void setUpDataToHomeListView(Context context)
     {
-        Log.d(TAG, "xxx");
-        JsonResult jsonResult = Common.sServerAuthenticate.getHomeFeed(5, 2, "2013-01-01", "2013-12-12");
-        Log.d(TAG, "jsonReusult : " + jsonResult);
-//        feedList = (ArrayList<Feed>) jsonResult.getData();
-//        home_lvFeeds.setAdapter(new ArrayAdapterCustom(context, R.layout.home_listfeeds, feedList));
+        try
+        {
+            Log.d(TAG, "xxx");
+            Cursor c = getActivity().managedQuery(Common.CONTENT_URI_FEED, null, null, null, "id");
+            if (c.moveToFirst())
+            {
+//            JsonResult result = Common.sServerAuthenticate.getHomeFeed(c.getString(c.getColumnIndex(Common.USER_ACCESS_TOKEN)));
+//            feedList = (ArrayList<Feed>) result.getData();
+//                feedList = Common.sServerAuthenticate.getHomeFeed(c.getString(c.getColumnIndex(Common.USER_ACCESS_TOKEN)));
+//                Log.d(TAG, "feedlist : " + feedList.toString());
+                Feed feed = new Feed();
+                feed.setId(Integer.parseInt(c.getString(c.getColumnIndex(Common.FEED_ID))));
+                feed.setTitle(c.getString(c.getColumnIndex(Common.FEED_TITLE)));
+                feed.setUsername(c.getString(c.getColumnIndex(Common.FEED_USERNAME)));
+                feed.setLikes(Integer.parseInt(c.getString(c.getColumnIndex(Common.FEED_LIKES))));
+                feed.setComments(Integer.parseInt(c.getString(c.getColumnIndex(Common.FEED_COMMENTS))));
+                feed.setViewed(Integer.parseInt(c.getString(c.getColumnIndex(Common.FEED_VIEWED))));
+
+                feedList.add(feed);
+            }
+            home_lvFeeds.setAdapter(new ArrayAdapterCustom(context, R.layout.home_listfeeds, feedList));
+        }
+        catch (Exception e)
+        {
+
+        }
     }
 
     private ListView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener()
@@ -55,7 +79,7 @@ public class HomeFragment extends Fragment
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-//            doShowProgram();
+            doShowProgram();
         }
     };
 
@@ -72,6 +96,7 @@ public class HomeFragment extends Fragment
             }
         }
     };
+
 
     private void showMenu()
     {

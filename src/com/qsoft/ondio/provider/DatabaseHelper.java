@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         String createProfileTable =
                 "CREATE TABLE " + Common.PROFILE_TABLE_NAME + " (" +
                         "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        Common.PROFILE_ID + "TEXT," +
+                        Common.PROFILE_ID + " TEXT," +
                         Common.PROFILE_DISPLAY_NAME + " TEXT, " +
                         Common.PROFILE_FULL_NAME + " TEXT, " +
                         Common.PROFILE_PHONE + " TEXT, " +
@@ -97,11 +97,13 @@ public class DatabaseHelper extends SQLiteOpenHelper
         Log.d(TAG, "Upgrade FEED");
         upgradeTable(sqLiteDatabase, Common.FEED_TABLE_NAME);
         Log.d(TAG, "Upgrade PROFILE");
+        createUsersTable(sqLiteDatabase);
+        createFeedsTable(sqLiteDatabase);
+        createProfileTable(sqLiteDatabase);
     }
 
     public void upgradeTable(SQLiteDatabase sqLiteDatabase, String tableName)
     {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + tableName + ";");
-        createFeedsTable(sqLiteDatabase);
     }
 }

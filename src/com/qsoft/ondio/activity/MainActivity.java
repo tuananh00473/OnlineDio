@@ -5,8 +5,10 @@ import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -15,9 +17,10 @@ import com.qsoft.ondio.util.Common;
 
 public class MainActivity extends Activity
 {
+    private static final String TAG = "MainActivity";
     private Button btLogin;
     private AccountManager mAccountManager;
-    private static String authToken = null;
+    private String authToken;
     private Account mConnectedAccount;
 
     @Override
@@ -57,36 +60,11 @@ public class MainActivity extends Activity
 
     private void doLogin()
     {
-        Boolean accountConnect = doCheckTokenCurrent();
-        if (accountConnect)
-        {
-            Intent intent = new Intent(this, SlidebarActivity.class);
-            startActivity(intent);
-        }
-        else
-        {
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.putExtra("IS_ADDING_ACCOUNT", true);
-            startActivity(intent);
-        }
+        getTokenForAccountCreateIfNeeded(Common.ARG_ACCOUNT_TYPE, Common.AUTHTOKEN_TYPE_FULL_ACCESS);
     }
 
-    private Boolean doCheckTokenCurrent()
+    private void getTokenForAccountCreateIfNeeded(String accountType, String authTokenType)
     {
-        authToken = getTokenForAccountCreateIfNeeded(Common.ARG_ACCOUNT_TYPE, Common.AUTHTOKEN_TYPE_FULL_ACCESS);
-        if (null != authToken)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private String getTokenForAccountCreateIfNeeded(String accountType, String authTokenType)
-    {
-        final String[] token = {null};
         final AccountManagerFuture<Bundle> future = mAccountManager.getAuthTokenByFeatures(accountType, authTokenType, null, this, null, null,
                 new AccountManagerCallback<Bundle>()
                 {
@@ -96,11 +74,23 @@ public class MainActivity extends Activity
                         try
                         {
                             Bundle bnd = future.getResult();
-                            token[0] = bnd.getString(AccountManager.KEY_AUTHTOKEN);
-                            if (null != token[0])
+                            authToken = bnd.getString(AccountManager.KEY_AUTHTOKEN);
+                            Log.d(TAG, "authen = " + authToken);
+                            if (null != authToken)
                             {
                                 String accountName = bnd.getString(AccountManager.KEY_ACCOUNT_NAME);
                                 mConnectedAccount = new Account(accountName, Common.ARG_ACCOUNT_TYPE);
+                                Log.d(TAG, "1");
+                                syncNow();
+                                Log.d(TAG, "2");
+                                Intent intent = new Intent(getBaseContext(), SlidebarActivity.class);
+                                startActivity(intent);
+                            }
+                            else
+                            {
+                                Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                                intent.putExtra("IS_ADDING_ACCOUNT", true);
+                                startActivity(intent);
                             }
                         }
                         catch (Exception e)
@@ -111,7 +101,6 @@ public class MainActivity extends Activity
                     }
                 }
                 , null);
-        return token[0];
     }
 
     private void showMessage(final String msg)
@@ -129,5 +118,20 @@ public class MainActivity extends Activity
                 Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void syncNow()
+    {
+        Log.d(TAG, mConnectedAccount.name);
+        if (mConnectedAccount == null)
+        {
+            return;
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true); // Performing a sync no matter if it's off
+        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true); // Performing a sync no matter if it's off
+        Log.d(TAG, "3");
+        ContentResolver.requestSync(mConnectedAccount, Common.PROVIDER_NAME, bundle);
     }
 }

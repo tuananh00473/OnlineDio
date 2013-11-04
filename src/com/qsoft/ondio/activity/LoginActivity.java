@@ -5,6 +5,7 @@ import android.accounts.AccountAuthenticatorActivity;
 import android.accounts.AccountManager;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -215,7 +216,7 @@ public class LoginActivity extends AccountAuthenticatorActivity
 
                         ContentValues values = user.getContentValues();
                         Log.d(TAG, "Values to String : " + values.toString());
-                        Uri uri = getContentResolver().insert(Common.CONTENT_URI_USER, values);
+                        saveUserToDB(values);
 
                         Bundle userData = new Bundle();
                         userData.putString(Common.USERDATA_USER_OBJ_ID, user.getUser_id());
@@ -250,6 +251,19 @@ public class LoginActivity extends AccountAuthenticatorActivity
                 }
             }
         }.execute();
+    }
+
+    private void saveUserToDB(ContentValues values)
+    {
+        Cursor c = managedQuery(Common.CONTENT_URI_USER, null, null, null, "_ID");
+        if (c.moveToFirst())
+        {
+            int k = getContentResolver().update(Common.CONTENT_URI_USER, values, null, null);
+        }
+        else
+        {
+            Uri uri = getContentResolver().insert(Common.CONTENT_URI_USER, values);
+        }
     }
 
     private void finishLogin(Intent intent)

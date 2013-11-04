@@ -1,8 +1,12 @@
 package com.qsoft.ondio.accountmanager;
 
+import com.qsoft.ondio.model.Feed;
 import com.qsoft.ondio.model.JsonResult;
 import com.qsoft.ondio.model.Profile;
 import com.qsoft.ondio.model.User;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 
 /**
  * User: udinic
@@ -15,6 +19,7 @@ public interface ServerAuthenticate
 
     public JsonResult updateProfile(Profile profile);
 
-    public JsonResult getHomeFeed(int limit, int offset, String dateFrom, String dateTo);
+    public ArrayList<Feed> getHomeFeed(String authToken) throws JSONException;
 
+    void putShow(String authToken, String userObjectId, Feed remoteFeed) throws Exception;
 }

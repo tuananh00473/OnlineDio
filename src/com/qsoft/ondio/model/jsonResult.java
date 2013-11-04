@@ -7,17 +7,17 @@ package com.qsoft.ondio.model;
  */
 public class JsonResult
 {
-    String code;
+    int code;
     String status;
     Object data;
     String message;
 
-    public String getCode()
+    public int getCode()
     {
         return code;
     }
 
-    public void setCode(String code)
+    public void setCode(int code)
     {
         this.code = code;
     }

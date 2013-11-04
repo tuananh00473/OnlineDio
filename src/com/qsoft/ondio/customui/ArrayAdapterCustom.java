@@ -46,11 +46,19 @@ public class ArrayAdapterCustom extends ArrayAdapter<Feed>
         setUpViewFindByID(v);
         if (feed != null)
         {
-            home_tvFeed.setText(feed.getTitle());
+            String tittle = feed.getTitle();
+            try
+            {
+                tittle = tittle.substring(0, 15) + "..";
+            }
+            catch (Exception e)
+            {
+            }
+            home_tvFeed.setText(tittle);
             home_tvUserName.setText(feed.getUsername());
-            home_tvLike.setText(feed.getLikes());
-            home_tvComment.setText(feed.getComments());
-            home_tvDays.setText(feed.getCreated_at());
+            home_tvLike.setText("likes:" + feed.getLikes());
+            home_tvComment.setText("comments:" + feed.getComments());
+            home_tvDays.setText(String.valueOf(feed.getViewed()));
         }
         return v;
     }
