@@ -11,7 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.qsoft.ondio.R;
 
-
+/**
+ * User: AnhNT
+ * Date: 10/16/13
+ * Time: 8:56 AM
+ */
 public class InputCommentActivity extends Activity
 {
     private Button btBack;

@@ -1,12 +1,12 @@
 package com.qsoft.ondio.model;
 
 import android.content.ContentValues;
-import com.qsoft.ondio.util.Common;
+import com.qsoft.ondio.util.Constants;
 
 import java.io.Serializable;
 
 /**
- * User: anhnt
+ * User: AnhNT
  * Date: 10/18/13
  * Time: 4:01 PM
  */
@@ -192,14 +192,14 @@ public class Profile implements Serializable
     public ContentValues getContentValues()
     {
         ContentValues values = new ContentValues();
-        values.put(Common.PROFILE_ID, id);
-        values.put(Common.PROFILE_DISPLAY_NAME, display_name);
-        values.put(Common.PROFILE_FULL_NAME, full_name);
-        values.put(Common.PROFILE_PHONE, phone);
-        values.put(Common.PROFILE_BIRTHDAY, birthday);
-        values.put(Common.PROFILE_GENDER, gender);
-        values.put(Common.PROFILE_COUNTRY, country_id);
-        values.put(Common.PROFILE_DESCRIPTION, description);
+        values.put(Constants.PROFILE_ID, id);
+        values.put(Constants.PROFILE_DISPLAY_NAME, display_name);
+        values.put(Constants.PROFILE_FULL_NAME, full_name);
+        values.put(Constants.PROFILE_PHONE, phone);
+        values.put(Constants.PROFILE_BIRTHDAY, birthday);
+        values.put(Constants.PROFILE_GENDER, gender);
+        values.put(Constants.PROFILE_COUNTRY, country_id);
+        values.put(Constants.PROFILE_DESCRIPTION, description);
         return values;
     }
 }

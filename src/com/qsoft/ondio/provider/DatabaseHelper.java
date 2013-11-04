@@ -4,10 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import com.qsoft.ondio.util.Common;
+import com.qsoft.ondio.util.Constants;
 
 /**
- * User: anhnt
+ * User: AnhNT
  * Date: 11/1/13
  * Time: 8:59 AM
  */
@@ -17,33 +17,44 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory)
     {
-        super(context, name, factory, Common.DATABASE_VERSION);
+        super(context, name, factory, Constants.DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase)
     {
+        createTables(sqLiteDatabase);
+        Log.d(TAG, "Created table.");
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldv, int newv)
+    {
+        upgradeTables(sqLiteDatabase);
+        createTables(sqLiteDatabase);
+        Log.d(TAG, "Upgraded table.");
+    }
+
+    private void createTables(SQLiteDatabase sqLiteDatabase)
+    {
         createUsersTable(sqLiteDatabase);
-        Log.d(TAG, "Create database USER");
         createFeedsTable(sqLiteDatabase);
-        Log.d(TAG, "Create database FEED");
         createProfileTable(sqLiteDatabase);
-        Log.d(TAG, "Create database PROFILE");
     }
 
     private void createProfileTable(SQLiteDatabase sqLiteDatabase)
     {
         String createProfileTable =
-                "CREATE TABLE " + Common.PROFILE_TABLE_NAME + " (" +
+                "CREATE TABLE " + Constants.PROFILE_TABLE_NAME + " (" +
                         "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        Common.PROFILE_ID + " TEXT," +
-                        Common.PROFILE_DISPLAY_NAME + " TEXT, " +
-                        Common.PROFILE_FULL_NAME + " TEXT, " +
-                        Common.PROFILE_PHONE + " TEXT, " +
-                        Common.PROFILE_BIRTHDAY + " TEXT, " +
-                        Common.PROFILE_GENDER + " TEXT, " +
-                        Common.PROFILE_COUNTRY + " TEXT, " +
-                        Common.PROFILE_DESCRIPTION + " TEXT " +
+                        Constants.PROFILE_ID + " TEXT," +
+                        Constants.PROFILE_DISPLAY_NAME + " TEXT, " +
+                        Constants.PROFILE_FULL_NAME + " TEXT, " +
+                        Constants.PROFILE_PHONE + " TEXT, " +
+                        Constants.PROFILE_BIRTHDAY + " TEXT, " +
+                        Constants.PROFILE_GENDER + " TEXT, " +
+                        Constants.PROFILE_COUNTRY + " TEXT, " +
+                        Constants.PROFILE_DESCRIPTION + " TEXT " +
                         ");";
         sqLiteDatabase.execSQL(createProfileTable);
     }
@@ -51,24 +62,24 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private void createFeedsTable(SQLiteDatabase sqLiteDatabase)
     {
         String createFeedTable =
-                "CREATE TABLE " + Common.FEED_TABLE_NAME + " (" +
+                "CREATE TABLE " + Constants.FEED_TABLE_NAME + " (" +
                         "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        Common.FEED_ID + " TEXT, " +
-                        Common.FEED_TITLE + " TEXT, " +
-                        Common.FEED_USER_ID + " TEXT, " +
-                        Common.FEED_THUMBNAIL + " TEXT, " +
-                        Common.FEED_DESCRIPTION + " TEXT, " +
-                        Common.FEED_SOUND_PATH + " TEXT, " +
-                        Common.FEED_DURATION + " TEXT, " +
-                        Common.FEED_PLAYED + " TEXT, " +
-                        Common.FEED_CREATED_AT + " TEXT, " +
-                        Common.FEED_UPDATED_AT + " TEXT, " +
-                        Common.FEED_LIKES + " TEXT, " +
-                        Common.FEED_VIEWED + " TEXT, " +
-                        Common.FEED_COMMENTS + " TEXT, " +
-                        Common.FEED_USERNAME + " TEXT, " +
-                        Common.FEED_DISPLAY_NAME + " TEXT, " +
-                        Common.FEED_AVATAR + " TEXT " +
+                        Constants.FEED_ID + " TEXT, " +
+                        Constants.FEED_TITLE + " TEXT, " +
+                        Constants.FEED_USER_ID + " TEXT, " +
+                        Constants.FEED_THUMBNAIL + " TEXT, " +
+                        Constants.FEED_DESCRIPTION + " TEXT, " +
+                        Constants.FEED_SOUND_PATH + " TEXT, " +
+                        Constants.FEED_DURATION + " TEXT, " +
+                        Constants.FEED_PLAYED + " TEXT, " +
+                        Constants.FEED_CREATED_AT + " TEXT, " +
+                        Constants.FEED_UPDATED_AT + " TEXT, " +
+                        Constants.FEED_LIKES + " TEXT, " +
+                        Constants.FEED_VIEWED + " TEXT, " +
+                        Constants.FEED_COMMENTS + " TEXT, " +
+                        Constants.FEED_USERNAME + " TEXT, " +
+                        Constants.FEED_DISPLAY_NAME + " TEXT, " +
+                        Constants.FEED_AVATAR + " TEXT " +
                         ");";
         sqLiteDatabase.execSQL(createFeedTable);
     }
@@ -76,34 +87,22 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private void createUsersTable(SQLiteDatabase sqLiteDatabase)
     {
         String createUserTable =
-                "CREATE TABLE " + Common.USER_TABLE_NAME + " (" +
+                "CREATE TABLE " + Constants.USER_TABLE_NAME + " (" +
                         "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        Common.USER_ID + " TEXT, " +
-                        Common.USER_ACCESS_TOKEN + " TEXT, " +
-                        Common.USER_CLIENT_ID + " TEXT, " +
-                        Common.USER_USER_ID + " TEXT, " +
-                        Common.USER_EXPIRES + " TEXT, " +
-                        Common.USER_SCOPE + " TEXT " +
+                        Constants.USER_ID + " TEXT, " +
+                        Constants.USER_ACCESS_TOKEN + " TEXT, " +
+                        Constants.USER_CLIENT_ID + " TEXT, " +
+                        Constants.USER_USER_ID + " TEXT, " +
+                        Constants.USER_EXPIRES + " TEXT, " +
+                        Constants.USER_SCOPE + " TEXT " +
                         ");";
         sqLiteDatabase.execSQL(createUserTable);
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldv, int newv)
+    public void upgradeTables(SQLiteDatabase sqLiteDatabase)
     {
-        upgradeTable(sqLiteDatabase, Common.USER_TABLE_NAME);
-        Log.d(TAG, "Upgrade USER");
-        upgradeTable(sqLiteDatabase, Common.PROFILE_TABLE_NAME);
-        Log.d(TAG, "Upgrade FEED");
-        upgradeTable(sqLiteDatabase, Common.FEED_TABLE_NAME);
-        Log.d(TAG, "Upgrade PROFILE");
-        createUsersTable(sqLiteDatabase);
-        createFeedsTable(sqLiteDatabase);
-        createProfileTable(sqLiteDatabase);
-    }
-
-    public void upgradeTable(SQLiteDatabase sqLiteDatabase, String tableName)
-    {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + tableName + ";");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Constants.USER_TABLE_NAME + ";");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Constants.FEED_TABLE_NAME + ";");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Constants.PROFILE_TABLE_NAME + ";");
     }
 }

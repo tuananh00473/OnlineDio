@@ -13,8 +13,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import com.qsoft.ondio.R;
-import com.qsoft.ondio.util.Common;
+import com.qsoft.ondio.util.Constants;
 
+/**
+ * User: AnhNT
+ * Date: 10/16/13
+ * Time: 8:56 AM
+ */
 public class MainActivity extends Activity
 {
     private static final String TAG = "MainActivity";
@@ -60,7 +65,7 @@ public class MainActivity extends Activity
 
     private void doLogin()
     {
-        getTokenForAccountCreateIfNeeded(Common.ARG_ACCOUNT_TYPE, Common.AUTHTOKEN_TYPE_FULL_ACCESS);
+        getTokenForAccountCreateIfNeeded(Constants.ARG_ACCOUNT_TYPE, Constants.AUTHTOKEN_TYPE_FULL_ACCESS);
     }
 
     private void getTokenForAccountCreateIfNeeded(String accountType, String authTokenType)
@@ -79,7 +84,7 @@ public class MainActivity extends Activity
                             if (null != authToken)
                             {
                                 String accountName = bnd.getString(AccountManager.KEY_ACCOUNT_NAME);
-                                mConnectedAccount = new Account(accountName, Common.ARG_ACCOUNT_TYPE);
+                                mConnectedAccount = new Account(accountName, Constants.ARG_ACCOUNT_TYPE);
                                 Log.d(TAG, "1");
                                 syncNow();
                                 Log.d(TAG, "2");
@@ -132,6 +137,6 @@ public class MainActivity extends Activity
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true); // Performing a sync no matter if it's off
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true); // Performing a sync no matter if it's off
         Log.d(TAG, "3");
-        ContentResolver.requestSync(mConnectedAccount, Common.PROVIDER_NAME, bundle);
+        ContentResolver.requestSync(mConnectedAccount, Constants.PROVIDER_NAME, bundle);
     }
 }

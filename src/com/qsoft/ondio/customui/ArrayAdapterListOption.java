@@ -9,13 +9,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.qsoft.ondio.R;
 
-public class ArrayAdapterListOption extends ArrayAdapter<String> {
+/**
+ * User: AnhNT
+ * Date: 10/18/13
+ * Time: 4:01 PM
+ */
+public class ArrayAdapterListOption extends ArrayAdapter<String>
+{
     private String[] slideBarOptions;
     private Context context;
     private TextView tvOption, tvSpec;
     private ImageView ivOption;
 
-    public ArrayAdapterListOption(Context context, int textViewResourceId, String[] slideBarOptions) {
+    public ArrayAdapterListOption(Context context, int textViewResourceId, String[] slideBarOptions)
+    {
         super(context, textViewResourceId, slideBarOptions);
         this.slideBarOptions = slideBarOptions;
         this.context = context;
@@ -23,48 +30,67 @@ public class ArrayAdapterListOption extends ArrayAdapter<String> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
 
         View v = convertView;
-        if (v == null) {
+        if (v == null)
+        {
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = vi.inflate(R.layout.slidebar_listoptions, null);
         }
         setUpViewFindByID(v);
         String option = slideBarOptions[position];
-        if (option.equals("Home")) {
+        if (option.equals("Home"))
+        {
             tvOption.setText(option);
             ivOption.setImageResource(R.drawable.slidebar_home);
-        } else if (option.equals("Favorite")) {
+        }
+        else if (option.equals("Favorite"))
+        {
             tvOption.setText(option);
             ivOption.setImageResource(R.drawable.slidebar_favorite);
-        } else if (option.equals("Following")) {
+        }
+        else if (option.equals("Following"))
+        {
             tvOption.setText(option);
             ivOption.setImageResource(R.drawable.slidebar_following);
-        } else if (option.equals("Audience")) {
+        }
+        else if (option.equals("Audience"))
+        {
             tvOption.setText(option);
             ivOption.setImageResource(R.drawable.slidebar_audience);
-        } else if (option.equals("Genres")) {
+        }
+        else if (option.equals("Genres"))
+        {
             tvOption.setText(option);
             ivOption.setImageResource(R.drawable.slidebar_genres);
-        } else if (option.equals("Setting")) {
+        }
+        else if (option.equals("Setting"))
+        {
             tvOption.setText(option);
             ivOption.setImageResource(R.drawable.slidebar_setting);
-        } else if (option.equals("Help Center")) {
+        }
+        else if (option.equals("Help Center"))
+        {
             tvOption.setText(option);
             tvSpec.setText("Support");
             ivOption.setImageResource(R.drawable.slidebar_helpcenter);
-        } else {
+        }
+        else
+        {
             tvOption.setText(option);
             ivOption.setImageResource(R.drawable.slidebar_logout);
         }
-        if (!option.equals("Help Center")) {
+        if (!option.equals("Help Center"))
+        {
             tvSpec.setText("");
         }
         return v;
     }
 
-    private void setUpViewFindByID(View v) {
+    private void setUpViewFindByID(View v)
+    {
         tvOption = (TextView) v.findViewById(R.id.slidebar_tvOption);
         ivOption = (ImageView) v.findViewById(R.id.slidebar_ivOption);
         tvSpec = (TextView) v.findViewById(R.id.slidebar_tvSpecOption);

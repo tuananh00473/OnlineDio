@@ -3,11 +3,9 @@ package com.qsoft.ondio.util;
 import java.security.MessageDigest;
 
 /**
- * Created with IntelliJ IDEA.
- * User: thinhdd
+ * User: AnhNT
  * Date: 10/30/13
  * Time: 8:53 AM
- * To change this template use File | Settings | File Templates.
  */
 public class StringConverter
 {

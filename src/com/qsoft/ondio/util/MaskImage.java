@@ -8,6 +8,12 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 import com.qsoft.ondio.R;
 
+/**
+ * User: AnhNT
+ * Date: 10/30/13
+ * Time: 8:53 AM
+ */
+
 public class MaskImage extends ImageView
 {
     int mImageSource = 0;

@@ -3,14 +3,12 @@ package com.qsoft.ondio.accountmanager;
 import android.accounts.*;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import com.qsoft.ondio.activity.LoginActivity;
 import com.qsoft.ondio.model.User;
-import com.qsoft.ondio.util.Common;
+import com.qsoft.ondio.util.Constants;
 
 import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
 
@@ -38,9 +36,9 @@ public class OnlineAuthenticator extends AbstractAccountAuthenticator
         Log.d(TAG, " ==> addAccount");
 
         final Intent intent = new Intent(mContext, LoginActivity.class);
-        intent.putExtra(Common.ARG_ACCOUNT_TYPE, accountType);
-        intent.putExtra(Common.ARG_AUTH_TYPE, authTokenType);
-        intent.putExtra(Common.ARG_IS_ADDING_NEW_ACCOUNT, true);
+        intent.putExtra(Constants.ARG_ACCOUNT_TYPE, accountType);
+        intent.putExtra(Constants.ARG_AUTH_TYPE, authTokenType);
+        intent.putExtra(Constants.ARG_IS_ADDING_NEW_ACCOUNT, true);
         intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
 
         final Bundle bundle = new Bundle();
@@ -53,7 +51,7 @@ public class OnlineAuthenticator extends AbstractAccountAuthenticator
     {
         Log.d(TAG, " ==> getAuthToken");
 
-        if (!authTokenType.equals(Common.AUTHTOKEN_TYPE_READ_ONLY) && !authTokenType.equals(Common.AUTHTOKEN_TYPE_FULL_ACCESS))
+        if (!authTokenType.equals(Constants.AUTHTOKEN_TYPE_READ_ONLY) && !authTokenType.equals(Constants.AUTHTOKEN_TYPE_FULL_ACCESS))
         {
             final Bundle result = new Bundle();
             result.putString(AccountManager.KEY_ERROR_MESSAGE, "invalid authTokenType");
@@ -63,7 +61,6 @@ public class OnlineAuthenticator extends AbstractAccountAuthenticator
         final AccountManager am = AccountManager.get(mContext);
 
         String authToken = am.peekAuthToken(account, authTokenType);
-        String userId = null;
 
         Log.d(TAG, " ==> peekAuthToken returned - " + authToken);
 
@@ -75,12 +72,10 @@ public class OnlineAuthenticator extends AbstractAccountAuthenticator
                 try
                 {
                     Log.d("udinic", TAG + "> re-authenticating with the existing password");
-                    User user = Common.sServerAuthenticate.login(account.name, password, authTokenType);
+                    User user = Constants.sServerAuthenticate.login(account.name, password, authTokenType);
                     if (user != null)
                     {
                         authToken = user.getAccess_token();
-                        userId = user.getUser_id();
-                        saveUserIdToSharedPreferences(Common.KEY, Long.parseLong(userId));
                     }
                 }
                 catch (Exception e)
@@ -102,32 +97,23 @@ public class OnlineAuthenticator extends AbstractAccountAuthenticator
 
         final Intent intent = new Intent(mContext, LoginActivity.class);
         intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
-        intent.putExtra(Common.ARG_ACCOUNT_TYPE, account.type);
-        intent.putExtra(Common.ARG_AUTH_TYPE, authTokenType);
+        intent.putExtra(Constants.ARG_ACCOUNT_TYPE, account.type);
+        intent.putExtra(Constants.ARG_AUTH_TYPE, authTokenType);
         final Bundle bundle = new Bundle();
         bundle.putParcelable(AccountManager.KEY_INTENT, intent);
         return bundle;
     }
 
-    private void saveUserIdToSharedPreferences(String key, Long value)
-    {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putLong(key, value);
-        editor.commit();
-    }
-
-
     @Override
     public String getAuthTokenLabel(String authTokenType)
     {
-        if (Common.AUTHTOKEN_TYPE_FULL_ACCESS.equals(authTokenType))
+        if (Constants.AUTHTOKEN_TYPE_FULL_ACCESS.equals(authTokenType))
         {
-            return Common.AUTHTOKEN_TYPE_FULL_ACCESS_LABEL;
+            return Constants.AUTHTOKEN_TYPE_FULL_ACCESS_LABEL;
         }
-        else if (Common.AUTHTOKEN_TYPE_READ_ONLY.equals(authTokenType))
+        else if (Constants.AUTHTOKEN_TYPE_READ_ONLY.equals(authTokenType))
         {
-            return Common.AUTHTOKEN_TYPE_READ_ONLY_LABEL;
+            return Constants.AUTHTOKEN_TYPE_READ_ONLY_LABEL;
         }
         else
         {

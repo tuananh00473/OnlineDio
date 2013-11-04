@@ -43,9 +43,9 @@ public class ParseComServer implements ServerAuthenticate
     public User login(String user, String pass, String authType) throws Exception
     {
         Log.i(TAG, "before login");
-        String url = "http://192.168.1.222/testing/ica467/trunk/public/auth-rest";
+//        String url = "http://192.168.1.222/testing/ica467/trunk/public/auth-rest";
 //        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/service-testing/";
-//        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/auth-rest";
+        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/auth-rest";
         DefaultHttpClient httpClient = new DefaultHttpClient();
         pass = new StringConverter().doConvert(pass);
         Log.i(TAG, "login1");
@@ -78,10 +78,10 @@ public class ParseComServer implements ServerAuthenticate
     @Override
     public JsonResult updateProfile(Profile profile)
     {
-        String url = "http://192.168.1.222/testing/ica467/trunk/public/user-rest/" + profile.getId();
+//        String url = "http://192.168.1.222/testing/ica467/trunk/public/user-rest/" + profile.getId();
 
 //        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/service-testing/" + profile.getId();
-//        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/auth-rest/" + profile.getId();
+        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/user-rest/" + profile.getId();
 
         DefaultHttpClient httpClient = new DefaultHttpClient();
 
@@ -123,7 +123,7 @@ public class ParseComServer implements ServerAuthenticate
             HttpGet httpGet = new HttpGet(url);
             HttpResponse response = httpClient.execute(httpGet);
             result = EntityUtils.toString(response.getEntity());
-
+            return result;
         }
         catch (Exception e)
         {
@@ -136,7 +136,8 @@ public class ParseComServer implements ServerAuthenticate
     @Override
     public ArrayList<Feed> getHomeFeed(String authToken) throws JSONException
     {
-        String url = "http://192.168.1.222/testing/ica467/trunk/public/home-rest"
+//        String url = "http://192.168.1.222/testing/ica467/trunk/public/home-rest"
+        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/home-rest"
                 + "?access_token="
                 + authToken;
         String result = loadDataWithGetMethod(url);
@@ -150,36 +151,6 @@ public class ParseComServer implements ServerAuthenticate
         }
         return homeFeedDTOList;
     }
-
-//    @Override
-//    public JsonResult getHomeFeed(String authToken)
-//    {
-//        String url = "http://192.168.1.222/testing/ica467/trunk/public/user-rest?"
-//                + "?access_token=" + authToken;
-////        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/service-testing";
-////        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/auth-rest";
-//        DefaultHttpClient httpClient = new DefaultHttpClient();
-//
-//        try
-//        {
-//            URL realUrl = new URL(url);
-//            HttpPost httpPost = new HttpPost(realUrl.toURI());
-//
-//            JsonObject jsonObject = new JsonObject();
-//
-//            httpPost.setHeader("Authorization", "Bearer " + authToken);
-//            httpPost.setEntity(new StringEntity(jsonObject.toString(), "UTF-8"));
-//
-//            HttpResponse httpResponse = httpClient.execute(httpPost);
-//            String responseString = EntityUtils.toString(httpResponse.getEntity());
-//            return new Gson().fromJson(responseString, JsonResult.class);
-//        }
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 
     public static List<Header> getAppParseComHeaders()
     {
@@ -258,92 +229,6 @@ public class ParseComServer implements ServerAuthenticate
             e.printStackTrace();
         }
     }
-
-//    public ArrayList<Feed> getHomeFeed(String authToken) throws IOException, JSONException
-//    {
-//
-//        Log.i(TAG, "getHomeFeed . auth Token [" + authToken + "]");
-//        ArrayList<Feed> homeFeeds = new ArrayList<Feed>();
-//        // Get a httpclient to talk to the internet
-//        HttpClient httpClient = new DefaultHttpClient();
-//        // Perform a GET request to service for a JSON list of all the feeds
-//        String url = "http://192.168.1.222/testing/ica467/trunk/public/user-rest?"
-//                + "limit=&offset=&time_from=&time_to=";
-//        HttpUriRequest httpGet = new HttpGet(url);
-//        authToken = "Bearer " + authToken;
-//
-//        // httpGet.addHeader("X-Parse-Session-Token", authToken);
-//        httpGet.addHeader("Authorization", authToken);
-//
-//        // Get the response that service sends back
-//        HttpResponse response = httpClient.execute(httpGet);
-//        Log.i(TAG, "Response status :"
-//                + response.getStatusLine().getStatusCode());
-//        // Convert this response into a readable String
-//        String jsonString = StreamUtils.convertToString(response.getEntity()
-//                .getContent());
-//        Log.i(TAG, jsonString);
-//        // Create a JSON object that we can use from the String
-//        JSONObject json = new JSONObject(jsonString);
-//        Log.i(TAG, "Parsing...");
-//
-//        // Get all results items
-//        JSONArray jsonArray = json.getJSONArray("data");
-//        // Create a list to store all feeds
-//        for (int i = 0; i < jsonArray.length(); i++)
-//        {
-//            JSONObject jsonObject = jsonArray.getJSONObject(i);
-//            int id;
-//            id = jsonObject.getInt("id");
-//
-//            int user_id;
-//            user_id = jsonObject.getInt("user_id");
-//
-//            String title;
-//            title = jsonObject.getString("title");
-//
-//            String thumbnail;
-//            thumbnail = jsonObject.getString("thumbnail");
-//
-//            String description = jsonObject.getString("description");
-//            String sound_path = jsonObject.getString("sound_path");
-//            int duration = jsonObject.getInt("duration");
-//            int played;
-//            try
-//            {
-//                played = jsonObject.getInt("played");
-//            }
-//            catch (JSONException e)
-//            {
-//                played = 0;
-//            }
-//            String created_at = jsonObject.getString("created_at");
-//            String updated_at = jsonObject.getString("updated_at");
-//
-//            int likes;
-//            likes = jsonObject.getInt("likes");
-//
-//            int viewd;
-//            viewd = jsonObject.getInt("viewed");
-//
-//            int comments;
-//            comments = jsonObject.getInt("comments");
-//            String username = jsonObject.getString("username");
-//
-//            String display_name;
-//            display_name = jsonObject.getString("display_name");
-//
-//            String avatar = jsonObject.getString("avatar");
-//            // Add a homefeed into list
-//            homeFeeds.add(new Feed(id, user_id, title, thumbnail,
-//                    description, sound_path, duration, played,
-//                    created_at, updated_at, likes, viewd, comments, username,
-//                    display_name, avatar));
-//        }
-//
-//        Log.i(TAG, "Get " + homeFeeds.size() + " Feeds");
-//        return homeFeeds;
-//    }
 
     public static class ParseComError implements Serializable
     {

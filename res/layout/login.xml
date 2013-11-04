@@ -67,7 +67,7 @@
                 android:layout_alignLeft="@id/login_etEmail"
                 android:layout_marginTop="@dimen/phone_field_margin_password_top"
                 android:background="@color/NULL"
-                />
+                android:inputType="none"/>
     </RelativeLayout>
     <TextView android:id="@+id/login_tvForgotPassword"
               android:layout_width="wrap_content"

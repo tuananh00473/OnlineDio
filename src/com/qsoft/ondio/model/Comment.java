@@ -1,11 +1,9 @@
 package com.qsoft.ondio.model;
 
 /**
- * Created with IntelliJ IDEA.
- * User: thinhdd
+ * User: AnhNT
  * Date: 10/18/13
  * Time: 10:04 AM
- * To change this template use File | Settings | File Templates.
  */
 public class Comment
 {

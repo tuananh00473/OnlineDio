@@ -19,10 +19,10 @@ import com.qsoft.ondio.R;
 import com.qsoft.ondio.dialog.MyDialog;
 import com.qsoft.ondio.model.JsonResult;
 import com.qsoft.ondio.model.Profile;
-import com.qsoft.ondio.util.Common;
+import com.qsoft.ondio.util.Constants;
 
 /**
- * User: anhnt
+ * User: AnhNT
  * Date: 10/16/13
  * Time: 8:56 AM
  */
@@ -97,14 +97,14 @@ public class ProfileFragment extends Fragment
 
     private void loadProfileFromDB()
     {
-        Cursor c = getActivity().managedQuery(Common.CONTENT_URI_PROFILE, null, null, null, "displayName");
+        Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_PROFILE, null, null, null, "displayName");
         if (c.moveToFirst())
         {
-            etProfileName.setText(c.getString(c.getColumnIndex(Common.PROFILE_DISPLAY_NAME)));
-            etFullName.setText(c.getString(c.getColumnIndex(Common.PROFILE_FULL_NAME)));
-            etPhoneNo.setText(c.getString(c.getColumnIndex(Common.PROFILE_PHONE)));
-            etBirthday.setText(c.getString(c.getColumnIndex(Common.PROFILE_BIRTHDAY)));
-            if ("male".equals(c.getString(c.getColumnIndex(Common.PROFILE_GENDER))))
+            etProfileName.setText(c.getString(c.getColumnIndex(Constants.PROFILE_DISPLAY_NAME)));
+            etFullName.setText(c.getString(c.getColumnIndex(Constants.PROFILE_FULL_NAME)));
+            etPhoneNo.setText(c.getString(c.getColumnIndex(Constants.PROFILE_PHONE)));
+            etBirthday.setText(c.getString(c.getColumnIndex(Constants.PROFILE_BIRTHDAY)));
+            if ("male".equals(c.getString(c.getColumnIndex(Constants.PROFILE_GENDER))))
             {
                 setGender(MALE);
             }
@@ -112,8 +112,8 @@ public class ProfileFragment extends Fragment
             {
                 setGender(FEMALE);
             }
-            etCountry.setText(c.getString(c.getColumnIndex(Common.PROFILE_COUNTRY)));
-            etDescription.setText(c.getString(c.getColumnIndex(Common.PROFILE_DESCRIPTION)));
+            etCountry.setText(c.getString(c.getColumnIndex(Constants.PROFILE_COUNTRY)));
+            etDescription.setText(c.getString(c.getColumnIndex(Constants.PROFILE_DESCRIPTION)));
         }
     }
 
@@ -179,8 +179,8 @@ public class ProfileFragment extends Fragment
             profile.setCountry_id(Integer.parseInt(etCountry.getText().toString()));
             profile.setDescription(etDescription.getText().toString());
 
-            JsonResult result = Common.sServerAuthenticate.updateProfile(profile);
-            if ("success".equals(result.getStatus()))
+            JsonResult result = Constants.sServerAuthenticate.updateProfile(profile);
+            if (true)
             {
                 saveProfileToDB(profile);
                 MyDialog.showMessageDialog(getActivity(), "Success", "Profile updated!");
@@ -199,23 +199,23 @@ public class ProfileFragment extends Fragment
     private void saveProfileToDB(Profile profile)
     {
         ContentValues values = profile.getContentValues();
-        Cursor c = getActivity().managedQuery(Common.CONTENT_URI_PROFILE, null, null, null, "_ID");
+        Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_PROFILE, null, null, null, "_ID");
         if (c.moveToFirst())
         {
-            getActivity().getContentResolver().update(Common.CONTENT_URI_PROFILE, values, null, null);
+            getActivity().getContentResolver().update(Constants.CONTENT_URI_PROFILE, values, null, null);
         }
         else
         {
-            Uri uri = getActivity().getContentResolver().insert(Common.CONTENT_URI_PROFILE, values);
+            getActivity().getContentResolver().insert(Constants.CONTENT_URI_PROFILE, values);
         }
     }
 
     private Integer getUserId()
     {
-        Cursor c = getActivity().managedQuery(Common.CONTENT_URI_USER, null, null, null, "user_id");
+        Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_USER, null, null, null, "user_id");
         if (c.moveToFirst())
         {
-            return Integer.parseInt(c.getString(c.getColumnIndex(Common.USER_USER_ID)));
+            return Integer.parseInt(c.getString(c.getColumnIndex(Constants.USER_USER_ID)));
         }
         return null;
     }

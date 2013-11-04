@@ -3,7 +3,6 @@ package com.qsoft.ondio.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,22 +19,19 @@ import com.qsoft.ondio.R;
 public class ProgramFragment extends Fragment
 {
     private static final String TAG = "ProgramFragment";
-    private static final int REQUEST_CODE = 1;
     private RadioGroup rgInfo;
     private Button btBack;
-    private FragmentActivity activity;
 
     @Override
     public void onAttach(Activity activity)
     {
-        super.onAttach(activity);    //To change body of overridden methods use File | Settings | File Templates.
+        super.onAttach(activity);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
-        this.activity = getActivity();
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -49,15 +45,6 @@ public class ProgramFragment extends Fragment
         setUpListenerController();
         return view;
     }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data)
-//    {
-//        super.onActivityResult(requestCode, resultCode, data);    //To change body of overridden methods use File | Settings | File Templates.
-//        Log.i(TAG, "onActivityResult");
-////        Fragment fragment = activity.getSupportFragmentManager().findFragmentById(R.id.program_flInformation);
-////        fragment.onActivityResult(requestCode, resultCode, data);
-//    }
 
     private void setUpUI(View view)
     {

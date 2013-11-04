@@ -24,7 +24,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import com.qsoft.ondio.model.Feed;
-import com.qsoft.ondio.util.Common;
+import com.qsoft.ondio.util.Constants;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,21 +69,21 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
             // Get the auth token for the current account and
             // the userObjectId, needed for creating items on Parse.com account
             String authToken = mAccountManager.blockingGetAuthToken(account,
-                    Common.AUTHTOKEN_TYPE_FULL_ACCESS, true);
+                    Constants.AUTHTOKEN_TYPE_FULL_ACCESS, true);
             String userObjectId = mAccountManager.getUserData(account,
-                    Common.USERDATA_USER_OBJ_ID);
+                    Constants.USERDATA_USER_OBJ_ID);
 
             Log.d("udinic", TAG + "> Get remote TV Shows");
             // Get shows from remote
 
-//            JsonResult result = Common.sServerAuthenticate.getHomeFeed(authToken);
+//            JsonResult result = Constants.sServerAuthenticate.getHomeFeed(authToken);
 //            List<Feed> remoteFeeds = (List<Feed>) result.getData();
-            ArrayList<Feed> remoteFeeds = Common.sServerAuthenticate.getHomeFeed(authToken);
+            ArrayList<Feed> remoteFeeds = Constants.sServerAuthenticate.getHomeFeed(authToken);
 
             Log.d("udinic", TAG + "> Get local TV Shows");
             // Get shows from local
             ArrayList<Feed> localFeeds = new ArrayList<Feed>();
-            Cursor c = provider.query(Common.CONTENT_URI_FEED, null, null, null, null);
+            Cursor c = provider.query(Constants.CONTENT_URI_FEED, null, null, null, null);
             if (c != null)
             {
                 while (c.moveToNext())
@@ -126,7 +126,7 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
                 for (Feed remoteFeed : showsToRemote)
                 {
                     Log.d("udinic", TAG + "> Local -> Remote [" + remoteFeed.display_name + "]");
-                    Common.sServerAuthenticate.putShow(authToken, userObjectId, remoteFeed);
+                    Constants.sServerAuthenticate.putShow(authToken, userObjectId, remoteFeed);
                 }
             }
 
@@ -146,7 +146,7 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
                     Log.d("udinic", TAG + "> Remote -> Local [" + localFeed.display_name + "]");
                     showsToLocalValues[i++] = localFeed.getContentValues();
                 }
-                provider.bulkInsert(Common.CONTENT_URI_FEED, showsToLocalValues);
+                provider.bulkInsert(Constants.CONTENT_URI_FEED, showsToLocalValues);
             }
 
             Log.d("udinic", TAG + "> Finished.");

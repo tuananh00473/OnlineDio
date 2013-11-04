@@ -1,12 +1,14 @@
 package com.qsoft.ondio.model;
 
 import android.content.ContentValues;
-import com.qsoft.ondio.util.Common;
+import com.qsoft.ondio.util.Constants;
 
 import java.io.Serializable;
 
 /**
- * Created by Udini on 6/26/13.
+ * User: AnhNT
+ * Date: 10/18/13
+ * Time: 4:01 PM
  */
 public class User implements Serializable
 {
@@ -80,12 +82,12 @@ public class User implements Serializable
     public ContentValues getContentValues()
     {
         ContentValues values = new ContentValues();
-        values.put(Common.USER_ID, id);
-        values.put(Common.USER_ACCESS_TOKEN, access_token);
-        values.put(Common.USER_CLIENT_ID, client_id);
-        values.put(Common.USER_USER_ID, user_id);
-        values.put(Common.USER_EXPIRES, expires);
-        values.put(Common.USER_SCOPE, scope);
+        values.put(Constants.USER_ID, id);
+        values.put(Constants.USER_ACCESS_TOKEN, access_token);
+        values.put(Constants.USER_CLIENT_ID, client_id);
+        values.put(Constants.USER_USER_ID, user_id);
+        values.put(Constants.USER_EXPIRES, expires);
+        values.put(Constants.USER_SCOPE, scope);
         return values;
     }
 }

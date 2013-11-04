@@ -148,14 +148,4 @@ public class SlidebarActivity extends FragmentActivity
     {
         mDrawerLayout.closeDrawer(rlLeftDrawer);
     }
-
-    public void doBackToPrevious()
-    {
-        getSupportFragmentManager().popBackStack();
-    }
-
-    public void doLockOption()
-    {
-        getSupportFragmentManager().executePendingTransactions();
-    }
 }

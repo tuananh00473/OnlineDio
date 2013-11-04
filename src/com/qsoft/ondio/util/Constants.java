@@ -4,7 +4,13 @@ import android.net.Uri;
 import com.qsoft.ondio.accountmanager.ParseComServer;
 import com.qsoft.ondio.accountmanager.ServerAuthenticate;
 
-public class Common
+/**
+ * User: AnhNT
+ * Date: 10/30/13
+ * Time: 8:53 AM
+ */
+
+public class Constants
 {
     //    authentication constants
     private final int REQ_SIGNUP = 1;

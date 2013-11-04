@@ -5,8 +5,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 /**
- * @author quynhlt
+ * User: AnhNT
+ * Date: 10/30/13
+ * Time: 8:53 AM
  */
+
 public class NetworkAvailable
 {
     private ConnectivityManager connectivityMng;

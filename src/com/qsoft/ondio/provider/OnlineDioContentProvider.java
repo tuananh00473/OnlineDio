@@ -11,14 +11,16 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
-import com.qsoft.ondio.util.Common;
+import com.qsoft.ondio.util.Constants;
 
 import java.util.HashMap;
 
 /**
- * Simple content provider that demonstrates the basics of creating a content
- * provider that stores basic video meta-data.
+ * User: AnhNT
+ * Date: 10/30/13
+ * Time: 8:53 AM
  */
+
 public class OnlineDioContentProvider extends ContentProvider
 {
 
@@ -43,19 +45,19 @@ public class OnlineDioContentProvider extends ContentProvider
     static
     {
         sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        sUriMatcher.addURI(Common.PROVIDER_NAME, Common.USER_TABLE_NAME, USERS);
-        sUriMatcher.addURI(Common.PROVIDER_NAME, Common.USER_TABLE_NAME + "/#", USER_ID);
-        sUriMatcher.addURI(Common.PROVIDER_NAME, Common.FEED_TABLE_NAME, FEEDS);
-        sUriMatcher.addURI(Common.PROVIDER_NAME, Common.FEED_TABLE_NAME + "/#", FEED_ID);
-        sUriMatcher.addURI(Common.PROVIDER_NAME, Common.PROFILE_TABLE_NAME, PROFILES);
-        sUriMatcher.addURI(Common.PROVIDER_NAME, Common.PROFILE_TABLE_NAME + "/#", PROFILE_ID);
+        sUriMatcher.addURI(Constants.PROVIDER_NAME, Constants.USER_TABLE_NAME, USERS);
+        sUriMatcher.addURI(Constants.PROVIDER_NAME, Constants.USER_TABLE_NAME + "/#", USER_ID);
+        sUriMatcher.addURI(Constants.PROVIDER_NAME, Constants.FEED_TABLE_NAME, FEEDS);
+        sUriMatcher.addURI(Constants.PROVIDER_NAME, Constants.FEED_TABLE_NAME + "/#", FEED_ID);
+        sUriMatcher.addURI(Constants.PROVIDER_NAME, Constants.PROFILE_TABLE_NAME, PROFILES);
+        sUriMatcher.addURI(Constants.PROVIDER_NAME, Constants.PROFILE_TABLE_NAME + "/#", PROFILE_ID);
     }
 
 
     @Override
     public boolean onCreate()
     {
-        databaseHelper = new DatabaseHelper(getContext(), Common.DATABASE_NAME, null);
+        databaseHelper = new DatabaseHelper(getContext(), Constants.DATABASE_NAME, null);
         mDb = databaseHelper.getWritableDatabase();
 
         return (mDb == null) ? false : true;
@@ -69,51 +71,51 @@ public class OnlineDioContentProvider extends ContentProvider
         switch (sUriMatcher.match(uri))
         {
             case USERS:
-                qb.setTables(Common.USER_TABLE_NAME);
+                qb.setTables(Constants.USER_TABLE_NAME);
                 qb.setProjectionMap(USER_PROJECTION_MAP);
                 if (sortOrder == null || sortOrder == "")
                 {
-                    sortOrder = Common.USER_ID;
+                    sortOrder = Constants.USER_ID;
                 }
                 break;
             case USER_ID:
-                qb.setTables(Common.USER_TABLE_NAME);
-                qb.appendWhere(Common.USER_ID + "=" + uri.getPathSegments().get(1));
+                qb.setTables(Constants.USER_TABLE_NAME);
+                qb.appendWhere(Constants.USER_ID + "=" + uri.getPathSegments().get(1));
                 if (sortOrder == null || sortOrder == "")
                 {
-                    sortOrder = Common.USER_ID;
+                    sortOrder = Constants.USER_ID;
                 }
                 break;
             case FEEDS:
-                qb.setTables(Common.FEED_TABLE_NAME);
+                qb.setTables(Constants.FEED_TABLE_NAME);
                 qb.setProjectionMap(FEED_PROJECTION_MAP);
                 if (sortOrder == null || sortOrder == "")
                 {
-                    sortOrder = Common.FEED_DISPLAY_NAME;
+                    sortOrder = Constants.FEED_DISPLAY_NAME;
                 }
                 break;
             case FEED_ID:
-                qb.setTables(Common.FEED_TABLE_NAME);
-                qb.appendWhere(Common.FEED_ID + "=" + uri.getPathSegments().get(1));
+                qb.setTables(Constants.FEED_TABLE_NAME);
+                qb.appendWhere(Constants.FEED_ID + "=" + uri.getPathSegments().get(1));
                 if (sortOrder == null || sortOrder == "")
                 {
-                    sortOrder = Common.FEED_DISPLAY_NAME;
+                    sortOrder = Constants.FEED_DISPLAY_NAME;
                 }
                 break;
             case PROFILES:
-                qb.setTables(Common.PROFILE_TABLE_NAME);
+                qb.setTables(Constants.PROFILE_TABLE_NAME);
                 qb.setProjectionMap(PROFILE_PROJECTION_MAP);
                 if (sortOrder == null || sortOrder == "")
                 {
-                    sortOrder = Common.PROFILE_FULL_NAME;
+                    sortOrder = Constants.PROFILE_FULL_NAME;
                 }
                 break;
             case PROFILE_ID:
-                qb.setTables(Common.PROFILE_TABLE_NAME);
-                qb.appendWhere(Common.PROFILE_ID + "=" + uri.getPathSegments().get(1));
+                qb.setTables(Constants.PROFILE_TABLE_NAME);
+                qb.appendWhere(Constants.PROFILE_ID + "=" + uri.getPathSegments().get(1));
                 if (sortOrder == null || sortOrder == "")
                 {
-                    sortOrder = Common.PROFILE_FULL_NAME;
+                    sortOrder = Constants.PROFILE_FULL_NAME;
                 }
                 break;
             default:
@@ -133,7 +135,7 @@ public class OnlineDioContentProvider extends ContentProvider
             case USERS:
                 return "vnd.android.cursor.dir/vnd.onldio.users";
             case USER_ID:
-                return "vnd.android.cursor.item/vnd.onldio.user";
+                return "vnd.android.cursor.item/vnd.onldio.users";
             case FEEDS:
                 return "vnd.android.cursor.dir/vnd.onldio.feeds";
             case FEED_ID:
@@ -156,43 +158,26 @@ public class OnlineDioContentProvider extends ContentProvider
         switch (keySwitch)
         {
             case USERS:
-                long rowUserId = mDb.insert(Common.USER_TABLE_NAME, "", values);
-                Log.d(TAG, "rowUserId = " + rowUserId);
-                Log.d(TAG, "Values = " + values.toString());
-
-                /**
-                 * If record is added successfully
-                 */
+                long rowUserId = mDb.insert(Constants.USER_TABLE_NAME, "", values);
                 if (rowUserId > 0)
                 {
-                    _uri = ContentUris.withAppendedId(Common.CONTENT_URI_USER, rowUserId);
-                    Log.d(TAG, "URI = " + _uri);
+                    _uri = ContentUris.withAppendedId(Constants.CONTENT_URI_USER, rowUserId);
                     getContext().getContentResolver().notifyChange(_uri, null);
                 }
                 break;
             case FEEDS:
-                long rowFeedId = mDb.insert(Common.FEED_TABLE_NAME, "", values);
-                Log.d(TAG, "rowUserId = " + rowFeedId);
-                Log.d(TAG, "Values = " + values.toString());
-                /**
-                 * If record is added successfully
-                 */
+                long rowFeedId = mDb.insert(Constants.FEED_TABLE_NAME, "", values);
                 if (rowFeedId > 0)
                 {
-                    _uri = ContentUris.withAppendedId(Common.CONTENT_URI_FEED, rowFeedId);
+                    _uri = ContentUris.withAppendedId(Constants.CONTENT_URI_FEED, rowFeedId);
                     getContext().getContentResolver().notifyChange(_uri, null);
                 }
                 break;
             case PROFILES:
-                long rowProfileId = mDb.insert(Common.PROFILE_TABLE_NAME, "", values);
-                Log.d(TAG, "rowUserId = " + rowProfileId);
-                Log.d(TAG, "Values = " + values.toString());
-                /**
-                 * If record is added successfully
-                 */
+                long rowProfileId = mDb.insert(Constants.PROFILE_TABLE_NAME, "", values);
                 if (rowProfileId > 0)
                 {
-                    _uri = ContentUris.withAppendedId(Common.CONTENT_URI_PROFILE, rowProfileId);
+                    _uri = ContentUris.withAppendedId(Constants.CONTENT_URI_PROFILE, rowProfileId);
                     getContext().getContentResolver().notifyChange(_uri, null);
                 }
                 break;
@@ -210,29 +195,29 @@ public class OnlineDioContentProvider extends ContentProvider
         switch (sUriMatcher.match(uri))
         {
             case USERS:
-                count = mDb.delete(Common.USER_TABLE_NAME, selection, selectionArgs);
+                count = mDb.delete(Constants.USER_TABLE_NAME, selection, selectionArgs);
                 break;
             case USER_ID:
-                String user_id = uri.getPathSegments().get(1);
-                count = mDb.delete(Common.USER_TABLE_NAME, Common.USER_ID + " = " + user_id +
+                String userId = uri.getPathSegments().get(1);
+                count = mDb.delete(Constants.USER_TABLE_NAME, Constants.USER_ID + " = " + userId +
                         (!TextUtils.isEmpty(selection) ? " AND (" +
                                 selection + ')' : ""), selectionArgs);
                 break;
             case FEEDS:
-                count = mDb.delete(Common.FEED_TABLE_NAME, selection, selectionArgs);
+                count = mDb.delete(Constants.FEED_TABLE_NAME, selection, selectionArgs);
                 break;
             case FEED_ID:
                 String feedId = uri.getPathSegments().get(1);
-                count = mDb.delete(Common.FEED_TABLE_NAME, Common.FEED_ID + " = " + feedId +
+                count = mDb.delete(Constants.FEED_TABLE_NAME, Constants.FEED_ID + " = " + feedId +
                         (!TextUtils.isEmpty(selection) ? " AND (" +
                                 selection + ')' : ""), selectionArgs);
                 break;
             case PROFILES:
-                count = mDb.delete(Common.PROFILE_TABLE_NAME, selection, selectionArgs);
+                count = mDb.delete(Constants.PROFILE_TABLE_NAME, selection, selectionArgs);
                 break;
             case PROFILE_ID:
                 String profileId = uri.getPathSegments().get(1);
-                count = mDb.delete(Common.PROFILE_TABLE_NAME, Common.PROFILE_ID + " = " + profileId +
+                count = mDb.delete(Constants.PROFILE_TABLE_NAME, Constants.PROFILE_ID + " = " + profileId +
                         (!TextUtils.isEmpty(selection) ? " AND (" +
                                 selection + ')' : ""), selectionArgs);
                 break;
@@ -252,28 +237,28 @@ public class OnlineDioContentProvider extends ContentProvider
         switch (sUriMatcher.match(uri))
         {
             case USERS:
-                count = mDb.update(Common.USER_TABLE_NAME, values, selection, selectionArgs);
+                count = mDb.update(Constants.USER_TABLE_NAME, values, selection, selectionArgs);
                 break;
             case USER_ID:
-                count = mDb.update(Common.USER_TABLE_NAME, values, Common.USER_ID +
+                count = mDb.update(Constants.USER_TABLE_NAME, values, Constants.USER_ID +
                         " = " + uri.getPathSegments().get(1) +
                         (!TextUtils.isEmpty(selection) ? " AND (" +
                                 selection + ')' : ""), selectionArgs);
                 break;
             case FEEDS:
-                count = mDb.update(Common.FEED_TABLE_NAME, values, selection, selectionArgs);
+                count = mDb.update(Constants.FEED_TABLE_NAME, values, selection, selectionArgs);
                 break;
             case FEED_ID:
-                count = mDb.update(Common.FEED_TABLE_NAME, values, Common.FEED_ID +
+                count = mDb.update(Constants.FEED_TABLE_NAME, values, Constants.FEED_ID +
                         " = " + uri.getPathSegments().get(1) +
                         (!TextUtils.isEmpty(selection) ? " AND (" +
                                 selection + ')' : ""), selectionArgs);
                 break;
             case PROFILES:
-                count = mDb.update(Common.PROFILE_TABLE_NAME, values, selection, selectionArgs);
+                count = mDb.update(Constants.PROFILE_TABLE_NAME, values, selection, selectionArgs);
                 break;
             case PROFILE_ID:
-                count = mDb.update(Common.PROFILE_TABLE_NAME, values, Common.PROFILE_ID +
+                count = mDb.update(Constants.PROFILE_TABLE_NAME, values, Constants.PROFILE_ID +
                         " = " + uri.getPathSegments().get(1) +
                         (!TextUtils.isEmpty(selection) ? " AND (" +
                                 selection + ')' : ""), selectionArgs);

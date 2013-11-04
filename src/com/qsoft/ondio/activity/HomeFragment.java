@@ -16,7 +16,7 @@ import android.widget.ListView;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterCustom;
 import com.qsoft.ondio.model.Feed;
-import com.qsoft.ondio.util.Common;
+import com.qsoft.ondio.util.Constants;
 
 import java.util.ArrayList;
 
@@ -49,24 +49,23 @@ public class HomeFragment extends Fragment
         try
         {
             Log.d(TAG, "xxx");
-            Cursor c = getActivity().managedQuery(Common.CONTENT_URI_FEED, null, null, null, "id");
+            Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_USER, null, null, null, "_ID");
             if (c.moveToFirst())
             {
-//            JsonResult result = Common.sServerAuthenticate.getHomeFeed(c.getString(c.getColumnIndex(Common.USER_ACCESS_TOKEN)));
-//            feedList = (ArrayList<Feed>) result.getData();
-//                feedList = Common.sServerAuthenticate.getHomeFeed(c.getString(c.getColumnIndex(Common.USER_ACCESS_TOKEN)));
+                feedList = Constants.sServerAuthenticate.getHomeFeed(c.getString(c.getColumnIndex(Constants.USER_ACCESS_TOKEN)));
+                home_lvFeeds.setAdapter(new ArrayAdapterCustom(context, R.layout.home_listfeeds, feedList));
 //                Log.d(TAG, "feedlist : " + feedList.toString());
-                Feed feed = new Feed();
-                feed.setId(Integer.parseInt(c.getString(c.getColumnIndex(Common.FEED_ID))));
-                feed.setTitle(c.getString(c.getColumnIndex(Common.FEED_TITLE)));
-                feed.setUsername(c.getString(c.getColumnIndex(Common.FEED_USERNAME)));
-                feed.setLikes(Integer.parseInt(c.getString(c.getColumnIndex(Common.FEED_LIKES))));
-                feed.setComments(Integer.parseInt(c.getString(c.getColumnIndex(Common.FEED_COMMENTS))));
-                feed.setViewed(Integer.parseInt(c.getString(c.getColumnIndex(Common.FEED_VIEWED))));
-
-                feedList.add(feed);
+//                Feed feed = new Feed();
+//                feed.setId(Integer.parseInt(c.getString(c.getColumnIndex(Constants.FEED_ID))));
+//                feed.setTitle(c.getString(c.getColumnIndex(Constants.FEED_TITLE)));
+//                feed.setUsername(c.getString(c.getColumnIndex(Constants.FEED_USERNAME)));
+//                feed.setLikes(Integer.parseInt(c.getString(c.getColumnIndex(Constants.FEED_LIKES))));
+//                feed.setComments(Integer.parseInt(c.getString(c.getColumnIndex(Constants.FEED_COMMENTS))));
+//                feed.setViewed(Integer.parseInt(c.getString(c.getColumnIndex(Constants.FEED_VIEWED))));
+//
+//                feedList.add(feed);
             }
-            home_lvFeeds.setAdapter(new ArrayAdapterCustom(context, R.layout.home_listfeeds, feedList));
+//            home_lvFeeds.setAdapter(new ArrayAdapterCustom(context, R.layout.home_listfeeds, feedList));
         }
         catch (Exception e)
         {

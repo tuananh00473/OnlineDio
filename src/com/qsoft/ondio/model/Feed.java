@@ -2,14 +2,12 @@ package com.qsoft.ondio.model;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import com.qsoft.ondio.util.Common;
+import com.qsoft.ondio.util.Constants;
 
 /**
- * Created with IntelliJ IDEA.
- * User: thinhdd
+ * User: AnhNT
  * Date: 10/12/13
  * Time: 10:48 AM
- * To change this template use File | Settings | File Templates.
  */
 public class Feed
 {
@@ -217,43 +215,43 @@ public class Feed
     public ContentValues getContentValues()
     {
         ContentValues values = new ContentValues();
-        values.put(Common.FEED_ID, id);
-        values.put(Common.FEED_USER_ID, user_id);
-        values.put(Common.FEED_TITLE, title);
-        values.put(Common.FEED_THUMBNAIL, thumbnail);
-        values.put(Common.FEED_SOUND_PATH, sound_path);
-        values.put(Common.FEED_DESCRIPTION, description);
-        values.put(Common.FEED_DURATION, duration);
-        values.put(Common.FEED_PLAYED, played);
-        values.put(Common.FEED_CREATED_AT, created_at);
-        values.put(Common.FEED_UPDATED_AT, updated_at);
-        values.put(Common.FEED_LIKES, likes);
-        values.put(Common.FEED_VIEWED, viewed);
-        values.put(Common.FEED_COMMENTS, comments);
-        values.put(Common.FEED_USERNAME, username);
-        values.put(Common.FEED_DISPLAY_NAME, display_name);
-        values.put(Common.FEED_AVATAR, avatar);
+        values.put(Constants.FEED_ID, id);
+        values.put(Constants.FEED_USER_ID, user_id);
+        values.put(Constants.FEED_TITLE, title);
+        values.put(Constants.FEED_THUMBNAIL, thumbnail);
+        values.put(Constants.FEED_SOUND_PATH, sound_path);
+        values.put(Constants.FEED_DESCRIPTION, description);
+        values.put(Constants.FEED_DURATION, duration);
+        values.put(Constants.FEED_PLAYED, played);
+        values.put(Constants.FEED_CREATED_AT, created_at);
+        values.put(Constants.FEED_UPDATED_AT, updated_at);
+        values.put(Constants.FEED_LIKES, likes);
+        values.put(Constants.FEED_VIEWED, viewed);
+        values.put(Constants.FEED_COMMENTS, comments);
+        values.put(Constants.FEED_USERNAME, username);
+        values.put(Constants.FEED_DISPLAY_NAME, display_name);
+        values.put(Constants.FEED_AVATAR, avatar);
         return values;
     }
 
     public static Feed fromCursor(Cursor c)
     {
-        int id = c.getInt(c.getColumnIndex(Common.FEED_ID));
-        int user_id = c.getInt(c.getColumnIndex(Common.FEED_USER_ID));
-        String title = c.getString(c.getColumnIndex(Common.FEED_TITLE));
-        String thumbnail = c.getString(c.getColumnIndex(Common.FEED_THUMBNAIL));
-        String sound_path = c.getString(c.getColumnIndex(Common.FEED_SOUND_PATH));
-        String description = c.getString(c.getColumnIndex(Common.FEED_DESCRIPTION));
-        int duration = c.getInt(c.getColumnIndex(Common.FEED_DURATION));
-        int played = c.getInt(c.getColumnIndex(Common.FEED_PLAYED));
-        String created_at = c.getString(c.getColumnIndex(Common.FEED_CREATED_AT));
-        String updated_at = c.getString(c.getColumnIndex(Common.FEED_UPDATED_AT));
-        int likes = c.getInt(c.getColumnIndex(Common.FEED_LIKES));
-        int viewed = c.getInt(c.getColumnIndex(Common.FEED_VIEWED));
-        int comments = c.getInt(c.getColumnIndex(Common.FEED_COMMENTS));
-        String username = c.getString(c.getColumnIndex(Common.FEED_USERNAME));
-        String display_name = c.getString(c.getColumnIndex(Common.FEED_DISPLAY_NAME));
-        String avatar = c.getString(c.getColumnIndex(Common.FEED_AVATAR));
+        int id = c.getInt(c.getColumnIndex(Constants.FEED_ID));
+        int user_id = c.getInt(c.getColumnIndex(Constants.FEED_USER_ID));
+        String title = c.getString(c.getColumnIndex(Constants.FEED_TITLE));
+        String thumbnail = c.getString(c.getColumnIndex(Constants.FEED_THUMBNAIL));
+        String sound_path = c.getString(c.getColumnIndex(Constants.FEED_SOUND_PATH));
+        String description = c.getString(c.getColumnIndex(Constants.FEED_DESCRIPTION));
+        int duration = c.getInt(c.getColumnIndex(Constants.FEED_DURATION));
+        int played = c.getInt(c.getColumnIndex(Constants.FEED_PLAYED));
+        String created_at = c.getString(c.getColumnIndex(Constants.FEED_CREATED_AT));
+        String updated_at = c.getString(c.getColumnIndex(Constants.FEED_UPDATED_AT));
+        int likes = c.getInt(c.getColumnIndex(Constants.FEED_LIKES));
+        int viewed = c.getInt(c.getColumnIndex(Constants.FEED_VIEWED));
+        int comments = c.getInt(c.getColumnIndex(Constants.FEED_COMMENTS));
+        String username = c.getString(c.getColumnIndex(Constants.FEED_USERNAME));
+        String display_name = c.getString(c.getColumnIndex(Constants.FEED_DISPLAY_NAME));
+        String avatar = c.getString(c.getColumnIndex(Constants.FEED_AVATAR));
         return new Feed(id, user_id, title, thumbnail, sound_path, description, duration, played, created_at, updated_at, likes, viewed, comments, username, display_name, avatar);
     }
 }
