@@ -28,6 +28,11 @@ public class Profile implements Serializable
     private String description;
     private String created_at;
     private String updated_at;
+    private int sounds;
+    private int favorites;
+    private int likes;
+    private int followings;
+    private int audiences;
 
     public int getId()
     {

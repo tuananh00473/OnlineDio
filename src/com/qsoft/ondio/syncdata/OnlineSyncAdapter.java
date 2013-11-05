@@ -47,11 +47,13 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
             // Get shows from remote
             ArrayList<Feed> remoteFeeds = Constants.sServerAuthenticate.getHomeFeed(authToken);
             Log.d(TAG, "data : " + remoteFeeds);
+
+
             provider.delete(Constants.CONTENT_URI_FEED, null, null);
             Log.d(TAG, "delete");
-            for (Feed localFeed : remoteFeeds)
+            for (Feed feed : remoteFeeds)
             {
-                provider.insert(Constants.CONTENT_URI_FEED, localFeed.getContentValues());
+                provider.insert(Constants.CONTENT_URI_FEED, feed.getContentValues());
             }
 
 //            Log.d(TAG, " ==> Get data from local.");
@@ -66,6 +68,27 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
 //                }
 //                c.close();
 //            }
+//
+//            for (Feed feed : remoteFeeds)
+//            {
+//                if (!localFeeds.contains(feed))
+//                {
+//                    provider.insert(Constants.CONTENT_URI_FEED, feed.getContentValues());
+//                }
+////                provider.delete(Constants.CONTENT_URI_FEED, null, null);
+////                Log.d(TAG, "delete");
+////                provider.insert(Constants.CONTENT_URI_FEED, feed.getContentValues());
+//            }
+//
+//            for (Feed feed : localFeeds)
+//            {
+//                if (!remoteFeeds.contains(feed))
+//                {
+//                    provider.delete(Constants.CONTENT_URI_FEED, "id", String[]{"",""} );
+//                }
+//            }
+
+//
 
 //            // See what Local shows are missing on Remote
 //            ArrayList<Feed> showsToRemote = new ArrayList<Feed>();

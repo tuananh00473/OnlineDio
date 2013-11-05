@@ -44,7 +44,6 @@ public class ParseComServer implements ServerAuthenticate
     {
         Log.i(TAG, "before login");
         String url = "http://192.168.1.222/testing/ica467/trunk/public/auth-rest";
-//        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/service-testing/";
 //        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/auth-rest";
         DefaultHttpClient httpClient = new DefaultHttpClient();
         pass = new StringConverter().doConvert(pass);
@@ -79,8 +78,6 @@ public class ParseComServer implements ServerAuthenticate
     public JsonResult updateProfile(Profile profile)
     {
         String url = "http://192.168.1.222/testing/ica467/trunk/public/user-rest/" + profile.getId();
-
-//        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/service-testing/" + profile.getId();
 //        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/user-rest/" + profile.getId();
 
         DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -100,7 +97,7 @@ public class ParseComServer implements ServerAuthenticate
             jsonObject.addProperty("country_id", "1");
             jsonObject.addProperty("description", profile.getDescription());
 
-//            httpPost.setHeader("Content-type", "application/json");
+            httpPost.setHeader("Content-type", "application/json");
             httpPost.setEntity(new StringEntity(jsonObject.toString(), "UTF-8"));
 
             HttpResponse httpResponse = httpClient.execute(httpPost);
@@ -166,7 +163,7 @@ public class ParseComServer implements ServerAuthenticate
         Log.d("udinic", "putShow [" + remoteFeed.display_name + "]");
 
         DefaultHttpClient httpClient = new DefaultHttpClient();
-        String url = "https://api.parse.com/1/classes/tvshows";
+        String url = "http://192.168.1.222/testing/ica467/trunk/public/home-rest";
 
         HttpPost httpPost = new HttpPost(url);
 
@@ -218,16 +215,28 @@ public class ParseComServer implements ServerAuthenticate
                 ParseComServer.ParseComError error = new Gson().fromJson(responseString, ParseComServer.ParseComError.class);
                 throw new Exception("Error posting feed [" + error.code + "] - " + error.error);
             }
-            else
-            {
-//                Log.d("udini", "Response string = " + responseString);
-            }
-
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Profile getProfile(String userId, String authToken) throws JSONException
+    {
+        Profile profile;
+
+        String url = "http://192.168.1.222/testing/ica467/trunk/public/user-rest/" + userId
+//        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/user-rest/" + userId
+                + "?access_token="
+                + authToken;
+
+        String responseString = loadDataWithGetMethod(url);
+        Log.d(TAG, "responseString : " + responseString);
+        JSONObject jsonObject = new JSONObject(responseString);
+        profile = new Gson().fromJson(jsonObject.get("data").toString(), Profile.class);
+        return profile;
     }
 
     public static class ParseComError implements Serializable

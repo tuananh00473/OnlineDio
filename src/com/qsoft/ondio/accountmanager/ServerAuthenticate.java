@@ -21,5 +21,7 @@ public interface ServerAuthenticate
 
     public ArrayList<Feed> getHomeFeed(String authToken) throws JSONException;
 
-    void putShow(String authToken, String userObjectId, Feed remoteFeed) throws Exception;
+    public void putShow(String authToken, String userObjectId, Feed remoteFeed) throws Exception;
+
+    public Profile getProfile(String userId, String authToken) throws JSONException;
 }

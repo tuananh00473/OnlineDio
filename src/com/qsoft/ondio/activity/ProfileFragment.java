@@ -20,6 +20,7 @@ import com.qsoft.ondio.dialog.MyDialog;
 import com.qsoft.ondio.model.JsonResult;
 import com.qsoft.ondio.model.Profile;
 import com.qsoft.ondio.util.Constants;
+import org.json.JSONException;
 
 /**
  * User: AnhNT
@@ -48,6 +49,7 @@ public class ProfileFragment extends Fragment
     private static final int MALE = 0;
     private static final int FEMALE = 1;
     private static int gender;
+    private static int countryId;
     private static final int REQUEST_CODE_CAMERA_TAKE_PICTURE = 999;
     private static final int REQUEST_CODE_RESULT_LOAD_IMAGE = 888;
     private static final int AVATAR_CODE = 0;
@@ -92,7 +94,29 @@ public class ProfileFragment extends Fragment
         btSave = (Button) view.findViewById(R.id.profile_btSave);
         btMenu = (Button) view.findViewById(R.id.profile_btMenu);
 
+        SyncFormServer();
         loadProfileFromDB();
+    }
+
+    private void SyncFormServer()
+    {
+        try
+        {
+            Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_USER, null, null, null, "_ID");
+            if (null != c && c.moveToFirst())
+            {
+                String userId = c.getString(c.getColumnIndex(Constants.USER_USER_ID));
+                String authToken = c.getString(c.getColumnIndex(Constants.USER_ACCESS_TOKEN));
+
+                Profile profile = Constants.sServerAuthenticate.getProfile(userId, authToken);
+                saveProfileToDB(profile);
+                Log.d(TAG, profile.getDisplay_name());
+            }
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     private void loadProfileFromDB()
@@ -104,15 +128,9 @@ public class ProfileFragment extends Fragment
             etFullName.setText(c.getString(c.getColumnIndex(Constants.PROFILE_FULL_NAME)));
             etPhoneNo.setText(c.getString(c.getColumnIndex(Constants.PROFILE_PHONE)));
             etBirthday.setText(c.getString(c.getColumnIndex(Constants.PROFILE_BIRTHDAY)));
-            if ("male".equals(c.getString(c.getColumnIndex(Constants.PROFILE_GENDER))))
-            {
-                setGender(MALE);
-            }
-            else
-            {
-                setGender(FEMALE);
-            }
-            etCountry.setText(c.getString(c.getColumnIndex(Constants.PROFILE_COUNTRY)));
+            setGender(c.getInt(c.getColumnIndex(Constants.PROFILE_GENDER)));
+            String[] countries = getResources().getStringArray(R.array.countries);
+            etCountry.setText(countries[c.getInt(c.getColumnIndex(Constants.PROFILE_COUNTRY))]);
             etDescription.setText(c.getString(c.getColumnIndex(Constants.PROFILE_DESCRIPTION)));
         }
     }
@@ -176,7 +194,7 @@ public class ProfileFragment extends Fragment
             profile.setPhone(etPhoneNo.getText().toString());
             profile.setBirthday(etBirthday.getText().toString());
             profile.setGender(gender);
-            profile.setCountry_id(Integer.parseInt(etCountry.getText().toString()));
+            profile.setCountry_id(countryId);
             profile.setDescription(etDescription.getText().toString());
 
             JsonResult result = Constants.sServerAuthenticate.updateProfile(profile);
@@ -237,12 +255,12 @@ public class ProfileFragment extends Fragment
         switch (gender)
         {
             case MALE:
-                ProfileFragment.gender = MALE;
+                this.gender = MALE;
                 btMale.setBackgroundResource(R.drawable.profile_male);
                 btFemale.setBackgroundResource(R.drawable.profile_female_visible);
                 break;
             case FEMALE:
-                ProfileFragment.gender = FEMALE;
+                this.gender = FEMALE;
                 btFemale.setBackgroundResource(R.drawable.profile_female);
                 btMale.setBackgroundResource(R.drawable.profile_male_visible);
                 break;
@@ -258,6 +276,7 @@ public class ProfileFragment extends Fragment
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
             {
                 showCountry(adapterView.getSelectedItem().toString());
+                countryId = adapterView.getSelectedItemPosition();
             }
 
             @Override
