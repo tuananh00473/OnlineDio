@@ -254,4 +254,12 @@ public class Feed
         String avatar = c.getString(c.getColumnIndex(Constants.FEED_AVATAR));
         return new Feed(id, user_id, title, thumbnail, sound_path, description, duration, played, created_at, updated_at, likes, viewed, comments, username, display_name, avatar);
     }
+
+    @Override
+    public int hashCode()
+    {
+        int result = display_name.hashCode();
+        result = 31 * result;
+        return result;
+    }
 }

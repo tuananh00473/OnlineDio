@@ -43,9 +43,9 @@ public class ParseComServer implements ServerAuthenticate
     public User login(String user, String pass, String authType) throws Exception
     {
         Log.i(TAG, "before login");
-//        String url = "http://192.168.1.222/testing/ica467/trunk/public/auth-rest";
+        String url = "http://192.168.1.222/testing/ica467/trunk/public/auth-rest";
 //        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/service-testing/";
-        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/auth-rest";
+//        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/auth-rest";
         DefaultHttpClient httpClient = new DefaultHttpClient();
         pass = new StringConverter().doConvert(pass);
         Log.i(TAG, "login1");
@@ -78,10 +78,10 @@ public class ParseComServer implements ServerAuthenticate
     @Override
     public JsonResult updateProfile(Profile profile)
     {
-//        String url = "http://192.168.1.222/testing/ica467/trunk/public/user-rest/" + profile.getId();
+        String url = "http://192.168.1.222/testing/ica467/trunk/public/user-rest/" + profile.getId();
 
 //        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/service-testing/" + profile.getId();
-        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/user-rest/" + profile.getId();
+//        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/user-rest/" + profile.getId();
 
         DefaultHttpClient httpClient = new DefaultHttpClient();
 
@@ -136,8 +136,8 @@ public class ParseComServer implements ServerAuthenticate
     @Override
     public ArrayList<Feed> getHomeFeed(String authToken) throws JSONException
     {
-//        String url = "http://192.168.1.222/testing/ica467/trunk/public/home-rest"
-        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/home-rest"
+        String url = "http://192.168.1.222/testing/ica467/trunk/public/home-rest"
+//        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/home-rest"
                 + "?access_token="
                 + authToken;
         String result = loadDataWithGetMethod(url);
