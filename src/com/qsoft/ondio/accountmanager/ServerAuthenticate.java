@@ -17,7 +17,7 @@ public interface ServerAuthenticate
 {
     public User login(final String user, final String pass, String authType) throws Exception;
 
-    public JsonResult updateProfile(Profile profile);
+    public JsonResult updateProfile(Profile profile, String authToken);
 
     public ArrayList<Feed> getHomeFeed(String authToken) throws JSONException;
 

@@ -13,6 +13,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
@@ -75,7 +76,7 @@ public class ParseComServer implements ServerAuthenticate
     }
 
     @Override
-    public JsonResult updateProfile(Profile profile)
+    public JsonResult updateProfile(Profile profile, String authToken)
     {
         String url = "http://192.168.1.222/testing/ica467/trunk/public/user-rest/" + profile.getId();
 //        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/user-rest/" + profile.getId();
@@ -85,7 +86,7 @@ public class ParseComServer implements ServerAuthenticate
         try
         {
             URL realUrl = new URL(url);
-            HttpPost httpPost = new HttpPost(realUrl.toURI());
+            HttpPut httpPut = new HttpPut(realUrl.toURI());
 
             JsonObject jsonObject = new JsonObject();
 
@@ -97,10 +98,11 @@ public class ParseComServer implements ServerAuthenticate
             jsonObject.addProperty("country_id", "1");
             jsonObject.addProperty("description", profile.getDescription());
 
-            httpPost.setHeader("Content-type", "application/json");
-            httpPost.setEntity(new StringEntity(jsonObject.toString(), "UTF-8"));
+            httpPut.setHeader("Authorization", "Bearer " + authToken);
+//            httpPost.setHeader("Content-type", "application/json");
+            httpPut.setEntity(new StringEntity(jsonObject.toString(), "UTF-8"));
 
-            HttpResponse httpResponse = httpClient.execute(httpPost);
+            HttpResponse httpResponse = httpClient.execute(httpPut);
             String responseString = EntityUtils.toString(httpResponse.getEntity());
             return new Gson().fromJson(responseString, JsonResult.class);
         }

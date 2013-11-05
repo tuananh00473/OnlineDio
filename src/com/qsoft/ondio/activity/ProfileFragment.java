@@ -55,6 +55,7 @@ public class ProfileFragment extends Fragment
     private static final int AVATAR_CODE = 0;
     private static final int COVER_IMAGE_CODE = 1;
     private static int code;
+    private String authToken;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -106,7 +107,7 @@ public class ProfileFragment extends Fragment
             if (null != c && c.moveToFirst())
             {
                 String userId = c.getString(c.getColumnIndex(Constants.USER_USER_ID));
-                String authToken = c.getString(c.getColumnIndex(Constants.USER_ACCESS_TOKEN));
+                authToken = c.getString(c.getColumnIndex(Constants.USER_ACCESS_TOKEN));
 
                 Profile profile = Constants.sServerAuthenticate.getProfile(userId, authToken);
                 saveProfileToDB(profile);
@@ -197,7 +198,7 @@ public class ProfileFragment extends Fragment
             profile.setCountry_id(countryId);
             profile.setDescription(etDescription.getText().toString());
 
-            JsonResult result = Constants.sServerAuthenticate.updateProfile(profile);
+            JsonResult result = Constants.sServerAuthenticate.updateProfile(profile, authToken);
             if (true)
             {
                 saveProfileToDB(profile);
