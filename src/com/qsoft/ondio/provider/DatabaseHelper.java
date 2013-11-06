@@ -48,6 +48,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 "CREATE TABLE " + Constants.PROFILE_TABLE_NAME + " (" +
                         "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         Constants.PROFILE_ID + " TEXT," +
+                        Constants.PROFILE_AVATAR + " TEXT," +
+                        Constants.PROFILE_COVER_IMAGE + " TEXT," +
                         Constants.PROFILE_DISPLAY_NAME + " TEXT, " +
                         Constants.PROFILE_FULL_NAME + " TEXT, " +
                         Constants.PROFILE_PHONE + " TEXT, " +

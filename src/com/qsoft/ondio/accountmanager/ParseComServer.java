@@ -4,7 +4,6 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.qsoft.ondio.model.Feed;
-import com.qsoft.ondio.model.JsonResult;
 import com.qsoft.ondio.model.Profile;
 import com.qsoft.ondio.model.User;
 import com.qsoft.ondio.util.StringConverter;
@@ -55,7 +54,9 @@ public class ParseComServer implements ServerAuthenticate
             Log.i(TAG, "login URL");
             HttpPost httpPost = new HttpPost(realUrl.toURI());
             Log.i(TAG, "login URI");
+
             JsonObject jsonObject = new JsonObject();
+
             jsonObject.addProperty("username", user);
             jsonObject.addProperty("password", pass);
             jsonObject.addProperty("grant_type", "password");
@@ -67,44 +68,6 @@ public class ParseComServer implements ServerAuthenticate
             HttpResponse httpResponse = httpClient.execute(httpPost);
             String responseString = EntityUtils.toString(httpResponse.getEntity());
             return new Gson().fromJson(responseString, User.class);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public JsonResult updateProfile(Profile profile, String authToken)
-    {
-        String url = "http://192.168.1.222/testing/ica467/trunk/public/user-rest/" + profile.getId();
-//        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/user-rest/" + profile.getId();
-
-        DefaultHttpClient httpClient = new DefaultHttpClient();
-
-        try
-        {
-            URL realUrl = new URL(url);
-            HttpPut httpPut = new HttpPut(realUrl.toURI());
-
-            JsonObject jsonObject = new JsonObject();
-
-            jsonObject.addProperty("display_name", profile.getDisplay_name());
-            jsonObject.addProperty("full_name", profile.getFull_name());
-            jsonObject.addProperty("phone", profile.getPhone());
-            jsonObject.addProperty("birthday", profile.getBirthday());
-            jsonObject.addProperty("gender", "1");
-            jsonObject.addProperty("country_id", "1");
-            jsonObject.addProperty("description", profile.getDescription());
-
-            httpPut.setHeader("Authorization", "Bearer " + authToken);
-//            httpPost.setHeader("Content-type", "application/json");
-            httpPut.setEntity(new StringEntity(jsonObject.toString(), "UTF-8"));
-
-            HttpResponse httpResponse = httpClient.execute(httpPut);
-            String responseString = EntityUtils.toString(httpResponse.getEntity());
-            return new Gson().fromJson(responseString, JsonResult.class);
         }
         catch (Exception e)
         {
@@ -240,6 +203,40 @@ public class ParseComServer implements ServerAuthenticate
         profile = new Gson().fromJson(jsonObject.get("data").toString(), Profile.class);
         return profile;
     }
+
+    @Override
+    public Profile updateProfile(Profile profile, String authToken)
+    {
+        DefaultHttpClient httpClient = new DefaultHttpClient();
+        String url = "http://192.168.1.222/testing/ica467/trunk/public/user-rest/" + profile.getId();
+//        String url = "http://113.160.50.84:1009/testing/ica467/trunk/public/user-rest/" + profile.getId();
+
+        HttpPut httpPut = new HttpPut(url);
+        httpPut.setHeader("Content-type", "application/json");
+        httpPut.addHeader("Authorization", "Bearer " + authToken);
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("display_name", profile.getDisplay_name());
+        jsonObject.addProperty("full_name", profile.getFull_name());
+        jsonObject.addProperty("phone", profile.getPhone());
+        jsonObject.addProperty("birthday", profile.getBirthday());
+        jsonObject.addProperty("gender", 1);
+        jsonObject.addProperty("country_id", "AU");
+        jsonObject.addProperty("description", profile.getDescription());
+        try
+        {
+            httpPut.setEntity(new StringEntity(jsonObject.toString(), "UTF-8"));
+            HttpResponse httpResponse = httpClient.execute(httpPut);
+            String responseString = EntityUtils.toString(httpResponse.getEntity());
+            profile = new Gson().fromJson(new JSONObject(responseString).get("data").toString(), Profile.class);
+            return profile;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public static class ParseComError implements Serializable
     {

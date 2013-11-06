@@ -1,5 +1,6 @@
 package com.qsoft.ondio.activity;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterCustom;
 import com.qsoft.ondio.model.Feed;
+import com.qsoft.ondio.syncdata.SyncData;
 import com.qsoft.ondio.util.Constants;
 
 import java.util.ArrayList;
@@ -25,12 +27,15 @@ public class HomeFragment extends Fragment
     private Button btMenu;
     private Button btLoadData;
     private ListView home_lvFeeds;
+    private Account mConnectedAccount;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.home, null);
         String accountName = getActivity().getIntent().getStringExtra("accountName");
+        mConnectedAccount = new Account(accountName, Constants.ARG_ACCOUNT_TYPE);
+        SyncData.syncNow(mConnectedAccount);
         setUpUI(view);
         setUpDataToHomeListView(getActivity());
         setUpListenerController();

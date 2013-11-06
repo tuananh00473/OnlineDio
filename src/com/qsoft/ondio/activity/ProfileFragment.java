@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.dialog.MyDialog;
-import com.qsoft.ondio.model.JsonResult;
 import com.qsoft.ondio.model.Profile;
 import com.qsoft.ondio.util.Constants;
 import org.json.JSONException;
@@ -116,24 +115,73 @@ public class ProfileFragment extends Fragment
         }
         catch (JSONException e)
         {
-            e.printStackTrace();
         }
     }
 
     private void loadProfileFromDB()
     {
         Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_PROFILE, null, null, null, "displayName");
-        if (c.moveToFirst())
+        if (null != c && c.moveToFirst())
         {
             etProfileName.setText(c.getString(c.getColumnIndex(Constants.PROFILE_DISPLAY_NAME)));
             etFullName.setText(c.getString(c.getColumnIndex(Constants.PROFILE_FULL_NAME)));
             etPhoneNo.setText(c.getString(c.getColumnIndex(Constants.PROFILE_PHONE)));
             etBirthday.setText(c.getString(c.getColumnIndex(Constants.PROFILE_BIRTHDAY)));
             setGender(c.getInt(c.getColumnIndex(Constants.PROFILE_GENDER)));
-            String[] countries = getResources().getStringArray(R.array.countries);
-            etCountry.setText(countries[c.getInt(c.getColumnIndex(Constants.PROFILE_COUNTRY))]);
+            etCountry.setText(getCountryName(c));
             etDescription.setText(c.getString(c.getColumnIndex(Constants.PROFILE_DESCRIPTION)));
+            setProfileAvatar(c);
+            setProfileCoverImage(c);
         }
+    }
+
+    private void setProfileAvatar(Cursor c)
+    {
+        try
+        {
+            Bitmap photo = null;
+            String urlAvatar = c.getString(c.getColumnIndex(Constants.PROFILE_AVATAR));
+            if (null != urlAvatar)
+            {
+                photo = BitmapFactory.decodeStream(new java.net.URL(urlAvatar).openStream());
+            }
+            else
+            {
+                photo = BitmapFactory.decodeResource(getResources(), R.drawable.profile_avatar);
+            }
+            makeMaskImage(ivAvatar, photo);
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    private void setProfileCoverImage(Cursor c)
+    {
+        try
+        {
+            Bitmap photo = null;
+            String urlCoverImage = c.getString(c.getColumnIndex(Constants.PROFILE_COVER_IMAGE));
+            if (null != urlCoverImage)
+            {
+                photo = BitmapFactory.decodeStream(new java.net.URL(urlCoverImage).openStream());
+            }
+            else
+            {
+                photo = BitmapFactory.decodeResource(getResources(), R.drawable.profile_cover_image);
+            }
+            Drawable cover = new BitmapDrawable(photo);
+            rlCoverImage.setBackgroundDrawable(cover);
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    private String getCountryName(Cursor c)
+    {
+        String[] countries = getResources().getStringArray(R.array.countries);
+        return countries[c.getInt(c.getColumnIndex(Constants.PROFILE_COUNTRY))];
     }
 
     private final View.OnClickListener onClickListener = new View.OnClickListener()
@@ -195,13 +243,13 @@ public class ProfileFragment extends Fragment
             profile.setPhone(etPhoneNo.getText().toString());
             profile.setBirthday(etBirthday.getText().toString());
             profile.setGender(gender);
-            profile.setCountry_id(countryId);
+            profile.setCountry_id(getCountryCode());
             profile.setDescription(etDescription.getText().toString());
 
-            JsonResult result = Constants.sServerAuthenticate.updateProfile(profile, authToken);
-            if (true)
+            Profile profileUpdated = Constants.sServerAuthenticate.updateProfile(profile, authToken);
+            if (null != profileUpdated)
             {
-                saveProfileToDB(profile);
+                saveProfileToDB(profileUpdated);
                 MyDialog.showMessageDialog(getActivity(), "Success", "Profile updated!");
             }
             else
@@ -213,6 +261,12 @@ public class ProfileFragment extends Fragment
         {
             e.printStackTrace();
         }
+    }
+
+    private String getCountryCode()
+    {
+        String[] countries_code = getResources().getStringArray(R.array.countries_code);
+        return countries_code[countryId];
     }
 
     private void saveProfileToDB(Profile profile)

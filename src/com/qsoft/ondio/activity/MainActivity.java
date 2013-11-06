@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import com.qsoft.ondio.R;
-import com.qsoft.ondio.syncdata.SyncData;
 import com.qsoft.ondio.util.Constants;
 
 /**
@@ -24,6 +23,7 @@ public class MainActivity extends Activity
 {
     private static final String TAG = "MainActivity";
     private Button btLogin;
+    private Button btLoginFb;
     private AccountManager mAccountManager;
     private String authToken;
     private Account mConnectedAccount;
@@ -41,12 +41,14 @@ public class MainActivity extends Activity
     private void setupUI()
     {
         btLogin = (Button) findViewById(R.id.btLogin);
+        btLoginFb = (Button) findViewById(R.id.btLoginFb);
     }
 
 
     private void setUpListenerController()
     {
         btLogin.setOnClickListener(onClickListener);
+        btLoginFb.setOnClickListener(onClickListener);
     }
 
     private final View.OnClickListener onClickListener = new View.OnClickListener()
@@ -58,6 +60,9 @@ public class MainActivity extends Activity
             {
                 case R.id.btLogin:
                     doLogin();
+                    break;
+                case R.id.btLoginFb:
+
                     break;
             }
         }
@@ -85,9 +90,6 @@ public class MainActivity extends Activity
                             {
                                 String accountName = bnd.getString(AccountManager.KEY_ACCOUNT_NAME);
                                 mConnectedAccount = new Account(accountName, Constants.ARG_ACCOUNT_TYPE);
-                                Log.d(TAG, "before sync");
-                                SyncData.syncNow(mConnectedAccount);
-                                Log.d(TAG, "after sync");
                                 Intent intent = new Intent(getBaseContext(), SlidebarActivity.class);
                                 intent.putExtra("accountName", accountName);
                                 startActivity(intent);

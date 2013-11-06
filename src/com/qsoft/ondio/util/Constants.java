@@ -34,6 +34,8 @@ public class Constants
 
     //    profile constants
     public static final String PROFILE_ID = "id";
+    public static final String PROFILE_AVATAR = "avatar";
+    public static final String PROFILE_COVER_IMAGE = "cover_image";
     public static final String PROFILE_DISPLAY_NAME = "displayName";
     public static final String PROFILE_FULL_NAME = "fullName";
     public static final String PROFILE_PHONE = "phoneNo";

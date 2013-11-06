@@ -23,7 +23,7 @@ public class Profile implements Serializable
     private String phone;
     private String birthday;
     private int gender;
-    private int country_id;
+    private String country_id;
     private int storage_plan_id;
     private String description;
     private String created_at;
@@ -144,12 +144,12 @@ public class Profile implements Serializable
         this.gender = gender;
     }
 
-    public int getCountry_id()
+    public String getCountry_id()
     {
         return country_id;
     }
 
-    public void setCountry_id(int country_id)
+    public void setCountry_id(String country_id)
     {
         this.country_id = country_id;
     }
@@ -198,6 +198,8 @@ public class Profile implements Serializable
     {
         ContentValues values = new ContentValues();
         values.put(Constants.PROFILE_ID, id);
+        values.put(Constants.PROFILE_AVATAR, avatar);
+        values.put(Constants.PROFILE_COVER_IMAGE, cover_image);
         values.put(Constants.PROFILE_DISPLAY_NAME, display_name);
         values.put(Constants.PROFILE_FULL_NAME, full_name);
         values.put(Constants.PROFILE_PHONE, phone);

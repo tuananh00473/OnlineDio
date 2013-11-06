@@ -7,8 +7,8 @@
                 android:background="@drawable/list_selection"
                 android:padding="@dimen/phone_padding">
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/phone_home_avatar_size"
+            android:layout_height="@dimen/phone_home_avatar_size"
             android:id="@+id/home_ivAvatar"
             android:background="@drawable/home_avatar"
             android:contentDescription="@string/imageview_description"/>

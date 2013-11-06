@@ -44,6 +44,7 @@
     <dimen name="phone_haft_of_height">190dp</dimen>
     <dimen name="phone_zero">0dp</dimen>
     <dimen name="phone_button_gender_margin_top">14dp</dimen>
+    <dimen name="phone_home_avatar_size">68dp</dimen>
 
     <!--tablet-->
     <dimen name="tablet_text_size">32dp</dimen>
@@ -90,4 +91,5 @@
     <dimen name="tablet_button_gender_margin_top">28dp</dimen>
     <dimen name="tablet_width_button_gender">80dp</dimen>
     <dimen name="tablet_height_button_gender">50dp</dimen>
+    <dimen name="tablet_home_avatar_size">136dp</dimen>
 </resources>
