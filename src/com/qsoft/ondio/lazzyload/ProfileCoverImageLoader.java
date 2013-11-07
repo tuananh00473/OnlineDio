@@ -3,9 +3,12 @@ package com.qsoft.ondio.lazzyload;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import com.qsoft.ondio.R;
+import com.qsoft.ondio.activity.ProfileFragment;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -16,41 +19,48 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ImageLoader
+/**
+ * User: anhnt
+ * Date: 11/7/13
+ * Time: 9:08 AM
+ */
+public class ProfileCoverImageLoader
 {
+    final int stub_id = R.drawable.profile_cover_image;
 
-    MemoryCache memoryCache = new MemoryCache();
+    MemoryCache memoryCache;
     FileCache fileCache;
-    private Map<ImageView, String> imageViews = Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
+    private Map<RelativeLayout, String> relativeLayoutMaps;
     ExecutorService executorService;
-    Handler handler = new Handler();//handler to display images in UI thread
+    Handler handler;//handler to display images in UI thread
+    private ProfileFragment profileFragment;
 
-    public ImageLoader(Context context)
+    public ProfileCoverImageLoader(Context context, ProfileFragment profileFragment)
     {
-        fileCache = new FileCache(context, "lazyList");
+        this.profileFragment = profileFragment;
+        memoryCache = new MemoryCache();
+        fileCache = new FileCache(context, "profileCoverImage");
+        relativeLayoutMaps = Collections.synchronizedMap(new WeakHashMap<RelativeLayout, String>());
         executorService = Executors.newFixedThreadPool(5);
+        handler = new Handler();
     }
 
-    final int stub_id = R.drawable.stub;
-
-    public void DisplayImage(String url, ImageView imageView)
+    public void DisplayImage(String url, RelativeLayout rlCoverImage)
     {
-        imageViews.put(imageView, url);
+        relativeLayoutMaps.put(rlCoverImage, url);
         Bitmap bitmap = memoryCache.get(url);
-        if (bitmap != null)
+        if (null == bitmap)
         {
-            imageView.setImageBitmap(bitmap);
+            queuePhoto(url, rlCoverImage);
+            bitmap = BitmapFactory.decodeResource(profileFragment.getResources(), stub_id);
         }
-        else
-        {
-            queuePhoto(url, imageView);
-            imageView.setImageResource(stub_id);
-        }
+        Drawable cover = new BitmapDrawable(bitmap);
+        rlCoverImage.setBackgroundDrawable(cover);
     }
 
-    private void queuePhoto(String url, ImageView imageView)
+    private void queuePhoto(String url, RelativeLayout rlCoverImage)
     {
-        PhotoToLoad p = new PhotoToLoad(url, imageView);
+        PhotoToLoad p = new PhotoToLoad(url, rlCoverImage);
         executorService.submit(new PhotosLoader(p));
     }
 
@@ -142,12 +152,12 @@ public class ImageLoader
     private class PhotoToLoad
     {
         public String url;
-        public ImageView imageView;
+        public RelativeLayout rlCoverImage;
 
-        public PhotoToLoad(String u, ImageView i)
+        public PhotoToLoad(String url, RelativeLayout rlCoverImage)
         {
-            url = u;
-            imageView = i;
+            this.url = url;
+            this.rlCoverImage = rlCoverImage;
         }
     }
 
@@ -165,13 +175,13 @@ public class ImageLoader
         {
             try
             {
-                if (imageViewReused(photoToLoad))
+                if (imageReused(photoToLoad))
                 {
                     return;
                 }
                 Bitmap bmp = getBitmap(photoToLoad.url);
                 memoryCache.put(photoToLoad.url, bmp);
-                if (imageViewReused(photoToLoad))
+                if (imageReused(photoToLoad))
                 {
                     return;
                 }
@@ -185,9 +195,9 @@ public class ImageLoader
         }
     }
 
-    boolean imageViewReused(PhotoToLoad photoToLoad)
+    boolean imageReused(PhotoToLoad photoToLoad)
     {
-        String tag = imageViews.get(photoToLoad.imageView);
+        String tag = relativeLayoutMaps.get(photoToLoad.rlCoverImage);
         if (tag == null || !tag.equals(photoToLoad.url))
         {
             return true;
@@ -209,18 +219,16 @@ public class ImageLoader
 
         public void run()
         {
-            if (imageViewReused(photoToLoad))
+            if (imageReused(photoToLoad))
             {
                 return;
             }
-            if (bitmap != null)
+            if (null == bitmap)
             {
-                photoToLoad.imageView.setImageBitmap(bitmap);
+                bitmap = BitmapFactory.decodeResource(profileFragment.getResources(), stub_id);
             }
-            else
-            {
-                photoToLoad.imageView.setImageResource(stub_id);
-            }
+            Drawable cover = new BitmapDrawable(bitmap);
+            photoToLoad.rlCoverImage.setBackgroundDrawable(cover);
         }
     }
 
@@ -229,5 +237,4 @@ public class ImageLoader
         memoryCache.clear();
         fileCache.clear();
     }
-
 }

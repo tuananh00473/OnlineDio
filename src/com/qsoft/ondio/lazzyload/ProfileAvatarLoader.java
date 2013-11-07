@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.widget.ImageView;
 import com.qsoft.ondio.R;
+import com.qsoft.ondio.activity.ProfileFragment;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -16,22 +17,31 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ImageLoader
+/**
+ * User: anhnt
+ * Date: 11/7/13
+ * Time: 9:08 AM
+ */
+public class ProfileAvatarLoader
 {
+    final int stub_id = R.drawable.profile_avatar;
 
-    MemoryCache memoryCache = new MemoryCache();
+    MemoryCache memoryCache;
     FileCache fileCache;
-    private Map<ImageView, String> imageViews = Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
+    private Map<ImageView, String> imageViews;
     ExecutorService executorService;
-    Handler handler = new Handler();//handler to display images in UI thread
+    Handler handler;//handler to display images in UI thread
+    private ProfileFragment profileFragment;
 
-    public ImageLoader(Context context)
+    public ProfileAvatarLoader(Context context, ProfileFragment profileFragment)
     {
-        fileCache = new FileCache(context, "lazyList");
+        this.profileFragment = profileFragment;
+        memoryCache = new MemoryCache();
+        fileCache = new FileCache(context, "profileAvatar");
+        imageViews = Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
         executorService = Executors.newFixedThreadPool(5);
+        handler = new Handler();
     }
-
-    final int stub_id = R.drawable.stub;
 
     public void DisplayImage(String url, ImageView imageView)
     {
@@ -39,12 +49,13 @@ public class ImageLoader
         Bitmap bitmap = memoryCache.get(url);
         if (bitmap != null)
         {
-            imageView.setImageBitmap(bitmap);
+            profileFragment.makeMaskImage(imageView, bitmap);
         }
         else
         {
             queuePhoto(url, imageView);
-            imageView.setImageResource(stub_id);
+            bitmap = BitmapFactory.decodeResource(profileFragment.getResources(), R.drawable.profile_avatar);
+            profileFragment.makeMaskImage(imageView, bitmap);
         }
     }
 
@@ -215,11 +226,12 @@ public class ImageLoader
             }
             if (bitmap != null)
             {
-                photoToLoad.imageView.setImageBitmap(bitmap);
+                profileFragment.makeMaskImage(photoToLoad.imageView, bitmap);
             }
             else
             {
-                photoToLoad.imageView.setImageResource(stub_id);
+                bitmap = BitmapFactory.decodeResource(profileFragment.getResources(), R.drawable.profile_avatar);
+                profileFragment.makeMaskImage(photoToLoad.imageView, bitmap);
             }
         }
     }
@@ -229,5 +241,4 @@ public class ImageLoader
         memoryCache.clear();
         fileCache.clear();
     }
-
 }

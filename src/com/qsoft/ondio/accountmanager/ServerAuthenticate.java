@@ -8,7 +8,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 /**
- * User: udinic
+ * User: anhnt
  * Date: 3/27/13
  * Time: 2:35 AM
  */

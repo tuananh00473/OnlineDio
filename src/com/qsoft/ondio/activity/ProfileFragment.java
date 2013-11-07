@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.dialog.MyDialog;
+import com.qsoft.ondio.lazzyload.ProfileAvatarLoader;
+import com.qsoft.ondio.lazzyload.ProfileCoverImageLoader;
 import com.qsoft.ondio.model.Profile;
 import com.qsoft.ondio.util.Constants;
 import org.json.JSONException;
@@ -130,8 +132,10 @@ public class ProfileFragment extends Fragment
             setGender(c.getInt(c.getColumnIndex(Constants.PROFILE_GENDER)));
             etCountry.setText(getCountryName(c));
             etDescription.setText(c.getString(c.getColumnIndex(Constants.PROFILE_DESCRIPTION)));
-            setProfileAvatar(c);
-            setProfileCoverImage(c);
+            new ProfileAvatarLoader(getActivity(), this).DisplayImage(c.getString(c.getColumnIndex(Constants.PROFILE_AVATAR)), ivAvatar);
+            new ProfileCoverImageLoader(getActivity(), this).DisplayImage(c.getString(c.getColumnIndex(Constants.PROFILE_COVER_IMAGE)), rlCoverImage);
+//            setProfileAvatar(c);
+//            setProfileCoverImage(c);
         }
     }
 
