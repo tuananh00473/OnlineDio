@@ -23,7 +23,6 @@ import android.widget.Toast;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.dialog.MyDialog;
 import com.qsoft.ondio.model.User;
-import com.qsoft.ondio.syncdata.SyncData;
 import com.qsoft.ondio.util.Constants;
 import com.qsoft.ondio.util.NetworkAvailable;
 
@@ -284,7 +283,6 @@ public class LoginActivity extends AccountAuthenticatorActivity
         {
             String authtoken = intent.getStringExtra(AccountManager.KEY_AUTHTOKEN);
             String authtokenType = mAuthTokenType;
-            SyncData.syncNow(new Account(accountName, Constants.ARG_ACCOUNT_TYPE));
             Intent intentSlidebar = new Intent(getBaseContext(), SlidebarActivity.class);
             intentSlidebar.putExtra("token", authtoken);
             startActivity(intentSlidebar);

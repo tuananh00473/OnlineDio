@@ -1,12 +1,13 @@
 package com.qsoft.ondio.activity;
 
 import android.accounts.Account;
-import android.content.Context;
+import android.accounts.AccountManager;
+import android.content.ContentResolver;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import com.qsoft.ondio.R;
-import com.qsoft.ondio.customui.ArrayAdapterCustom;
-import com.qsoft.ondio.model.Feed;
-import com.qsoft.ondio.syncdata.SyncData;
+import com.qsoft.ondio.customui.FeedArrayAdapter;
 import com.qsoft.ondio.util.Constants;
-
-import java.util.ArrayList;
 
 public class HomeFragment extends Fragment
 {
@@ -27,19 +24,43 @@ public class HomeFragment extends Fragment
     private Button btMenu;
     private Button btLoadData;
     private ListView home_lvFeeds;
-    private Account mConnectedAccount;
+    private Cursor homeCursor;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        homeCursor = getActivity().managedQuery(Constants.CONTENT_URI_FEED, null, null, null, "_ID");
+        if (homeCursor.getCount() == 0)
+        {
+            AccountManager accountManager = AccountManager.get(getActivity().getApplicationContext());
+            Account account = accountManager.getAccountsByType(Constants.ARG_ACCOUNT_TYPE)[0];
+            syncNow(account);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.home, null);
-        String accountName = getActivity().getIntent().getStringExtra("accountName");
-        mConnectedAccount = new Account(accountName, Constants.ARG_ACCOUNT_TYPE);
-        SyncData.syncNow(mConnectedAccount);
         setUpUI(view);
-        setUpDataToHomeListView(getActivity());
+        SimpleCursorAdapter mAdapter = FeedArrayAdapter.getSimpleCursorAdapter(getActivity(), homeCursor);
+        home_lvFeeds.setAdapter(mAdapter);
+
         setUpListenerController();
         return view;
+    }
+
+
+    public void syncNow(Account account)
+    {
+        Bundle bundle = new Bundle();
+        ContentResolver.setIsSyncable(account, Constants.PROVIDER_NAME, 1);
+        ContentResolver.setSyncAutomatically(account, Constants.PROVIDER_NAME, true);
+        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true); // Performing a sync no matter if it's off
+        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true); // Performing a sync no matter if it's off
+        ContentResolver.requestSync(account, Constants.PROVIDER_NAME, bundle);
     }
 
     private void setUpListenerController()
@@ -47,34 +68,6 @@ public class HomeFragment extends Fragment
         btMenu.setOnClickListener(onClickListener);
         btLoadData.setOnClickListener(onClickListener);
         home_lvFeeds.setOnItemClickListener(onItemClickListener);
-    }
-
-    private void setUpDataToHomeListView(Context context)
-    {
-        try
-        {
-            Log.d(TAG, "xxx");
-            loadData(context);
-        }
-        catch (Exception e)
-        {
-
-        }
-    }
-
-    private void loadData(Context context)
-    {
-        ArrayList<Feed> feedList = new ArrayList<Feed>();
-        Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_FEED, null, null, null, "_ID");
-        if (c != null)
-        {
-            while (c.moveToNext())
-            {
-                feedList.add(Feed.fromCursor(c));
-            }
-            c.close();
-        }
-        home_lvFeeds.setAdapter(new ArrayAdapterCustom(context, R.layout.home_listfeeds, feedList));
     }
 
     private ListView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener()
@@ -97,7 +90,6 @@ public class HomeFragment extends Fragment
                     showMenu();
                     break;
                 case R.id.home_btNotifications:
-                    loadData(getActivity());
                     break;
             }
         }

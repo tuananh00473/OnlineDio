@@ -46,7 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         String createProfileTable =
                 "CREATE TABLE " + Constants.PROFILE_TABLE_NAME + " (" +
-                        "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         Constants.PROFILE_ID + " TEXT," +
                         Constants.PROFILE_AVATAR + " TEXT," +
                         Constants.PROFILE_COVER_IMAGE + " TEXT," +
@@ -65,7 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         String createFeedTable =
                 "CREATE TABLE " + Constants.FEED_TABLE_NAME + " (" +
-                        "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         Constants.FEED_ID + " TEXT, " +
                         Constants.FEED_TITLE + " TEXT, " +
                         Constants.FEED_USER_ID + " TEXT, " +
@@ -90,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         String createUserTable =
                 "CREATE TABLE " + Constants.USER_TABLE_NAME + " (" +
-                        "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         Constants.USER_ID + " TEXT, " +
                         Constants.USER_ACCESS_TOKEN + " TEXT, " +
                         Constants.USER_CLIENT_ID + " TEXT, " +
