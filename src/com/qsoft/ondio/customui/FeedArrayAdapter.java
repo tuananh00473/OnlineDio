@@ -59,7 +59,7 @@ public class FeedArrayAdapter
                         ((TextView) view.findViewById(R.id.home_tvUserName)).setText(cursor.getString(14));
                         break;
                     case 2:
-                        ((TextView) view.findViewById(R.id.home_tvSoundTitle)).setText(cursor.getString(2));
+                        ((TextView) view.findViewById(R.id.home_tvSoundTitle)).setText(getTitle(cursor.getString(2)));
                         break;
                     case 12:
                         ((TextView) view.findViewById(R.id.home_tvDays)).setText(cursor.getString(12));
@@ -70,5 +70,17 @@ public class FeedArrayAdapter
         };
         mAdapter.setViewBinder(viewBinder);
         return mAdapter;
+    }
+
+    private static String getTitle(String title)
+    {
+        try
+        {
+            title = title.substring(0, 15) + "..";
+        }
+        catch (Exception e)
+        {
+        }
+        return title;
     }
 }

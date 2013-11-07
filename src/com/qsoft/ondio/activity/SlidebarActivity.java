@@ -2,6 +2,7 @@ package com.qsoft.ondio.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterListOption;
+import com.qsoft.ondio.util.Constants;
 
 /**
  * User: thinhdd
@@ -84,6 +86,11 @@ public class SlidebarActivity extends FragmentActivity
                     ft.commit();
                     break;
                 case SIGN_OUT:
+                    Cursor cToken = managedQuery(Constants.CONTENT_URI_USER, null, null, null, "_ID");
+                    if (null != cToken && cToken.moveToNext())
+                    {
+                        getContentResolver().delete(Constants.CONTENT_URI_USER, null, null);
+                    }
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     break;
             }

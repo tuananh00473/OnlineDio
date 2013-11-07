@@ -139,48 +139,48 @@ public class ProfileFragment extends Fragment
         }
     }
 
-    private void setProfileAvatar(Cursor c)
-    {
-        try
-        {
-            Bitmap photo = null;
-            String urlAvatar = c.getString(c.getColumnIndex(Constants.PROFILE_AVATAR));
-            if (null != urlAvatar)
-            {
-                photo = BitmapFactory.decodeStream(new java.net.URL(urlAvatar).openStream());
-            }
-            else
-            {
-                photo = BitmapFactory.decodeResource(getResources(), R.drawable.profile_avatar);
-            }
-            makeMaskImage(ivAvatar, photo);
-        }
-        catch (Exception e)
-        {
-        }
-    }
-
-    private void setProfileCoverImage(Cursor c)
-    {
-        try
-        {
-            Bitmap photo = null;
-            String urlCoverImage = c.getString(c.getColumnIndex(Constants.PROFILE_COVER_IMAGE));
-            if (null != urlCoverImage)
-            {
-                photo = BitmapFactory.decodeStream(new java.net.URL(urlCoverImage).openStream());
-            }
-            else
-            {
-                photo = BitmapFactory.decodeResource(getResources(), R.drawable.profile_cover_image);
-            }
-            Drawable cover = new BitmapDrawable(photo);
-            rlCoverImage.setBackgroundDrawable(cover);
-        }
-        catch (Exception e)
-        {
-        }
-    }
+//    private void setProfileAvatar(Cursor c)
+//    {
+//        try
+//        {
+//            Bitmap photo = null;
+//            String urlAvatar = c.getString(c.getColumnIndex(Constants.PROFILE_AVATAR));
+//            if (null != urlAvatar)
+//            {
+//                photo = BitmapFactory.decodeStream(new java.net.URL(urlAvatar).openStream());
+//            }
+//            else
+//            {
+//                photo = BitmapFactory.decodeResource(getResources(), R.drawable.profile_avatar);
+//            }
+//            makeMaskImage(ivAvatar, photo);
+//        }
+//        catch (Exception e)
+//        {
+//        }
+//    }
+//
+//    private void setProfileCoverImage(Cursor c)
+//    {
+//        try
+//        {
+//            Bitmap photo = null;
+//            String urlCoverImage = c.getString(c.getColumnIndex(Constants.PROFILE_COVER_IMAGE));
+//            if (null != urlCoverImage)
+//            {
+//                photo = BitmapFactory.decodeStream(new java.net.URL(urlCoverImage).openStream());
+//            }
+//            else
+//            {
+//                photo = BitmapFactory.decodeResource(getResources(), R.drawable.profile_cover_image);
+//            }
+//            Drawable cover = new BitmapDrawable(photo);
+//            rlCoverImage.setBackgroundDrawable(cover);
+//        }
+//        catch (Exception e)
+//        {
+//        }
+//    }
 
     private String getCountryName(Cursor c)
     {
