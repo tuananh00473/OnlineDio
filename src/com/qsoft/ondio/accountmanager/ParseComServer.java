@@ -219,8 +219,8 @@ public class ParseComServer implements ServerAuthenticate
         jsonObject.addProperty("full_name", profile.getFull_name());
         jsonObject.addProperty("phone", profile.getPhone());
         jsonObject.addProperty("birthday", profile.getBirthday());
-        jsonObject.addProperty("gender", 1);
-        jsonObject.addProperty("country_id", "AU");
+        jsonObject.addProperty("gender", profile.getGender());
+        jsonObject.addProperty("country_id", profile.getCountry_id());
         jsonObject.addProperty("description", profile.getDescription());
         try
         {

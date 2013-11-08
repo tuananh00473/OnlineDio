@@ -1,5 +1,6 @@
 package com.qsoft.ondio.activity;
 
+import android.accounts.AccountManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -86,12 +87,21 @@ public class SlidebarActivity extends FragmentActivity
                     ft.commit();
                     break;
                 case SIGN_OUT:
-                    Cursor cToken = managedQuery(Constants.CONTENT_URI_USER, null, null, null, "_ID");
-                    if (null != cToken && cToken.moveToNext())
+                    AccountManager mAccountManager = AccountManager.get(SlidebarActivity.this);
+                    Cursor cursor = managedQuery(Constants.CONTENT_URI_USER, null, null, null, "_ID");
+                    if (null != cursor && cursor.moveToNext())
                     {
-                        getContentResolver().delete(Constants.CONTENT_URI_USER, null, null);
+                        String authenToken = cursor.getString(cursor.getColumnIndex(Constants.USER_ACCESS_TOKEN));
+                        mAccountManager.invalidateAuthToken(Constants.ARG_ACCOUNT_TYPE, authenToken);
                     }
-                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+                    getContentResolver().delete(Constants.CONTENT_URI_USER, null, null);
+                    getContentResolver().delete(Constants.CONTENT_URI_FEED, null, null);
+                    getContentResolver().delete(Constants.CONTENT_URI_PROFILE, null, null);
+
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    intent.putExtra("IS_ADDING_ACCOUNT", true);
+                    startActivity(intent);
                     break;
             }
             setCloseListOption();

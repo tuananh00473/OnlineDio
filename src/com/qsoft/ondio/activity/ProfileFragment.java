@@ -47,8 +47,8 @@ public class ProfileFragment extends Fragment
     private Button btSave;
     private Button btMenu;
 
-    private static final int MALE = 0;
-    private static final int FEMALE = 1;
+    private static final int MALE = 1;
+    private static final int FEMALE = 2;
     private static int gender;
     private static int countryId;
     private static final int REQUEST_CODE_CAMERA_TAKE_PICTURE = 999;
@@ -56,8 +56,22 @@ public class ProfileFragment extends Fragment
     private static final int AVATAR_CODE = 0;
     private static final int COVER_IMAGE_CODE = 1;
     private static int code;
-    private String authToken;
+    private static String userId;
+    private static String authToken;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_USER, null, null, null, "_ID");
+        if (null != c && c.moveToFirst())
+        {
+            userId = c.getString(c.getColumnIndex(Constants.USER_USER_ID));
+            authToken = c.getString(c.getColumnIndex(Constants.USER_ACCESS_TOKEN));
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.profile, null);
@@ -104,16 +118,9 @@ public class ProfileFragment extends Fragment
     {
         try
         {
-            Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_USER, null, null, null, "_ID");
-            if (null != c && c.moveToFirst())
-            {
-                String userId = c.getString(c.getColumnIndex(Constants.USER_USER_ID));
-                authToken = c.getString(c.getColumnIndex(Constants.USER_ACCESS_TOKEN));
-
-                Profile profile = Constants.sServerAuthenticate.getProfile(userId, authToken);
-                saveProfileToDB(profile);
-                Log.d(TAG, profile.getDisplay_name());
-            }
+            Profile profile = Constants.sServerAuthenticate.getProfile(userId, authToken);
+            saveProfileToDB(profile);
+            Log.d(TAG, profile.getDisplay_name());
         }
         catch (JSONException e)
         {
@@ -134,53 +141,8 @@ public class ProfileFragment extends Fragment
             etDescription.setText(c.getString(c.getColumnIndex(Constants.PROFILE_DESCRIPTION)));
             new ProfileAvatarLoader(getActivity(), this).DisplayImage(c.getString(c.getColumnIndex(Constants.PROFILE_AVATAR)), ivAvatar);
             new ProfileCoverImageLoader(getActivity(), this).DisplayImage(c.getString(c.getColumnIndex(Constants.PROFILE_COVER_IMAGE)), rlCoverImage);
-//            setProfileAvatar(c);
-//            setProfileCoverImage(c);
         }
     }
-
-//    private void setProfileAvatar(Cursor c)
-//    {
-//        try
-//        {
-//            Bitmap photo = null;
-//            String urlAvatar = c.getString(c.getColumnIndex(Constants.PROFILE_AVATAR));
-//            if (null != urlAvatar)
-//            {
-//                photo = BitmapFactory.decodeStream(new java.net.URL(urlAvatar).openStream());
-//            }
-//            else
-//            {
-//                photo = BitmapFactory.decodeResource(getResources(), R.drawable.profile_avatar);
-//            }
-//            makeMaskImage(ivAvatar, photo);
-//        }
-//        catch (Exception e)
-//        {
-//        }
-//    }
-//
-//    private void setProfileCoverImage(Cursor c)
-//    {
-//        try
-//        {
-//            Bitmap photo = null;
-//            String urlCoverImage = c.getString(c.getColumnIndex(Constants.PROFILE_COVER_IMAGE));
-//            if (null != urlCoverImage)
-//            {
-//                photo = BitmapFactory.decodeStream(new java.net.URL(urlCoverImage).openStream());
-//            }
-//            else
-//            {
-//                photo = BitmapFactory.decodeResource(getResources(), R.drawable.profile_cover_image);
-//            }
-//            Drawable cover = new BitmapDrawable(photo);
-//            rlCoverImage.setBackgroundDrawable(cover);
-//        }
-//        catch (Exception e)
-//        {
-//        }
-//    }
 
     private String getCountryName(Cursor c)
     {
@@ -241,7 +203,7 @@ public class ProfileFragment extends Fragment
         try
         {
             Profile profile = new Profile();
-            profile.setId(getUserId());
+            profile.setId(Integer.parseInt(userId));
             profile.setDisplay_name(etProfileName.getText().toString());
             profile.setFull_name(etFullName.getText().toString());
             profile.setPhone(etPhoneNo.getText().toString());
@@ -254,10 +216,12 @@ public class ProfileFragment extends Fragment
             if (null != profileUpdated)
             {
                 saveProfileToDB(profileUpdated);
+                loadProfileFromDB();
                 MyDialog.showMessageDialog(getActivity(), "Success", "Profile updated!");
             }
             else
             {
+
                 MyDialog.showMessageDialog(getActivity(), "Failure", "Update failure, try again later!");
             }
         }
@@ -275,26 +239,31 @@ public class ProfileFragment extends Fragment
 
     private void saveProfileToDB(Profile profile)
     {
-        ContentValues values = profile.getContentValues();
         Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_PROFILE, null, null, null, "_ID");
         if (c.moveToFirst())
         {
+            // get profile lan dau thi server tra ve full link cua image avatar va image cover
+            // sau khi update profile thi server chi tra ve ten cua image
+            // the nen phai lam them cai doan nay :( ==> rat cu chuoi!
+            String linkAvatar = c.getString(c.getColumnIndex(Constants.PROFILE_AVATAR));
+            if (null != linkAvatar && null != profile.getAvatar() && linkAvatar.contains(profile.getAvatar()))
+            {
+                profile.setAvatar(linkAvatar);
+            }
+            String linkCoverImage = c.getString(c.getColumnIndex(Constants.PROFILE_COVER_IMAGE));
+            if (null != linkCoverImage && null != profile.getCover_image() && linkCoverImage.contains(profile.getCover_image()))
+            {
+                profile.setCover_image(linkCoverImage);
+            }
+
+            ContentValues values = profile.getContentValues();
             getActivity().getContentResolver().update(Constants.CONTENT_URI_PROFILE, values, null, null);
         }
         else
         {
+            ContentValues values = profile.getContentValues();
             getActivity().getContentResolver().insert(Constants.CONTENT_URI_PROFILE, values);
         }
-    }
-
-    private Integer getUserId()
-    {
-        Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_USER, null, null, null, "user_id");
-        if (c.moveToFirst())
-        {
-            return Integer.parseInt(c.getString(c.getColumnIndex(Constants.USER_USER_ID)));
-        }
-        return null;
     }
 
     private void setCoverImage()

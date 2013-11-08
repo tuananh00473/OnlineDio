@@ -5,6 +5,7 @@ import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,8 +89,13 @@ public class MainActivity extends Activity
                             Log.d(TAG, "authen = " + authToken);
                             if (null != authToken)
                             {
+                                ContentValues values = new ContentValues();
+                                values.put(Constants.USER_ACCESS_TOKEN, authToken);
+                                getContentResolver().update(Constants.CONTENT_URI_USER, values, null, null);
+
                                 String accountName = bnd.getString(AccountManager.KEY_ACCOUNT_NAME);
                                 mConnectedAccount = new Account(accountName, Constants.ARG_ACCOUNT_TYPE);
+
                                 Intent intent = new Intent(getBaseContext(), SlidebarActivity.class);
                                 intent.putExtra("accountName", accountName);
                                 startActivity(intent);
