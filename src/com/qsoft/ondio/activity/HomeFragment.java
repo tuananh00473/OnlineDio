@@ -3,7 +3,9 @@ package com.qsoft.ondio.activity;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -31,9 +33,12 @@ public class HomeFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        homeCursor = getActivity().managedQuery(Constants.CONTENT_URI_FEED, null, null, null, "_ID");
-        if (homeCursor.getCount() == 0)
+        Cursor cursor = getActivity().managedQuery(Constants.CONTENT_URI_USER, null, null, null, "_id");
+        if (null != cursor && cursor.moveToNext())
         {
+            String userId = cursor.getString(cursor.getColumnIndex(Constants.USER_USER_ID));
+            Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_FEED, Integer.parseInt(userId));
+            homeCursor = getActivity().managedQuery(uri, null, null, null, "_id");
             AccountManager accountManager = AccountManager.get(getActivity().getApplicationContext());
             Account account = accountManager.getAccountsByType(Constants.ARG_ACCOUNT_TYPE)[0];
             syncNow(account);

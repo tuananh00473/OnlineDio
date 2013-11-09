@@ -96,7 +96,7 @@ public class OnlineDioContentProvider extends ContentProvider
                 break;
             case FEED_ID:
                 qb.setTables(Constants.FEED_TABLE_NAME);
-                qb.appendWhere(Constants.FEED_ID + "=" + uri.getPathSegments().get(1));
+                qb.appendWhere(Constants.FEED_ACCOUNT_ID + "=" + uri.getLastPathSegment());
                 if (sortOrder == null || sortOrder == "")
                 {
                     sortOrder = Constants.FEED_DISPLAY_NAME;

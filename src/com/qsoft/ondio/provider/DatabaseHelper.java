@@ -48,6 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 "CREATE TABLE " + Constants.PROFILE_TABLE_NAME + " (" +
                         "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         Constants.PROFILE_ID + " TEXT," +
+                        Constants.PROFILE_USER_ID + " TEXT," +
                         Constants.PROFILE_AVATAR + " TEXT," +
                         Constants.PROFILE_COVER_IMAGE + " TEXT," +
                         Constants.PROFILE_DISPLAY_NAME + " TEXT, " +
@@ -66,19 +67,20 @@ public class DatabaseHelper extends SQLiteOpenHelper
         String createFeedTable =
                 "CREATE TABLE " + Constants.FEED_TABLE_NAME + " (" +
                         "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        Constants.FEED_ID + " TEXT, " +
+                        Constants.FEED_ID + " INTEGER, " +
+                        Constants.FEED_USER_ID + " INTEGER, " +
+                        Constants.FEED_ACCOUNT_ID + " INTEGER, " +
                         Constants.FEED_TITLE + " TEXT, " +
-                        Constants.FEED_USER_ID + " TEXT, " +
                         Constants.FEED_THUMBNAIL + " TEXT, " +
                         Constants.FEED_DESCRIPTION + " TEXT, " +
                         Constants.FEED_SOUND_PATH + " TEXT, " +
-                        Constants.FEED_DURATION + " TEXT, " +
-                        Constants.FEED_PLAYED + " TEXT, " +
+                        Constants.FEED_DURATION + " INTEGER, " +
+                        Constants.FEED_PLAYED + " INTEGER, " +
                         Constants.FEED_CREATED_AT + " TEXT, " +
                         Constants.FEED_UPDATED_AT + " TEXT, " +
-                        Constants.FEED_LIKES + " TEXT, " +
-                        Constants.FEED_VIEWED + " TEXT, " +
-                        Constants.FEED_COMMENTS + " TEXT, " +
+                        Constants.FEED_LIKES + " INTEGER, " +
+                        Constants.FEED_VIEWED + " INTEGER, " +
+                        Constants.FEED_COMMENTS + " INTEGER, " +
                         Constants.FEED_USERNAME + " TEXT, " +
                         Constants.FEED_DISPLAY_NAME + " TEXT, " +
                         Constants.FEED_AVATAR + " TEXT " +

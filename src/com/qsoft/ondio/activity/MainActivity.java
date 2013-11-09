@@ -89,16 +89,16 @@ public class MainActivity extends Activity
                             Log.d(TAG, "authen = " + authToken);
                             if (null != authToken)
                             {
-                                ContentValues values = new ContentValues();
-                                values.put(Constants.USER_ACCESS_TOKEN, authToken);
-                                getContentResolver().update(Constants.CONTENT_URI_USER, values, null, null);
-
                                 String accountName = bnd.getString(AccountManager.KEY_ACCOUNT_NAME);
                                 mConnectedAccount = new Account(accountName, Constants.ARG_ACCOUNT_TYPE);
 
-                                Intent intent = new Intent(getBaseContext(), SlidebarActivity.class);
-                                intent.putExtra("accountName", accountName);
-                                startActivity(intent);
+                                String userId = mAccountManager.getUserData(mConnectedAccount, Constants.USERDATA_USER_OBJ_ID);
+                                ContentValues values = new ContentValues();
+                                values.put(Constants.USER_ACCESS_TOKEN, authToken);
+                                values.put(Constants.USER_USER_ID, userId);
+                                getContentResolver().update(Constants.CONTENT_URI_USER, values, null, null);
+
+                                startActivity(new Intent(getBaseContext(), SlidebarActivity.class));
                             }
                             else
                             {
@@ -106,6 +106,7 @@ public class MainActivity extends Activity
                                 intent.putExtra("IS_ADDING_ACCOUNT", true);
                                 startActivity(intent);
                             }
+                            MainActivity.this.finish();
                         }
                         catch (Exception e)
                         {

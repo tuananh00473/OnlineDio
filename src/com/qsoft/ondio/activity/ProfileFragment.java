@@ -257,6 +257,7 @@ public class ProfileFragment extends Fragment
             }
 
             ContentValues values = profile.getContentValues();
+            values.put(Constants.USER_USER_ID, userId);
             getActivity().getContentResolver().update(Constants.CONTENT_URI_PROFILE, values, null, null);
         }
         else

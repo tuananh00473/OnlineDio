@@ -96,12 +96,13 @@ public class SlidebarActivity extends FragmentActivity
                     }
 
                     getContentResolver().delete(Constants.CONTENT_URI_USER, null, null);
-                    getContentResolver().delete(Constants.CONTENT_URI_FEED, null, null);
-                    getContentResolver().delete(Constants.CONTENT_URI_PROFILE, null, null);
+//                    getContentResolver().delete(Constants.CONTENT_URI_FEED, null, null);
+//                    getContentResolver().delete(Constants.CONTENT_URI_PROFILE, null, null);
 
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("IS_ADDING_ACCOUNT", true);
                     startActivity(intent);
+                    finish();
                     break;
             }
             setCloseListOption();

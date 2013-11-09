@@ -34,6 +34,7 @@ public class Constants
 
     //    profile constants
     public static final String PROFILE_ID = "id";
+    public static final String PROFILE_USER_ID = "user_id";
     public static final String PROFILE_AVATAR = "avatar";
     public static final String PROFILE_COVER_IMAGE = "cover_image";
     public static final String PROFILE_DISPLAY_NAME = "displayName";
@@ -46,7 +47,7 @@ public class Constants
 
     //    database
     public static final String DATABASE_NAME = "localdata.db";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     public static final String PROVIDER_NAME = "com.qsoft.ondio.localDB";
 
     //    database profile constants
@@ -58,6 +59,7 @@ public class Constants
     public static final String FEED_TABLE_NAME = "feeds";
     public static final String URL_FEED = "content://" + PROVIDER_NAME + "/" + FEED_TABLE_NAME;
     public static final Uri CONTENT_URI_FEED = Uri.parse(URL_FEED);
+    public static final Uri CONTENT_URI_FEED_ID = Uri.parse(URL_FEED + "/#");
 
     //    database user constants
     public static final String USER_TABLE_NAME = "users";
@@ -67,6 +69,7 @@ public class Constants
     //    home feed constants
     public static final String FEED_ID = "id";
     public static final String FEED_USER_ID = "user_id";
+    public static final String FEED_ACCOUNT_ID = "account_id";
     public static final String FEED_TITLE = "title";
     public static final String FEED_THUMBNAIL = "thumbnail";
     public static final String FEED_DESCRIPTION = "description";

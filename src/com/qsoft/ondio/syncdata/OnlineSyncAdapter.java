@@ -32,10 +32,12 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
         try
         {
             String authToken = "";
-            Cursor cToken = provider.query(Constants.CONTENT_URI_USER, null, null, null, "_ID");
-            if (null != cToken && cToken.moveToNext())
+            String userId = "";
+            Cursor cursor = provider.query(Constants.CONTENT_URI_USER, null, null, null, "_id");
+            if (null != cursor && cursor.moveToNext())
             {
-                authToken = cToken.getString(cToken.getColumnIndex(Constants.USER_ACCESS_TOKEN));
+                authToken = cursor.getString(cursor.getColumnIndex(Constants.USER_ACCESS_TOKEN));
+                userId = cursor.getString(cursor.getColumnIndex(Constants.USER_USER_ID));
             }
 
             Log.d(TAG, " ==> Get data from service.");
@@ -46,40 +48,48 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
             HashMap<Long, Feed> map = new HashMap<Long, Feed>();
             for (Feed feed : remoteFeeds)
             {
+                feed.setAccount_id(Integer.parseInt(userId));
                 map.put(new Long(feed.id), feed);
             }
 
             Log.d(TAG, " ==> Get data from local.");
-            Cursor c = provider.query(Constants.CONTENT_URI_FEED, null, null, null, "_ID");
-            assert c != null;
-            while (c.moveToNext())
+            Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_FEED, Integer.parseInt(userId));
+            Cursor c = provider.query(uri, null, null, null, "_id");
+            if (null != c)
             {
-                Feed feed = Feed.fromCursor(c);
-                Feed checkUpdate = map.get(feed.id);
-
-                if (null != checkUpdate)
+                c.moveToFirst();
+                while (c.moveToNext())
                 {
-                    map.remove(feed.id);
-                    Uri existedUri = Constants.CONTENT_URI_FEED.buildUpon().appendPath(Long.toString(feed.id)).build();
-                    if ((checkUpdate.updated_at != null) &&
-                            checkUpdate.updated_at.equals(feed.updated_at)
-                            || checkUpdate.likes != feed.likes
-                            || checkUpdate.comments != feed.comments)
+                    Feed feed = Feed.fromCursor(c);
+                    Log.d(TAG, " ==> Feed : " + feed.user_id);
+                    Feed checkUpdate = map.get(feed.id);
+
+                    if (null != checkUpdate)
                     {
-                        Log.i(TAG, "Data start update");
-                        batch.add(ContentProviderOperation.newUpdate(existedUri)
-                                .withValues(feed.getContentValues())
-                                .build());
+                        map.remove(feed.id);
+                        Uri existedUri = Constants.CONTENT_URI_FEED.buildUpon().appendPath(Long.toString(feed.id)).build();
+                        if ((checkUpdate.updated_at != null) &&
+                                checkUpdate.updated_at.equals(feed.updated_at)
+                                || checkUpdate.likes != feed.likes
+                                || checkUpdate.comments != feed.comments)
+                        {
+                            Log.i(TAG, "Data start update");
+                            ContentValues values = feed.getContentValues();
+                            values.put(Constants.FEED_ACCOUNT_ID, userId);
+                            batch.add(ContentProviderOperation.newUpdate(existedUri)
+                                    .withValues(values)
+                                    .build());
 
-                        syncResult.stats.numUpdates++;
+                            syncResult.stats.numUpdates++;
+                        }
                     }
-                }
-                else
-                {
-                    Uri deleteUri = Constants.CONTENT_URI_FEED.buildUpon().appendPath(Long.toString(feed.id)).build();
-                    Log.i(TAG, "Start delete" + deleteUri);
-                    batch.add(ContentProviderOperation.newDelete(deleteUri).build());
-                    syncResult.stats.numDeletes++;
+                    else
+                    {
+                        Uri deleteUri = Constants.CONTENT_URI_FEED.buildUpon().appendPath(Long.toString(feed.id)).build();
+                        Log.i(TAG, "Start delete" + deleteUri);
+                        batch.add(ContentProviderOperation.newDelete(deleteUri).build());
+                        syncResult.stats.numDeletes++;
+                    }
                 }
             }
             c.close();
@@ -87,9 +97,11 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
             for (Feed feed : map.values())
             {
                 Log.i(TAG, "Start insert: record_id = " + feed.id);
+                ContentValues values = feed.getContentValues();
+                values.put(Constants.FEED_ACCOUNT_ID, userId);
                 batch.add(ContentProviderOperation
                         .newInsert(Constants.CONTENT_URI_FEED)
-                        .withValues(feed.getContentValues())
+                        .withValues(values)
                         .build());
                 syncResult.stats.numInserts++;
             }

@@ -13,6 +13,7 @@ public class Feed
 {
     public int id;
     public int user_id;
+    public int account_id;
     public String title;
     public String thumbnail;
     public String sound_path;
@@ -32,10 +33,11 @@ public class Feed
     {
     }
 
-    public Feed(int id, int user_id, String title, String thumbnail, String sound_path, String description, int duration, int played, String created_at, String updated_at, int likes, int viewed, int comments, String username, String display_name, String avatar)
+    public Feed(int id, int user_id, int account_id, String title, String thumbnail, String sound_path, String description, int duration, int played, String created_at, String updated_at, int likes, int viewed, int comments, String username, String display_name, String avatar)
     {
         this.id = id;
         this.user_id = user_id;
+        this.account_id = account_id;
         this.title = title;
         this.thumbnail = thumbnail;
         this.sound_path = sound_path;
@@ -70,6 +72,16 @@ public class Feed
     public void setUser_id(int user_id)
     {
         this.user_id = user_id;
+    }
+
+    public int getAccount_id()
+    {
+        return account_id;
+    }
+
+    public void setAccount_id(int account_id)
+    {
+        this.account_id = account_id;
     }
 
     public String getTitle()
@@ -238,6 +250,7 @@ public class Feed
     {
         int id = c.getInt(c.getColumnIndex(Constants.FEED_ID));
         int user_id = c.getInt(c.getColumnIndex(Constants.FEED_USER_ID));
+        int account_id = c.getInt(c.getColumnIndex(Constants.FEED_ACCOUNT_ID));
         String title = c.getString(c.getColumnIndex(Constants.FEED_TITLE));
         String thumbnail = c.getString(c.getColumnIndex(Constants.FEED_THUMBNAIL));
         String sound_path = c.getString(c.getColumnIndex(Constants.FEED_SOUND_PATH));
@@ -252,7 +265,7 @@ public class Feed
         String username = c.getString(c.getColumnIndex(Constants.FEED_USERNAME));
         String display_name = c.getString(c.getColumnIndex(Constants.FEED_DISPLAY_NAME));
         String avatar = c.getString(c.getColumnIndex(Constants.FEED_AVATAR));
-        return new Feed(id, user_id, title, thumbnail, sound_path, description, duration, played, created_at, updated_at, likes, viewed, comments, username, display_name, avatar);
+        return new Feed(id, user_id, account_id, title, thumbnail, sound_path, description, duration, played, created_at, updated_at, likes, viewed, comments, username, display_name, avatar);
     }
 
     @Override
