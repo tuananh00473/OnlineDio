@@ -1,9 +1,9 @@
 package com.qsoft.ondio.activity;
 
+import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -34,7 +34,6 @@ public class SlidebarActivity extends FragmentActivity
     private static final int REQUEST_CODE_RETURN_COMMENT = 777;
 
     final String[] listOptionName = {"Home", "Favorite", "Following", "Audience", "Genres", "Setting", "Help Center", "Sign Out"};
-    final String[] item = {"com.qsoft.ondio.activity.HomeFragment"};
     private static final int HOME = 0;
     private static final int SIGN_OUT = 7;
 
@@ -88,16 +87,13 @@ public class SlidebarActivity extends FragmentActivity
                     break;
                 case SIGN_OUT:
                     AccountManager mAccountManager = AccountManager.get(SlidebarActivity.this);
-                    Cursor cursor = managedQuery(Constants.CONTENT_URI_USER, null, null, null, "_ID");
-                    if (null != cursor && cursor.moveToNext())
+                    Account[] accounts = mAccountManager.getAccounts();
+                    for (Account account : accounts)
                     {
-                        String authenToken = cursor.getString(cursor.getColumnIndex(Constants.USER_ACCESS_TOKEN));
-                        mAccountManager.invalidateAuthToken(Constants.ARG_ACCOUNT_TYPE, authenToken);
+                        mAccountManager.removeAccount(account, null, null);
                     }
 
                     getContentResolver().delete(Constants.CONTENT_URI_USER, null, null);
-//                    getContentResolver().delete(Constants.CONTENT_URI_FEED, null, null);
-//                    getContentResolver().delete(Constants.CONTENT_URI_PROFILE, null, null);
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("IS_ADDING_ACCOUNT", true);
@@ -154,6 +150,7 @@ public class SlidebarActivity extends FragmentActivity
                 fragment = getSupportFragmentManager().findFragmentById(R.id.program_flInformation);
                 break;
         }
+        assert fragment != null;
         fragment.onActivityResult(requestCode, resultCode, data);
     }
 

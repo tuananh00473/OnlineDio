@@ -33,7 +33,6 @@ public class OnlineDioContentProvider extends ContentProvider
     private static final String TAG = "OnlineDioContentProvider";
 
 
-    private DatabaseHelper databaseHelper;
     private SQLiteDatabase mDb;
 
     private static HashMap<String, String> USER_PROJECTION_MAP;
@@ -57,10 +56,10 @@ public class OnlineDioContentProvider extends ContentProvider
     @Override
     public boolean onCreate()
     {
-        databaseHelper = new DatabaseHelper(getContext(), Constants.DATABASE_NAME, null);
+        DatabaseHelper databaseHelper = new DatabaseHelper(getContext(), Constants.DATABASE_NAME, null);
         mDb = databaseHelper.getWritableDatabase();
 
-        return (mDb == null) ? false : true;
+        return (null != mDb);
     }
 
     @Override
@@ -73,7 +72,7 @@ public class OnlineDioContentProvider extends ContentProvider
             case USERS:
                 qb.setTables(Constants.USER_TABLE_NAME);
                 qb.setProjectionMap(USER_PROJECTION_MAP);
-                if (sortOrder == null || sortOrder == "")
+                if (null == sortOrder || "".equals(sortOrder))
                 {
                     sortOrder = Constants.USER_ID;
                 }
@@ -81,7 +80,7 @@ public class OnlineDioContentProvider extends ContentProvider
             case USER_ID:
                 qb.setTables(Constants.USER_TABLE_NAME);
                 qb.appendWhere(Constants.USER_ID + "=" + uri.getPathSegments().get(1));
-                if (sortOrder == null || sortOrder == "")
+                if (null == sortOrder || "".equals(sortOrder))
                 {
                     sortOrder = Constants.USER_ID;
                 }
@@ -89,7 +88,7 @@ public class OnlineDioContentProvider extends ContentProvider
             case FEEDS:
                 qb.setTables(Constants.FEED_TABLE_NAME);
                 qb.setProjectionMap(FEED_PROJECTION_MAP);
-                if (sortOrder == null || sortOrder == "")
+                if (null == sortOrder || "".equals(sortOrder))
                 {
                     sortOrder = Constants.FEED_DISPLAY_NAME;
                 }
@@ -97,7 +96,7 @@ public class OnlineDioContentProvider extends ContentProvider
             case FEED_ID:
                 qb.setTables(Constants.FEED_TABLE_NAME);
                 qb.appendWhere(Constants.FEED_ACCOUNT_ID + "=" + uri.getLastPathSegment());
-                if (sortOrder == null || sortOrder == "")
+                if (null == sortOrder || "".equals(sortOrder))
                 {
                     sortOrder = Constants.FEED_DISPLAY_NAME;
                 }
@@ -105,15 +104,15 @@ public class OnlineDioContentProvider extends ContentProvider
             case PROFILES:
                 qb.setTables(Constants.PROFILE_TABLE_NAME);
                 qb.setProjectionMap(PROFILE_PROJECTION_MAP);
-                if (sortOrder == null || sortOrder == "")
+                if (null == sortOrder || "".equals(sortOrder))
                 {
                     sortOrder = Constants.PROFILE_FULL_NAME;
                 }
                 break;
             case PROFILE_ID:
                 qb.setTables(Constants.PROFILE_TABLE_NAME);
-                qb.appendWhere(Constants.PROFILE_ID + "=" + uri.getPathSegments().get(1));
-                if (sortOrder == null || sortOrder == "")
+                qb.appendWhere(Constants.PROFILE_ID + "=" + uri.getLastPathSegment());
+                if (null == sortOrder || "".equals(sortOrder))
                 {
                     sortOrder = Constants.PROFILE_FULL_NAME;
                 }
@@ -190,7 +189,7 @@ public class OnlineDioContentProvider extends ContentProvider
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs)
     {
-        int count = 0;
+        int count;
 
         switch (sUriMatcher.match(uri))
         {
@@ -232,7 +231,7 @@ public class OnlineDioContentProvider extends ContentProvider
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs)
     {
-        int count = 0;
+        int count;
 
         switch (sUriMatcher.match(uri))
         {

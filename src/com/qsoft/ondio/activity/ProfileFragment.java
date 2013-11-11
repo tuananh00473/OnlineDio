@@ -1,5 +1,6 @@
 package com.qsoft.ondio.activity;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -110,8 +111,8 @@ public class ProfileFragment extends Fragment
         btSave = (Button) view.findViewById(R.id.profile_btSave);
         btMenu = (Button) view.findViewById(R.id.profile_btMenu);
 
-        SyncFormServer();
         loadProfileFromDB();
+        SyncFormServer();
     }
 
     private void SyncFormServer()
@@ -120,6 +121,7 @@ public class ProfileFragment extends Fragment
         {
             Profile profile = Constants.sServerAuthenticate.getProfile(userId, authToken);
             saveProfileToDB(profile);
+            loadProfileFromDB();
             Log.d(TAG, profile.getDisplay_name());
         }
         catch (JSONException e)
@@ -129,7 +131,8 @@ public class ProfileFragment extends Fragment
 
     private void loadProfileFromDB()
     {
-        Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_PROFILE, null, null, null, "displayName");
+        Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_PROFILE, Integer.parseInt(userId));
+        Cursor c = getActivity().managedQuery(uri, null, null, null, "_id");
         if (null != c && c.moveToFirst())
         {
             etProfileName.setText(c.getString(c.getColumnIndex(Constants.PROFILE_DISPLAY_NAME)));
@@ -239,7 +242,8 @@ public class ProfileFragment extends Fragment
 
     private void saveProfileToDB(Profile profile)
     {
-        Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_PROFILE, null, null, null, "_ID");
+        Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_PROFILE, Integer.parseInt(userId));
+        Cursor c = getActivity().managedQuery(uri, null, null, null, "_id");
         if (c.moveToFirst())
         {
             // get profile lan dau thi server tra ve full link cua image avatar va image cover
@@ -256,9 +260,7 @@ public class ProfileFragment extends Fragment
                 profile.setCover_image(linkCoverImage);
             }
 
-            ContentValues values = profile.getContentValues();
-            values.put(Constants.USER_USER_ID, userId);
-            getActivity().getContentResolver().update(Constants.CONTENT_URI_PROFILE, values, null, null);
+            getActivity().getContentResolver().update(Constants.CONTENT_URI_PROFILE, profile.getContentValues(), null, null);
         }
         else
         {
