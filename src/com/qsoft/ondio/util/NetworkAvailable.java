@@ -3,6 +3,7 @@ package com.qsoft.ondio.util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import com.googlecode.androidannotations.annotations.EBean;
 
 /**
  * User: AnhNT
@@ -10,34 +11,24 @@ import android.net.NetworkInfo;
  * Time: 8:53 AM
  */
 
+@EBean
 public class NetworkAvailable
 {
-    private ConnectivityManager connectivityMng;
-    private boolean connected = false;
-
     /**
      * @param context context
      */
-    public NetworkAvailable(Context context)
+    public boolean checkNetwork(Context context)
     {
         try
         {
-            connectivityMng = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connectivityMng = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo networkInfo = connectivityMng.getActiveNetworkInfo();
-            connected = networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnected();
+            return null != networkInfo && networkInfo.isAvailable() && networkInfo.isConnected();
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            connected = false;
         }
-    }
-
-    /**
-     * @return if netword is avaiable.
-     */
-    public boolean isEnabled()
-    {
-        return connected;
+        return false;
     }
 }

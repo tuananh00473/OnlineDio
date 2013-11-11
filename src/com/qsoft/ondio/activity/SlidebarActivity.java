@@ -95,7 +95,7 @@ public class SlidebarActivity extends FragmentActivity
 
                     getContentResolver().delete(Constants.CONTENT_URI_USER, null, null);
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity_.class);
                     intent.putExtra("IS_ADDING_ACCOUNT", true);
                     startActivity(intent);
                     finish();

@@ -5,16 +5,16 @@
 
 package com.qsoft.ondio.activity;
 
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
 import com.qsoft.ondio.R.id;
 import com.qsoft.ondio.R.layout;
-import com.qsoft.ondio.controller.LoginController_;
 
 public final class MainActivity_
         extends MainActivity
@@ -31,13 +31,29 @@ public final class MainActivity_
 
     private void init_(Bundle savedInstanceState)
     {
-        loginController = LoginController_.getInstance_(this);
+        mAccountManager = ((AccountManager) this.getSystemService(Context.ACCOUNT_SERVICE));
     }
 
     private void afterSetContentView_()
     {
-        btLogin = ((Button) findViewById(id.btLogin));
-        ((LoginController_) loginController).afterSetContentView_();
+        {
+            View view = findViewById(id.btLogin);
+            if (view != null)
+            {
+                view.setOnClickListener(new OnClickListener()
+                {
+
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        MainActivity_.this.doLogin();
+                    }
+
+                }
+                );
+            }
+        }
     }
 
     @Override
