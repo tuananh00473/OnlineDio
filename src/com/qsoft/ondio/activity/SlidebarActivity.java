@@ -15,6 +15,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import com.googlecode.androidannotations.annotations.Click;
+import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.ViewById;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterListOption;
 import com.qsoft.ondio.util.Constants;
@@ -25,6 +28,7 @@ import com.qsoft.ondio.util.Constants;
  * Time: 1:55 PM
  */
 
+@EActivity(R.layout.slidebar)
 public class SlidebarActivity extends FragmentActivity
 {
     private static final String TAG = "SlidebarActivity";
@@ -34,14 +38,19 @@ public class SlidebarActivity extends FragmentActivity
     private static final int REQUEST_CODE_RETURN_COMMENT = 777;
 
     final String[] listOptionName = {"Home", "Favorite", "Following", "Audience", "Genres", "Setting", "Help Center", "Sign Out"};
+    //    final String[] listOptionName = getResources().getStringArray(R.array.listOptionName);
     private static final int HOME = 0;
     private static final int SIGN_OUT = 7;
 
-    private DrawerLayout mDrawerLayout;
-    private ListView lvOption;
-    private RelativeLayout rlLeftDrawer;
-    private RelativeLayout slidebar_rlProfile;
-    FragmentTransaction fragmentTransaction;
+    @ViewById(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+
+    @ViewById(R.id.slidebar_listOption)
+    ListView lvOption;
+
+    @ViewById(R.id.left_drawer)
+    RelativeLayout rlLeftDrawer;
+
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -51,7 +60,7 @@ public class SlidebarActivity extends FragmentActivity
         setUpUI();
         setUpDataListOption(this);
         setUpListenerController();
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, Fragment.instantiate(SlidebarActivity.this, "com.qsoft.ondio.activity.HomeFragment"));
         fragmentTransaction.commit();
 
@@ -59,16 +68,11 @@ public class SlidebarActivity extends FragmentActivity
 
     private void setUpUI()
     {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        lvOption = (ListView) findViewById(R.id.slidebar_listOption);
-        rlLeftDrawer = (RelativeLayout) findViewById(R.id.left_drawer);
-        slidebar_rlProfile = (RelativeLayout) findViewById(R.id.slidebar_rlProfile);
     }
 
     private void setUpListenerController()
     {
-        slidebar_rlProfile.setOnClickListener(onClickListener);
         lvOption.setOnItemClickListener(onItemClickListener);
     }
 
@@ -105,21 +109,8 @@ public class SlidebarActivity extends FragmentActivity
         }
     };
 
-    private final View.OnClickListener onClickListener = new View.OnClickListener()
-    {
-        @Override
-        public void onClick(View view)
-        {
-            switch (view.getId())
-            {
-                case R.id.slidebar_rlProfile:
-                    doEditProfile();
-                    break;
-            }
-        }
-    };
-
-    private void doEditProfile()
+    @Click(R.id.slidebar_rlProfile)
+    void doEditProfile()
     {
         final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame, new ProfileFragment(), "ProfileFragment");

@@ -88,6 +88,17 @@
     <string name="imageview_description">ImageView Description</string>
     <string name="permission">permission</string>
 
+    <string-array name="listOptionName">
+        <item>Home</item>
+        <item>Favorite</item>
+        <item>Following</item>
+        <item>Audience</item>
+        <item>Genres</item>
+        <item>Setting</item>
+        <item>Help center</item>
+        <item>Sign out</item>
+    </string-array>
+
     <string-array name="countries">
         <item>Afghanistan</item>
         <item>Ailand Islands</item>

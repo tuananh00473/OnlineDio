@@ -60,7 +60,7 @@ public class MainActivity extends Activity
                                 values.put(Constants.USER_USER_ID, userId);
                                 getContentResolver().update(Constants.CONTENT_URI_USER, values, null, null);
 
-                                startActivity(new Intent(MainActivity.this, SlidebarActivity.class));
+                                startActivity(new Intent(MainActivity.this, SlidebarActivity_.class));
                             }
                             else
                             {

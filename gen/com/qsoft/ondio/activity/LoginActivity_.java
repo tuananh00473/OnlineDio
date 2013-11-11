@@ -39,33 +39,15 @@ public final class LoginActivity_
     private void init_(Bundle savedInstanceState)
     {
         mAccountManager = ((AccountManager) this.getSystemService(Context.ACCOUNT_SERVICE));
-        network = NetworkAvailable_.getInstance_(this);
         databaseController = DatabaseController_.getInstance_(this);
+        network = NetworkAvailable_.getInstance_(this);
     }
 
     private void afterSetContentView_()
     {
-        btLogin = ((Button) findViewById(id.login_btNext));
         etPassword = ((EditText) findViewById(id.login_etPassword));
+        btLogin = ((Button) findViewById(id.login_btNext));
         etEmail = ((EditText) findViewById(id.login_etEmail));
-        {
-            View view = findViewById(id.login_btNext);
-            if (view != null)
-            {
-                view.setOnClickListener(new OnClickListener()
-                {
-
-
-                    @Override
-                    public void onClick(View view)
-                    {
-                        LoginActivity_.this.doLogin();
-                    }
-
-                }
-                );
-            }
-        }
         {
             View view = findViewById(id.login_btBack);
             if (view != null)
@@ -84,8 +66,26 @@ public final class LoginActivity_
                 );
             }
         }
-        ((NetworkAvailable_) network).afterSetContentView_();
+        {
+            View view = findViewById(id.login_btNext);
+            if (view != null)
+            {
+                view.setOnClickListener(new OnClickListener()
+                {
+
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        LoginActivity_.this.doLogin();
+                    }
+
+                }
+                );
+            }
+        }
         ((DatabaseController_) databaseController).afterSetContentView_();
+        ((NetworkAvailable_) network).afterSetContentView_();
         {
             final TextView view = ((TextView) findViewById(id.login_etEmail));
             if (view != null)

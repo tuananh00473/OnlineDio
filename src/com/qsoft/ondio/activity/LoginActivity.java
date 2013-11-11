@@ -184,7 +184,7 @@ public class LoginActivity extends AccountAuthenticatorActivity
         if (getIntent().getBooleanExtra(Constants.ARG_IS_ADDING_NEW_ACCOUNT, false))
         {
             String authtoken = intent.getStringExtra(AccountManager.KEY_AUTHTOKEN);
-            Intent intentSlidebar = new Intent(this, SlidebarActivity.class);
+            Intent intentSlidebar = new Intent(this, SlidebarActivity_.class);
             intentSlidebar.putExtra("token", authtoken);
             startActivity(intentSlidebar);
 
