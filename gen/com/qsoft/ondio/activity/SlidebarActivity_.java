@@ -14,10 +14,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import com.googlecode.androidannotations.api.SdkVersionHelper;
-import com.qsoft.ondio.R.id;
 import com.qsoft.ondio.R.layout;
 
 public final class SlidebarActivity_
@@ -39,11 +40,11 @@ public final class SlidebarActivity_
 
     private void afterSetContentView_()
     {
-        mDrawerLayout = ((DrawerLayout) findViewById(id.drawer_layout));
-        lvOption = ((ListView) findViewById(id.slidebar_listOption));
-        rlLeftDrawer = ((RelativeLayout) findViewById(id.left_drawer));
+        lvOption = ((ListView) findViewById(com.qsoft.ondio.R.id.slidebar_listOption));
+        mDrawerLayout = ((DrawerLayout) findViewById(com.qsoft.ondio.R.id.drawer_layout));
+        rlLeftDrawer = ((RelativeLayout) findViewById(com.qsoft.ondio.R.id.left_drawer));
         {
-            View view = findViewById(id.slidebar_rlProfile);
+            View view = findViewById(com.qsoft.ondio.R.id.slidebar_rlProfile);
             if (view != null)
             {
                 view.setOnClickListener(new OnClickListener()
@@ -60,6 +61,25 @@ public final class SlidebarActivity_
                 );
             }
         }
+        {
+            AdapterView<?> view = ((AdapterView<?>) findViewById(com.qsoft.ondio.R.id.slidebar_listOption));
+            if (view != null)
+            {
+                view.setOnItemClickListener(new OnItemClickListener()
+                {
+
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                    {
+                        onItemClickListener(position);
+                    }
+
+                }
+                );
+            }
+        }
+        afterView();
     }
 
     @Override

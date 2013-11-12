@@ -45,8 +45,8 @@ public final class LoginActivity_
 
     private void afterSetContentView_()
     {
-        etPassword = ((EditText) findViewById(id.login_etPassword));
         btLogin = ((Button) findViewById(id.login_btNext));
+        etPassword = ((EditText) findViewById(id.login_etPassword));
         etEmail = ((EditText) findViewById(id.login_etEmail));
         {
             View view = findViewById(id.login_btBack);

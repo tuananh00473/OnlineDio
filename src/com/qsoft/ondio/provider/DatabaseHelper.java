@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                         Constants.PROFILE_PHONE + " TEXT, " +
                         Constants.PROFILE_BIRTHDAY + " TEXT, " +
                         Constants.PROFILE_GENDER + " INTEGER, " +
-                        Constants.PROFILE_COUNTRY + " INTEGER, " +
+                        Constants.PROFILE_COUNTRY + " TEXT, " +
                         Constants.PROFILE_DESCRIPTION + " TEXT " +
                         ");";
         sqLiteDatabase.execSQL(createProfileTable);

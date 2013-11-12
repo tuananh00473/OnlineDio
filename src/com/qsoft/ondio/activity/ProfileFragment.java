@@ -1,26 +1,25 @@
 package com.qsoft.ondio.activity;
 
-import android.content.ContentUris;
-import android.content.ContentValues;
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.*;
+import com.googlecode.androidannotations.annotations.*;
 import com.qsoft.ondio.R;
+import com.qsoft.ondio.controller.DatabaseController;
 import com.qsoft.ondio.dialog.MyDialog;
 import com.qsoft.ondio.lazzyload.ProfileAvatarLoader;
 import com.qsoft.ondio.lazzyload.ProfileCoverImageLoader;
 import com.qsoft.ondio.model.Profile;
+import com.qsoft.ondio.model.User;
 import com.qsoft.ondio.util.Constants;
 import org.json.JSONException;
 
@@ -29,197 +28,172 @@ import org.json.JSONException;
  * Date: 10/16/13
  * Time: 8:56 AM
  */
+
+@EFragment(R.layout.profile)
 public class ProfileFragment extends Fragment
 {
     private static final String TAG = "ProfileFragment";
 
-    private EditText etProfileName;
-    private EditText etFullName;
-    private EditText etPhoneNo;
-    private EditText etBirthday;
-    private Button btMale;
-    private Button btFemale;
-    private EditText etCountry;
-    private Spinner spCountry;
-    private EditText etDescription;
-    private ImageView ivAvatar;
-    private RelativeLayout rlCoverImage;
-    private ScrollView scroll;
-    private Button btSave;
-    private Button btMenu;
+    @ViewById(R.id.profile_etProfileName)
+    EditText etProfileName;
+
+    @ViewById(R.id.profile_etFullName)
+    EditText etFullName;
+
+    @ViewById(R.id.profile_etPhoneNo)
+    EditText etPhoneNo;
+
+    @ViewById(R.id.profile_etBirthday)
+    EditText etBirthday;
+
+    @ViewById(R.id.profile_btMale)
+    Button btMale;
+
+    @ViewById(R.id.profile_btFemale)
+    Button btFemale;
+
+    @ViewById(R.id.profile_etCountry)
+    EditText etCountry;
+
+    @ViewById(R.id.profile_spCountry)
+    Spinner spCountry;
+
+    @ViewById(R.id.profile_etDescription)
+    EditText etDescription;
+
+    @ViewById(R.id.profile_ivAvatar)
+    ImageView ivAvatar;
+
+    @ViewById(R.id.profile_rlCoverImage)
+    RelativeLayout rlCoverImage;
+
+    @ViewById(R.id.profile_svScroll)
+    ScrollView scroll;
+
+    @ViewById(R.id.profile_btSave)
+    Button btSave;
+
+    @ViewById(R.id.profile_btMenu)
+    Button btMenu;
+
+    @Bean
+    DatabaseController databaseController;
+
+    User user = null;
 
     private static final int MALE = 1;
     private static final int FEMALE = 2;
     private static int gender;
-    private static int countryId;
-    private static final int REQUEST_CODE_CAMERA_TAKE_PICTURE = 999;
-    private static final int REQUEST_CODE_RESULT_LOAD_IMAGE = 888;
+
     private static final int AVATAR_CODE = 0;
     private static final int COVER_IMAGE_CODE = 1;
     private static int code;
-    private static String userId;
-    private static String authToken;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState)
+    @AfterViews
+    public void afterView()
     {
-        super.onCreate(savedInstanceState);
-        Cursor c = getActivity().managedQuery(Constants.CONTENT_URI_USER, null, null, null, "_ID");
-        if (null != c && c.moveToFirst())
-        {
-            userId = c.getString(c.getColumnIndex(Constants.USER_USER_ID));
-            authToken = c.getString(c.getColumnIndex(Constants.USER_ACCESS_TOKEN));
-        }
+        user = databaseController.loadUserFromDB();
+
+        setUpProfile(user);
+        SyncFormServer(user);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
-        View view = inflater.inflate(R.layout.profile, null);
-        setUpUI(view);
-        setUpListenerController();
-        return view;
-    }
-
-    private void setUpListenerController()
-    {
-        etBirthday.setOnClickListener(onClickListener);
-        etCountry.setOnClickListener(onClickListener);
-        btMale.setOnClickListener(onClickListener);
-        btFemale.setOnClickListener(onClickListener);
-        ivAvatar.setOnClickListener(onClickListener);
-        rlCoverImage.setOnClickListener(onClickListener);
-        etDescription.setOnClickListener(onClickListener);
-        btSave.setOnClickListener(onClickListener);
-        btMenu.setOnClickListener(onClickListener);
-    }
-
-    private void setUpUI(View view)
-    {
-        etProfileName = (EditText) view.findViewById(R.id.profile_etProfileName);
-        etFullName = (EditText) view.findViewById(R.id.profile_etFullName);
-        etPhoneNo = (EditText) view.findViewById(R.id.profile_etPhoneNo);
-        etBirthday = (EditText) view.findViewById(R.id.profile_etBirthday);
-        btMale = (Button) view.findViewById(R.id.profile_btMale);
-        btFemale = (Button) view.findViewById(R.id.profile_btFemale);
-        etCountry = (EditText) view.findViewById(R.id.profile_etCountry);
-        spCountry = (Spinner) view.findViewById(R.id.profile_spCountry);
-        etDescription = (EditText) view.findViewById(R.id.profile_etDescription);
-        ivAvatar = (ImageView) view.findViewById(R.id.profile_ivAvatar);
-        rlCoverImage = (RelativeLayout) view.findViewById(R.id.profile_rlCoverImage);
-        scroll = (ScrollView) view.findViewById(R.id.profile_svScroll);
-        btSave = (Button) view.findViewById(R.id.profile_btSave);
-        btMenu = (Button) view.findViewById(R.id.profile_btMenu);
-
-        loadProfileFromDB();
-        SyncFormServer();
-    }
-
-    private void SyncFormServer()
+    private void SyncFormServer(User user)
     {
         try
         {
-            Profile profile = Constants.sServerAuthenticate.getProfile(userId, authToken);
-            saveProfileToDB(profile);
-            loadProfileFromDB();
+            Profile profile = Constants.sServerAuthenticate.getProfile(user.getUser_id(), user.getAccess_token());
+            databaseController.saveProfileToDB(profile);
+            setUpProfile(user);
             Log.d(TAG, profile.getDisplay_name());
         }
-        catch (JSONException e)
+        catch (JSONException ignored)
         {
         }
     }
 
-    private void loadProfileFromDB()
+    private void setUpProfile(User user)
     {
-        Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_PROFILE, Integer.parseInt(userId));
-        Cursor c = getActivity().managedQuery(uri, null, null, null, "_id");
-        if (null != c && c.moveToFirst())
+        Profile profile = databaseController.loadProfileFromDB(user);
+        if (null != profile)
         {
-            etProfileName.setText(c.getString(c.getColumnIndex(Constants.PROFILE_DISPLAY_NAME)));
-            etFullName.setText(c.getString(c.getColumnIndex(Constants.PROFILE_FULL_NAME)));
-            etPhoneNo.setText(c.getString(c.getColumnIndex(Constants.PROFILE_PHONE)));
-            etBirthday.setText(c.getString(c.getColumnIndex(Constants.PROFILE_BIRTHDAY)));
-            setGender(c.getInt(c.getColumnIndex(Constants.PROFILE_GENDER)));
-            etCountry.setText(getCountryName(c));
-            etDescription.setText(c.getString(c.getColumnIndex(Constants.PROFILE_DESCRIPTION)));
-            new ProfileAvatarLoader(getActivity(), this).DisplayImage(c.getString(c.getColumnIndex(Constants.PROFILE_AVATAR)), ivAvatar);
-            new ProfileCoverImageLoader(getActivity(), this).DisplayImage(c.getString(c.getColumnIndex(Constants.PROFILE_COVER_IMAGE)), rlCoverImage);
+            etProfileName.setText(profile.getDisplay_name());
+            etFullName.setText(profile.getFull_name());
+            etPhoneNo.setText(profile.getPhone());
+            etBirthday.setText(profile.getBirthday());
+            setGender(profile.getGender());
+            etCountry.setText(getCountryName(profile.getCountry_id()));
+            etDescription.setText(profile.getDescription());
+            new ProfileAvatarLoader(getActivity(), this).DisplayImage(profile.getAvatar(), ivAvatar);
+            new ProfileCoverImageLoader(getActivity(), this).DisplayImage(profile.getCover_image(), rlCoverImage);
         }
     }
 
-    private String getCountryName(Cursor c)
+    private void setGender(int gender)
+    {
+        switch (gender)
+        {
+            case MALE:
+                btMale.performClick();
+                break;
+            case FEMALE:
+                btFemale.performClick();
+                break;
+        }
+    }
+
+    private String getCountryName(String countryCode)
     {
         String[] countries = getResources().getStringArray(R.array.countries);
-        return countries[c.getInt(c.getColumnIndex(Constants.PROFILE_COUNTRY))];
-    }
-
-    private final View.OnClickListener onClickListener = new View.OnClickListener()
-    {
-        @Override
-        public void onClick(View view)
+        String[] countryCodes = getResources().getStringArray(R.array.countries_code);
+        for (int i = 0; i < countryCodes.length; i++)
         {
-            switch (view.getId())
+            if (countryCode.equals(countryCodes[i]))
             {
-                case R.id.profile_ivAvatar:
-                    setAvatar();
-                    break;
-                case R.id.profile_rlCoverImage:
-                    setCoverImage();
-                    break;
-                case R.id.profile_etBirthday:
-                    setBirthday();
-                    break;
-                case R.id.profile_etCountry:
-                    setCountry();
-                    break;
-                case R.id.profile_btMale:
-                    setGender(MALE);
-                    break;
-                case R.id.profile_btFemale:
-                    setGender(FEMALE);
-                    break;
-                case R.id.profile_etDescription:
-                    scroll.fullScroll(ScrollView.FOCUS_DOWN);
-                    break;
-                case R.id.profile_btSave:
-                    doSave();
-                    break;
-                case R.id.profile_btMenu:
-                    showMenu();
-                    break;
+                return countries[i];
             }
         }
-    };
+        return null;
+    }
 
-    private void setBirthday()
+    @Click(R.id.profile_etDescription)
+    void setFullScroll()
+    {
+        scroll.fullScroll(ScrollView.FOCUS_DOWN);
+    }
+
+    @Click(R.id.profile_etBirthday)
+    void setBirthday()
     {
         MyDialog.showDatePickerDialog(getActivity(), etBirthday);
     }
 
-    private void showMenu()
+    @Click(R.id.profile_btMenu)
+    void showMenu()
     {
         ((SlidebarActivity) getActivity()).setOpenListOption();
     }
 
-    private void doSave()
+    @Click(R.id.profile_btSave)
+    void doSave()
     {
         try
         {
             Profile profile = new Profile();
-            profile.setId(Integer.parseInt(userId));
+            profile.setId(Integer.parseInt(user.getUser_id()));
             profile.setDisplay_name(etProfileName.getText().toString());
             profile.setFull_name(etFullName.getText().toString());
             profile.setPhone(etPhoneNo.getText().toString());
             profile.setBirthday(etBirthday.getText().toString());
             profile.setGender(gender);
-            profile.setCountry_id(getCountryCode());
+            profile.setCountry_id(getCountryCode(etCountry.getText().toString()));
             profile.setDescription(etDescription.getText().toString());
 
-            Profile profileUpdated = Constants.sServerAuthenticate.updateProfile(profile, authToken);
+            Profile profileUpdated = Constants.sServerAuthenticate.updateProfile(profile, user.getAccess_token());
             if (null != profileUpdated)
             {
-                saveProfileToDB(profileUpdated);
-                loadProfileFromDB();
+                databaseController.saveProfileToDB(profileUpdated);
+                setUpProfile(user);
                 MyDialog.showMessageDialog(getActivity(), "Success", "Profile updated!");
             }
             else
@@ -234,71 +208,52 @@ public class ProfileFragment extends Fragment
         }
     }
 
-    private String getCountryCode()
+    private String getCountryCode(String countryName)
     {
-        String[] countries_code = getResources().getStringArray(R.array.countries_code);
-        return countries_code[countryId];
+        String[] countryNames = getResources().getStringArray(R.array.countries);
+        String[] countryCodes = getResources().getStringArray(R.array.countries_code);
+        for (int i = 0; i < countryCodes.length; i++)
+        {
+            if (countryName.equals(countryNames[i]))
+            {
+                return countryCodes[i];
+            }
+        }
+        return null;
     }
 
-    private void saveProfileToDB(Profile profile)
-    {
-        Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_PROFILE, Integer.parseInt(userId));
-        Cursor c = getActivity().managedQuery(uri, null, null, null, "_id");
-        if (c.moveToFirst())
-        {
-            // get profile lan dau thi server tra ve full link cua image avatar va image cover
-            // sau khi update profile thi server chi tra ve ten cua image
-            // the nen phai lam them cai doan nay :( ==> rat cu chuoi!
-            String linkAvatar = c.getString(c.getColumnIndex(Constants.PROFILE_AVATAR));
-            if (null != linkAvatar && null != profile.getAvatar() && linkAvatar.contains(profile.getAvatar()))
-            {
-                profile.setAvatar(linkAvatar);
-            }
-            String linkCoverImage = c.getString(c.getColumnIndex(Constants.PROFILE_COVER_IMAGE));
-            if (null != linkCoverImage && null != profile.getCover_image() && linkCoverImage.contains(profile.getCover_image()))
-            {
-                profile.setCover_image(linkCoverImage);
-            }
-
-            getActivity().getContentResolver().update(Constants.CONTENT_URI_PROFILE, profile.getContentValues(), null, null);
-        }
-        else
-        {
-            ContentValues values = profile.getContentValues();
-            getActivity().getContentResolver().insert(Constants.CONTENT_URI_PROFILE, values);
-        }
-    }
-
-    private void setCoverImage()
+    @Click(R.id.profile_rlCoverImage)
+    void setCoverImage()
     {
         code = COVER_IMAGE_CODE;
         MyDialog.showSetImageDialog(getActivity(), getString(R.string.dialog_tittle_coverimage));
     }
 
-    private void setAvatar()
+    @Click(R.id.profile_ivAvatar)
+    void setAvatar()
     {
         code = AVATAR_CODE;
         MyDialog.showSetImageDialog(getActivity(), getString(R.string.dialog_tittle_avatar));
     }
 
-    private void setGender(int gender)
+    @Click(R.id.profile_btMale)
+    void setGenderMale()
     {
-        switch (gender)
-        {
-            case MALE:
-                this.gender = MALE;
-                btMale.setBackgroundResource(R.drawable.profile_male);
-                btFemale.setBackgroundResource(R.drawable.profile_female_visible);
-                break;
-            case FEMALE:
-                this.gender = FEMALE;
-                btFemale.setBackgroundResource(R.drawable.profile_female);
-                btMale.setBackgroundResource(R.drawable.profile_male_visible);
-                break;
-        }
+        ProfileFragment.gender = MALE;
+        btMale.setBackgroundResource(R.drawable.profile_male);
+        btFemale.setBackgroundResource(R.drawable.profile_female_visible);
     }
 
-    private void setCountry()
+    @Click(R.id.profile_btFemale)
+    void setGenderFemale()
+    {
+        ProfileFragment.gender = FEMALE;
+        btFemale.setBackgroundResource(R.drawable.profile_female);
+        btMale.setBackgroundResource(R.drawable.profile_male_visible);
+    }
+
+    @Click(R.id.profile_etCountry)
+    void setCountry()
     {
         spCountry.performClick();
         spCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -307,7 +262,6 @@ public class ProfileFragment extends Fragment
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
             {
                 showCountry(adapterView.getSelectedItem().toString());
-                countryId = adapterView.getSelectedItemPosition();
             }
 
             @Override
@@ -326,13 +280,13 @@ public class ProfileFragment extends Fragment
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         Log.i(TAG, "onActivityResult");
-        if (resultCode == getActivity().RESULT_OK && null != data)
+        if (resultCode == Activity.RESULT_OK && null != data)
         {
-            if (requestCode == REQUEST_CODE_CAMERA_TAKE_PICTURE)
+            if (Constants.REQUEST_CODE_CAMERA_TAKE_PICTURE == requestCode)
             {
                 setImageFromCamera(data);
             }
-            if (requestCode == REQUEST_CODE_RESULT_LOAD_IMAGE)
+            if (Constants.REQUEST_CODE_RESULT_LOAD_IMAGE == requestCode)
             {
                 setImageFromAlbum(data);
             }

@@ -12,8 +12,12 @@ import com.qsoft.ondio.accountmanager.ServerAuthenticate;
 
 public class Constants
 {
+    //Request code
+    public static final int REQUEST_CODE_CAMERA_TAKE_PICTURE = 999;
+    public static final int REQUEST_CODE_RESULT_LOAD_IMAGE = 888;
+    public static final int REQUEST_CODE_RETURN_COMMENT = 777;
+
     //    authentication constants
-    private final int REQ_SIGNUP = 1;
     public final static String ARG_ACCOUNT_TYPE = "com.qsoft.onlinedio";
     public final static String ARG_AUTH_TYPE = "AUTH_TYPE";
     public final static String ARG_ACCOUNT_NAME = "ACCOUNT_NAME";
@@ -29,12 +33,8 @@ public class Constants
     public static final String AUTHTOKEN_TYPE_FULL_ACCESS = "Full access";
     public static final String AUTHTOKEN_TYPE_FULL_ACCESS_LABEL = "Full access to an Udinic account";
 
-    //    key to save User_ID
-    public static final String KEY = "USER_ID";
-
     //    profile constants
     public static final String PROFILE_ID = "id";
-    public static final String PROFILE_USER_ID = "user_id";
     public static final String PROFILE_AVATAR = "avatar";
     public static final String PROFILE_COVER_IMAGE = "cover_image";
     public static final String PROFILE_DISPLAY_NAME = "displayName";
@@ -59,7 +59,6 @@ public class Constants
     public static final String FEED_TABLE_NAME = "feeds";
     public static final String URL_FEED = "content://" + PROVIDER_NAME + "/" + FEED_TABLE_NAME;
     public static final Uri CONTENT_URI_FEED = Uri.parse(URL_FEED);
-    public static final Uri CONTENT_URI_FEED_ID = Uri.parse(URL_FEED + "/#");
 
     //    database user constants
     public static final String USER_TABLE_NAME = "users";
