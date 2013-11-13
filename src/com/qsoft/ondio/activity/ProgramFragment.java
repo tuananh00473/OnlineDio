@@ -100,21 +100,21 @@ public class ProgramFragment extends Fragment
     private void doShowThumbnal()
     {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.program_flInformation, new ThumbnailFragment(), "ThumbnailFragment");
+        ft.replace(R.id.program_flInformation, new ThumbnailFragment_(), "ThumbnailFragment");
         ft.commit();
     }
 
     private void doShowDetail()
     {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.program_flInformation, new DetailFragment(), "DetailFragment");
+        ft.replace(R.id.program_flInformation, new DetailFragment_(), "DetailFragment");
         ft.commit();
     }
 
     private void doShowComment()
     {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.program_flInformation, new CommentFragment(), "CommentFragment");
+        ft.replace(R.id.program_flInformation, new CommentFragment_(), "CommentFragment");
         ft.commit();
     }
 }

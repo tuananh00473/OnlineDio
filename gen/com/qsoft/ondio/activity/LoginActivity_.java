@@ -39,15 +39,15 @@ public final class LoginActivity_
     private void init_(Bundle savedInstanceState)
     {
         mAccountManager = ((AccountManager) this.getSystemService(Context.ACCOUNT_SERVICE));
-        databaseController = DatabaseController_.getInstance_(this);
         network = NetworkAvailable_.getInstance_(this);
+        databaseController = DatabaseController_.getInstance_(this);
     }
 
     private void afterSetContentView_()
     {
-        btLogin = ((Button) findViewById(id.login_btNext));
-        etPassword = ((EditText) findViewById(id.login_etPassword));
         etEmail = ((EditText) findViewById(id.login_etEmail));
+        etPassword = ((EditText) findViewById(id.login_etPassword));
+        btLogin = ((Button) findViewById(id.login_btNext));
         {
             View view = findViewById(id.login_btBack);
             if (view != null)
@@ -84,8 +84,8 @@ public final class LoginActivity_
                 );
             }
         }
-        ((DatabaseController_) databaseController).afterSetContentView_();
         ((NetworkAvailable_) network).afterSetContentView_();
+        ((DatabaseController_) databaseController).afterSetContentView_();
         {
             final TextView view = ((TextView) findViewById(id.login_etEmail));
             if (view != null)

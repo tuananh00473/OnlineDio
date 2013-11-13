@@ -13,8 +13,7 @@ import com.qsoft.ondio.util.Constants;
 import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Udini
+ * User: AnhNT
  * Date: 19/03/13
  * Time: 18:58
  */

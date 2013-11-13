@@ -9,20 +9,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.view.KeyEvent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import com.googlecode.androidannotations.api.SdkVersionHelper;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import com.qsoft.ondio.R.id;
 import com.qsoft.ondio.R.layout;
 
-public final class SlidebarActivity_
-        extends SlidebarActivity
+public final class InputCommentActivity_
+        extends InputCommentActivity
 {
 
 
@@ -31,7 +30,7 @@ public final class SlidebarActivity_
     {
         init_(savedInstanceState);
         super.onCreate(savedInstanceState);
-        setContentView(layout.slidebar);
+        setContentView(layout.input_comment);
     }
 
     private void init_(Bundle savedInstanceState)
@@ -40,11 +39,10 @@ public final class SlidebarActivity_
 
     private void afterSetContentView_()
     {
-        rlLeftDrawer = ((RelativeLayout) findViewById(com.qsoft.ondio.R.id.left_drawer));
-        lvOption = ((ListView) findViewById(com.qsoft.ondio.R.id.slidebar_listOption));
-        mDrawerLayout = ((DrawerLayout) findViewById(com.qsoft.ondio.R.id.drawer_layout));
+        btDone = ((Button) findViewById(id.inputcommnet_btDone));
+        etContent = ((EditText) findViewById(id.inputcomment_etInputComment));
         {
-            View view = findViewById(com.qsoft.ondio.R.id.slidebar_rlProfile);
+            View view = findViewById(id.inputcommnet_btDone);
             if (view != null)
             {
                 view.setOnClickListener(new OnClickListener()
@@ -54,7 +52,7 @@ public final class SlidebarActivity_
                     @Override
                     public void onClick(View view)
                     {
-                        SlidebarActivity_.this.doEditProfile();
+                        InputCommentActivity_.this.doDone();
                     }
 
                 }
@@ -62,24 +60,52 @@ public final class SlidebarActivity_
             }
         }
         {
-            AdapterView<?> view = ((AdapterView<?>) findViewById(com.qsoft.ondio.R.id.slidebar_listOption));
+            View view = findViewById(id.inputcommnet_btBack);
             if (view != null)
             {
-                view.setOnItemClickListener(new OnItemClickListener()
+                view.setOnClickListener(new OnClickListener()
                 {
 
 
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                    public void onClick(View view)
                     {
-                        onItemClickListener(position);
+                        InputCommentActivity_.this.doBack();
                     }
 
                 }
                 );
             }
         }
-        afterView();
+        {
+            final TextView view = ((TextView) findViewById(id.inputcomment_etInputComment));
+            if (view != null)
+            {
+                view.addTextChangedListener(new TextWatcher()
+                {
+
+
+                    @Override
+                    public void afterTextChanged(Editable s)
+                    {
+                        InputCommentActivity_.this.afterTextChanged();
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count)
+                    {
+                    }
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after)
+                    {
+                    }
+
+                }
+                );
+            }
+        }
+        afterViews();
     }
 
     @Override
@@ -103,19 +129,9 @@ public final class SlidebarActivity_
         afterSetContentView_();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
+    public static InputCommentActivity_.IntentBuilder_ intent(Context context)
     {
-        if (((SdkVersionHelper.getSdkInt() < 5) && (keyCode == KeyEvent.KEYCODE_BACK)) && (event.getRepeatCount() == 0))
-        {
-            onBackPressed();
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    public static SlidebarActivity_.IntentBuilder_ intent(Context context)
-    {
-        return new SlidebarActivity_.IntentBuilder_(context);
+        return new InputCommentActivity_.IntentBuilder_(context);
     }
 
     public static class IntentBuilder_
@@ -127,7 +143,7 @@ public final class SlidebarActivity_
         public IntentBuilder_(Context context)
         {
             context_ = context;
-            intent_ = new Intent(context, SlidebarActivity_.class);
+            intent_ = new Intent(context, InputCommentActivity_.class);
         }
 
         public Intent get()
@@ -135,7 +151,7 @@ public final class SlidebarActivity_
             return intent_;
         }
 
-        public SlidebarActivity_.IntentBuilder_ flags(int flags)
+        public InputCommentActivity_.IntentBuilder_ flags(int flags)
         {
             intent_.setFlags(flags);
             return this;

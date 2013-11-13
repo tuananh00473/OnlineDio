@@ -2,14 +2,13 @@ package com.qsoft.ondio.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
+import com.googlecode.androidannotations.annotations.AfterViews;
+import com.googlecode.androidannotations.annotations.Click;
+import com.googlecode.androidannotations.annotations.EFragment;
+import com.googlecode.androidannotations.annotations.ViewById;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.ArrayAdapterComment;
 import com.qsoft.ondio.model.Comment;
@@ -21,57 +20,38 @@ import java.util.ArrayList;
  * Date: 10/18/13
  * Time: 10:03 AM
  */
+
+@EFragment(R.layout.comments)
 public class CommentFragment extends Fragment
 {
     private static final String TAG = "CommentFragment";
     private static final int REQUEST_CODE_RETURN_COMMENT = 777;
 
-    private ListView lvComment;
-    private TextView tvInputComment;
+    @ViewById(R.id.comment_lvListComment)
+    ListView lvComment;
+
     private ArrayList<Comment> commentList;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    @AfterViews
+    public void afterViews()
     {
-        View view = inflater.inflate(R.layout.comments, null);
-        findViewById(view);
-        commentList = new ArrayList<Comment>();
-        setUpDataToCommentList(commentList);
-        setListenerController();
-        return view;
+        setUpDataToCommentList();
     }
 
-    private void setListenerController()
+    @Click(R.id.comments_tvInputComment)
+    void setActionInputComment()
     {
-        tvInputComment.setOnClickListener(onClickListener);
+        doShowInputCommentActivity();
     }
-
-    private View.OnClickListener onClickListener = new View.OnClickListener()
-    {
-        @Override
-        public void onClick(View v)
-        {
-            switch (v.getId())
-            {
-                case R.id.comments_tvInputComment:
-                    doShowInputCommentActivity();
-            }
-        }
-    };
 
     private void doShowInputCommentActivity()
     {
-        getActivity().startActivityForResult(new Intent(getActivity(), InputCommentActivity.class), REQUEST_CODE_RETURN_COMMENT);
+        getActivity().startActivityForResult(new Intent(getActivity(), InputCommentActivity_.class), REQUEST_CODE_RETURN_COMMENT);
     }
 
-    private void findViewById(View view)
+    private void setUpDataToCommentList()
     {
-        lvComment = (ListView) view.findViewById(R.id.comment_lvListComment);
-        tvInputComment = (TextView) view.findViewById(R.id.comments_tvInputComment);
-    }
-
-    private void setUpDataToCommentList(ArrayList<Comment> commentList)
-    {
+        commentList = new ArrayList<Comment>();
         Comment comment0 = new Comment("Kim Dong Ho", "askldfnaslkdfnal;dfnaldkfnaskldfnalksdfnl;asdfnlaksdfakl;dfal;kfhl;aksfhlks", "3 phut truoc");
         Comment comment1 = new Comment("Kim Dong Ho", "nds,adnfl", "3 phut truoc");
         Comment comment2 = new Comment("Kim Dong Ho", "be len ba be di mau giao co thuong be vi be khong khoc nhe", "3 phut truoc");
@@ -102,6 +82,4 @@ public class CommentFragment extends Fragment
             updateCommentList(commentList);
         }
     }
-
-
 }
