@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment
     private void doShowProgram()
     {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame, new ProgramFragment(), "ProgramFragment");
+        ft.replace(R.id.content_frame, new ProgramFragment_(), "ProgramFragment");
         ft.addToBackStack("ProgramFragment");
         ft.commit();
     }

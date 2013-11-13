@@ -1,14 +1,13 @@
 package com.qsoft.ondio.activity;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import com.googlecode.androidannotations.annotations.AfterViews;
+import com.googlecode.androidannotations.annotations.Click;
+import com.googlecode.androidannotations.annotations.EFragment;
+import com.googlecode.androidannotations.annotations.ViewById;
 import com.qsoft.ondio.R;
 
 /**
@@ -16,46 +15,28 @@ import com.qsoft.ondio.R;
  * Date: 10/17/13
  * Time: 3:25 PM
  */
+
+@EFragment(R.layout.program)
 public class ProgramFragment extends Fragment
 {
     private static final String TAG = "ProgramFragment";
-    private RadioGroup rgInfo;
-    private Button btBack;
 
-    @Override
-    public void onAttach(Activity activity)
-    {
-        super.onAttach(activity);
-    }
+    @ViewById(R.id.program_rgSelectInfo)
+    RadioGroup rgInfo;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-    }
+    @ViewById(R.id.program_btBack)
+    Button btBack;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    @AfterViews
+    void doShowThumbnail()
     {
-        super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.program, null);
-        setUpUI(view);
-        doShowThumbnal();
         setUpListenerController();
-        return view;
-    }
-
-    private void setUpUI(View view)
-    {
-        rgInfo = (RadioGroup) view.findViewById(R.id.program_rgSelectInfo);
-        btBack = (Button) view.findViewById(R.id.program_btBack);
+        showFragment(new ThumbnailFragment_(), "ThumbnailFragment");
     }
 
     private void setUpListenerController()
     {
         rgInfo.setOnCheckedChangeListener(onCheckChangeListener);
-        btBack.setOnClickListener(onClickListener);
     }
 
     private RadioGroup.OnCheckedChangeListener onCheckChangeListener = new RadioGroup.OnCheckedChangeListener()
@@ -66,7 +47,7 @@ public class ProgramFragment extends Fragment
             switch (checkedId)
             {
                 case R.id.program_rbThumbnail:
-                    doShowThumbnal();
+                    doShowThumbnail();
                     break;
                 case R.id.program_rbDetail:
                     doShowDetail();
@@ -78,43 +59,26 @@ public class ProgramFragment extends Fragment
         }
     };
 
-    private final View.OnClickListener onClickListener = new View.OnClickListener()
-    {
-        @Override
-        public void onClick(View view)
-        {
-            switch (view.getId())
-            {
-                case R.id.program_btBack:
-                    doBack();
-                    break;
-            }
-        }
-    };
-
-    private void doBack()
-    {
-        getFragmentManager().popBackStack();
-    }
-
-    private void doShowThumbnal()
-    {
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.program_flInformation, new ThumbnailFragment_(), "ThumbnailFragment");
-        ft.commit();
-    }
-
     private void doShowDetail()
     {
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.program_flInformation, new DetailFragment_(), "DetailFragment");
-        ft.commit();
+        showFragment(new DetailFragment_(), "DetailFragment");
     }
 
     private void doShowComment()
     {
+        showFragment(new CommentFragment_(), "CommentFragment");
+    }
+
+    private void showFragment(Fragment fragment, String tittle)
+    {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.program_flInformation, new CommentFragment_(), "CommentFragment");
+        ft.replace(R.id.program_flInformation, fragment, tittle);
         ft.commit();
+    }
+
+    @Click(R.id.program_btBack)
+    void doBack()
+    {
+        getFragmentManager().popBackStack();
     }
 }

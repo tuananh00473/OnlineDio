@@ -15,17 +15,25 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module" module-name="FinchFramework" />
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://D:/qsoft_Android/setup/sdk/extras/android/support/v4/android-support-v4.jar!/" />
+          <root url="jar://E:/Library/LibraryAnnotationAndroid/libraryAddToProjectAsSimple/android-support-v13.jar!/" />
+          <root url="jar://E:/Library/LibraryAnnotationAndroid/libraryAddToProjectAsSimple/androidannotations-api-2.7.1.jar!/" />
+          <root url="jar://E:/Library/LibraryAnnotationAndroid/libraryAddToProjectAsSimple/gson-2.2.4.jar!/" />
+          <root url="jar://E:/Library/LibraryAnnotationAndroid/libraryAddToProjectAsSimple/ognl-3.0.8.jar!/" />
+          <root url="jar://E:/Library/LibraryAnnotationAndroid/libraryAddToProjectAsSimple/ormlite-android-4.47.jar!/" />
+          <root url="jar://E:/Library/LibraryAnnotationAndroid/libraryAddToProjectAsSimple/ormlite-core-4.47.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://E:/Library/LibraryAnnotationAndroid/libraryAddToProjectAsSimple/androidannotations-api-2.7.1-sources.jar!/" />
+          <root url="jar://E:/Library/LibraryAnnotationAndroid/libraryAddToProjectAsSimple/ormlite-android-4.47-sources.jar!/" />
+          <root url="jar://E:/Library/LibraryAnnotationAndroid/libraryAddToProjectAsSimple/ormlite-core-4.47-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" exported="" name="gson-1.7.1" level="project" />
-    <orderEntry type="module" module-name="FinchFramework" />
   </component>
 </module>
 
