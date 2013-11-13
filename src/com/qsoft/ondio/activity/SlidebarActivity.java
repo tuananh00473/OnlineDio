@@ -27,7 +27,9 @@ public class SlidebarActivity extends FragmentActivity
 {
     private static final String TAG = "SlidebarActivity";
 
-    public static final String HOME_FRAGMENT = "com.qsoft.ondio.activity.HomeFragment";
+    private static final String HOME_FRAGMENT = "HomeFragment";
+    private static final String PROFILE_FRAGMENT = "ProfileFragment";
+    public static final String FRAGMENT_FIRST_VIEW = "com.qsoft.ondio.activity.HomeFragment_";
 
     private static final int HOME = 0;
     private static final int SIGN_OUT = 7;
@@ -50,7 +52,7 @@ public class SlidebarActivity extends FragmentActivity
         lvOption.setAdapter(new ArrayAdapterListOption(this, R.layout.slidebar_listoptions, listOptionName));
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame, Fragment.instantiate(SlidebarActivity.this, HOME_FRAGMENT));
+        fragmentTransaction.replace(R.id.content_frame, Fragment.instantiate(SlidebarActivity.this, FRAGMENT_FIRST_VIEW));
         fragmentTransaction.commit();
     }
 
@@ -60,38 +62,45 @@ public class SlidebarActivity extends FragmentActivity
         switch (index)
         {
             case HOME:
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, new HomeFragment(), "HomeFragment");
-                fragmentTransaction.addToBackStack("HomeFragment");
-                fragmentTransaction.commit();
+                showFragment(new HomeFragment_(), HOME_FRAGMENT);
                 break;
             case SIGN_OUT:
-                AccountManager mAccountManager = AccountManager.get(SlidebarActivity.this);
-                Account[] accounts = mAccountManager.getAccounts();
-                for (Account account : accounts)
-                {
-                    mAccountManager.removeAccount(account, null, null);
-                }
-
-                getContentResolver().delete(Constants.CONTENT_URI_USER, null, null);
-
-                Intent intent = new Intent(getApplicationContext(), MainActivity_.class);
-                intent.putExtra("IS_ADDING_ACCOUNT", true);
-                startActivity(intent);
-                finish();
+                doSignOut();
                 break;
         }
         setCloseListOption();
     }
 
+    private void doSignOut()
+    {
+        AccountManager mAccountManager = AccountManager.get(SlidebarActivity.this);
+        Account[] accounts = mAccountManager.getAccounts();
+        for (Account account : accounts)
+        {
+            mAccountManager.removeAccount(account, null, null);
+        }
+
+        getContentResolver().delete(Constants.CONTENT_URI_USER, null, null);
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity_.class);
+        intent.putExtra("IS_ADDING_ACCOUNT", true);
+        startActivity(intent);
+        finish();
+    }
+
     @Click(R.id.slidebar_rlProfile)
     void doEditProfile()
     {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame, new ProfileFragment_(), "ProfileFragment");
-        fragmentTransaction.addToBackStack("ProfileFragment");
-        fragmentTransaction.commit();
+        showFragment(new ProfileFragment_(), PROFILE_FRAGMENT);
         setCloseListOption();
+    }
+
+    public void showFragment(Fragment fragment, String tittle)
+    {
+        final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, fragment, tittle);
+        fragmentTransaction.addToBackStack(tittle);
+        fragmentTransaction.commit();
     }
 
     @Override

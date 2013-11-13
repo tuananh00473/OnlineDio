@@ -10,18 +10,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.RadioGroup;
+import android.widget.ListView;
 import com.qsoft.ondio.R.layout;
+import com.qsoft.ondio.controller.DatabaseController_;
 
-public final class ProgramFragment_
-        extends ProgramFragment
+public final class HomeFragment_
+        extends HomeFragment
 {
 
     private View contentView_;
 
     private void init_(Bundle savedInstanceState)
     {
+        databaseController = DatabaseController_.getInstance_(getActivity());
     }
 
     @Override
@@ -33,10 +37,10 @@ public final class ProgramFragment_
 
     private void afterSetContentView_()
     {
-        btBack = ((Button) findViewById(com.qsoft.ondio.R.id.program_btBack));
-        rgInfo = ((RadioGroup) findViewById(com.qsoft.ondio.R.id.program_rgSelectInfo));
+        home_lvFeeds = ((ListView) findViewById(com.qsoft.ondio.R.id.home_lvFeeds));
+        btMenu = ((Button) findViewById(com.qsoft.ondio.R.id.home_btMenu));
         {
-            View view = findViewById(com.qsoft.ondio.R.id.program_btBack);
+            View view = findViewById(com.qsoft.ondio.R.id.home_btMenu);
             if (view != null)
             {
                 view.setOnClickListener(new OnClickListener()
@@ -46,14 +50,33 @@ public final class ProgramFragment_
                     @Override
                     public void onClick(View view)
                     {
-                        ProgramFragment_.this.doBack();
+                        HomeFragment_.this.showMenu();
                     }
 
                 }
                 );
             }
         }
-        doShowThumbnail();
+        {
+            AdapterView<?> view = ((AdapterView<?>) findViewById(com.qsoft.ondio.R.id.home_lvFeeds));
+            if (view != null)
+            {
+                view.setOnItemClickListener(new OnItemClickListener()
+                {
+
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                    {
+                        ClickItem(position);
+                    }
+
+                }
+                );
+            }
+        }
+        ((DatabaseController_) databaseController).afterSetContentView_();
+        afterViews();
     }
 
     @Override
@@ -62,7 +85,7 @@ public final class ProgramFragment_
         contentView_ = super.onCreateView(inflater, container, savedInstanceState);
         if (contentView_ == null)
         {
-            contentView_ = inflater.inflate(layout.program, container, false);
+            contentView_ = inflater.inflate(layout.home, container, false);
         }
         return contentView_;
     }
@@ -83,9 +106,9 @@ public final class ProgramFragment_
         return contentView_.findViewById(id);
     }
 
-    public static ProgramFragment_.FragmentBuilder_ builder()
+    public static HomeFragment_.FragmentBuilder_ builder()
     {
-        return new ProgramFragment_.FragmentBuilder_();
+        return new HomeFragment_.FragmentBuilder_();
     }
 
     public static class FragmentBuilder_
@@ -98,9 +121,9 @@ public final class ProgramFragment_
             args_ = new Bundle();
         }
 
-        public ProgramFragment build()
+        public HomeFragment build()
         {
-            ProgramFragment_ fragment_ = new ProgramFragment_();
+            HomeFragment_ fragment_ = new HomeFragment_();
             fragment_.setArguments(args_);
             return fragment_;
         }

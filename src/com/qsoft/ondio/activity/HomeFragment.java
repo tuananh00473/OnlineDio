@@ -10,53 +10,45 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import com.googlecode.androidannotations.annotations.*;
 import com.qsoft.ondio.R;
+import com.qsoft.ondio.controller.DatabaseController;
 import com.qsoft.ondio.customui.FeedArrayAdapter;
+import com.qsoft.ondio.model.User;
 import com.qsoft.ondio.util.Constants;
 
+@EFragment(R.layout.home)
 public class HomeFragment extends Fragment
 {
     private static final String TAG = "HomeFragment";
-    private Button btMenu;
-    private Button btLoadData;
-    private ListView home_lvFeeds;
-    private Cursor homeCursor;
 
+    @ViewById(R.id.home_btMenu)
+    Button btMenu;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState)
+    @ViewById(R.id.home_lvFeeds)
+    ListView home_lvFeeds;
+
+    @Bean
+    DatabaseController databaseController;
+
+    @AfterViews
+    void afterViews()
     {
-        super.onCreate(savedInstanceState);
-        Cursor cursor = getActivity().managedQuery(Constants.CONTENT_URI_USER, null, null, null, "_id");
-        if (null != cursor && cursor.moveToNext())
+        User user = databaseController.loadUserFromDB();
+        if (null != user)
         {
-            String userId = cursor.getString(cursor.getColumnIndex(Constants.USER_USER_ID));
-            Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_FEED, Integer.parseInt(userId));
-            homeCursor = getActivity().managedQuery(uri, null, null, null, "_id");
+            Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_FEED, Integer.parseInt(user.getUser_id()));
+            Cursor homeCursor = getActivity().managedQuery(uri, null, null, null, "_id");
+            SimpleCursorAdapter mAdapter = FeedArrayAdapter.getSimpleCursorAdapter(getActivity(), homeCursor);
+            home_lvFeeds.setAdapter(mAdapter);
+
             AccountManager accountManager = AccountManager.get(getActivity().getApplicationContext());
             Account account = accountManager.getAccountsByType(Constants.ARG_ACCOUNT_TYPE)[0];
             syncNow(account);
         }
     }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
-        View view = inflater.inflate(R.layout.home, null);
-        setUpUI(view);
-        SimpleCursorAdapter mAdapter = FeedArrayAdapter.getSimpleCursorAdapter(getActivity(), homeCursor);
-        home_lvFeeds.setAdapter(mAdapter);
-
-        setUpListenerController();
-        return view;
-    }
-
 
     public void syncNow(Account account)
     {
@@ -68,45 +60,13 @@ public class HomeFragment extends Fragment
         ContentResolver.requestSync(account, Constants.PROVIDER_NAME, bundle);
     }
 
-    private void setUpListenerController()
+    @ItemClick(R.id.home_lvFeeds)
+    void ClickItem(int index)
     {
-        btMenu.setOnClickListener(onClickListener);
-        btLoadData.setOnClickListener(onClickListener);
-        home_lvFeeds.setOnItemClickListener(onItemClickListener);
+        doShowProgram(index);
     }
 
-    private ListView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener()
-    {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-        {
-            doShowProgram();
-        }
-    };
-
-    private View.OnClickListener onClickListener = new View.OnClickListener()
-    {
-        @Override
-        public void onClick(View view)
-        {
-            switch (view.getId())
-            {
-                case R.id.home_btMenu:
-                    showMenu();
-                    break;
-                case R.id.home_btNotifications:
-                    break;
-            }
-        }
-    };
-
-
-    private void showMenu()
-    {
-        ((SlidebarActivity) getActivity()).setOpenListOption();
-    }
-
-    private void doShowProgram()
+    private void doShowProgram(int index)
     {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame, new ProgramFragment_(), "ProgramFragment");
@@ -114,11 +74,10 @@ public class HomeFragment extends Fragment
         ft.commit();
     }
 
-    private void setUpUI(View view)
+    @Click(R.id.home_btMenu)
+    void showMenu()
     {
-        btMenu = (Button) view.findViewById(R.id.home_btMenu);
-        btLoadData = (Button) view.findViewById(R.id.home_btNotifications);
-        home_lvFeeds = (ListView) view.findViewById(R.id.home_lvFeeds);
+        ((SlidebarActivity) getActivity()).setOpenListOption();
     }
 }
 
