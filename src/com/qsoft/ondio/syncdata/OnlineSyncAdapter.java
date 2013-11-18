@@ -1,27 +1,55 @@
 package com.qsoft.ondio.syncdata;
 
 import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.*;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import com.googlecode.androidannotations.annotations.AfterInject;
+import com.googlecode.androidannotations.annotations.Bean;
+import com.googlecode.androidannotations.annotations.EBean;
+import com.googlecode.androidannotations.annotations.SystemService;
+import com.googlecode.androidannotations.annotations.rest.RestService;
 import com.qsoft.ondio.model.Feed;
+import com.qsoft.ondio.model.JsonResponse;
+import com.qsoft.ondio.restservice.Interceptor;
+import com.qsoft.ondio.restservice.MyRestService;
 import com.qsoft.ondio.util.Constants;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+@EBean
 public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
 {
-
     private static final String TAG = "OnlineSyncAdapter";
+
+    @SystemService
+    AccountManager accountManager;
+
+    @RestService
+    MyRestService restService;
+
+    @Bean
+    Interceptor interceptor;
+
+    @AfterInject
+    void afterInject()
+    {
+        List<ClientHttpRequestInterceptor> interceptorList = new ArrayList<ClientHttpRequestInterceptor>();
+        interceptorList.add(interceptor);
+        restService.getRestTemplate().setInterceptors(interceptorList);
+    }
 
     private final ContentResolver mContentResolver;
 
-    public OnlineSyncAdapter(Context context, boolean autoInitialize)
+    public OnlineSyncAdapter(Context context)
     {
-        super(context, autoInitialize);
+        super(context, true);
         mContentResolver = context.getContentResolver();
     }
 
@@ -31,17 +59,23 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
         Log.d(TAG, "start sync");
         try
         {
-            String authToken = "";
-            String userId = "";
-            Cursor cursor = provider.query(Constants.CONTENT_URI_USER, null, null, null, "_id");
-            if (null != cursor && cursor.moveToNext())
-            {
-                authToken = cursor.getString(cursor.getColumnIndex(Constants.USER_ACCESS_TOKEN));
-                userId = cursor.getString(cursor.getColumnIndex(Constants.USER_USER_ID));
-            }
+//            String authToken = "";
+//            String userId = "";
+//            Cursor cursor = provider.query(Constants.CONTENT_URI_USER, null, null, null, "_id");
+//            if (null != cursor && cursor.moveToNext())
+//            {
+//                authToken = cursor.getString(cursor.getColumnIndex(Constants.USER_ACCESS_TOKEN));
+//                userId = cursor.getString(cursor.getColumnIndex(Constants.USER_USER_ID));
+//            }
 
+            String userId = accountManager.getUserData(account, Constants.USERDATA_USER_OBJ_ID);
+
+            Log.d(TAG, " ==> UserID = " + userId);
             Log.d(TAG, " ==> Get data from service.");
-            ArrayList<Feed> remoteFeeds = Constants.sServerAuthenticate.getHomeFeed(authToken);
+//            ArrayList<Feed> remoteFeeds = Constants.sServerAuthenticate.getHomeFeed(authToken);
+            JsonResponse response = restService.getHomeFeed();
+            Log.d(TAG, "dataResponse : " + response);
+            ArrayList<Feed> remoteFeeds = response.getHomeList();
             Log.d(TAG, "data : " + remoteFeeds);
 
             ArrayList<ContentProviderOperation> batch = new ArrayList<ContentProviderOperation>();

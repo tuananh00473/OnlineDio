@@ -23,6 +23,13 @@
         <option name="name" value="DatabaseController" />
         <option name="pid" value="" />
       </filter>
+      <filter>
+        <option name="logLevel" value="verbose" />
+        <option name="logMessagePattern" value="" />
+        <option name="logTagPattern" value="OnlineSyncAdapter" />
+        <option name="name" value="OnlineSyncAdapter" />
+        <option name="pid" value="" />
+      </filter>
     </filters>
   </component>
   <component name="AndroidDesignerProfile">
@@ -48,39 +55,58 @@
       </GlobalState>
     </option>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="LoginActivity" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="14c4ad5a-a3d1-49f0-b826-71503d44a764" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/HomeFragment_.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/util/NetworkAvailable_.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/AccountShared.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/AccountShared_.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/Interceptor_.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/model/JsonResponse.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/MyRestService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/MyRestService_.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/syncdata/OnlineSyncAdapter_.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/BuildConfig.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/BuildConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/CommentFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/CommentFragment_.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/controller/DatabaseController_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/controller/DatabaseController_.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/DetailFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/DetailFragment_.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/HomeFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/HomeFragment_.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/InputCommentActivity_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/InputCommentActivity_.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/LoginActivity.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/LoginActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/LoginActivity_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/LoginActivity_.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/MainActivity_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/MainActivity_.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/Manifest.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/Manifest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/util/NetworkAvailable_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/util/NetworkAvailable_.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OnlineDio.iml" afterPath="$PROJECT_DIR$/OnlineDio.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapter.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapterService.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapterService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ProfileFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ProfileFragment_.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ProgramFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ProgramFragment_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/SlidebarActivity.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/SlidebarActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/R.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/SlidebarActivity_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/SlidebarActivity_.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ThumbnailFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ThumbnailFragment_.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="OnlineDio.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384309596187" ignored="false" />
-    <file path="/fragment.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384222137938" ignored="false" />
+    <file path="/Dummy.txt" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749545789" ignored="false" />
+    <file path="/fragment.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384744449360" ignored="false" />
     <file path="/main.xml" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1381982307543" ignored="false" />
     <file path="/MainActivity.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384247140062" ignored="false" />
     <file path="/dementions.xml" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1381513504666" ignored="false" />
     <file path="/login.xml" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383296961888" ignored="false" />
-    <file path="/LoginActivity.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384167421121" ignored="false" />
+    <file path="/LoginActivity.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749394659" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384307927226" ignored="false" />
-    <file path="/strings.xml" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384166848536" ignored="false" />
+    <file path="/strings.xml" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384741533261" ignored="false" />
     <file path="/MessageDialog.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1381738067858" ignored="false" />
     <file path="/MyDialog.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1381739765025" ignored="false" />
     <file path="$USER_HOME$/Desktop/LoadingSplashScreenTut/LoadingSplashScreenTut/src/com/blundell/tut/task/LoadingTask.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1381749463710" ignored="false" />
-    <file path="/a.dummy" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384310787797" ignored="false" />
+    <file path="/a.dummy" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384516852901" ignored="false" />
     <file path="/NetworkAvailable.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384165702190" ignored="false" />
     <file path="$PROJECT_DIR$/../TestFragment/AndroidManifest.xml" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1381807701371" ignored="false" />
     <file path="$PROJECT_DIR$/../TestFragment/src/com/example/TestFragment/MyActivity.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1381804638809" ignored="false" />
@@ -130,7 +156,7 @@
     <file path="D:/Do_An/24_10_2013/GenerateAuto/src/main/java/com/ptit/augen/model/JsonResult.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383213702360" ignored="false" />
     <file path="D:/Do_An/24_10_2013/GenerateAuto/src/main/java/com/ptit/augen/model/Table.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383213702360" ignored="false" />
     <file path="D:/Do_An/24_10_2013/GenerateAuto/src/main/java/com/ptit/augen/service/DatabaseConnector.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383215637375" ignored="false" />
-    <file path="/Constants.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384228158826" ignored="false" />
+    <file path="/Constants.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384510195240" ignored="false" />
     <file path="/GlobalVariables.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383214821721" ignored="false" />
     <file path="/DatabaseConnector.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383215119326" ignored="false" />
     <file path="D:/Do_An/24_10_2013/GenerateAuto/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383215669841" ignored="false" />
@@ -145,7 +171,7 @@
     <file path="/OnlineAuthenticator.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384308040209" ignored="false" />
     <file path="/Common.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383300768368" ignored="false" />
     <file path="$PROJECT_DIR$/../../ContentProviderTutorialBasic/src/com/example/mycontentprovider/StudentsProvider.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383279942610" ignored="false" />
-    <file path="/HomeFragment.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384310582692" ignored="false" />
+    <file path="/HomeFragment.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384740060276" ignored="false" />
     <file path="$PROJECT_DIR$/src/com/qsoft/ondio/customui/ArrayAdapterCustom.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383300141683" ignored="false" />
     <file path="/Feed.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383300831611" ignored="false" />
     <file path="$PROJECT_DIR$/../../BackUpOnlineDio07112013/OnlineDio/.idea/workspace.xml" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384136948095" ignored="false" />
@@ -167,6 +193,105 @@
     <file path="/ThumbnailFragment.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384307516427" ignored="false" />
     <file path="/InputCommentActivity.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384307813583" ignored="false" />
     <file path="/ProgramFragment.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384309586799" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/NewSubjectGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/MainAdminGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384512242481" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/admincontroller/ManagementSubjectController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
+    <file path="/ManagementSubjectController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384504509160" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/common/TableBinding.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384417980546" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/MainAdminGUI.form" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384500009332" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/persistence/entity/Subject.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334654180" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/ManagementStudentController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384318859984" ignored="false" />
+    <file path="/ManagementStudentController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384515934413" ignored="false" />
+    <file path="/Subject.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334469991" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/ManagementSubjectGUI.form" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384504825056" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/ManagementSubjectGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577594" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/util/Constants.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384511007622" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/student/MainStudentGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/SubjectService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334012525" ignored="false" />
+    <file path="/SubjectService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334011467" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/impl/SubjectServiceImpl.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334022516" ignored="false" />
+    <file path="/SubjectServiceImpl.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384318480081" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/ManagementStudentGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384512867326" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/ManagementStudentGUI.form" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384505952781" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/NewStudentGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749722342" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/admincontroller/ManagementStudentController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/SettingExamController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334654180" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/ResultController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334654180" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/persistence/entity/Student.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334654180" ignored="false" />
+    <file path="/Student.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384333592747" ignored="false" />
+    <file path="/StudentService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384330679834" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/StudentService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334654180" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/impl/StudentServiceImpl.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334654180" ignored="false" />
+    <file path="/StudentServiceImpl.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384331114012" ignored="false" />
+    <file path="/StudentDAO.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384331124835" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/persistence/dao/StudentDAO.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334654180" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/student/ResultGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384331986630" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/persistence/dao/SubjectDAO.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384334654180" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/NewQuestionGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577592" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/admincontroller/QuestionBankController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/LoginGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384392208729" ignored="false" />
+    <file path="/QuestionBankController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384414950098" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/QuestionBankGUI.form" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384414317210" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/QuestionBankGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384491124586" ignored="false" />
+    <file path="/NewQuestionGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384415370327" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/admincontroller/MainAdminController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577592" ignored="false" />
+    <file path="/MainAdminController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384499052571" ignored="false" />
+    <file path="/MainAdminGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384500582442" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/NewQuestionGUI.form" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384415497467" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/persistence/dao/QuestionDAO.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384405244559" ignored="false" />
+    <file path="/QuestionDAO.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384392409667" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/impl/QuestionServiceImpl.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384405244559" ignored="false" />
+    <file path="/QuestionServiceImpl.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384392445379" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/QuestionService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384405244559" ignored="false" />
+    <file path="/QuestionService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384392455547" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/admincontroller/AddQuestionController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
+    <file path="/AddQuestionController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384414736432" ignored="false" />
+    <file path="/TextAreaRenderer.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384395441311" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/common/TextAreaRenderer.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384395558253" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/common/TextAreaEditor.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384395737115" ignored="false" />
+    <file path="/TextAreaEditor.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384395737115" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/AnswerService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384397810378" ignored="false" />
+    <file path="/AnswerService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384397767673" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/impl/AnswerServiceImpl.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384397817658" ignored="false" />
+    <file path="/AnswerServiceImpl.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384397787695" ignored="false" />
+    <file path="/QuestionBankGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384399253766" ignored="false" />
+    <file path="/TableBinding.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384417971576" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/persistence/entity/Question.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384405244559" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/ManagermentExamGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384491124586" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/ManagermentExamGUI.form" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384491124586" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/admincontroller/ManagementExamController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/persistence/entity/Exam.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384426053394" ignored="false" />
+    <file path="/Exam.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384421040499" ignored="false" />
+    <file path="/ManagementExamController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384502282617" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/persistence/dao/ExamDAO.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384426053394" ignored="false" />
+    <file path="/ExamDAO.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384418075149" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/ExamService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384426053394" ignored="false" />
+    <file path="/ExamService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384418093806" ignored="false" />
+    <file path="/ExamServiceImpl.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384418114294" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/business/impl/ExamServiceImpl.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384426053394" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/admincontroller/ExportExamController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
+    <file path="/ExportExamController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384425620560" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/ExportExamination.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/ExportExamination.form" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384425105939" ignored="false" />
+    <file path="/ExportExamination.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384503096475" ignored="false" />
+    <file path="/RestService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384490721455" ignored="false" />
+    <file path="/Interceptor.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384745713904" ignored="false" />
+    <file path="/AccountShared.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384744823720" ignored="false" />
+    <file path="/OnlineSyncAdapter.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384746006953" ignored="false" />
+    <file path="/OnlineSyncAdapterService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384745980997" ignored="false" />
+    <file path="/JsonResponse.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384490601229" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/admincontroller/AddSubjectController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
+    <file path="/AddSubjectController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384501202945" ignored="false" />
+    <file path="/NewSubjectGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384504213137" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/NewSubjectGUI.form" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384501075054" ignored="false" />
+    <file path="/NewStudentGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384516473389" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/view/admin/NewStudentGUI.form" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749722342" ignored="false" />
+    <file path="/ManagementStudentGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384505963103" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/admincontroller/AddStudentController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
+    <file path="/AddStudentController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384515000833" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/util/ComboboxManager.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384517480798" ignored="false" />
+    <file path="/ComboboxManager.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384510721507" ignored="false" />
+    <file path="D:/Do_An/Examinaction/src/main/java/com/ptit/exam/ui/control/usercontroller/MainStudentController.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384749577593" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +311,128 @@
     <sortChildren value="false" />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java" line="116" class="com.qsoft.ondio.activity.ProfileFragment" package="com.qsoft.ondio.activity">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapter.java" line="71" class="com.qsoft.ondio.syncdata.OnlineSyncAdapter" package="com.qsoft.ondio.syncdata">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapter.java" line="43" class="com.qsoft.ondio.syncdata.OnlineSyncAdapter" package="com.qsoft.ondio.syncdata">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapter.java" line="59" class="com.qsoft.ondio.syncdata.OnlineSyncAdapter" package="com.qsoft.ondio.syncdata">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java" line="35" class="com.qsoft.ondio.restservice.Interceptor" package="com.qsoft.ondio.restservice">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java" line="29" class="com.qsoft.ondio.restservice.Interceptor" package="com.qsoft.ondio.restservice">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java" line="31" class="com.qsoft.ondio.restservice.Interceptor" package="com.qsoft.ondio.restservice">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapter.java" line="53" class="com.qsoft.ondio.syncdata.OnlineSyncAdapter" package="com.qsoft.ondio.syncdata">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -223,23 +469,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java" line="116" class="com.qsoft.ondio.activity.ProfileFragment" package="com.qsoft.ondio.activity">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -252,31 +482,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="HomeFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java">
+      <file leaf-file-name="LoginActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="60" selection-start="2567" selection-end="2567" vertical-scroll-proportion="0.0">
+            <state line="37" column="58" selection-start="1064" selection-end="1064" vertical-scroll-proportion="0.8095238">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SlidebarActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/SlidebarActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="13" selection-start="3414" selection-end="3414" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeFragment_.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gen/com/qsoft/ondio/activity/HomeFragment_.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="35" selection-start="1925" selection-end="1925" vertical-scroll-proportion="0.65413535">
-              <folding>
-                <element signature="e#1695#1943#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -284,8 +494,50 @@
       <file leaf-file-name="OnlineAuthenticator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/accountmanager/OnlineAuthenticator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="31" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
+            <state line="16" column="35" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="34" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Interceptor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="34" selection-start="792" selection-end="792" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OnlineSyncAdapterService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapterService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="0" selection-start="298" selection-end="298" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HomeFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="21" selection-start="1189" selection-end="1189" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -310,22 +562,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/provider/DatabaseHelper.java" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/model/Profile.java" />
-        <option value="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/LoginActivity_.java" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/controller/DatabaseController.java" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/DetailFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/ThumbnailFragment.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/InputCommentActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/accountmanager/OnlineAuthenticator.java" />
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/CommentFragment.java" />
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProgramFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java" />
-        <option value="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/HomeFragment_.java" />
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/SlidebarActivity.java" />
+        <option value="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/HomeFragment_.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/accountmanager/RestService.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/RestService.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/model/JsonResponse.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/MyRestService.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/AccountShared.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapter.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapterService.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/LoginActivity.java" />
       </list>
     </option>
   </component>
@@ -425,28 +677,6 @@
               <option name="myItemId" value="ondio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OnlineDio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OnlineDio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ondio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -488,73 +718,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="provider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OnlineDio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OnlineDio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ondio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lazzyload" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OnlineDio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OnlineDio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ondio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dialog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OnlineDio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OnlineDio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ondio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
+              <option name="myItemId" value="restservice" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -590,11 +754,99 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ondio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="accountmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="gen" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ondio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ondio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="syncdata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ondio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="restservice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OnlineDio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ondio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -605,14 +857,14 @@
   <component name="PropertiesComponent">
     <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="GenerateAntBuildDialog.generateSingleFile" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="last_opened_file_path" value="E:/Library/jackson/spring-android-rest-template-1.0.1.RELEASE.jar!/" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
-    <property name="last_opened_file_path" value="D:/Do_An" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="onlinedio" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -623,7 +875,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.lastSelected" value="reference.projectsettings.compiler.annotationProcessors" />
-    <property name="AndroidLayoutSelectedEditor" value="android-designer" />
+    <property name="AndroidLayoutSelectedEditor" value="text-editor" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
@@ -644,6 +896,7 @@
       <recent name="E:\android_project\OnlineDio\res\values" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.qsoft.ondio.restservice" />
       <recent name="com.qsoft.ondio.controller" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -683,19 +936,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -722,6 +962,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -934,14 +1187,18 @@
       <created>1384309604319</created>
       <updated>1384309604319</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="commit code">
+      <created>1384311685483</created>
+      <updated>1384311685483</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="754" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22526637" sideWeight="0.72436976" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22526637" sideWeight="0.6" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277311" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.7226891" order="3" side_tool="false" content_ui="tabs" />
@@ -952,17 +1209,16 @@
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22907154" sideWeight="0.71428573" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22907154" sideWeight="0.71428573" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2857143" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.72436976" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.6" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952815" sideWeight="0.6700337" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32605043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3226891" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49411765" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3210084" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36134455" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -970,6 +1226,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32495812" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1039,23 +1296,116 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ThumbnailFragment_.java">
+    <entry file="jar://E:/Library/jackson/spring-android-rest-template-1.0.1.RELEASE.jar!/org/springframework/web/client/RestTemplate.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="114" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
+        <state line="94" column="21" selection-start="9181" selection-end="9181" vertical-scroll-proportion="-3.96">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gen/com/qsoft/ondio/activity/CommentFragment_.java">
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/accountmanager/ParseComServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="19" selection-start="363" selection-end="363" vertical-scroll-proportion="0.3121693">
+        <state line="98" column="38" selection-start="3302" selection-end="3313" vertical-scroll-proportion="0.057239056">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/DetailFragment.java">
+    <entry file="file://$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/MyRestService_.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="208" selection-end="208" vertical-scroll-proportion="0.34085214">
+        <state line="39" column="0" selection-start="1261" selection-end="1261" vertical-scroll-proportion="0.4516129">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/MyRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="17" selection-start="895" selection-end="895" vertical-scroll-proportion="0.5770393">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="34" selection-start="792" selection-end="792" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/qsoft_Android/setup/sdk/platforms/android-17/android.jar!/android/os/Handler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="16" selection-start="564" selection-end="564" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/qsoft_Android/setup/sdk/platforms/android-17/android.jar!/android/os/Looper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="24" selection-start="969" selection-end="969" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="21" selection-start="1189" selection-end="1189" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gen/com/qsoft/ondio/syncdata/OnlineSyncAdapter_.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="19" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/AccountShared.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="26" selection-start="434" selection-end="447" vertical-scroll-proportion="-1.0238096">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/qsoft_Android/setup/sdk/platforms/android-17/android.jar!/android/content/AbstractThreadedSyncAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="36" selection-start="691" selection-end="691" vertical-scroll-proportion="0.33195022">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="34" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="6" selection-start="986" selection-end="986" vertical-scroll-proportion="-1.404692">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1380#1410#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapterService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="298" selection-end="298" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/accountmanager/OnlineAuthenticator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="35" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1064,96 +1414,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="13" selection-start="863" selection-end="863" vertical-scroll-proportion="0.3134715">
+        <state line="37" column="58" selection-start="1064" selection-end="1064" vertical-scroll-proportion="0.8095238">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/ThumbnailFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="390" selection-end="390" vertical-scroll-proportion="0.46867168">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/InputCommentActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="75" selection-start="1185" selection-end="1185" vertical-scroll-proportion="0.6165413">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="1" selection-start="1" selection-end="1" vertical-scroll-proportion="-1.3433584">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gen/com/qsoft/ondio/activity/InputCommentActivity_.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="19" selection-start="586" selection-end="586" vertical-scroll-proportion="-0.085213035">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/CommentFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="79" selection-start="1313" selection-end="1313" vertical-scroll-proportion="-0.0880829">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gen/com/qsoft/ondio/activity/DetailFragment_.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="19" selection-start="289" selection-end="289" vertical-scroll-proportion="0.2982456">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProgramFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="88" selection-start="1796" selection-end="1796" vertical-scroll-proportion="1.2781955">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/qsoft_Android/setup/sdk/platforms/android-17/android.jar!/android/widget/AdapterView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="16" selection-start="829" selection-end="829" vertical-scroll-proportion="0.3316062">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/accountmanager/OnlineAuthenticator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="31" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="60" selection-start="2567" selection-end="2567" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/SlidebarActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="13" selection-start="3414" selection-end="3414" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gen/com/qsoft/ondio/activity/HomeFragment_.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="35" selection-start="1925" selection-end="1925" vertical-scroll-proportion="0.65413535">
-          <folding>
-            <element signature="e#1695#1943#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

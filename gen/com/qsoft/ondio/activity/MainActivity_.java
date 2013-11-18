@@ -54,6 +54,7 @@ public final class MainActivity_
                 );
             }
         }
+        setUpView();
     }
 
     @Override

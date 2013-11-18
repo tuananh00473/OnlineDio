@@ -4,9 +4,7 @@ import android.accounts.Account;
 import android.accounts.AccountAuthenticatorActivity;
 import android.accounts.AccountManager;
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -18,6 +16,7 @@ import com.qsoft.ondio.R;
 import com.qsoft.ondio.controller.DatabaseController;
 import com.qsoft.ondio.dialog.MyDialog;
 import com.qsoft.ondio.model.User;
+import com.qsoft.ondio.restservice.AccountShared;
 import com.qsoft.ondio.util.Constants;
 import com.qsoft.ondio.util.NetworkAvailable;
 
@@ -50,6 +49,9 @@ public class LoginActivity extends AccountAuthenticatorActivity
     @Bean
     NetworkAvailable network;
 
+    @Bean
+    AccountShared accountShared;
+
     @AfterTextChange({R.id.login_etEmail, R.id.login_etPassword})
     void afterTextChanged()
     {
@@ -63,6 +65,18 @@ public class LoginActivity extends AccountAuthenticatorActivity
             btLogin.setBackgroundResource(R.drawable.login_login);
             btLogin.setEnabled(true);
         }
+    }
+
+    @AfterViews
+    void setUpView()
+    {
+        Account[] accounts = mAccountManager.getAccountsByType(Constants.ARG_ACCOUNT_TYPE);
+        for (Account account : accounts)
+        {
+            mAccountManager.removeAccount(account, null, null);
+        }
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
     @Override
@@ -108,71 +122,63 @@ public class LoginActivity extends AccountAuthenticatorActivity
         return network.checkNetwork(this);
     }
 
-    public void checkLogin()
+    @Background
+    void checkLogin()
     {
         Log.d(TAG, "> Submit");
         final String userName = etEmail.getText().toString();
         final String password = etPassword.getText().toString();
 
-        new AsyncTask<String, Void, Intent>()
-        {
-            @Override
-            protected Intent doInBackground(String... params)
-            {
-                Log.d(TAG, "> Started authenticating");
-                Bundle data = new Bundle();
-                try
-                {
-                    Log.d(TAG, "before getUser");
-                    User user = Constants.sServerAuthenticate.login(userName, password, Constants.AUTHTOKEN_TYPE_FULL_ACCESS);
-                    Log.d(TAG, "getUser " + user.getUser_id());
-                    if (null != user.getAccess_token())
-                    {
-                        data.putString(AccountManager.KEY_ACCOUNT_NAME, userName);
-                        data.putString(AccountManager.KEY_ACCOUNT_TYPE, Constants.ARG_ACCOUNT_TYPE);
-                        data.putString(AccountManager.KEY_AUTHTOKEN, user.getAccess_token());
-                        data.putBundle(AccountManager.KEY_USERDATA, getUserBundle(user));
-                        data.putString(Constants.PARAM_USER_PASS, password);
-
-                        ContentValues values = user.getContentValues();
-                        Log.d(TAG, "Values to String : " + values.toString());
-                        databaseController.saveUserToDB(values);
-                    }
-                    else
-                    {
-                        data.putString(Constants.KEY_ERROR_MESSAGE, "Account not exist!");
-                    }
-                }
-                catch (Exception e)
-                {
-                    data.putString(Constants.KEY_ERROR_MESSAGE, e.getMessage());
-                }
-
-                final Intent res = new Intent();
-                res.putExtras(data);
-                return res;
-            }
-
-            @Override
-            protected void onPostExecute(Intent intent)
-            {
-                if (intent.hasExtra(Constants.KEY_ERROR_MESSAGE))
-                {
-                    Toast.makeText(LoginActivity.this, intent.getStringExtra(Constants.KEY_ERROR_MESSAGE), Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    finishLogin(intent);
-                }
-            }
-        }.execute();
+        login(userName, password);
     }
 
-    private Bundle getUserBundle(User user)
+    @Background
+    void login(String userName, String password)
     {
-        Bundle userData = new Bundle();
-        userData.putString(Constants.USERDATA_USER_OBJ_ID, user.getUser_id());
-        return userData;
+        Log.d(TAG, "> Started authenticating");
+
+        Bundle data = new Bundle();
+        try
+        {
+            User user = Constants.sServerAuthenticate.login(userName, password, Constants.AUTHTOKEN_TYPE_FULL_ACCESS);
+            if (user.getAccess_token() != null)
+            {
+                data.putString(AccountManager.KEY_ACCOUNT_NAME, userName);
+                data.putString(AccountManager.KEY_ACCOUNT_TYPE, Constants.ARG_ACCOUNT_TYPE);
+                data.putString(AccountManager.KEY_AUTHTOKEN, user.getAccess_token());
+
+                Log.d(TAG, "Show token" + user.getAccess_token());
+                Bundle userData = new Bundle();
+                userData.putString(Constants.USERDATA_USER_OBJ_ID, user.getUser_id());
+                data.putBundle(AccountManager.KEY_USERDATA, userData);
+
+                data.putString(Constants.PARAM_USER_PASS, password);
+            }
+            else
+            {
+                data.putString(Constants.KEY_ERROR_MESSAGE, "Account is not exists");
+            }
+        }
+        catch (Exception e)
+        {
+            data.putString(Constants.KEY_ERROR_MESSAGE, e.getMessage());
+        }
+        final Intent res = new Intent();
+        res.putExtras(data);
+        updateLogin(res);
+    }
+
+    @UiThread
+    void updateLogin(Intent intent)
+    {
+        if (intent.hasExtra(Constants.KEY_ERROR_MESSAGE))
+        {
+            Toast.makeText(getBaseContext(), intent.getStringExtra(Constants.KEY_ERROR_MESSAGE), Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            finishLogin(intent);
+        }
     }
 
     private void finishLogin(Intent intent)
@@ -180,24 +186,14 @@ public class LoginActivity extends AccountAuthenticatorActivity
         String accountName = intent.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
         String accountPassword = intent.getStringExtra(Constants.PARAM_USER_PASS);
         final Account account = new Account(accountName, intent.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE));
+        accountShared.setAccount(account);
 
-        if (getIntent().getBooleanExtra(Constants.ARG_IS_ADDING_NEW_ACCOUNT, false))
-        {
-            String authtoken = intent.getStringExtra(AccountManager.KEY_AUTHTOKEN);
-            Intent intentSlidebar = new Intent(this, SlidebarActivity_.class);
-            intentSlidebar.putExtra("token", authtoken);
-            startActivity(intentSlidebar);
+        String authtoken = intent.getStringExtra(AccountManager.KEY_AUTHTOKEN);
+        startActivity(new Intent(this, SlidebarActivity_.class));
+        finish();
 
-            Toast.makeText(this, authtoken, Toast.LENGTH_SHORT).show();
-
-            mAccountManager.addAccountExplicitly(account, accountPassword, intent.getBundleExtra(AccountManager.KEY_USERDATA));
-            mAccountManager.setAuthToken(account, Constants.AUTHTOKEN_TYPE_FULL_ACCESS, authtoken);
-        }
-        else
-        {
-            Log.d(TAG, "> finishLogin > setPassword");
-            mAccountManager.setPassword(account, accountPassword);
-        }
+        mAccountManager.addAccountExplicitly(account, accountPassword, intent.getBundleExtra(AccountManager.KEY_USERDATA));
+        mAccountManager.setAuthToken(account, Constants.AUTHTOKEN_TYPE_FULL_ACCESS, authtoken);
 
         setAccountAuthenticatorResult(intent.getExtras());
         setResult(Activity.RESULT_OK, intent);

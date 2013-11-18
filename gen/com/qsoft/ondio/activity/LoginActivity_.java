@@ -10,23 +10,28 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.googlecode.androidannotations.api.BackgroundExecutor;
 import com.qsoft.ondio.R.id;
 import com.qsoft.ondio.R.layout;
 import com.qsoft.ondio.controller.DatabaseController_;
+import com.qsoft.ondio.restservice.AccountShared_;
 import com.qsoft.ondio.util.NetworkAvailable_;
 
 public final class LoginActivity_
         extends LoginActivity
 {
 
+    private Handler handler_ = new Handler();
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -39,14 +44,15 @@ public final class LoginActivity_
     private void init_(Bundle savedInstanceState)
     {
         mAccountManager = ((AccountManager) this.getSystemService(Context.ACCOUNT_SERVICE));
-        network = NetworkAvailable_.getInstance_(this);
         databaseController = DatabaseController_.getInstance_(this);
+        accountShared = AccountShared_.getInstance_(this);
+        network = NetworkAvailable_.getInstance_(this);
     }
 
     private void afterSetContentView_()
     {
-        btLogin = ((Button) findViewById(id.login_btNext));
         etEmail = ((EditText) findViewById(id.login_etEmail));
+        btLogin = ((Button) findViewById(id.login_btNext));
         etPassword = ((EditText) findViewById(id.login_etPassword));
         {
             View view = findViewById(id.login_btBack);
@@ -84,8 +90,9 @@ public final class LoginActivity_
                 );
             }
         }
-        ((NetworkAvailable_) network).afterSetContentView_();
         ((DatabaseController_) databaseController).afterSetContentView_();
+        ((AccountShared_) accountShared).afterSetContentView_();
+        ((NetworkAvailable_) network).afterSetContentView_();
         {
             final TextView view = ((TextView) findViewById(id.login_etEmail));
             if (view != null)
@@ -142,6 +149,7 @@ public final class LoginActivity_
                 );
             }
         }
+        setUpView();
     }
 
     @Override
@@ -168,6 +176,78 @@ public final class LoginActivity_
     public static LoginActivity_.IntentBuilder_ intent(Context context)
     {
         return new LoginActivity_.IntentBuilder_(context);
+    }
+
+    @Override
+    public void updateLogin(final Intent intent)
+    {
+        handler_.post(new Runnable()
+        {
+
+
+            @Override
+            public void run()
+            {
+                try
+                {
+                    LoginActivity_.super.updateLogin(intent);
+                }
+                catch (RuntimeException e)
+                {
+                    Log.e("LoginActivity_", "A runtime exception was thrown while executing code in a runnable", e);
+                }
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void checkLogin()
+    {
+        BackgroundExecutor.execute(new Runnable()
+        {
+
+
+            @Override
+            public void run()
+            {
+                try
+                {
+                    LoginActivity_.super.checkLogin();
+                }
+                catch (RuntimeException e)
+                {
+                    Log.e("LoginActivity_", "A runtime exception was thrown while executing code in a runnable", e);
+                }
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void login(final String userName, final String password)
+    {
+        BackgroundExecutor.execute(new Runnable()
+        {
+
+
+            @Override
+            public void run()
+            {
+                try
+                {
+                    LoginActivity_.super.login(userName, password);
+                }
+                catch (RuntimeException e)
+                {
+                    Log.e("LoginActivity_", "A runtime exception was thrown while executing code in a runnable", e);
+                }
+            }
+
+        }
+        );
     }
 
     public static class IntentBuilder_

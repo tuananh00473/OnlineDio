@@ -42,24 +42,6 @@ public final class InputCommentActivity_
         etContent = ((EditText) findViewById(id.inputcomment_etInputComment));
         btDone = ((Button) findViewById(id.inputcommnet_btDone));
         {
-            View view = findViewById(id.inputcommnet_btBack);
-            if (view != null)
-            {
-                view.setOnClickListener(new OnClickListener()
-                {
-
-
-                    @Override
-                    public void onClick(View view)
-                    {
-                        InputCommentActivity_.this.doBack();
-                    }
-
-                }
-                );
-            }
-        }
-        {
             View view = findViewById(id.inputcommnet_btDone);
             if (view != null)
             {
@@ -71,6 +53,24 @@ public final class InputCommentActivity_
                     public void onClick(View view)
                     {
                         InputCommentActivity_.this.doDone();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = findViewById(id.inputcommnet_btBack);
+            if (view != null)
+            {
+                view.setOnClickListener(new OnClickListener()
+                {
+
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        InputCommentActivity_.this.doBack();
                     }
 
                 }

@@ -12,7 +12,8 @@ import android.os.IBinder;
 public class OnlineSyncAdapterService extends Service
 {
     private static final Object sSyncAdapterLock = new Object();
-    private static OnlineSyncAdapter sSyncAdapter = null;
+
+    private static OnlineSyncAdapter sSyncAdapter;
 
     @Override
     public void onCreate()
@@ -21,7 +22,7 @@ public class OnlineSyncAdapterService extends Service
         {
             if (sSyncAdapter == null)
             {
-                sSyncAdapter = new OnlineSyncAdapter(getApplicationContext(), true);
+                sSyncAdapter = OnlineSyncAdapter_.getInstance_(getApplicationContext());
             }
         }
     }

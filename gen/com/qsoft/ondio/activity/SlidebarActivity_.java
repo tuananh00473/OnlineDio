@@ -40,9 +40,9 @@ public final class SlidebarActivity_
 
     private void afterSetContentView_()
     {
+        mDrawerLayout = ((DrawerLayout) findViewById(com.qsoft.ondio.R.id.drawer_layout));
         rlLeftDrawer = ((RelativeLayout) findViewById(com.qsoft.ondio.R.id.left_drawer));
         lvOption = ((ListView) findViewById(com.qsoft.ondio.R.id.slidebar_listOption));
-        mDrawerLayout = ((DrawerLayout) findViewById(com.qsoft.ondio.R.id.drawer_layout));
         {
             View view = findViewById(com.qsoft.ondio.R.id.slidebar_rlProfile);
             if (view != null)

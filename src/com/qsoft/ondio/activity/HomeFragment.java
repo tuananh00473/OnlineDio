@@ -14,9 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import com.googlecode.androidannotations.annotations.*;
 import com.qsoft.ondio.R;
-import com.qsoft.ondio.controller.DatabaseController;
 import com.qsoft.ondio.customui.FeedArrayAdapter;
-import com.qsoft.ondio.model.User;
 import com.qsoft.ondio.util.Constants;
 
 @EFragment(R.layout.home)
@@ -24,30 +22,27 @@ public class HomeFragment extends Fragment
 {
     private static final String TAG = "HomeFragment";
 
+    @SystemService
+    AccountManager accountManager;
+
     @ViewById(R.id.home_btMenu)
     Button btMenu;
 
     @ViewById(R.id.home_lvFeeds)
     ListView home_lvFeeds;
 
-    @Bean
-    DatabaseController databaseController;
-
     @AfterViews
     void afterViews()
     {
-        User user = databaseController.loadUserFromDB();
-        if (null != user)
-        {
-            Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_FEED, Integer.parseInt(user.getUser_id()));
-            Cursor homeCursor = getActivity().managedQuery(uri, null, null, null, "_id");
-            SimpleCursorAdapter mAdapter = FeedArrayAdapter.getSimpleCursorAdapter(getActivity(), homeCursor);
-            home_lvFeeds.setAdapter(mAdapter);
+        Account account = accountManager.getAccountsByType(Constants.ARG_ACCOUNT_TYPE)[0];
+        String userId = accountManager.getUserData(account, Constants.USERDATA_USER_OBJ_ID);
 
-            AccountManager accountManager = AccountManager.get(getActivity().getApplicationContext());
-            Account account = accountManager.getAccountsByType(Constants.ARG_ACCOUNT_TYPE)[0];
-            syncNow(account);
-        }
+        Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_FEED, Integer.parseInt(userId));
+        Cursor homeCursor = getActivity().managedQuery(uri, null, null, null, "_id");
+        SimpleCursorAdapter mAdapter = FeedArrayAdapter.getSimpleCursorAdapter(getActivity(), homeCursor);
+        home_lvFeeds.setAdapter(mAdapter);
+
+        syncNow(account);
     }
 
     public void syncNow(Account account)

@@ -5,6 +5,8 @@
 
 package com.qsoft.ondio.activity;
 
+import android.accounts.AccountManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import com.qsoft.ondio.R.layout;
-import com.qsoft.ondio.controller.DatabaseController_;
 
 public final class HomeFragment_
         extends HomeFragment
@@ -25,7 +26,7 @@ public final class HomeFragment_
 
     private void init_(Bundle savedInstanceState)
     {
-        databaseController = DatabaseController_.getInstance_(getActivity());
+        accountManager = ((AccountManager) getActivity().getSystemService(Context.ACCOUNT_SERVICE));
     }
 
     @Override
@@ -75,7 +76,6 @@ public final class HomeFragment_
                 );
             }
         }
-        ((DatabaseController_) databaseController).afterSetContentView_();
         afterViews();
     }
 
