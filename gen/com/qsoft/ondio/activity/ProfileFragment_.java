@@ -5,6 +5,8 @@
 
 package com.qsoft.ondio.activity;
 
+import android.accounts.AccountManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.qsoft.ondio.R.layout;
 import com.qsoft.ondio.controller.DatabaseController_;
+import com.qsoft.ondio.restservice.AccountShared_;
 
 public final class ProfileFragment_
         extends ProfileFragment
@@ -22,6 +25,8 @@ public final class ProfileFragment_
 
     private void init_(Bundle savedInstanceState)
     {
+        accountManager = ((AccountManager) getActivity().getSystemService(Context.ACCOUNT_SERVICE));
+        accountShared = AccountShared_.getInstance_(getActivity());
         databaseController = DatabaseController_.getInstance_(getActivity());
     }
 
@@ -34,74 +39,20 @@ public final class ProfileFragment_
 
     private void afterSetContentView_()
     {
-        etFullName = ((EditText) findViewById(com.qsoft.ondio.R.id.profile_etFullName));
-        etBirthday = ((EditText) findViewById(com.qsoft.ondio.R.id.profile_etBirthday));
-        btFemale = ((Button) findViewById(com.qsoft.ondio.R.id.profile_btFemale));
-        etDescription = ((EditText) findViewById(com.qsoft.ondio.R.id.profile_etDescription));
-        btSave = ((Button) findViewById(com.qsoft.ondio.R.id.profile_btSave));
-        btMenu = ((Button) findViewById(com.qsoft.ondio.R.id.profile_btMenu));
-        etCountry = ((EditText) findViewById(com.qsoft.ondio.R.id.profile_etCountry));
-        etPhoneNo = ((EditText) findViewById(com.qsoft.ondio.R.id.profile_etPhoneNo));
-        scroll = ((ScrollView) findViewById(com.qsoft.ondio.R.id.profile_svScroll));
-        btMale = ((Button) findViewById(com.qsoft.ondio.R.id.profile_btMale));
-        spCountry = ((Spinner) findViewById(com.qsoft.ondio.R.id.profile_spCountry));
-        rlCoverImage = ((RelativeLayout) findViewById(com.qsoft.ondio.R.id.profile_rlCoverImage));
         etProfileName = ((EditText) findViewById(com.qsoft.ondio.R.id.profile_etProfileName));
+        etFullName = ((EditText) findViewById(com.qsoft.ondio.R.id.profile_etFullName));
+        btMale = ((Button) findViewById(com.qsoft.ondio.R.id.profile_btMale));
+        rlCoverImage = ((RelativeLayout) findViewById(com.qsoft.ondio.R.id.profile_rlCoverImage));
+        btSave = ((Button) findViewById(com.qsoft.ondio.R.id.profile_btSave));
+        scroll = ((ScrollView) findViewById(com.qsoft.ondio.R.id.profile_svScroll));
         ivAvatar = ((ImageView) findViewById(com.qsoft.ondio.R.id.profile_ivAvatar));
-        {
-            View view = findViewById(com.qsoft.ondio.R.id.profile_etDescription);
-            if (view != null)
-            {
-                view.setOnClickListener(new OnClickListener()
-                {
-
-
-                    @Override
-                    public void onClick(View view)
-                    {
-                        ProfileFragment_.this.setFullScroll();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = findViewById(com.qsoft.ondio.R.id.profile_btMenu);
-            if (view != null)
-            {
-                view.setOnClickListener(new OnClickListener()
-                {
-
-
-                    @Override
-                    public void onClick(View view)
-                    {
-                        ProfileFragment_.this.showMenu();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = findViewById(com.qsoft.ondio.R.id.profile_etBirthday);
-            if (view != null)
-            {
-                view.setOnClickListener(new OnClickListener()
-                {
-
-
-                    @Override
-                    public void onClick(View view)
-                    {
-                        ProfileFragment_.this.setBirthday();
-                    }
-
-                }
-                );
-            }
-        }
+        etCountry = ((EditText) findViewById(com.qsoft.ondio.R.id.profile_etCountry));
+        btMenu = ((Button) findViewById(com.qsoft.ondio.R.id.profile_btMenu));
+        etDescription = ((EditText) findViewById(com.qsoft.ondio.R.id.profile_etDescription));
+        etBirthday = ((EditText) findViewById(com.qsoft.ondio.R.id.profile_etBirthday));
+        etPhoneNo = ((EditText) findViewById(com.qsoft.ondio.R.id.profile_etPhoneNo));
+        spCountry = ((Spinner) findViewById(com.qsoft.ondio.R.id.profile_spCountry));
+        btFemale = ((Button) findViewById(com.qsoft.ondio.R.id.profile_btFemale));
         {
             View view = findViewById(com.qsoft.ondio.R.id.profile_btFemale);
             if (view != null)
@@ -139,7 +90,7 @@ public final class ProfileFragment_
             }
         }
         {
-            View view = findViewById(com.qsoft.ondio.R.id.profile_rlCoverImage);
+            View view = findViewById(com.qsoft.ondio.R.id.profile_etBirthday);
             if (view != null)
             {
                 view.setOnClickListener(new OnClickListener()
@@ -149,25 +100,7 @@ public final class ProfileFragment_
                     @Override
                     public void onClick(View view)
                     {
-                        ProfileFragment_.this.setCoverImage();
-                    }
-
-                }
-                );
-            }
-        }
-        {
-            View view = findViewById(com.qsoft.ondio.R.id.profile_btSave);
-            if (view != null)
-            {
-                view.setOnClickListener(new OnClickListener()
-                {
-
-
-                    @Override
-                    public void onClick(View view)
-                    {
-                        ProfileFragment_.this.doSave();
+                        ProfileFragment_.this.setBirthday();
                     }
 
                 }
@@ -193,6 +126,60 @@ public final class ProfileFragment_
             }
         }
         {
+            View view = findViewById(com.qsoft.ondio.R.id.profile_etDescription);
+            if (view != null)
+            {
+                view.setOnClickListener(new OnClickListener()
+                {
+
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        ProfileFragment_.this.setFullScroll();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = findViewById(com.qsoft.ondio.R.id.profile_btSave);
+            if (view != null)
+            {
+                view.setOnClickListener(new OnClickListener()
+                {
+
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        ProfileFragment_.this.doSave();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = findViewById(com.qsoft.ondio.R.id.profile_btMenu);
+            if (view != null)
+            {
+                view.setOnClickListener(new OnClickListener()
+                {
+
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        ProfileFragment_.this.showMenu();
+                    }
+
+                }
+                );
+            }
+        }
+        {
             View view = findViewById(com.qsoft.ondio.R.id.profile_btMale);
             if (view != null)
             {
@@ -210,6 +197,25 @@ public final class ProfileFragment_
                 );
             }
         }
+        {
+            View view = findViewById(com.qsoft.ondio.R.id.profile_rlCoverImage);
+            if (view != null)
+            {
+                view.setOnClickListener(new OnClickListener()
+                {
+
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        ProfileFragment_.this.setCoverImage();
+                    }
+
+                }
+                );
+            }
+        }
+        ((AccountShared_) accountShared).afterSetContentView_();
         ((DatabaseController_) databaseController).afterSetContentView_();
         afterView();
     }

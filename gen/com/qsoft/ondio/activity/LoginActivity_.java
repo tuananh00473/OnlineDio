@@ -24,6 +24,7 @@ import com.googlecode.androidannotations.api.BackgroundExecutor;
 import com.qsoft.ondio.R.id;
 import com.qsoft.ondio.R.layout;
 import com.qsoft.ondio.controller.DatabaseController_;
+import com.qsoft.ondio.controller.LoginController_;
 import com.qsoft.ondio.restservice.AccountShared_;
 import com.qsoft.ondio.util.NetworkAvailable_;
 
@@ -44,16 +45,17 @@ public final class LoginActivity_
     private void init_(Bundle savedInstanceState)
     {
         mAccountManager = ((AccountManager) this.getSystemService(Context.ACCOUNT_SERVICE));
+        network = NetworkAvailable_.getInstance_(this);
         databaseController = DatabaseController_.getInstance_(this);
         accountShared = AccountShared_.getInstance_(this);
-        network = NetworkAvailable_.getInstance_(this);
+        loginController = LoginController_.getInstance_(this);
     }
 
     private void afterSetContentView_()
     {
+        etPassword = ((EditText) findViewById(id.login_etPassword));
         etEmail = ((EditText) findViewById(id.login_etEmail));
         btLogin = ((Button) findViewById(id.login_btNext));
-        etPassword = ((EditText) findViewById(id.login_etPassword));
         {
             View view = findViewById(id.login_btBack);
             if (view != null)
@@ -90,9 +92,10 @@ public final class LoginActivity_
                 );
             }
         }
+        ((NetworkAvailable_) network).afterSetContentView_();
         ((DatabaseController_) databaseController).afterSetContentView_();
         ((AccountShared_) accountShared).afterSetContentView_();
-        ((NetworkAvailable_) network).afterSetContentView_();
+        ((LoginController_) loginController).afterSetContentView_();
         {
             final TextView view = ((TextView) findViewById(id.login_etEmail));
             if (view != null)
@@ -203,7 +206,7 @@ public final class LoginActivity_
     }
 
     @Override
-    public void checkLogin()
+    public void login(final String username, final String password)
     {
         BackgroundExecutor.execute(new Runnable()
         {
@@ -214,31 +217,7 @@ public final class LoginActivity_
             {
                 try
                 {
-                    LoginActivity_.super.checkLogin();
-                }
-                catch (RuntimeException e)
-                {
-                    Log.e("LoginActivity_", "A runtime exception was thrown while executing code in a runnable", e);
-                }
-            }
-
-        }
-        );
-    }
-
-    @Override
-    public void login(final String userName, final String password)
-    {
-        BackgroundExecutor.execute(new Runnable()
-        {
-
-
-            @Override
-            public void run()
-            {
-                try
-                {
-                    LoginActivity_.super.login(userName, password);
+                    LoginActivity_.super.login(username, password);
                 }
                 catch (RuntimeException e)
                 {

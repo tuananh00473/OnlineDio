@@ -1,5 +1,6 @@
 package com.qsoft.ondio.activity;
 
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,7 +20,7 @@ import com.qsoft.ondio.dialog.MyDialog;
 import com.qsoft.ondio.lazzyload.ProfileAvatarLoader;
 import com.qsoft.ondio.lazzyload.ProfileCoverImageLoader;
 import com.qsoft.ondio.model.Profile;
-import com.qsoft.ondio.model.User;
+import com.qsoft.ondio.restservice.AccountShared;
 import com.qsoft.ondio.util.Constants;
 import org.json.JSONException;
 
@@ -79,7 +80,14 @@ public class ProfileFragment extends Fragment
     @Bean
     DatabaseController databaseController;
 
-    User user = null;
+    @SystemService
+    AccountManager accountManager;
+
+    @Bean
+    AccountShared accountShared;
+
+    String userId;
+    String accessToken;
 
     private static final int MALE = 1;
     private static final int FEMALE = 2;
@@ -92,19 +100,20 @@ public class ProfileFragment extends Fragment
     @AfterViews
     public void afterView()
     {
-        user = databaseController.loadUserFromDB();
+        userId = accountManager.getUserData(accountShared.getAccount(), Constants.USERDATA_USER_OBJ_ID);
+        accessToken = accountManager.peekAuthToken(accountShared.getAccount(), Constants.AUTHTOKEN_TYPE_FULL_ACCESS);
 
-        setUpProfile(user);
-        SyncFormServer(user);
+        setUpProfile(userId);
+        SyncFormServer(userId, accessToken);
     }
 
-    private void SyncFormServer(User user)
+    private void SyncFormServer(String userId, String accessToken)
     {
         try
         {
-            Profile profile = Constants.sServerAuthenticate.getProfile(user.getUser_id(), user.getAccess_token());
+            Profile profile = Constants.sServerAuthenticate.getProfile(userId, accessToken);
             databaseController.saveProfileToDB(profile);
-            setUpProfile(user);
+            setUpProfile(userId);
             Log.d(TAG, profile.getDisplay_name());
         }
         catch (JSONException ignored)
@@ -112,9 +121,9 @@ public class ProfileFragment extends Fragment
         }
     }
 
-    private void setUpProfile(User user)
+    private void setUpProfile(String userId)
     {
-        Profile profile = databaseController.loadProfileFromDB(user);
+        Profile profile = databaseController.loadProfileFromDB(userId);
         if (null != profile)
         {
             etProfileName.setText(profile.getDisplay_name());
@@ -180,7 +189,7 @@ public class ProfileFragment extends Fragment
         try
         {
             Profile profile = new Profile();
-            profile.setId(Integer.parseInt(user.getUser_id()));
+            profile.setId(Integer.parseInt(userId));
             profile.setDisplay_name(etProfileName.getText().toString());
             profile.setFull_name(etFullName.getText().toString());
             profile.setPhone(etPhoneNo.getText().toString());
@@ -189,11 +198,11 @@ public class ProfileFragment extends Fragment
             profile.setCountry_id(getCountryCode(etCountry.getText().toString()));
             profile.setDescription(etDescription.getText().toString());
 
-            Profile profileUpdated = Constants.sServerAuthenticate.updateProfile(profile, user.getAccess_token());
+            Profile profileUpdated = Constants.sServerAuthenticate.updateProfile(profile, accessToken);
             if (null != profileUpdated)
             {
                 databaseController.saveProfileToDB(profileUpdated);
-                setUpProfile(user);
+                setUpProfile(userId);
                 MyDialog.showMessageDialog(getActivity(), "Success", "Profile updated!");
             }
             else

@@ -53,7 +53,6 @@ public class DatabaseController
         if (null != c && c.moveToFirst())
         {
             User user = new User();
-            user.setId(c.getInt(c.getColumnIndex(Constants.USER_ID)));
             user.setAccess_token(c.getString(c.getColumnIndex(Constants.USER_ACCESS_TOKEN)));
             user.setClient_id(c.getString(c.getColumnIndex(Constants.USER_CLIENT_ID)));
             user.setUser_id(c.getString(c.getColumnIndex(Constants.USER_USER_ID)));
@@ -64,10 +63,9 @@ public class DatabaseController
         return null;
     }
 
-    public Profile loadProfileFromDB(User user)
+    public Profile loadProfileFromDB(String userId)
     {
-        Log.d(TAG, "user : " + user);
-        Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_PROFILE, Integer.parseInt(user.getUser_id()));
+        Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_PROFILE, Integer.parseInt(userId));
         Cursor c = activity.managedQuery(uri, null, null, null, "_id");
         if (null != c && c.moveToFirst())
         {

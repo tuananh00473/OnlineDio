@@ -15,6 +15,7 @@ import android.widget.ListView;
 import com.googlecode.androidannotations.annotations.*;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.customui.FeedArrayAdapter;
+import com.qsoft.ondio.restservice.AccountShared;
 import com.qsoft.ondio.util.Constants;
 
 @EFragment(R.layout.home)
@@ -31,18 +32,20 @@ public class HomeFragment extends Fragment
     @ViewById(R.id.home_lvFeeds)
     ListView home_lvFeeds;
 
+    @Bean
+    AccountShared accountShared;
+
     @AfterViews
     void afterViews()
     {
-        Account account = accountManager.getAccountsByType(Constants.ARG_ACCOUNT_TYPE)[0];
-        String userId = accountManager.getUserData(account, Constants.USERDATA_USER_OBJ_ID);
+        String userId = accountManager.getUserData(accountShared.getAccount(), Constants.USERDATA_USER_OBJ_ID);
 
         Uri uri = ContentUris.withAppendedId(Constants.CONTENT_URI_FEED, Integer.parseInt(userId));
         Cursor homeCursor = getActivity().managedQuery(uri, null, null, null, "_id");
         SimpleCursorAdapter mAdapter = FeedArrayAdapter.getSimpleCursorAdapter(getActivity(), homeCursor);
         home_lvFeeds.setAdapter(mAdapter);
 
-        syncNow(account);
+        syncNow(accountShared.getAccount());
     }
 
     public void syncNow(Account account)

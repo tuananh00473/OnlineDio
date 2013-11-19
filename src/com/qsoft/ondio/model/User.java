@@ -1,6 +1,8 @@
 package com.qsoft.ondio.model;
 
 import android.content.ContentValues;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.qsoft.ondio.util.Constants;
 
 import java.io.Serializable;
@@ -10,24 +12,23 @@ import java.io.Serializable;
  * Date: 10/18/13
  * Time: 4:01 PM
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable
 {
-    private int id;
+    @JsonProperty("access_token")
     private String access_token;
+
+    @JsonProperty("client_id")
     private String client_id;
+
+    @JsonProperty("user_id")
     private String user_id;
+
+    @JsonProperty("expires")
     private String expires;
+
+    @JsonProperty("scope")
     private String scope;
-
-    public int getId()
-    {
-        return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
-    }
 
     public String getAccess_token()
     {
@@ -82,7 +83,6 @@ public class User implements Serializable
     public ContentValues getContentValues()
     {
         ContentValues values = new ContentValues();
-        values.put(Constants.USER_ID, id);
         values.put(Constants.USER_ACCESS_TOKEN, access_token);
         values.put(Constants.USER_CLIENT_ID, client_id);
         values.put(Constants.USER_USER_ID, user_id);

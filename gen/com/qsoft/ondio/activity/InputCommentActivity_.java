@@ -39,8 +39,8 @@ public final class InputCommentActivity_
 
     private void afterSetContentView_()
     {
-        etContent = ((EditText) findViewById(id.inputcomment_etInputComment));
         btDone = ((Button) findViewById(id.inputcommnet_btDone));
+        etContent = ((EditText) findViewById(id.inputcomment_etInputComment));
         {
             View view = findViewById(id.inputcommnet_btDone);
             if (view != null)

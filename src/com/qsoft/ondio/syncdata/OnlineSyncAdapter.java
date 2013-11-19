@@ -40,9 +40,13 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
     @AfterInject
     void afterInject()
     {
-        List<ClientHttpRequestInterceptor> interceptorList = new ArrayList<ClientHttpRequestInterceptor>();
-        interceptorList.add(interceptor);
-        restService.getRestTemplate().setInterceptors(interceptorList);
+        Account account = accountManager.getAccountsByType(Constants.ARG_ACCOUNT_TYPE)[0];
+        if (null != account)
+        {
+            List<ClientHttpRequestInterceptor> interceptorList = new ArrayList<ClientHttpRequestInterceptor>();
+            interceptorList.add(interceptor);
+            restService.getRestTemplate().setInterceptors(interceptorList);
+        }
     }
 
     private final ContentResolver mContentResolver;
@@ -59,20 +63,10 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
         Log.d(TAG, "start sync");
         try
         {
-//            String authToken = "";
-//            String userId = "";
-//            Cursor cursor = provider.query(Constants.CONTENT_URI_USER, null, null, null, "_id");
-//            if (null != cursor && cursor.moveToNext())
-//            {
-//                authToken = cursor.getString(cursor.getColumnIndex(Constants.USER_ACCESS_TOKEN));
-//                userId = cursor.getString(cursor.getColumnIndex(Constants.USER_USER_ID));
-//            }
-
             String userId = accountManager.getUserData(account, Constants.USERDATA_USER_OBJ_ID);
 
             Log.d(TAG, " ==> UserID = " + userId);
             Log.d(TAG, " ==> Get data from service.");
-//            ArrayList<Feed> remoteFeeds = Constants.sServerAuthenticate.getHomeFeed(authToken);
             JsonResponse response = restService.getHomeFeed();
             Log.d(TAG, "dataResponse : " + response);
             ArrayList<Feed> remoteFeeds = response.getHomeList();

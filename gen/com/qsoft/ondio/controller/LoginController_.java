@@ -3,20 +3,23 @@
 //
 
 
-package com.qsoft.ondio.restservice;
+package com.qsoft.ondio.controller;
 
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
+import com.qsoft.ondio.restservice.AccountShared_;
+import com.qsoft.ondio.restservice.Interceptor_;
+import com.qsoft.ondio.restservice.MyRestService_;
 
-public final class Interceptor_
-        extends Interceptor
+public final class LoginController_
+        extends LoginController
 {
 
     private Context context_;
 
-    private Interceptor_(Context context)
+    private LoginController_(Context context)
     {
         context_ = context;
         init_();
@@ -29,6 +32,7 @@ public final class Interceptor_
             return;
         }
         ((AccountShared_) accountShared).afterSetContentView_();
+        ((Interceptor_) interceptor).afterSetContentView_();
     }
 
     /**
@@ -48,12 +52,15 @@ public final class Interceptor_
             Activity activity = ((Activity) context_);
         }
         accountManager = ((AccountManager) context_.getSystemService(Context.ACCOUNT_SERVICE));
+        services = new MyRestService_();
         accountShared = AccountShared_.getInstance_(context_);
+        interceptor = Interceptor_.getInstance_(context_);
+        init();
     }
 
-    public static Interceptor_ getInstance_(Context context)
+    public static LoginController_ getInstance_(Context context)
     {
-        return new Interceptor_(context);
+        return new LoginController_(context);
     }
 
     public void rebind(Context context)

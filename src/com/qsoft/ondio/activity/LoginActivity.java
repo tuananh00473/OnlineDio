@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.googlecode.androidannotations.annotations.*;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.controller.DatabaseController;
+import com.qsoft.ondio.controller.LoginController;
 import com.qsoft.ondio.dialog.MyDialog;
 import com.qsoft.ondio.model.User;
 import com.qsoft.ondio.restservice.AccountShared;
@@ -52,6 +53,9 @@ public class LoginActivity extends AccountAuthenticatorActivity
     @Bean
     AccountShared accountShared;
 
+    @Bean
+    LoginController loginController;
+
     @AfterTextChange({R.id.login_etEmail, R.id.login_etPassword})
     void afterTextChanged()
     {
@@ -76,13 +80,6 @@ public class LoginActivity extends AccountAuthenticatorActivity
             mAccountManager.removeAccount(account, null, null);
         }
 
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
@@ -122,28 +119,27 @@ public class LoginActivity extends AccountAuthenticatorActivity
         return network.checkNetwork(this);
     }
 
-    @Background
     void checkLogin()
     {
         Log.d(TAG, "> Submit");
-        final String userName = etEmail.getText().toString();
+        final String username = etEmail.getText().toString();
         final String password = etPassword.getText().toString();
 
-        login(userName, password);
+        login(username, password);
     }
 
     @Background
-    void login(String userName, String password)
+    void login(String username, String password)
     {
         Log.d(TAG, "> Started authenticating");
 
         Bundle data = new Bundle();
         try
         {
-            User user = Constants.sServerAuthenticate.login(userName, password, Constants.AUTHTOKEN_TYPE_FULL_ACCESS);
+            User user = loginController.login(username, password);
             if (user.getAccess_token() != null)
             {
-                data.putString(AccountManager.KEY_ACCOUNT_NAME, userName);
+                data.putString(AccountManager.KEY_ACCOUNT_NAME, username);
                 data.putString(AccountManager.KEY_ACCOUNT_TYPE, Constants.ARG_ACCOUNT_TYPE);
                 data.putString(AccountManager.KEY_AUTHTOKEN, user.getAccess_token());
 

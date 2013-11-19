@@ -17,6 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import com.qsoft.ondio.R.layout;
+import com.qsoft.ondio.restservice.AccountShared_;
 
 public final class HomeFragment_
         extends HomeFragment
@@ -27,6 +28,7 @@ public final class HomeFragment_
     private void init_(Bundle savedInstanceState)
     {
         accountManager = ((AccountManager) getActivity().getSystemService(Context.ACCOUNT_SERVICE));
+        accountShared = AccountShared_.getInstance_(getActivity());
     }
 
     @Override
@@ -76,6 +78,7 @@ public final class HomeFragment_
                 );
             }
         }
+        ((AccountShared_) accountShared).afterSetContentView_();
         afterViews();
     }
 

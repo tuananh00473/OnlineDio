@@ -1,7 +1,7 @@
 package com.qsoft.ondio.restservice;
 
-import android.accounts.Account;
 import android.accounts.AccountManager;
+import com.googlecode.androidannotations.annotations.Bean;
 import com.googlecode.androidannotations.annotations.EBean;
 import com.googlecode.androidannotations.annotations.SystemService;
 import com.qsoft.ondio.util.Constants;
@@ -23,13 +23,16 @@ public class Interceptor implements ClientHttpRequestInterceptor
     @SystemService
     AccountManager accountManager;
 
+    @Bean
+    AccountShared accountShared;
+
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] data, ClientHttpRequestExecution execution) throws IOException
     {
         request.getHeaders().add("Content-type", "application/json");
 
-        Account account = accountManager.getAccountsByType(Constants.ARG_ACCOUNT_TYPE)[0];
-        String accessToken = accountManager.peekAuthToken(account, Constants.AUTHTOKEN_TYPE_FULL_ACCESS);
+//        Account account = accountManager.getAccountsByType(Constants.ARG_ACCOUNT_TYPE)[0];
+        String accessToken = accountManager.peekAuthToken(accountShared.getAccount(), Constants.AUTHTOKEN_TYPE_FULL_ACCESS);
         request.getHeaders().add("Authorization", "Bearer " + accessToken);
 
         return execution.execute(request, data);
