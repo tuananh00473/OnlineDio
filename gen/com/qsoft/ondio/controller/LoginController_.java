@@ -5,7 +5,6 @@
 
 package com.qsoft.ondio.controller;
 
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
@@ -51,7 +50,6 @@ public final class LoginController_
         {
             Activity activity = ((Activity) context_);
         }
-        accountManager = ((AccountManager) context_.getSystemService(Context.ACCOUNT_SERVICE));
         services = new MyRestService_();
         interceptor = Interceptor_.getInstance_(context_);
         accountShared = AccountShared_.getInstance_(context_);

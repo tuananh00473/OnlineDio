@@ -1,9 +1,6 @@
 package com.qsoft.ondio.restservice;
 
-import com.googlecode.androidannotations.annotations.rest.Accept;
-import com.googlecode.androidannotations.annotations.rest.Get;
-import com.googlecode.androidannotations.annotations.rest.Post;
-import com.googlecode.androidannotations.annotations.rest.Rest;
+import com.googlecode.androidannotations.annotations.rest.*;
 import com.googlecode.androidannotations.api.rest.MediaType;
 import com.qsoft.ondio.model.JsonFeedResponse;
 import com.qsoft.ondio.model.JsonProfileResponse;
@@ -25,13 +22,16 @@ public interface MyRestService
     @Accept(MediaType.APPLICATION_JSON)
     public JsonFeedResponse getHomeFeed();
 
-    @Post(("/auth-rest"))
+    @Post("/auth-rest")
     @Accept(MediaType.APPLICATION_JSON)
-    public User login(HashMap name);
+    public User login(HashMap user);
 
     @Get("/user-rest/{account_id}")
     @Accept(MediaType.APPLICATION_JSON)
-    JsonProfileResponse getProfile(String account_id);
+    public JsonProfileResponse getProfile(String account_id);
+
+    @Put("/user-rest/{account_id}")
+    public void updateProfile(String account_id, HashMap profile);
 
     public RestTemplate getRestTemplate();
 }

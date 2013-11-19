@@ -47,8 +47,8 @@ public final class LoginActivity_
         mAccountManager = ((AccountManager) this.getSystemService(Context.ACCOUNT_SERVICE));
         network = NetworkAvailable_.getInstance_(this);
         databaseController = DatabaseController_.getInstance_(this);
-        accountShared = AccountShared_.getInstance_(this);
         loginController = LoginController_.getInstance_(this);
+        accountShared = AccountShared_.getInstance_(this);
     }
 
     private void afterSetContentView_()
@@ -94,8 +94,8 @@ public final class LoginActivity_
         }
         ((NetworkAvailable_) network).afterSetContentView_();
         ((DatabaseController_) databaseController).afterSetContentView_();
-        ((AccountShared_) accountShared).afterSetContentView_();
         ((LoginController_) loginController).afterSetContentView_();
+        ((AccountShared_) accountShared).afterSetContentView_();
         {
             final TextView view = ((TextView) findViewById(id.login_etEmail));
             if (view != null)

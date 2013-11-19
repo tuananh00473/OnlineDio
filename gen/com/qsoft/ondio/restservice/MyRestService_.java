@@ -38,15 +38,6 @@ public class MyRestService_
     }
 
     @Override
-    public JsonFeedResponse getHomeFeed()
-    {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setAccept(Collections.singletonList(MediaType.parseMediaType("application/json")));
-        HttpEntity<Object> requestEntity = new HttpEntity<Object>(httpHeaders);
-        return restTemplate.exchange(rootUrl.concat("/home-rest"), HttpMethod.GET, requestEntity, JsonFeedResponse.class).getBody();
-    }
-
-    @Override
     public JsonProfileResponse getProfile(String account_id)
     {
         java.util.HashMap<String, Object> urlVariables = new java.util.HashMap<String, Object>();
@@ -58,12 +49,31 @@ public class MyRestService_
     }
 
     @Override
-    public User login(java.util.HashMap name)
+    public JsonFeedResponse getHomeFeed()
     {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(Collections.singletonList(MediaType.parseMediaType("application/json")));
-        HttpEntity<java.util.HashMap> requestEntity = new HttpEntity<java.util.HashMap>(name, httpHeaders);
+        HttpEntity<Object> requestEntity = new HttpEntity<Object>(httpHeaders);
+        return restTemplate.exchange(rootUrl.concat("/home-rest"), HttpMethod.GET, requestEntity, JsonFeedResponse.class).getBody();
+    }
+
+    @Override
+    public User login(java.util.HashMap user)
+    {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(Collections.singletonList(MediaType.parseMediaType("application/json")));
+        HttpEntity<java.util.HashMap> requestEntity = new HttpEntity<java.util.HashMap>(user, httpHeaders);
         return restTemplate.exchange(rootUrl.concat("/auth-rest"), HttpMethod.POST, requestEntity, User.class).getBody();
+    }
+
+    @Override
+    public void updateProfile(String account_id, java.util.HashMap profile)
+    {
+        java.util.HashMap<String, Object> urlVariables = new java.util.HashMap<String, Object>();
+        urlVariables.put("account_id", account_id);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        HttpEntity<java.util.HashMap> requestEntity = new HttpEntity<java.util.HashMap>(profile, httpHeaders);
+        restTemplate.exchange(rootUrl.concat("/user-rest/{account_id}"), HttpMethod.PUT, requestEntity, null, urlVariables);
     }
 
 }

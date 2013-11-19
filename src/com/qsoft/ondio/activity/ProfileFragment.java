@@ -17,19 +17,15 @@ import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.rest.RestService;
 import com.qsoft.ondio.R;
 import com.qsoft.ondio.controller.DatabaseController;
+import com.qsoft.ondio.controller.ProfileController;
 import com.qsoft.ondio.dialog.MyDialog;
 import com.qsoft.ondio.lazzyload.ProfileAvatarLoader;
 import com.qsoft.ondio.lazzyload.ProfileCoverImageLoader;
-import com.qsoft.ondio.model.JsonProfileResponse;
 import com.qsoft.ondio.model.Profile;
 import com.qsoft.ondio.restservice.AccountShared;
 import com.qsoft.ondio.restservice.Interceptor;
 import com.qsoft.ondio.restservice.MyRestService;
 import com.qsoft.ondio.util.Constants;
-import org.springframework.http.client.ClientHttpRequestInterceptor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * User: AnhNT
@@ -99,6 +95,9 @@ public class ProfileFragment extends Fragment
     @Bean
     Interceptor interceptor;
 
+    @Bean
+    ProfileController profileController;
+
     String userId;
     String accessToken;
 
@@ -109,17 +108,6 @@ public class ProfileFragment extends Fragment
     private static final int AVATAR_CODE = 0;
     private static final int COVER_IMAGE_CODE = 1;
     private static int code;
-
-    @AfterInject
-    public void init()
-    {
-        if (accountShared.getUser_id() != null)
-        {
-            List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>();
-            interceptors.add(interceptor);
-            services.getRestTemplate().setInterceptors(interceptors);
-        }
-    }
 
     @AfterViews
     public void afterView()
@@ -133,13 +121,10 @@ public class ProfileFragment extends Fragment
 
     private void SyncFormServer(String userId)
     {
+        Profile profile = profileController.getProfile(userId);
 
-//            Profile profile = Constants.sServerAuthenticate.getProfile(userId, accessToken);
-        JsonProfileResponse jsonProfileResponse = services.getProfile(userId);
-        Profile profile = jsonProfileResponse.getProfile();
         databaseController.saveProfileToDB(profile);
         setUpProfile(userId);
-        Log.d(TAG, profile.getDisplay_name());
     }
 
     private void setUpProfile(String userId)
@@ -218,19 +203,9 @@ public class ProfileFragment extends Fragment
             profile.setGender(gender);
             profile.setCountry_id(getCountryCode(etCountry.getText().toString()));
             profile.setDescription(etDescription.getText().toString());
+            profileController.updateProfile(userId, profile);
+            SyncFormServer(userId);
 
-            Profile profileUpdated = Constants.sServerAuthenticate.updateProfile(profile, accessToken);
-            if (null != profileUpdated)
-            {
-                databaseController.saveProfileToDB(profileUpdated);
-                setUpProfile(userId);
-                MyDialog.showMessageDialog(getActivity(), "Success", "Profile updated!");
-            }
-            else
-            {
-
-                MyDialog.showMessageDialog(getActivity(), "Failure", "Update failure, try again later!");
-            }
         }
         catch (Exception e)
         {

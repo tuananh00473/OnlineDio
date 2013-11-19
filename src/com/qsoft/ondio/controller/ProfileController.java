@@ -4,13 +4,13 @@ import com.googlecode.androidannotations.annotations.AfterInject;
 import com.googlecode.androidannotations.annotations.Bean;
 import com.googlecode.androidannotations.annotations.EBean;
 import com.googlecode.androidannotations.annotations.rest.RestService;
-import com.qsoft.ondio.model.User;
+import com.qsoft.ondio.model.Profile;
 import com.qsoft.ondio.restservice.AccountShared;
 import com.qsoft.ondio.restservice.Interceptor;
 import com.qsoft.ondio.restservice.MyRestService;
-import com.qsoft.ondio.util.StringConverter;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,19 +18,20 @@ import java.util.List;
 /**
  * User: anhnt
  * Date: 11/19/13
- * Time: 9:39 AM
+ * Time: 11:45 AM
  */
+
 @EBean
-public class LoginController
+public class ProfileController
 {
-    @Bean
-    Interceptor interceptor;
+    @RestService
+    MyRestService services;
 
     @Bean
     AccountShared accountShared;
 
-    @RestService
-    MyRestService services;
+    @Bean
+    Interceptor interceptor;
 
     @AfterInject
     public void init()
@@ -43,21 +44,21 @@ public class LoginController
         }
     }
 
-    public User login(String username, String password)
+    public void updateProfile(String userId, Profile profile)
     {
-        try
-        {
-            password = new StringConverter().doConvert(password);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        HashMap<String, String> urlVariables = new HashMap<String, String>();
-        urlVariables.put("username", username);
-        urlVariables.put("password", password);
-        urlVariables.put("grant_type", "password");
-        urlVariables.put("client_id", "123456789");
-        return services.login(urlVariables);
+        HashMap<String, Serializable> urlVariables = new HashMap<String, Serializable>();
+        urlVariables.put("display_name", profile.getDisplay_name());
+        urlVariables.put("full_name", profile.getFull_name());
+        urlVariables.put("phone", profile.getPhone());
+        urlVariables.put("birthday", profile.getBirthday());
+        urlVariables.put("gender", profile.getGender());
+        urlVariables.put("country_id", profile.getCountry_id());
+        urlVariables.put("description", profile.getDescription());
+        services.updateProfile(userId, urlVariables);
+    }
+
+    public Profile getProfile(String userId)
+    {
+        return services.getProfile(userId).getProfile();
     }
 }
