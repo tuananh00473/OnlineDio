@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class JsonResponse
+public class JsonFeedResponse
 {
     @JsonProperty("data")
     ArrayList<Feed> homeList;

@@ -57,41 +57,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14c4ad5a-a3d1-49f0-b826-71503d44a764" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/controller/LoginController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/controller/LoginController_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/AccountShared_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/AccountShared_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/BuildConfig.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/CommentFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/CommentFragment_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/controller/DatabaseController.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/controller/DatabaseController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/controller/DatabaseController_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/controller/DatabaseController_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/DetailFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/DetailFragment_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/HomeFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/HomeFragment_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/InputCommentActivity_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/InputCommentActivity_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/model/JsonFeedResponse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/Interceptor_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/Interceptor_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/LoginActivity.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/LoginActivity_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/LoginActivity_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/MainActivity_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/MainActivity_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/Manifest.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/Manifest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/controller/LoginController_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/controller/LoginController_.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/MyRestService.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/MyRestService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/MyRestService_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/MyRestService_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/util/NetworkAvailable_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/util/NetworkAvailable_.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapter.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/syncdata/OnlineSyncAdapter_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/syncdata/OnlineSyncAdapter_.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/model/Profile.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/model/Profile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ProfileFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ProfileFragment_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ProgramFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ProgramFragment_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/R.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/SlidebarActivity_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/SlidebarActivity_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ThumbnailFragment_.java" afterPath="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/ThumbnailFragment_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/qsoft/ondio/model/User.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/model/User.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="E:\AndroidProject\OnlineDioVer1_beforeApplyAnnotation\OnlineDio\src\com\qsoft\ondio\model\JsonResponse.java" afterPath="$PROJECT_DIR$/src/com/qsoft/ondio/model/JsonProfileResponse.java" />
     </list>
     <ignored path="OnlineDio.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384830370374" ignored="false" />
-    <file path="/fragment.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384827737586" ignored="false" />
+    <file path="/Dummy.txt" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384834786740" ignored="false" />
+    <file path="/fragment.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384835014487" ignored="false" />
     <file path="/main.xml" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384825543424" ignored="false" />
     <file path="/MainActivity.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384247140062" ignored="false" />
     <file path="/dementions.xml" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1381513504666" ignored="false" />
@@ -162,7 +144,7 @@
     <file path="/Profile.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384238965275" ignored="false" />
     <file path="/ParseComServer.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383275134462" ignored="false" />
     <file path="/jsonResult.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383275100951" ignored="false" />
-    <file path="/ProfileFragment.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384834632208" ignored="false" />
+    <file path="/ProfileFragment.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384835816623" ignored="false" />
     <file path="$PROJECT_DIR$/../../LocalStorageDemo/src/com/example/LocalStorageDemo/activity/SharedPreferenceActivity.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383275709035" ignored="false" />
     <file path="/OnlineAuthenticator.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384308040209" ignored="false" />
     <file path="/Common.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1383300768368" ignored="false" />
@@ -319,10 +301,15 @@
     <file path="$PROJECT_DIR$/../../RestServiceExample/src/com/example/RestServiceExample/activity/MyActivity.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384827457245" ignored="false" />
     <file path="$PROJECT_DIR$/../../RestServiceExample/src/com/example/RestServiceExample/rest/MyRestService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384827605860" ignored="false" />
     <file path="$PROJECT_DIR$/../../RestServiceExample/src/com/example/RestServiceExample/rest/Interceptor.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384827355299" ignored="false" />
-    <file path="/MyRestService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384833824437" ignored="false" />
+    <file path="/MyRestService.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384835059294" ignored="false" />
     <file path="$PROJECT_DIR$/../../RestServiceExample/src/com/example/RestServiceExample/model/JsonResponse.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384827535242" ignored="false" />
     <file path="$USER_HOME$/Desktop/OnlineDioVer2-master/OnlineDioVer2-master/src/com/qsoft/ondio/data/ParseComServerAccessor.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384828940807" ignored="false" />
     <file path="/LoginGUI.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384833530753" ignored="false" />
+    <file path="$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/AccountShared_.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384834791567" ignored="false" />
+    <file path="$PROJECT_DIR$/gen/com/qsoft/ondio/activity/DetailFragment_.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384834791567" ignored="false" />
+    <file path="$PROJECT_DIR$/gen/com/qsoft/ondio/R.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384834791568" ignored="false" />
+    <file path="/JsonProfileResponse.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384835033839" ignored="false" />
+    <file path="$USER_HOME$/Desktop/OnlineDioVer2-master/OnlineDioVer2-master/src/com/qsoft/ondio/restservice/Services.java" changelist="14c4ad5a-a3d1-49f0-b826-71503d44a764" time="1384835533383" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,7 +329,53 @@
     <sortChildren value="false" />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java" line="127" class="com.qsoft.ondio.activity.ProfileFragment" package="com.qsoft.ondio.activity">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java" line="147" class="com.qsoft.ondio.activity.ProfileFragment" package="com.qsoft.ondio.activity">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java" line="138" class="com.qsoft.ondio.activity.ProfileFragment" package="com.qsoft.ondio.activity">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -391,28 +424,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ProfileFragment.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ProfileFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="210" column="95" selection-start="6162" selection-end="6162" vertical-scroll-proportion="4.265664">
+            <state line="138" column="0" selection-start="3682" selection-end="3682" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#3026#3056#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Profile.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/model/Profile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="219" column="95" selection-start="4289" selection-end="4289" vertical-scroll-proportion="-2.1102757">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatabaseController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/controller/DatabaseController.java">
+      <file leaf-file-name="LoginController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/controller/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="100" selection-start="2178" selection-end="2178" vertical-scroll-proportion="0.0">
+            <state line="48" column="11" selection-start="1061" selection-end="1399" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#1237#1267#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyRestService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/MyRestService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="24" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomeFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java">
+      <file leaf-file-name="AccountShared.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/AccountShared.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="111" selection-start="1085" selection-end="1188" vertical-scroll-proportion="0.0">
+            <state line="15" column="13" selection-start="434" selection-end="434" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -421,7 +476,7 @@
       <file leaf-file-name="Interceptor.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="124" selection-start="1161" selection-end="1277" vertical-scroll-proportion="0.0">
+            <state line="37" column="57" selection-start="1370" selection-end="1370" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -447,9 +502,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/accountmanager/RestService.java" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/RestService.java" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/model/JsonResponse.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/AccountShared.java" />
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/MainActivity.java" />
@@ -458,11 +510,14 @@
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/LoginActivity.java" />
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/controller/LoginController.java" />
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/model/User.java" />
-        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/MyRestService.java" />
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/controller/DatabaseController.java" />
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/HomeFragment.java" />
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/model/JsonFeedResponse.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/model/JsonProfileResponse.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/restservice/MyRestService.java" />
         <option value="$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/qsoft/ondio/model/Profile.java" />
       </list>
     </option>
   </component>
@@ -775,6 +830,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qsoft.ondio.model" />
       <recent name="com.qsoft.ondio.provider" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -1084,12 +1140,16 @@
       <created>1384749939734</created>
       <updated>1384749939734</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="commit code">
+      <created>1384834792628</created>
+      <updated>1384834792628</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="754" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277311" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1112,7 +1172,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22907154" sideWeight="0.71428573" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22907154" sideWeight="0.71428573" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2857143" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22526637" sideWeight="0.6" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1189,55 +1249,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/util/StringConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="139" selection-end="139" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/accountmanager/OnlineAuthenticatorService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="141" selection-end="141" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="0" selection-start="1614" selection-end="1614" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/accountmanager/OnlineAuthenticator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="31" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/syncdata/OnlineSyncAdapterService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/qsoft_Android/setup/sdk/platforms/android-17/android.jar!/org/apache/http/impl/client/DefaultHttpClient.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="13" selection-start="170" selection-end="170" vertical-scroll-proportion="-1.1424657">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="21" selection-start="1482" selection-end="1487" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1302#1332#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1257,13 +1272,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/MyRestService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="101" selection-start="1013" selection-end="1013" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/accountmanager/ServerAuthenticate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="17" selection-start="284" selection-end="284" vertical-scroll-proportion="0.0">
@@ -1276,8 +1284,8 @@
         <state line="46" column="57" selection-start="1575" selection-end="1590" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1453#1483#0" expanded="true" />
-            <element signature="e#2621#2633#0" expanded="true" />
+            <element signature="e#1466#1496#0" expanded="true" />
+            <element signature="e#2638#2650#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1296,16 +1304,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/model/JsonFeedResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="29" selection-start="295" selection-end="311" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/model/JsonProfileResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="5" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/MyRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="24" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/AccountShared.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="13" selection-start="434" selection-end="434" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/restservice/Interceptor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="124" selection-start="1161" selection-end="1277" vertical-scroll-proportion="0.0">
+        <state line="37" column="57" selection-start="1370" selection-end="1370" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="11" selection-start="1061" selection-end="1399" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#1237#1267#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gen/com/qsoft/ondio/restservice/MyRestService_.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="0" selection-start="1958" selection-end="1958" vertical-scroll-proportion="0.4809384">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/activity/ProfileFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="210" column="95" selection-start="6162" selection-end="6162" vertical-scroll-proportion="4.265664">
+        <state line="138" column="0" selection-start="3682" selection-end="3682" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#3026#3056#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qsoft/ondio/model/Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="219" column="95" selection-start="4289" selection-end="4289" vertical-scroll-proportion="-2.1102757">
           <folding />
         </state>
       </provider>

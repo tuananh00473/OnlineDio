@@ -5,7 +5,8 @@
 
 package com.qsoft.ondio.restservice;
 
-import com.qsoft.ondio.model.JsonResponse;
+import com.qsoft.ondio.model.JsonFeedResponse;
+import com.qsoft.ondio.model.JsonProfileResponse;
 import com.qsoft.ondio.model.User;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,7 +16,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
-import java.util.HashMap;
 
 public class MyRestService_
         implements MyRestService
@@ -38,20 +38,31 @@ public class MyRestService_
     }
 
     @Override
-    public JsonResponse getHomeFeed()
+    public JsonFeedResponse getHomeFeed()
     {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(Collections.singletonList(MediaType.parseMediaType("application/json")));
         HttpEntity<Object> requestEntity = new HttpEntity<Object>(httpHeaders);
-        return restTemplate.exchange(rootUrl.concat("/home-rest"), HttpMethod.GET, requestEntity, JsonResponse.class).getBody();
+        return restTemplate.exchange(rootUrl.concat("/home-rest"), HttpMethod.GET, requestEntity, JsonFeedResponse.class).getBody();
     }
 
     @Override
-    public User login(HashMap name)
+    public JsonProfileResponse getProfile(String account_id)
+    {
+        java.util.HashMap<String, Object> urlVariables = new java.util.HashMap<String, Object>();
+        urlVariables.put("account_id", account_id);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(Collections.singletonList(MediaType.parseMediaType("application/json")));
+        HttpEntity<Object> requestEntity = new HttpEntity<Object>(httpHeaders);
+        return restTemplate.exchange(rootUrl.concat("/user-rest/{account_id}"), HttpMethod.GET, requestEntity, JsonProfileResponse.class, urlVariables).getBody();
+    }
+
+    @Override
+    public User login(java.util.HashMap name)
     {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(Collections.singletonList(MediaType.parseMediaType("application/json")));
-        HttpEntity<HashMap> requestEntity = new HttpEntity<HashMap>(name, httpHeaders);
+        HttpEntity<java.util.HashMap> requestEntity = new HttpEntity<java.util.HashMap>(name, httpHeaders);
         return restTemplate.exchange(rootUrl.concat("/auth-rest"), HttpMethod.POST, requestEntity, User.class).getBody();
     }
 

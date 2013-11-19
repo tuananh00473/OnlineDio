@@ -1,6 +1,8 @@
 package com.qsoft.ondio.model;
 
 import android.content.ContentValues;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.qsoft.ondio.util.Constants;
 
 import java.io.Serializable;
@@ -10,29 +12,51 @@ import java.io.Serializable;
  * Date: 10/18/13
  * Time: 4:01 PM
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Profile implements Serializable
 {
-    private int id;
-    private int facebook_id;
-    private String username;
-    private String password;
-    private String avatar;
-    private String cover_image;
-    private String display_name;
-    private String full_name;
-    private String phone;
-    private String birthday;
-    private int gender;
-    private String country_id;
-    private int storage_plan_id;
-    private String description;
-    private String created_at;
-    private String updated_at;
-    private int sounds;
-    private int favorites;
-    private int likes;
-    private int followings;
-    private int audiences;
+    @JsonProperty("id")
+    public int id;
+    @JsonProperty("facebook_id")
+    public int facebook_id;
+    @JsonProperty("username")
+    public String username;
+    @JsonProperty("password")
+    public String password;
+    @JsonProperty("avatar")
+    public String avatar;
+    @JsonProperty("cover_image")
+    public String cover_image;
+    @JsonProperty("display_name")
+    public String display_name;
+    @JsonProperty("full_name")
+    public String full_name;
+    @JsonProperty("phone")
+    public String phone;
+    @JsonProperty("birthday")
+    public String birthday;
+    @JsonProperty("gender")
+    public int gender;
+    @JsonProperty("country_id")
+    public String country_id;
+    @JsonProperty("storage_plan_id")
+    public int storage_plan_id;
+    @JsonProperty("description")
+    public String description;
+    @JsonProperty("created_at")
+    public String created_at;
+    @JsonProperty("updated_at")
+    public String updated_at;
+    @JsonProperty("sounds")
+    public String sounds;
+    @JsonProperty("favorites")
+    public String favorites;
+    @JsonProperty("likes")
+    public String likes;
+    @JsonProperty("followings")
+    public String followings;
+    @JsonProperty("audiences")
+    public String audiences;
 
     public int getId()
     {
@@ -192,6 +216,56 @@ public class Profile implements Serializable
     public void setUpdated_at(String updated_at)
     {
         this.updated_at = updated_at;
+    }
+
+    public String getSounds()
+    {
+        return sounds;
+    }
+
+    public void setSounds(String sounds)
+    {
+        this.sounds = sounds;
+    }
+
+    public String getFavorites()
+    {
+        return favorites;
+    }
+
+    public void setFavorites(String favorites)
+    {
+        this.favorites = favorites;
+    }
+
+    public String getLikes()
+    {
+        return likes;
+    }
+
+    public void setLikes(String likes)
+    {
+        this.likes = likes;
+    }
+
+    public String getFollowings()
+    {
+        return followings;
+    }
+
+    public void setFollowings(String followings)
+    {
+        this.followings = followings;
+    }
+
+    public String getAudiences()
+    {
+        return audiences;
+    }
+
+    public void setAudiences(String audiences)
+    {
+        this.audiences = audiences;
     }
 
     public ContentValues getContentValues()

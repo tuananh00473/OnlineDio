@@ -31,8 +31,8 @@ public final class LoginController_
         {
             return;
         }
-        ((AccountShared_) accountShared).afterSetContentView_();
         ((Interceptor_) interceptor).afterSetContentView_();
+        ((AccountShared_) accountShared).afterSetContentView_();
     }
 
     /**
@@ -53,8 +53,8 @@ public final class LoginController_
         }
         accountManager = ((AccountManager) context_.getSystemService(Context.ACCOUNT_SERVICE));
         services = new MyRestService_();
-        accountShared = AccountShared_.getInstance_(context_);
         interceptor = Interceptor_.getInstance_(context_);
+        accountShared = AccountShared_.getInstance_(context_);
         init();
     }
 

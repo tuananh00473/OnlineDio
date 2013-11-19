@@ -5,7 +5,8 @@ import com.googlecode.androidannotations.annotations.rest.Get;
 import com.googlecode.androidannotations.annotations.rest.Post;
 import com.googlecode.androidannotations.annotations.rest.Rest;
 import com.googlecode.androidannotations.api.rest.MediaType;
-import com.qsoft.ondio.model.JsonResponse;
+import com.qsoft.ondio.model.JsonFeedResponse;
+import com.qsoft.ondio.model.JsonProfileResponse;
 import com.qsoft.ondio.model.User;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -22,11 +23,15 @@ public interface MyRestService
 {
     @Get("/home-rest")
     @Accept(MediaType.APPLICATION_JSON)
-    public JsonResponse getHomeFeed();
+    public JsonFeedResponse getHomeFeed();
 
     @Post(("/auth-rest"))
     @Accept(MediaType.APPLICATION_JSON)
     public User login(HashMap name);
+
+    @Get("/user-rest/{account_id}")
+    @Accept(MediaType.APPLICATION_JSON)
+    JsonProfileResponse getProfile(String account_id);
 
     public RestTemplate getRestTemplate();
 }

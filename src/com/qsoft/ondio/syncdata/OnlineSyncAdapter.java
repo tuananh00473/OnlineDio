@@ -13,7 +13,7 @@ import com.googlecode.androidannotations.annotations.EBean;
 import com.googlecode.androidannotations.annotations.SystemService;
 import com.googlecode.androidannotations.annotations.rest.RestService;
 import com.qsoft.ondio.model.Feed;
-import com.qsoft.ondio.model.JsonResponse;
+import com.qsoft.ondio.model.JsonFeedResponse;
 import com.qsoft.ondio.restservice.Interceptor;
 import com.qsoft.ondio.restservice.MyRestService;
 import com.qsoft.ondio.util.Constants;
@@ -67,7 +67,7 @@ public class OnlineSyncAdapter extends AbstractThreadedSyncAdapter
 
             Log.d(TAG, " ==> UserID = " + userId);
             Log.d(TAG, " ==> Get data from service.");
-            JsonResponse response = restService.getHomeFeed();
+            JsonFeedResponse response = restService.getHomeFeed();
             Log.d(TAG, "dataResponse : " + response);
             ArrayList<Feed> remoteFeeds = response.getHomeList();
             Log.d(TAG, "data : " + remoteFeeds);
